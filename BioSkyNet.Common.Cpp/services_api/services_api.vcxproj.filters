@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="includes">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="includes\unit_service">
+      <UniqueIdentifier>{bf5bba34-c61b-4167-bc54-77a43cca959e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\coordinator_service">
+      <UniqueIdentifier>{64ec44ff-a474-478f-b143-b13d9990a895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\facial_service">
+      <UniqueIdentifier>{329d9aa6-4614-43a5-ab62-da2c3cfc84be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\file_service">
+      <UniqueIdentifier>{1481795d-4f08-4f75-8153-f4058407a59e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\database_service">
+      <UniqueIdentifier>{066a5cbd-2c98-45d8-9c95-4c7c97093746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\helpers">
+      <UniqueIdentifier>{942950ac-e69f-4568-93ba-9a693c470aad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp">
+      <Filter>includes\coordinator_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coordinator_service\coordinator_client_impl.hpp">
+      <Filter>includes\coordinator_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\facial_service\facial_client_impl.hpp">
+      <Filter>includes\facial_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\database_client_calls.hpp">
+      <Filter>includes\database_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\database_client_impl.hpp">
+      <Filter>includes\database_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\check_device_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\enroll_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\get_card_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\get_device_stream_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\get_devices_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\get_location_stream_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\open_door_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\unit_service_impl.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\unit_service\update_location_request_handler.hpp">
+      <Filter>includes\unit_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helpers\service_heplers.hpp">
+      <Filter>includes\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\client_service_base.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\file_service\file_client_impl.hpp">
+      <Filter>includes\file_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\file_service\file_client_calls.hpp">
+      <Filter>includes\file_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\facial_service\facial_client_calls.hpp">
+      <Filter>includes\facial_service</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

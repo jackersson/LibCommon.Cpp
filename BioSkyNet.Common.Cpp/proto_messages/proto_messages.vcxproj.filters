@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="includes">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="includes\datatypes">
+      <UniqueIdentifier>{0be53ab7-98b3-4a01-b9e2-17f61ab4653f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="includes\services">
+      <UniqueIdentifier>{16cf85b5-6f43-4a51-b1e0-0ba0d3abbe61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\datatypes">
+      <UniqueIdentifier>{ccb89769-813d-4121-9467-2e15f5675949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services">
+      <UniqueIdentifier>{791c661d-fae8-40a2-ab09-389333d7777f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\datatypes\biometrics.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\card.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\commands.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\data.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\datetime.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\devices.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\entity.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\geometry.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\group.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\key.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\location.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\person.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\photo.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\queries.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\unit.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\datatypes\visit_record.pb.h">
+      <Filter>includes\datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\coordinator_service.grpc.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\coordinator_service.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\database_service.grpc.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\database_service.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\facial_service.grpc.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\facial_service.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\file_service.grpc.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\file_service.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\unit_service.grpc.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\unit_service.pb.h">
+      <Filter>includes\services</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\datatypes\biometrics.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\card.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\commands.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\data.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\datetime.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\devices.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\entity.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\geometry.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\group.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\key.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\location.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\person.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\photo.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\queries.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\unit.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\datatypes\visit_record.pb.cc">
+      <Filter>src\datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\coordinator_service.grpc.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\coordinator_service.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\database_service.grpc.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\database_service.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\facial_service.grpc.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\facial_service.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\file_service.grpc.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\file_service.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\unit_service.grpc.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+    <ClCompile Include="src\services\unit_service.pb.cc">
+      <Filter>src\services</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
