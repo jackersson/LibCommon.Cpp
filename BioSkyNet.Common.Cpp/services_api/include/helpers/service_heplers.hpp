@@ -9,7 +9,7 @@
 
 namespace services_api
 {
-	typedef Services::UnitService::AsyncService AsyncService;
+
 	typedef std::function<void()> RpcCallbackFunction;
 	typedef std::vector<std::pair<std::string, std::string>> Metadata;
 

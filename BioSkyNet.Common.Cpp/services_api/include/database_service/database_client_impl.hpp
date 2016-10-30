@@ -2,7 +2,6 @@
 #define DatabaseClientImpl_INCLUDED
 
 #include <grpc++/grpc++.h>
-#include <services/iservice.hpp>
 #include <services/database_service.grpc.pb.h>
 #include "database_service/database_client_calls.hpp"
 #include <services/idatabase_api.hpp>

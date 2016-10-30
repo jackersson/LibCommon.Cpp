@@ -24,6 +24,8 @@ namespace contracts
 			virtual bool exists     (const Services::FileMessage& request) = 0;
 	
 		};
+		typedef std::shared_ptr<IFileStorageApi> IFileStorageApiPtr;
+
 	}
 }
 

@@ -5,11 +5,11 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\proto_messages\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\services_api\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>proto_messages.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>services_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

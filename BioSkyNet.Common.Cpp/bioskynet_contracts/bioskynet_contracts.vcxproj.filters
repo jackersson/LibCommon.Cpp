@@ -22,6 +22,9 @@
     <Filter Include="includes\common">
       <UniqueIdentifier>{030ec0c8-84f3-4cb3-84c4-a302e3ad94db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="includes\data">
+      <UniqueIdentifier>{7dafcf0c-4063-472d-bd3d-44565ac2eaf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\logging\logger.hpp">
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="include\services\facial_service_api.hpp">
       <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\data_utils.hpp">
+      <Filter>includes\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
