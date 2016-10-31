@@ -247,7 +247,7 @@ class Faces : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .DataTypes.FaceCharacteristic Faces = 1;
+  // repeated .DataTypes.FaceCharacteristic faces = 1;
   int faces_size() const;
   void clear_faces();
   static const int kFacesFieldNumber = 1;
@@ -355,19 +355,30 @@ class FaceCharacteristic : public ::google::protobuf::Message {
   float confidence() const;
   void set_confidence(float value);
 
-  // optional .DataTypes.Key person_id = 4;
+  // optional string fir_url = 4;
+  void clear_fir_url();
+  static const int kFirUrlFieldNumber = 4;
+  const ::std::string& fir_url() const;
+  void set_fir_url(const ::std::string& value);
+  void set_fir_url(const char* value);
+  void set_fir_url(const char* value, size_t size);
+  ::std::string* mutable_fir_url();
+  ::std::string* release_fir_url();
+  void set_allocated_fir_url(::std::string* fir_url);
+
+  // optional .DataTypes.Key person_id = 5;
   bool has_person_id() const;
   void clear_person_id();
-  static const int kPersonIdFieldNumber = 4;
+  static const int kPersonIdFieldNumber = 5;
   const ::DataTypes::Key& person_id() const;
   ::DataTypes::Key* mutable_person_id();
   ::DataTypes::Key* release_person_id();
   void set_allocated_person_id(::DataTypes::Key* person_id);
 
-  // optional .DataTypes.Key photo_id = 5;
+  // optional .DataTypes.Key photo_id = 6;
   bool has_photo_id() const;
   void clear_photo_id();
-  static const int kPhotoIdFieldNumber = 5;
+  static const int kPhotoIdFieldNumber = 6;
   const ::DataTypes::Key& photo_id() const;
   ::DataTypes::Key* mutable_photo_id();
   ::DataTypes::Key* release_photo_id();
@@ -380,6 +391,7 @@ class FaceCharacteristic : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::DataTypes::Key* id_;
   ::DataTypes::Box* box_;
+  ::google::protobuf::internal::ArenaStringPtr fir_url_;
   ::DataTypes::Key* person_id_;
   ::DataTypes::Key* photo_id_;
   float confidence_;
@@ -677,7 +689,7 @@ class Matches : public ::google::protobuf::Message {
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
 // Faces
 
-// repeated .DataTypes.FaceCharacteristic Faces = 1;
+// repeated .DataTypes.FaceCharacteristic faces = 1;
 inline int Faces::faces_size() const {
   return faces_.size();
 }
@@ -685,25 +697,25 @@ inline void Faces::clear_faces() {
   faces_.Clear();
 }
 inline const ::DataTypes::FaceCharacteristic& Faces::faces(int index) const {
-  // @@protoc_insertion_point(field_get:DataTypes.Faces.Faces)
+  // @@protoc_insertion_point(field_get:DataTypes.Faces.faces)
   return faces_.Get(index);
 }
 inline ::DataTypes::FaceCharacteristic* Faces::mutable_faces(int index) {
-  // @@protoc_insertion_point(field_mutable:DataTypes.Faces.Faces)
+  // @@protoc_insertion_point(field_mutable:DataTypes.Faces.faces)
   return faces_.Mutable(index);
 }
 inline ::DataTypes::FaceCharacteristic* Faces::add_faces() {
-  // @@protoc_insertion_point(field_add:DataTypes.Faces.Faces)
+  // @@protoc_insertion_point(field_add:DataTypes.Faces.faces)
   return faces_.Add();
 }
 inline ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >*
 Faces::mutable_faces() {
-  // @@protoc_insertion_point(field_mutable_list:DataTypes.Faces.Faces)
+  // @@protoc_insertion_point(field_mutable_list:DataTypes.Faces.faces)
   return &faces_;
 }
 inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >&
 Faces::faces() const {
-  // @@protoc_insertion_point(field_list:DataTypes.Faces.Faces)
+  // @@protoc_insertion_point(field_list:DataTypes.Faces.faces)
   return faces_;
 }
 
@@ -801,7 +813,51 @@ inline void FaceCharacteristic::set_confidence(float value) {
   // @@protoc_insertion_point(field_set:DataTypes.FaceCharacteristic.confidence)
 }
 
-// optional .DataTypes.Key person_id = 4;
+// optional string fir_url = 4;
+inline void FaceCharacteristic::clear_fir_url() {
+  fir_url_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& FaceCharacteristic::fir_url() const {
+  // @@protoc_insertion_point(field_get:DataTypes.FaceCharacteristic.fir_url)
+  return fir_url_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FaceCharacteristic::set_fir_url(const ::std::string& value) {
+  
+  fir_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DataTypes.FaceCharacteristic.fir_url)
+}
+inline void FaceCharacteristic::set_fir_url(const char* value) {
+  
+  fir_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DataTypes.FaceCharacteristic.fir_url)
+}
+inline void FaceCharacteristic::set_fir_url(const char* value, size_t size) {
+  
+  fir_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DataTypes.FaceCharacteristic.fir_url)
+}
+inline ::std::string* FaceCharacteristic::mutable_fir_url() {
+  
+  // @@protoc_insertion_point(field_mutable:DataTypes.FaceCharacteristic.fir_url)
+  return fir_url_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FaceCharacteristic::release_fir_url() {
+  // @@protoc_insertion_point(field_release:DataTypes.FaceCharacteristic.fir_url)
+  
+  return fir_url_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FaceCharacteristic::set_allocated_fir_url(::std::string* fir_url) {
+  if (fir_url != NULL) {
+    
+  } else {
+    
+  }
+  fir_url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), fir_url);
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.FaceCharacteristic.fir_url)
+}
+
+// optional .DataTypes.Key person_id = 5;
 inline bool FaceCharacteristic::has_person_id() const {
   return !_is_default_instance_ && person_id_ != NULL;
 }
@@ -839,7 +895,7 @@ inline void FaceCharacteristic::set_allocated_person_id(::DataTypes::Key* person
   // @@protoc_insertion_point(field_set_allocated:DataTypes.FaceCharacteristic.person_id)
 }
 
-// optional .DataTypes.Key photo_id = 5;
+// optional .DataTypes.Key photo_id = 6;
 inline bool FaceCharacteristic::has_photo_id() const {
   return !_is_default_instance_ && photo_id_ != NULL;
 }

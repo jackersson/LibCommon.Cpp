@@ -50,12 +50,12 @@ FileService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   return new ::grpc::ClientAsyncResponseReader< ::Services::FileMessage>(channel_.get(), cq, rpcmethod_Create_, context, request);
 }
 
-::grpc::Status FileService::Stub::Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::EmptyMessage* response) {
+::grpc::Status FileService::Stub::Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::google::protobuf::Empty* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_Delete_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::Services::EmptyMessage>* FileService::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
-  return new ::grpc::ClientAsyncResponseReader< ::Services::EmptyMessage>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* FileService::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>(channel_.get(), cq, rpcmethod_Delete_, context, request);
 }
 
 ::grpc::Status FileService::Stub::Exists(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::ExistMessage* response) {
@@ -81,7 +81,7 @@ FileService::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       FileService_method_names[2],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< FileService::Service, ::Services::FileMessage, ::Services::EmptyMessage>(
+      new ::grpc::RpcMethodHandler< FileService::Service, ::Services::FileMessage, ::google::protobuf::Empty>(
           std::mem_fn(&FileService::Service::Delete), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       FileService_method_names[3],
@@ -107,7 +107,7 @@ FileService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status FileService::Service::Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::EmptyMessage* response) {
+::grpc::Status FileService::Service::Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -8,7 +8,7 @@
       <AdditionalIncludeDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\utils\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\utils\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>utils_x32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

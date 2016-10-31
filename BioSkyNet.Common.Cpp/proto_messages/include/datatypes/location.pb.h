@@ -149,6 +149,15 @@ class Location : public ::google::protobuf::Message {
   ::DataTypes::AccessDevice* release_access_device();
   void set_allocated_access_device(::DataTypes::AccessDevice* access_device);
 
+  // optional .DataTypes.CaptureDevice capture_device = 6;
+  bool has_capture_device() const;
+  void clear_capture_device();
+  static const int kCaptureDeviceFieldNumber = 6;
+  const ::DataTypes::CaptureDevice& capture_device() const;
+  ::DataTypes::CaptureDevice* mutable_capture_device();
+  ::DataTypes::CaptureDevice* release_capture_device();
+  void set_allocated_capture_device(::DataTypes::CaptureDevice* capture_device);
+
   // @@protoc_insertion_point(class_scope:DataTypes.Location)
  private:
 
@@ -159,6 +168,7 @@ class Location : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr description_;
   ::google::protobuf::internal::ArenaStringPtr unit_mac_address_;
   ::DataTypes::AccessDevice* access_device_;
+  ::DataTypes::CaptureDevice* capture_device_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2flocation_2eproto();
   friend void protobuf_AssignDesc_datatypes_2flocation_2eproto();
@@ -381,6 +391,44 @@ inline void Location::set_allocated_access_device(::DataTypes::AccessDevice* acc
     
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.access_device)
+}
+
+// optional .DataTypes.CaptureDevice capture_device = 6;
+inline bool Location::has_capture_device() const {
+  return !_is_default_instance_ && capture_device_ != NULL;
+}
+inline void Location::clear_capture_device() {
+  if (GetArenaNoVirtual() == NULL && capture_device_ != NULL) delete capture_device_;
+  capture_device_ = NULL;
+}
+inline const ::DataTypes::CaptureDevice& Location::capture_device() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Location.capture_device)
+  return capture_device_ != NULL ? *capture_device_ : *default_instance_->capture_device_;
+}
+inline ::DataTypes::CaptureDevice* Location::mutable_capture_device() {
+  
+  if (capture_device_ == NULL) {
+    capture_device_ = new ::DataTypes::CaptureDevice;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.Location.capture_device)
+  return capture_device_;
+}
+inline ::DataTypes::CaptureDevice* Location::release_capture_device() {
+  // @@protoc_insertion_point(field_release:DataTypes.Location.capture_device)
+  
+  ::DataTypes::CaptureDevice* temp = capture_device_;
+  capture_device_ = NULL;
+  return temp;
+}
+inline void Location::set_allocated_capture_device(::DataTypes::CaptureDevice* capture_device) {
+  delete capture_device_;
+  capture_device_ = capture_device;
+  if (capture_device) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.capture_device)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -35,12 +35,13 @@ void protobuf_AssignDesc_datatypes_2flocation_2eproto() {
       "datatypes/location.proto");
   GOOGLE_CHECK(file != NULL);
   Location_descriptor_ = file->message_type(0);
-  static const int Location_offsets_[5] = {
+  static const int Location_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, description_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, unit_mac_address_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, access_device_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, capture_device_),
   };
   Location_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -87,12 +88,14 @@ void protobuf_AddDesc_datatypes_2flocation_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\030datatypes/location.proto\022\tDataTypes\032\027d"
     "atatypes/devices.proto\032\023datatypes/key.pr"
-    "oto\"\223\001\n\010Location\022\032\n\002id\030\001 \001(\0132\016.DataTypes"
+    "oto\"\305\001\n\010Location\022\032\n\002id\030\001 \001(\0132\016.DataTypes"
     ".Key\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t\022"
     "\030\n\020unit_mac_address\030\004 \001(\t\022.\n\raccess_devi"
-    "ce\030\005 \001(\0132\027.DataTypes.AccessDeviceBM\n\007ex."
-    "grpcZ<github.com/Enebra/ServiceCoordinat"
-    "or/grpc/datatypes/location\242\002\003RTGb\006proto3", 320);
+    "ce\030\005 \001(\0132\027.DataTypes.AccessDevice\0220\n\016cap"
+    "ture_device\030\006 \001(\0132\030.DataTypes.CaptureDev"
+    "iceBM\n\007ex.grpcZ<github.com/Enebra/Servic"
+    "eCoordinator/grpc/datatypes/location\242\002\003R"
+    "TGb\006proto3", 370);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/location.proto", &protobuf_RegisterTypes);
   Location::default_instance_ = new Location();
@@ -125,6 +128,7 @@ const int Location::kNameFieldNumber;
 const int Location::kDescriptionFieldNumber;
 const int Location::kUnitMacAddressFieldNumber;
 const int Location::kAccessDeviceFieldNumber;
+const int Location::kCaptureDeviceFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Location::Location()
@@ -137,6 +141,7 @@ void Location::InitAsDefaultInstance() {
   _is_default_instance_ = true;
   id_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
   access_device_ = const_cast< ::DataTypes::AccessDevice*>(&::DataTypes::AccessDevice::default_instance());
+  capture_device_ = const_cast< ::DataTypes::CaptureDevice*>(&::DataTypes::CaptureDevice::default_instance());
 }
 
 Location::Location(const Location& from)
@@ -156,6 +161,7 @@ void Location::SharedCtor() {
   description_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   unit_mac_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   access_device_ = NULL;
+  capture_device_ = NULL;
 }
 
 Location::~Location() {
@@ -170,6 +176,7 @@ void Location::SharedDtor() {
   if (this != default_instance_) {
     delete id_;
     delete access_device_;
+    delete capture_device_;
   }
 }
 
@@ -207,6 +214,8 @@ void Location::Clear() {
   unit_mac_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == NULL && access_device_ != NULL) delete access_device_;
   access_device_ = NULL;
+  if (GetArenaNoVirtual() == NULL && capture_device_ != NULL) delete capture_device_;
+  capture_device_ = NULL;
 }
 
 bool Location::MergePartialFromCodedStream(
@@ -291,6 +300,19 @@ bool Location::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(50)) goto parse_capture_device;
+        break;
+      }
+
+      // optional .DataTypes.CaptureDevice capture_device = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_capture_device:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_capture_device()));
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -361,6 +383,12 @@ void Location::SerializeWithCachedSizes(
       5, *this->access_device_, output);
   }
 
+  // optional .DataTypes.CaptureDevice capture_device = 6;
+  if (this->has_capture_device()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, *this->capture_device_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:DataTypes.Location)
 }
 
@@ -414,6 +442,13 @@ void Location::SerializeWithCachedSizes(
         5, *this->access_device_, target);
   }
 
+  // optional .DataTypes.CaptureDevice capture_device = 6;
+  if (this->has_capture_device()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, *this->capture_device_, target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.Location)
   return target;
 }
@@ -455,6 +490,13 @@ int Location::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
         *this->access_device_);
+  }
+
+  // optional .DataTypes.CaptureDevice capture_device = 6;
+  if (this->has_capture_device()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->capture_device_);
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -499,6 +541,9 @@ void Location::MergeFrom(const Location& from) {
   if (from.has_access_device()) {
     mutable_access_device()->::DataTypes::AccessDevice::MergeFrom(from.access_device());
   }
+  if (from.has_capture_device()) {
+    mutable_capture_device()->::DataTypes::CaptureDevice::MergeFrom(from.capture_device());
+  }
 }
 
 void Location::CopyFrom(const ::google::protobuf::Message& from) {
@@ -530,6 +575,7 @@ void Location::InternalSwap(Location* other) {
   description_.Swap(&other->description_);
   unit_mac_address_.Swap(&other->unit_mac_address_);
   std::swap(access_device_, other->access_device_);
+  std::swap(capture_device_, other->capture_device_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -751,6 +797,44 @@ void Location::set_allocated_access_device(::DataTypes::AccessDevice* access_dev
     
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.access_device)
+}
+
+// optional .DataTypes.CaptureDevice capture_device = 6;
+bool Location::has_capture_device() const {
+  return !_is_default_instance_ && capture_device_ != NULL;
+}
+void Location::clear_capture_device() {
+  if (GetArenaNoVirtual() == NULL && capture_device_ != NULL) delete capture_device_;
+  capture_device_ = NULL;
+}
+const ::DataTypes::CaptureDevice& Location::capture_device() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Location.capture_device)
+  return capture_device_ != NULL ? *capture_device_ : *default_instance_->capture_device_;
+}
+::DataTypes::CaptureDevice* Location::mutable_capture_device() {
+  
+  if (capture_device_ == NULL) {
+    capture_device_ = new ::DataTypes::CaptureDevice;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.Location.capture_device)
+  return capture_device_;
+}
+::DataTypes::CaptureDevice* Location::release_capture_device() {
+  // @@protoc_insertion_point(field_release:DataTypes.Location.capture_device)
+  
+  ::DataTypes::CaptureDevice* temp = capture_device_;
+  capture_device_ = NULL;
+  return temp;
+}
+void Location::set_allocated_capture_device(::DataTypes::CaptureDevice* capture_device) {
+  delete capture_device_;
+  capture_device_ = capture_device;
+  if (capture_device) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.capture_device)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

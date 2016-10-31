@@ -6,6 +6,7 @@
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <grpc++/grpc++.h>
 #include <services/unit_service.grpc.pb.h>
+#include <future>
 
 namespace services_api
 {
@@ -21,7 +22,8 @@ namespace services_api
 
 		virtual ~IAsyncCall() {}
 
-		virtual void  process() = 0;
+		virtual void               process   ()       = 0;
+		virtual const std::string& identifier() const = 0;
 
 		grpc::ClientContext  context;
 		grpc::Status         status;

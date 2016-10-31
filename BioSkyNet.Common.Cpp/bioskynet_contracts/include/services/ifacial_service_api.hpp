@@ -16,6 +16,8 @@ namespace contracts
 			virtual std::shared_ptr<Services::BiometricResponse>
 				process(const Services::BiometricRequest& request) = 0;
 		};
+
+		typedef std::shared_ptr<IFacialServiceApi> IFacialServiceApiPtr;
 	}
 }
 

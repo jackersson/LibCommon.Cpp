@@ -6,7 +6,7 @@
 #include <services/facial_service.grpc.pb.h>
 #include "facial_client_calls.hpp"
 #include <service_utils.hpp>
-#include <services/facial_service_api.hpp>
+#include <services/ifacial_service_api.hpp>
 
 using grpc::ServerBuilder;
 
@@ -44,12 +44,14 @@ namespace services_api
 			if (queue == nullptr)	return nullptr;
 
 			auto call = new AsyncFaceProcessCall;
+			do_set_call_options(call);
 			set_call_options(call);
 			call->reader = stub_->AsyncProcess(&call->context, request, queue);
 			call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
 			return utils::service::get_result(call->promise);
 		}
+			
 		
 	private:		
 		std::string class_name() const override {

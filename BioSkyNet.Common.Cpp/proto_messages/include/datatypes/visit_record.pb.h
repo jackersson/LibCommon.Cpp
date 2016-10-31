@@ -31,6 +31,7 @@
 #include "datatypes/card.pb.h"
 #include "datatypes/key.pb.h"
 #include "datatypes/datetime.pb.h"
+#include "datatypes/biometrics.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace DataTypes {
@@ -168,9 +169,18 @@ class VisitRecord : public ::google::protobuf::Message {
   ::DataTypes::Card* release_card();
   void set_allocated_card(::DataTypes::Card* card);
 
-  // optional .DataTypes.AccessState state = 6;
+  // optional .DataTypes.FaceCharacteristic face = 6;
+  bool has_face() const;
+  void clear_face();
+  static const int kFaceFieldNumber = 6;
+  const ::DataTypes::FaceCharacteristic& face() const;
+  ::DataTypes::FaceCharacteristic* mutable_face();
+  ::DataTypes::FaceCharacteristic* release_face();
+  void set_allocated_face(::DataTypes::FaceCharacteristic* face);
+
+  // optional .DataTypes.AccessState state = 7;
   void clear_state();
-  static const int kStateFieldNumber = 6;
+  static const int kStateFieldNumber = 7;
   ::DataTypes::AccessState state() const;
   void set_state(::DataTypes::AccessState value);
 
@@ -184,6 +194,7 @@ class VisitRecord : public ::google::protobuf::Message {
   ::DataTypes::Key* location_id_;
   ::DataTypes::DateTime* time_;
   ::DataTypes::Card* card_;
+  ::DataTypes::FaceCharacteristic* face_;
   int state_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fvisit_5frecord_2eproto();
@@ -475,7 +486,45 @@ inline void VisitRecord::set_allocated_card(::DataTypes::Card* card) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecord.card)
 }
 
-// optional .DataTypes.AccessState state = 6;
+// optional .DataTypes.FaceCharacteristic face = 6;
+inline bool VisitRecord::has_face() const {
+  return !_is_default_instance_ && face_ != NULL;
+}
+inline void VisitRecord::clear_face() {
+  if (GetArenaNoVirtual() == NULL && face_ != NULL) delete face_;
+  face_ = NULL;
+}
+inline const ::DataTypes::FaceCharacteristic& VisitRecord::face() const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecord.face)
+  return face_ != NULL ? *face_ : *default_instance_->face_;
+}
+inline ::DataTypes::FaceCharacteristic* VisitRecord::mutable_face() {
+  
+  if (face_ == NULL) {
+    face_ = new ::DataTypes::FaceCharacteristic;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecord.face)
+  return face_;
+}
+inline ::DataTypes::FaceCharacteristic* VisitRecord::release_face() {
+  // @@protoc_insertion_point(field_release:DataTypes.VisitRecord.face)
+  
+  ::DataTypes::FaceCharacteristic* temp = face_;
+  face_ = NULL;
+  return temp;
+}
+inline void VisitRecord::set_allocated_face(::DataTypes::FaceCharacteristic* face) {
+  delete face_;
+  face_ = face;
+  if (face) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecord.face)
+}
+
+// optional .DataTypes.AccessState state = 7;
 inline void VisitRecord::clear_state() {
   state_ = 0;
 }

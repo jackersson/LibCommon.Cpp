@@ -39,12 +39,13 @@ void protobuf_AssignDesc_datatypes_2fvisit_5frecord_2eproto() {
       "datatypes/visit_record.proto");
   GOOGLE_CHECK(file != NULL);
   VisitRecord_descriptor_ = file->message_type(0);
-  static const int VisitRecord_offsets_[6] = {
+  static const int VisitRecord_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, person_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, location_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, time_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, card_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, face_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(VisitRecord, state_),
   };
   VisitRecord_reflection_ =
@@ -110,21 +111,24 @@ void protobuf_AddDesc_datatypes_2fvisit_5frecord_2eproto() {
   ::DataTypes::protobuf_AddDesc_datatypes_2fcard_2eproto();
   ::DataTypes::protobuf_AddDesc_datatypes_2fkey_2eproto();
   ::DataTypes::protobuf_AddDesc_datatypes_2fdatetime_2eproto();
+  ::DataTypes::protobuf_AddDesc_datatypes_2fbiometrics_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\034datatypes/visit_record.proto\022\tDataType"
     "s\032\024datatypes/card.proto\032\023datatypes/key.p"
-    "roto\032\030datatypes/datetime.proto\"\332\001\n\013Visit"
-    "Record\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022!\n\tpe"
-    "rson_id\030\002 \001(\0132\016.DataTypes.Key\022#\n\013locatio"
-    "n_id\030\003 \001(\0132\016.DataTypes.Key\022!\n\004time\030\004 \001(\013"
-    "2\023.DataTypes.DateTime\022\035\n\004card\030\005 \001(\0132\017.Da"
-    "taTypes.Card\022%\n\005state\030\006 \001(\0162\026.DataTypes."
-    "AccessState\"5\n\014VisitRecords\022%\n\005items\030\001 \003"
-    "(\0132\026.DataTypes.VisitRecord*5\n\013AccessStat"
-    "e\022\r\n\tNoneState\020\000\022\013\n\007Granted\020\001\022\n\n\006Denied\020"
-    "\002BP\n\007ex.grpcZ\?github.com/Enebra/ServiceC"
-    "oordinator/grpc/datatypes/visitrecord\242\002\003"
-    "RTGb\006proto3", 531);
+    "roto\032\030datatypes/datetime.proto\032\032datatype"
+    "s/biometrics.proto\"\207\002\n\013VisitRecord\022\032\n\002id"
+    "\030\001 \001(\0132\016.DataTypes.Key\022!\n\tperson_id\030\002 \001("
+    "\0132\016.DataTypes.Key\022#\n\013location_id\030\003 \001(\0132\016"
+    ".DataTypes.Key\022!\n\004time\030\004 \001(\0132\023.DataTypes"
+    ".DateTime\022\035\n\004card\030\005 \001(\0132\017.DataTypes.Card"
+    "\022+\n\004face\030\006 \001(\0132\035.DataTypes.FaceCharacter"
+    "istic\022%\n\005state\030\007 \001(\0162\026.DataTypes.AccessS"
+    "tate\"5\n\014VisitRecords\022%\n\005items\030\001 \003(\0132\026.Da"
+    "taTypes.VisitRecord*5\n\013AccessState\022\r\n\tNo"
+    "neState\020\000\022\013\n\007Granted\020\001\022\n\n\006Denied\020\002BP\n\007ex"
+    ".grpcZ\?github.com/Enebra/ServiceCoordina"
+    "tor/grpc/datatypes/visitrecord\242\002\003RTGb\006pr"
+    "oto3", 604);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/visit_record.proto", &protobuf_RegisterTypes);
   VisitRecord::default_instance_ = new VisitRecord();
@@ -174,6 +178,7 @@ const int VisitRecord::kPersonIdFieldNumber;
 const int VisitRecord::kLocationIdFieldNumber;
 const int VisitRecord::kTimeFieldNumber;
 const int VisitRecord::kCardFieldNumber;
+const int VisitRecord::kFaceFieldNumber;
 const int VisitRecord::kStateFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -190,6 +195,7 @@ void VisitRecord::InitAsDefaultInstance() {
   location_id_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
   time_ = const_cast< ::DataTypes::DateTime*>(&::DataTypes::DateTime::default_instance());
   card_ = const_cast< ::DataTypes::Card*>(&::DataTypes::Card::default_instance());
+  face_ = const_cast< ::DataTypes::FaceCharacteristic*>(&::DataTypes::FaceCharacteristic::default_instance());
 }
 
 VisitRecord::VisitRecord(const VisitRecord& from)
@@ -208,6 +214,7 @@ void VisitRecord::SharedCtor() {
   location_id_ = NULL;
   time_ = NULL;
   card_ = NULL;
+  face_ = NULL;
   state_ = 0;
 }
 
@@ -223,6 +230,7 @@ void VisitRecord::SharedDtor() {
     delete location_id_;
     delete time_;
     delete card_;
+    delete face_;
   }
 }
 
@@ -263,6 +271,8 @@ void VisitRecord::Clear() {
   time_ = NULL;
   if (GetArenaNoVirtual() == NULL && card_ != NULL) delete card_;
   card_ = NULL;
+  if (GetArenaNoVirtual() == NULL && face_ != NULL) delete face_;
+  face_ = NULL;
   state_ = 0;
 }
 
@@ -336,13 +346,26 @@ bool VisitRecord::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(48)) goto parse_state;
+        if (input->ExpectTag(50)) goto parse_face;
         break;
       }
 
-      // optional .DataTypes.AccessState state = 6;
+      // optional .DataTypes.FaceCharacteristic face = 6;
       case 6: {
-        if (tag == 48) {
+        if (tag == 50) {
+         parse_face:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_face()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(56)) goto parse_state;
+        break;
+      }
+
+      // optional .DataTypes.AccessState state = 7;
+      case 7: {
+        if (tag == 56) {
          parse_state:
           int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
@@ -410,10 +433,16 @@ void VisitRecord::SerializeWithCachedSizes(
       5, *this->card_, output);
   }
 
-  // optional .DataTypes.AccessState state = 6;
+  // optional .DataTypes.FaceCharacteristic face = 6;
+  if (this->has_face()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, *this->face_, output);
+  }
+
+  // optional .DataTypes.AccessState state = 7;
   if (this->state() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      6, this->state(), output);
+      7, this->state(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:DataTypes.VisitRecord)
@@ -457,10 +486,17 @@ void VisitRecord::SerializeWithCachedSizes(
         5, *this->card_, target);
   }
 
-  // optional .DataTypes.AccessState state = 6;
+  // optional .DataTypes.FaceCharacteristic face = 6;
+  if (this->has_face()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, *this->face_, target);
+  }
+
+  // optional .DataTypes.AccessState state = 7;
   if (this->state() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      6, this->state(), target);
+      7, this->state(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.VisitRecord)
@@ -506,7 +542,14 @@ int VisitRecord::ByteSize() const {
         *this->card_);
   }
 
-  // optional .DataTypes.AccessState state = 6;
+  // optional .DataTypes.FaceCharacteristic face = 6;
+  if (this->has_face()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->face_);
+  }
+
+  // optional .DataTypes.AccessState state = 7;
   if (this->state() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->state());
@@ -551,6 +594,9 @@ void VisitRecord::MergeFrom(const VisitRecord& from) {
   if (from.has_card()) {
     mutable_card()->::DataTypes::Card::MergeFrom(from.card());
   }
+  if (from.has_face()) {
+    mutable_face()->::DataTypes::FaceCharacteristic::MergeFrom(from.face());
+  }
   if (from.state() != 0) {
     set_state(from.state());
   }
@@ -585,6 +631,7 @@ void VisitRecord::InternalSwap(VisitRecord* other) {
   std::swap(location_id_, other->location_id_);
   std::swap(time_, other->time_);
   std::swap(card_, other->card_);
+  std::swap(face_, other->face_);
   std::swap(state_, other->state_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -791,7 +838,45 @@ void VisitRecord::set_allocated_card(::DataTypes::Card* card) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecord.card)
 }
 
-// optional .DataTypes.AccessState state = 6;
+// optional .DataTypes.FaceCharacteristic face = 6;
+bool VisitRecord::has_face() const {
+  return !_is_default_instance_ && face_ != NULL;
+}
+void VisitRecord::clear_face() {
+  if (GetArenaNoVirtual() == NULL && face_ != NULL) delete face_;
+  face_ = NULL;
+}
+const ::DataTypes::FaceCharacteristic& VisitRecord::face() const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecord.face)
+  return face_ != NULL ? *face_ : *default_instance_->face_;
+}
+::DataTypes::FaceCharacteristic* VisitRecord::mutable_face() {
+  
+  if (face_ == NULL) {
+    face_ = new ::DataTypes::FaceCharacteristic;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecord.face)
+  return face_;
+}
+::DataTypes::FaceCharacteristic* VisitRecord::release_face() {
+  // @@protoc_insertion_point(field_release:DataTypes.VisitRecord.face)
+  
+  ::DataTypes::FaceCharacteristic* temp = face_;
+  face_ = NULL;
+  return temp;
+}
+void VisitRecord::set_allocated_face(::DataTypes::FaceCharacteristic* face) {
+  delete face_;
+  face_ = face;
+  if (face) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecord.face)
+}
+
+// optional .DataTypes.AccessState state = 7;
 void VisitRecord::clear_state() {
   state_ = 0;
 }

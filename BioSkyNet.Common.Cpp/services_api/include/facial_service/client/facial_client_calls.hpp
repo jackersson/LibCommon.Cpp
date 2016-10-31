@@ -16,6 +16,12 @@ namespace services_api
 			promise.set_value(gr);
 		}
 
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncFaceProcessCall).name();
+			return class_name;
+		}
+
 		std::promise<std::shared_ptr<Services::BiometricResponse>> promise;
 
 		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::BiometricResponse>> reader;
@@ -34,6 +40,12 @@ namespace services_api
 			auto gr = std::make_shared<DataTypes::CommitResponse>();
 			gr->ParseFromString(response.data());
 			promise.set_value(gr);
+		}
+
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncCommitRequestCall).name();
+			return class_name;
 		}
 
 		std::promise<std::shared_ptr<DataTypes::CommitResponse>> promise;

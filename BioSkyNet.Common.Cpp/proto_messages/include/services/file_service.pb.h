@@ -27,6 +27,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/empty.pb.h>
 // @@protoc_insertion_point(includes)
 
 namespace Services {
@@ -36,7 +37,6 @@ void protobuf_AddDesc_services_2ffile_5fservice_2eproto();
 void protobuf_AssignDesc_services_2ffile_5fservice_2eproto();
 void protobuf_ShutdownFile_services_2ffile_5fservice_2eproto();
 
-class EmptyMessage;
 class ExistMessage;
 class FileBytes;
 class FileMessage;
@@ -206,77 +206,6 @@ class FileBytes : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static FileBytes* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class EmptyMessage : public ::google::protobuf::Message {
- public:
-  EmptyMessage();
-  virtual ~EmptyMessage();
-
-  EmptyMessage(const EmptyMessage& from);
-
-  inline EmptyMessage& operator=(const EmptyMessage& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const EmptyMessage& default_instance();
-
-  void Swap(EmptyMessage* other);
-
-  // implements Message ----------------------------------------------
-
-  inline EmptyMessage* New() const { return New(NULL); }
-
-  EmptyMessage* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const EmptyMessage& from);
-  void MergeFrom(const EmptyMessage& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  void InternalSwap(EmptyMessage* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
-  }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:Services.EmptyMessage)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  bool _is_default_instance_;
-  mutable int _cached_size_;
-  friend void  protobuf_AddDesc_services_2ffile_5fservice_2eproto();
-  friend void protobuf_AssignDesc_services_2ffile_5fservice_2eproto();
-  friend void protobuf_ShutdownFile_services_2ffile_5fservice_2eproto();
-
-  void InitAsDefaultInstance();
-  static EmptyMessage* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -458,10 +387,6 @@ inline void FileBytes::set_allocated_data(::std::string* data) {
 
 // -------------------------------------------------------------------
 
-// EmptyMessage
-
-// -------------------------------------------------------------------
-
 // ExistMessage
 
 // optional bool result = 1;
@@ -479,8 +404,6 @@ inline void ExistMessage::set_result(bool value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

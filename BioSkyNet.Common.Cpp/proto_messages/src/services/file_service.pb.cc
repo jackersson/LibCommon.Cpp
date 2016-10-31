@@ -27,9 +27,6 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* FileBytes_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   FileBytes_reflection_ = NULL;
-const ::google::protobuf::Descriptor* EmptyMessage_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  EmptyMessage_reflection_ = NULL;
 const ::google::protobuf::Descriptor* ExistMessage_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   ExistMessage_reflection_ = NULL;
@@ -73,21 +70,7 @@ void protobuf_AssignDesc_services_2ffile_5fservice_2eproto() {
       sizeof(FileBytes),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FileBytes, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(FileBytes, _is_default_instance_));
-  EmptyMessage_descriptor_ = file->message_type(2);
-  static const int EmptyMessage_offsets_[1] = {
-  };
-  EmptyMessage_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      EmptyMessage_descriptor_,
-      EmptyMessage::default_instance_,
-      EmptyMessage_offsets_,
-      -1,
-      -1,
-      -1,
-      sizeof(EmptyMessage),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EmptyMessage, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EmptyMessage, _is_default_instance_));
-  ExistMessage_descriptor_ = file->message_type(3);
+  ExistMessage_descriptor_ = file->message_type(2);
   static const int ExistMessage_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ExistMessage, result_),
   };
@@ -119,8 +102,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       FileBytes_descriptor_, &FileBytes::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      EmptyMessage_descriptor_, &EmptyMessage::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       ExistMessage_descriptor_, &ExistMessage::default_instance());
 }
 
@@ -131,8 +112,6 @@ void protobuf_ShutdownFile_services_2ffile_5fservice_2eproto() {
   delete FileMessage_reflection_;
   delete FileBytes::default_instance_;
   delete FileBytes_reflection_;
-  delete EmptyMessage::default_instance_;
-  delete EmptyMessage_reflection_;
   delete ExistMessage::default_instance_;
   delete ExistMessage_reflection_;
 }
@@ -143,28 +122,28 @@ void protobuf_AddDesc_services_2ffile_5fservice_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fempty_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\033services/file_service.proto\022\010Services\""
-    "\031\n\013FileMessage\022\n\n\002id\030\001 \001(\t\"\031\n\tFileBytes\022"
-    "\014\n\004data\030\001 \001(\014\"\016\n\014EmptyMessage\"\036\n\014ExistMe"
-    "ssage\022\016\n\006result\030\001 \001(\0102\360\001\n\013FileService\0223\n"
-    "\003Get\022\025.Services.FileMessage\032\023.Services.F"
-    "ileBytes\"\000\0226\n\006Create\022\023.Services.FileByte"
-    "s\032\025.Services.FileMessage\"\000\0229\n\006Delete\022\025.S"
-    "ervices.FileMessage\032\026.Services.EmptyMess"
-    "age\"\000\0229\n\006Exists\022\025.Services.FileMessage\032\026"
-    ".Services.ExistMessage\"\000BO\n\007ex.grpcZ>git"
-    "hub.com/Enebra/ServiceCoordinator/grpc/s"
-    "ervices/fileservice\242\002\003RTGb\006proto3", 473);
+    "\n\033services/file_service.proto\022\010Services\032"
+    "\033google/protobuf/empty.proto\"\031\n\013FileMess"
+    "age\022\n\n\002id\030\001 \001(\t\"\031\n\tFileBytes\022\014\n\004data\030\001 \001"
+    "(\014\"\036\n\014ExistMessage\022\016\n\006result\030\001 \001(\0102\360\001\n\013F"
+    "ileService\0223\n\003Get\022\025.Services.FileMessage"
+    "\032\023.Services.FileBytes\"\000\0226\n\006Create\022\023.Serv"
+    "ices.FileBytes\032\025.Services.FileMessage\"\000\022"
+    "9\n\006Delete\022\025.Services.FileMessage\032\026.googl"
+    "e.protobuf.Empty\"\000\0229\n\006Exists\022\025.Services."
+    "FileMessage\032\026.Services.ExistMessage\"\000BO\n"
+    "\007ex.grpcZ>github.com/Enebra/ServiceCoord"
+    "inator/grpc/services/fileservice\242\002\003RTGb\006"
+    "proto3", 486);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "services/file_service.proto", &protobuf_RegisterTypes);
   FileMessage::default_instance_ = new FileMessage();
   FileBytes::default_instance_ = new FileBytes();
-  EmptyMessage::default_instance_ = new EmptyMessage();
   ExistMessage::default_instance_ = new ExistMessage();
   FileMessage::default_instance_->InitAsDefaultInstance();
   FileBytes::default_instance_->InitAsDefaultInstance();
-  EmptyMessage::default_instance_->InitAsDefaultInstance();
   ExistMessage::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_services_2ffile_5fservice_2eproto);
 }
@@ -731,183 +710,6 @@ void FileBytes::clear_data() {
   data_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), data);
   // @@protoc_insertion_point(field_set_allocated:Services.FileBytes.data)
 }
-
-#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
-
-// ===================================================================
-
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-EmptyMessage::EmptyMessage()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:Services.EmptyMessage)
-}
-
-void EmptyMessage::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
-EmptyMessage::EmptyMessage(const EmptyMessage& from)
-  : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:Services.EmptyMessage)
-}
-
-void EmptyMessage::SharedCtor() {
-    _is_default_instance_ = false;
-  _cached_size_ = 0;
-}
-
-EmptyMessage::~EmptyMessage() {
-  // @@protoc_insertion_point(destructor:Services.EmptyMessage)
-  SharedDtor();
-}
-
-void EmptyMessage::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void EmptyMessage::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* EmptyMessage::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return EmptyMessage_descriptor_;
-}
-
-const EmptyMessage& EmptyMessage::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_services_2ffile_5fservice_2eproto();
-  return *default_instance_;
-}
-
-EmptyMessage* EmptyMessage::default_instance_ = NULL;
-
-EmptyMessage* EmptyMessage::New(::google::protobuf::Arena* arena) const {
-  EmptyMessage* n = new EmptyMessage;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
-
-void EmptyMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:Services.EmptyMessage)
-}
-
-bool EmptyMessage::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:Services.EmptyMessage)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-  handle_unusual:
-    if (tag == 0 ||
-        ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-      goto success;
-    }
-    DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
-  }
-success:
-  // @@protoc_insertion_point(parse_success:Services.EmptyMessage)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:Services.EmptyMessage)
-  return false;
-#undef DO_
-}
-
-void EmptyMessage::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:Services.EmptyMessage)
-  // @@protoc_insertion_point(serialize_end:Services.EmptyMessage)
-}
-
-::google::protobuf::uint8* EmptyMessage::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:Services.EmptyMessage)
-  // @@protoc_insertion_point(serialize_to_array_end:Services.EmptyMessage)
-  return target;
-}
-
-int EmptyMessage::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:Services.EmptyMessage)
-  int total_size = 0;
-
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void EmptyMessage::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Services.EmptyMessage)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  const EmptyMessage* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const EmptyMessage>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Services.EmptyMessage)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Services.EmptyMessage)
-    MergeFrom(*source);
-  }
-}
-
-void EmptyMessage::MergeFrom(const EmptyMessage& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Services.EmptyMessage)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-}
-
-void EmptyMessage::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Services.EmptyMessage)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void EmptyMessage::CopyFrom(const EmptyMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Services.EmptyMessage)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool EmptyMessage::IsInitialized() const {
-
-  return true;
-}
-
-void EmptyMessage::Swap(EmptyMessage* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void EmptyMessage::InternalSwap(EmptyMessage* other) {
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  std::swap(_cached_size_, other->_cached_size_);
-}
-
-::google::protobuf::Metadata EmptyMessage::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = EmptyMessage_descriptor_;
-  metadata.reflection = EmptyMessage_reflection_;
-  return metadata;
-}
-
-#if PROTOBUF_INLINE_NOT_IN_HEADERS
-// EmptyMessage
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 

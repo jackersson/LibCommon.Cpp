@@ -77,9 +77,11 @@ namespace services_api
 				          	typeid(T).name(), ClientRequestHandler(cq, callback)));
 		}
 
+		virtual void do_set_call_options(IAsyncCall* call){}
+
 	private:
-		virtual void do_create_stub(std::shared_ptr<grpc::Channel> channel) = 0;
-		
+		virtual void do_create_stub     ( std::shared_ptr<grpc::Channel> channel) = 0;
+
 		template <typename T>
 		void async_complete_rpc(grpc::CompletionQueue* queue) const
 		{
@@ -97,6 +99,7 @@ namespace services_api
 				catch (std::exception& ex) {
 					logger_.error(ex.what());
 				}
+
 				delete call;
 			}
 		}

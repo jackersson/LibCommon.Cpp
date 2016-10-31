@@ -40,6 +40,7 @@ void protobuf_ShutdownFile_datatypes_2fdevices_2eproto();
 
 class AccessDevice;
 class AccessDeviceStateMsg;
+class CaptureDevice;
 class CardMsg;
 class CheckMsg;
 class Device;
@@ -184,6 +185,96 @@ class AccessDevice : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static AccessDevice* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class CaptureDevice : public ::google::protobuf::Message {
+ public:
+  CaptureDevice();
+  virtual ~CaptureDevice();
+
+  CaptureDevice(const CaptureDevice& from);
+
+  inline CaptureDevice& operator=(const CaptureDevice& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CaptureDevice& default_instance();
+
+  void Swap(CaptureDevice* other);
+
+  // implements Message ----------------------------------------------
+
+  inline CaptureDevice* New() const { return New(NULL); }
+
+  CaptureDevice* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const CaptureDevice& from);
+  void MergeFrom(const CaptureDevice& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(CaptureDevice* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string name = 1;
+  void clear_name();
+  static const int kNameFieldNumber = 1;
+  const ::std::string& name() const;
+  void set_name(const ::std::string& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  ::std::string* mutable_name();
+  ::std::string* release_name();
+  void set_allocated_name(::std::string* name);
+
+  // optional fixed64 serial_number = 2;
+  void clear_serial_number();
+  static const int kSerialNumberFieldNumber = 2;
+  ::google::protobuf::uint64 serial_number() const;
+  void set_serial_number(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:DataTypes.CaptureDevice)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr name_;
+  ::google::protobuf::uint64 serial_number_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2fdevices_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fdevices_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fdevices_2eproto();
+
+  void InitAsDefaultInstance();
+  static CaptureDevice* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1023,6 +1114,68 @@ inline void AccessDevice::set_serial_number(::google::protobuf::uint64 value) {
 
 // -------------------------------------------------------------------
 
+// CaptureDevice
+
+// optional string name = 1;
+inline void CaptureDevice::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& CaptureDevice::name() const {
+  // @@protoc_insertion_point(field_get:DataTypes.CaptureDevice.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CaptureDevice::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DataTypes.CaptureDevice.name)
+}
+inline void CaptureDevice::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DataTypes.CaptureDevice.name)
+}
+inline void CaptureDevice::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DataTypes.CaptureDevice.name)
+}
+inline ::std::string* CaptureDevice::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:DataTypes.CaptureDevice.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CaptureDevice::release_name() {
+  // @@protoc_insertion_point(field_release:DataTypes.CaptureDevice.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CaptureDevice::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.CaptureDevice.name)
+}
+
+// optional fixed64 serial_number = 2;
+inline void CaptureDevice::clear_serial_number() {
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 CaptureDevice::serial_number() const {
+  // @@protoc_insertion_point(field_get:DataTypes.CaptureDevice.serial_number)
+  return serial_number_;
+}
+inline void CaptureDevice::set_serial_number(::google::protobuf::uint64 value) {
+  
+  serial_number_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.CaptureDevice.serial_number)
+}
+
+// -------------------------------------------------------------------
+
 // DeviceUpdate
 
 // optional .DataTypes.Devices items = 1;
@@ -1654,6 +1807,8 @@ inline void CheckMsg::set_allocated_message(::std::string* message) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

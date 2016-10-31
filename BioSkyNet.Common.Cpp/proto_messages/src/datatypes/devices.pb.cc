@@ -24,6 +24,9 @@ namespace {
 const ::google::protobuf::Descriptor* AccessDevice_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AccessDevice_reflection_ = NULL;
+const ::google::protobuf::Descriptor* CaptureDevice_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  CaptureDevice_reflection_ = NULL;
 const ::google::protobuf::Descriptor* DeviceUpdate_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   DeviceUpdate_reflection_ = NULL;
@@ -84,7 +87,23 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(AccessDevice),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDevice, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDevice, _is_default_instance_));
-  DeviceUpdate_descriptor_ = file->message_type(1);
+  CaptureDevice_descriptor_ = file->message_type(1);
+  static const int CaptureDevice_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CaptureDevice, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CaptureDevice, serial_number_),
+  };
+  CaptureDevice_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      CaptureDevice_descriptor_,
+      CaptureDevice::default_instance_,
+      CaptureDevice_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(CaptureDevice),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CaptureDevice, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CaptureDevice, _is_default_instance_));
+  DeviceUpdate_descriptor_ = file->message_type(2);
   static const int DeviceUpdate_offsets_[3] = {
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(DeviceUpdate_default_oneof_instance_, items_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(DeviceUpdate_default_oneof_instance_, device_state_msg_),
@@ -103,7 +122,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(DeviceUpdate),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeviceUpdate, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeviceUpdate, _is_default_instance_));
-  Devices_descriptor_ = file->message_type(2);
+  Devices_descriptor_ = file->message_type(3);
   static const int Devices_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, location_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, devices_),
@@ -119,7 +138,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(Devices),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, _is_default_instance_));
-  Device_descriptor_ = file->message_type(3);
+  Device_descriptor_ = file->message_type(4);
   static const int Device_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, device_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, device_name_),
@@ -135,7 +154,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(Device),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, _is_default_instance_));
-  DeviceStateMessage_descriptor_ = file->message_type(4);
+  DeviceStateMessage_descriptor_ = file->message_type(5);
   static const int DeviceStateMessage_offsets_[3] = {
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(DeviceStateMessage_default_oneof_instance_, generic_device_state_msg_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(DeviceStateMessage_default_oneof_instance_, access_device_state_msg_),
@@ -154,7 +173,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(DeviceStateMessage),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeviceStateMessage, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeviceStateMessage, _is_default_instance_));
-  GenericDeviceStateMsg_descriptor_ = file->message_type(5);
+  GenericDeviceStateMsg_descriptor_ = file->message_type(6);
   static const int GenericDeviceStateMsg_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericDeviceStateMsg, location_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericDeviceStateMsg, type_),
@@ -172,7 +191,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(GenericDeviceStateMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericDeviceStateMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GenericDeviceStateMsg, _is_default_instance_));
-  AccessDeviceStateMsg_descriptor_ = file->message_type(6);
+  AccessDeviceStateMsg_descriptor_ = file->message_type(7);
   static const int AccessDeviceStateMsg_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, location_id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, opened_),
@@ -188,7 +207,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(AccessDeviceStateMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, _is_default_instance_));
-  CardMsg_descriptor_ = file->message_type(7);
+  CardMsg_descriptor_ = file->message_type(8);
   static const int CardMsg_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, card_num_),
   };
@@ -203,7 +222,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(CardMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, _is_default_instance_));
-  CheckMsg_descriptor_ = file->message_type(8);
+  CheckMsg_descriptor_ = file->message_type(9);
   static const int CheckMsg_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CheckMsg, ok_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CheckMsg, message_),
@@ -236,6 +255,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       AccessDevice_descriptor_, &AccessDevice::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      CaptureDevice_descriptor_, &CaptureDevice::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       DeviceUpdate_descriptor_, &DeviceUpdate::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Devices_descriptor_, &Devices::default_instance());
@@ -258,6 +279,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_datatypes_2fdevices_2eproto() {
   delete AccessDevice::default_instance_;
   delete AccessDevice_reflection_;
+  delete CaptureDevice::default_instance_;
+  delete CaptureDevice_reflection_;
   delete DeviceUpdate::default_instance_;
   delete DeviceUpdate_default_oneof_instance_;
   delete DeviceUpdate_reflection_;
@@ -288,35 +311,37 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\027datatypes/devices.proto\022\tDataTypes\032\023da"
     "tatypes/key.proto\"3\n\014AccessDevice\022\014\n\004nam"
-    "e\030\001 \001(\t\022\025\n\rserial_number\030\002 \001(\006\"x\n\014Device"
-    "Update\022#\n\005items\030\001 \001(\0132\022.DataTypes.Device"
-    "sH\000\0229\n\020device_state_msg\030\002 \001(\0132\035.DataType"
-    "s.DeviceStateMessageH\000B\010\n\006update\"R\n\007Devi"
-    "ces\022#\n\013location_id\030\001 \001(\0132\016.DataTypes.Key"
-    "\022\"\n\007devices\030\002 \003(\0132\021.DataTypes.Device\"I\n\006"
-    "Device\022*\n\013device_type\030\001 \001(\0162\025.DataTypes."
-    "DeviceType\022\023\n\013device_name\030\002 \001(\t\"\245\001\n\022Devi"
-    "ceStateMessage\022D\n\030generic_device_state_m"
-    "sg\030\001 \001(\0132 .DataTypes.GenericDeviceStateM"
-    "sgH\000\022B\n\027access_device_state_msg\030\002 \001(\0132\037."
-    "DataTypes.AccessDeviceStateMsgH\000B\005\n\003msg\""
-    "\231\001\n\025GenericDeviceStateMsg\022#\n\013location_id"
-    "\030\001 \001(\0132\016.DataTypes.Key\022#\n\004type\030\002 \001(\0162\025.D"
-    "ataTypes.DeviceType\022%\n\005state\030\003 \001(\0162\026.Dat"
-    "aTypes.DeviceState\022\017\n\007message\030\004 \001(\t\"K\n\024A"
-    "ccessDeviceStateMsg\022#\n\013location_id\030\001 \001(\013"
-    "2\016.DataTypes.Key\022\016\n\006opened\030\002 \001(\010\"\033\n\007Card"
-    "Msg\022\020\n\010card_num\030\001 \001(\t\"\'\n\010CheckMsg\022\n\n\002ok\030"
-    "\001 \001(\010\022\017\n\007message\030\002 \001(\t*8\n\nDeviceType\022\r\n\t"
-    "None_Type\020\000\022\016\n\nCardReader\020\001\022\013\n\007Capture\020\002"
-    "*`\n\013DeviceState\022\016\n\nNone_State\020\000\022\n\n\006Activ"
-    "e\020\001\022\021\n\rStoppedByUser\020\002\022\n\n\006Paused\020\003\022\013\n\007St"
-    "opped\020\004\022\t\n\005Error\020\005BL\n\007ex.grpcZ;github.co"
-    "m/Enebra/ServiceCoordinator/grpc/datatyp"
-    "es/devices\242\002\003RTGb\006proto3", 1104);
+    "e\030\001 \001(\t\022\025\n\rserial_number\030\002 \001(\006\"4\n\rCaptur"
+    "eDevice\022\014\n\004name\030\001 \001(\t\022\025\n\rserial_number\030\002"
+    " \001(\006\"x\n\014DeviceUpdate\022#\n\005items\030\001 \001(\0132\022.Da"
+    "taTypes.DevicesH\000\0229\n\020device_state_msg\030\002 "
+    "\001(\0132\035.DataTypes.DeviceStateMessageH\000B\010\n\006"
+    "update\"R\n\007Devices\022#\n\013location_id\030\001 \001(\0132\016"
+    ".DataTypes.Key\022\"\n\007devices\030\002 \003(\0132\021.DataTy"
+    "pes.Device\"I\n\006Device\022*\n\013device_type\030\001 \001("
+    "\0162\025.DataTypes.DeviceType\022\023\n\013device_name\030"
+    "\002 \001(\t\"\245\001\n\022DeviceStateMessage\022D\n\030generic_"
+    "device_state_msg\030\001 \001(\0132 .DataTypes.Gener"
+    "icDeviceStateMsgH\000\022B\n\027access_device_stat"
+    "e_msg\030\002 \001(\0132\037.DataTypes.AccessDeviceStat"
+    "eMsgH\000B\005\n\003msg\"\231\001\n\025GenericDeviceStateMsg\022"
+    "#\n\013location_id\030\001 \001(\0132\016.DataTypes.Key\022#\n\004"
+    "type\030\002 \001(\0162\025.DataTypes.DeviceType\022%\n\005sta"
+    "te\030\003 \001(\0162\026.DataTypes.DeviceState\022\017\n\007mess"
+    "age\030\004 \001(\t\"K\n\024AccessDeviceStateMsg\022#\n\013loc"
+    "ation_id\030\001 \001(\0132\016.DataTypes.Key\022\016\n\006opened"
+    "\030\002 \001(\010\"\033\n\007CardMsg\022\020\n\010card_num\030\001 \001(\t\"\'\n\010C"
+    "heckMsg\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 \001(\t*8\n\n"
+    "DeviceType\022\r\n\tNone_Type\020\000\022\016\n\nCardReader\020"
+    "\001\022\013\n\007Capture\020\002*`\n\013DeviceState\022\016\n\nNone_St"
+    "ate\020\000\022\n\n\006Active\020\001\022\021\n\rStoppedByUser\020\002\022\n\n\006"
+    "Paused\020\003\022\013\n\007Stopped\020\004\022\t\n\005Error\020\005BL\n\007ex.g"
+    "rpcZ;github.com/Enebra/ServiceCoordinato"
+    "r/grpc/datatypes/devices\242\002\003RTGb\006proto3", 1158);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/devices.proto", &protobuf_RegisterTypes);
   AccessDevice::default_instance_ = new AccessDevice();
+  CaptureDevice::default_instance_ = new CaptureDevice();
   DeviceUpdate::default_instance_ = new DeviceUpdate();
   DeviceUpdate_default_oneof_instance_ = new DeviceUpdateOneofInstance();
   Devices::default_instance_ = new Devices();
@@ -328,6 +353,7 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
   CardMsg::default_instance_ = new CardMsg();
   CheckMsg::default_instance_ = new CheckMsg();
   AccessDevice::default_instance_->InitAsDefaultInstance();
+  CaptureDevice::default_instance_->InitAsDefaultInstance();
   DeviceUpdate::default_instance_->InitAsDefaultInstance();
   Devices::default_instance_->InitAsDefaultInstance();
   Device::default_instance_->InitAsDefaultInstance();
@@ -716,6 +742,337 @@ void AccessDevice::clear_serial_number() {
   
   serial_number_ = value;
   // @@protoc_insertion_point(field_set:DataTypes.AccessDevice.serial_number)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int CaptureDevice::kNameFieldNumber;
+const int CaptureDevice::kSerialNumberFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+CaptureDevice::CaptureDevice()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DataTypes.CaptureDevice)
+}
+
+void CaptureDevice::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+CaptureDevice::CaptureDevice(const CaptureDevice& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:DataTypes.CaptureDevice)
+}
+
+void CaptureDevice::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+
+CaptureDevice::~CaptureDevice() {
+  // @@protoc_insertion_point(destructor:DataTypes.CaptureDevice)
+  SharedDtor();
+}
+
+void CaptureDevice::SharedDtor() {
+  name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void CaptureDevice::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* CaptureDevice::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return CaptureDevice_descriptor_;
+}
+
+const CaptureDevice& CaptureDevice::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_datatypes_2fdevices_2eproto();
+  return *default_instance_;
+}
+
+CaptureDevice* CaptureDevice::default_instance_ = NULL;
+
+CaptureDevice* CaptureDevice::New(::google::protobuf::Arena* arena) const {
+  CaptureDevice* n = new CaptureDevice;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void CaptureDevice::Clear() {
+// @@protoc_insertion_point(message_clear_start:DataTypes.CaptureDevice)
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+
+bool CaptureDevice::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DataTypes.CaptureDevice)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string name = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->name().data(), this->name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "DataTypes.CaptureDevice.name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(17)) goto parse_serial_number;
+        break;
+      }
+
+      // optional fixed64 serial_number = 2;
+      case 2: {
+        if (tag == 17) {
+         parse_serial_number:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
+                 input, &serial_number_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DataTypes.CaptureDevice)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DataTypes.CaptureDevice)
+  return false;
+#undef DO_
+}
+
+void CaptureDevice::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DataTypes.CaptureDevice)
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "DataTypes.CaptureDevice.name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->name(), output);
+  }
+
+  // optional fixed64 serial_number = 2;
+  if (this->serial_number() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64(2, this->serial_number(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:DataTypes.CaptureDevice)
+}
+
+::google::protobuf::uint8* CaptureDevice::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DataTypes.CaptureDevice)
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "DataTypes.CaptureDevice.name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->name(), target);
+  }
+
+  // optional fixed64 serial_number = 2;
+  if (this->serial_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(2, this->serial_number(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:DataTypes.CaptureDevice)
+  return target;
+}
+
+int CaptureDevice::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:DataTypes.CaptureDevice)
+  int total_size = 0;
+
+  // optional string name = 1;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->name());
+  }
+
+  // optional fixed64 serial_number = 2;
+  if (this->serial_number() != 0) {
+    total_size += 1 + 8;
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void CaptureDevice::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DataTypes.CaptureDevice)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const CaptureDevice* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const CaptureDevice>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DataTypes.CaptureDevice)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DataTypes.CaptureDevice)
+    MergeFrom(*source);
+  }
+}
+
+void CaptureDevice::MergeFrom(const CaptureDevice& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.CaptureDevice)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.serial_number() != 0) {
+    set_serial_number(from.serial_number());
+  }
+}
+
+void CaptureDevice::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DataTypes.CaptureDevice)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CaptureDevice::CopyFrom(const CaptureDevice& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DataTypes.CaptureDevice)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CaptureDevice::IsInitialized() const {
+
+  return true;
+}
+
+void CaptureDevice::Swap(CaptureDevice* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void CaptureDevice::InternalSwap(CaptureDevice* other) {
+  name_.Swap(&other->name_);
+  std::swap(serial_number_, other->serial_number_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata CaptureDevice::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = CaptureDevice_descriptor_;
+  metadata.reflection = CaptureDevice_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// CaptureDevice
+
+// optional string name = 1;
+void CaptureDevice::clear_name() {
+  name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& CaptureDevice::name() const {
+  // @@protoc_insertion_point(field_get:DataTypes.CaptureDevice.name)
+  return name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void CaptureDevice::set_name(const ::std::string& value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DataTypes.CaptureDevice.name)
+}
+ void CaptureDevice::set_name(const char* value) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DataTypes.CaptureDevice.name)
+}
+ void CaptureDevice::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DataTypes.CaptureDevice.name)
+}
+ ::std::string* CaptureDevice::mutable_name() {
+  
+  // @@protoc_insertion_point(field_mutable:DataTypes.CaptureDevice.name)
+  return name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* CaptureDevice::release_name() {
+  // @@protoc_insertion_point(field_release:DataTypes.CaptureDevice.name)
+  
+  return name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void CaptureDevice::set_allocated_name(::std::string* name) {
+  if (name != NULL) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.CaptureDevice.name)
+}
+
+// optional fixed64 serial_number = 2;
+void CaptureDevice::clear_serial_number() {
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+ ::google::protobuf::uint64 CaptureDevice::serial_number() const {
+  // @@protoc_insertion_point(field_get:DataTypes.CaptureDevice.serial_number)
+  return serial_number_;
+}
+ void CaptureDevice::set_serial_number(::google::protobuf::uint64 value) {
+  
+  serial_number_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.CaptureDevice.serial_number)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -25,6 +25,9 @@
     <Filter Include="includes\data">
       <UniqueIdentifier>{7dafcf0c-4063-472d-bd3d-44565ac2eaf3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="includes\observers">
+      <UniqueIdentifier>{089c4d29-2077-4e56-bfa3-9199e73aa62d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\logging\logger.hpp">
@@ -57,11 +60,20 @@
     <ClInclude Include="include\services\ifile_storage_api.hpp">
       <Filter>includes\services</Filter>
     </ClInclude>
-    <ClInclude Include="include\services\facial_service_api.hpp">
-      <Filter>includes\services</Filter>
-    </ClInclude>
     <ClInclude Include="include\data\data_utils.hpp">
       <Filter>includes\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\observers\iobservable.hpp">
+      <Filter>includes\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\observers\observable.hpp">
+      <Filter>includes\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\irepository.hpp">
+      <Filter>includes\data</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\ifacial_service_api.hpp">
+      <Filter>includes\services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

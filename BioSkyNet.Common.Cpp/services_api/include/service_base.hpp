@@ -15,9 +15,13 @@
 
 using grpc::ServerBuilder;
 
-namespace grpc_services
+namespace services_api
 {
+	typedef
+		std::function<void(grpc::ServerCompletionQueue*)>	CreateRequestHandlerFunc;
+
 	typedef Services::BiometricFacialService::AsyncService AsyncFacialService;
+	typedef Services::UnitService::AsyncService            AsyncUnitService  ;
 
 	template <typename TService>
 	class AsyncServiceBase : public contracts::services::IService
@@ -81,10 +85,20 @@ namespace grpc_services
 
 			threadpool_.create_thread(
 				boost::bind(&boost::asio::io_service::run, &io_service_)
-			);
+			);		
 
 			auto callback = std::bind(&AsyncServiceBase::handle_rpc<T>, this, cq_.get());
 			handlers_.push_back(ServerRequestHandler(move(cq_), callback));
+		}
+
+		template <typename T>
+		void add_handler_factory_method(CreateRequestHandlerFunc func)
+		{		
+			auto handler_id = typeid(T).name();
+			if (items_.find(handler_id) == items_.end())
+				items_[typeid(T).name()] = func;
+			else
+				throw std::exception("Handler create function exists");
 		}
 
 		TService service_;
@@ -114,16 +128,26 @@ namespace grpc_services
 			}
 		}
 
+		void create_handler( const std::string& handler_id
+		                    , grpc::ServerCompletionQueue* queue)
+		{
+			auto it = items_.find(handler_id);
+			if (items_.find(handler_id) != items_.end()) {
+				it->second(queue);
+			}
+			else
+				logger_.error("Not found handler creation method");
+		}
+
 
 		virtual std::string class_name() const = 0;		
-		virtual void create_handler( const std::string& handler_id
-		                           , grpc::ServerCompletionQueue* queue) = 0;
+	
 
 		AsyncServiceBase(const AsyncServiceBase&) = delete;
 		AsyncServiceBase& operator=(const AsyncServiceBase&) = delete;
 
-		contracts::services::IServiceAddress& address_;
-		ServerBuilder* server_builder_;
+		contracts::services::IServiceAddress& address_       ;
+		ServerBuilder*                        server_builder_;
 
 
 		bool cancelation_requested_;
@@ -134,6 +158,8 @@ namespace grpc_services
 		boost::thread_group           threadpool_;
 		boost::asio::io_service::work work_      ;
 		contracts::logging::Logger    logger_    ;
+
+		std::map<std::string, CreateRequestHandlerFunc> items_;
 	};
 }
 

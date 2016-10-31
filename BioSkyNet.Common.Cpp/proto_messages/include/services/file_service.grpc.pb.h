@@ -38,9 +38,9 @@ class FileService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Services::FileMessage>> AsyncCreate(::grpc::ClientContext* context, const ::Services::FileBytes& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Services::FileMessage>>(AsyncCreateRaw(context, request, cq));
     }
-    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::EmptyMessage* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Services::EmptyMessage>> AsyncDelete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Services::EmptyMessage>>(AsyncDeleteRaw(context, request, cq));
+    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncDelete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncDeleteRaw(context, request, cq));
     }
     virtual ::grpc::Status Exists(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::ExistMessage* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Services::ExistMessage>> AsyncExists(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
@@ -49,7 +49,7 @@ class FileService GRPC_FINAL {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Services::FileBytes>* AsyncGetRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Services::FileMessage>* AsyncCreateRaw(::grpc::ClientContext* context, const ::Services::FileBytes& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Services::EmptyMessage>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Services::ExistMessage>* AsyncExistsRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub GRPC_FINAL : public StubInterface {
@@ -63,9 +63,9 @@ class FileService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Services::FileMessage>> AsyncCreate(::grpc::ClientContext* context, const ::Services::FileBytes& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Services::FileMessage>>(AsyncCreateRaw(context, request, cq));
     }
-    ::grpc::Status Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::EmptyMessage* response) GRPC_OVERRIDE;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Services::EmptyMessage>> AsyncDelete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Services::EmptyMessage>>(AsyncDeleteRaw(context, request, cq));
+    ::grpc::Status Delete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::google::protobuf::Empty* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncDelete(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncDeleteRaw(context, request, cq));
     }
     ::grpc::Status Exists(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::Services::ExistMessage* response) GRPC_OVERRIDE;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Services::ExistMessage>> AsyncExists(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) {
@@ -76,7 +76,7 @@ class FileService GRPC_FINAL {
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     ::grpc::ClientAsyncResponseReader< ::Services::FileBytes>* AsyncGetRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::Services::FileMessage>* AsyncCreateRaw(::grpc::ClientContext* context, const ::Services::FileBytes& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
-    ::grpc::ClientAsyncResponseReader< ::Services::EmptyMessage>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::Services::ExistMessage>* AsyncExistsRaw(::grpc::ClientContext* context, const ::Services::FileMessage& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     const ::grpc::RpcMethod rpcmethod_Get_;
     const ::grpc::RpcMethod rpcmethod_Create_;
@@ -91,7 +91,7 @@ class FileService GRPC_FINAL {
     virtual ~Service();
     virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::FileBytes* response);
     virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::Services::FileBytes* request, ::Services::FileMessage* response);
-    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::EmptyMessage* response);
+    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status Exists(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::ExistMessage* response);
   };
   template <class BaseClass>
@@ -146,11 +146,11 @@ class FileService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::EmptyMessage* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDelete(::grpc::ServerContext* context, ::Services::FileMessage* request, ::grpc::ServerAsyncResponseWriter< ::Services::EmptyMessage>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDelete(::grpc::ServerContext* context, ::Services::FileMessage* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -221,7 +221,7 @@ class FileService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::Services::EmptyMessage* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status Delete(::grpc::ServerContext* context, const ::Services::FileMessage* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
