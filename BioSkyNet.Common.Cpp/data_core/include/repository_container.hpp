@@ -21,7 +21,7 @@ namespace data_core
 			, data_context_container_(nullptr)
 		{}
 
-		explicit RepositoryContainer(contracts::services::IDatabaseApiPtr context )
+		explicit RepositoryContainer(contracts::services::IDatabaseApi* context )
 			: context_(context)
 		{
 			datacontext_container_impl_ = std::make_unique<DataContextContainer>(context);
@@ -57,7 +57,7 @@ namespace data_core
 		void de_init() override	{}	
 
 	private:
-		contracts::services::IDatabaseApiPtr context_;
+		contracts::services::IDatabaseApi* context_;
 
 		std::unique_ptr<ILocationRepository>	   locations_    ;
 		std::unique_ptr<IVisitRecordRepository> visit_records_;

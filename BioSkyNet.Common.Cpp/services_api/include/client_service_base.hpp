@@ -60,8 +60,9 @@ namespace services_api
 			return helpers::get_completion_queue<T>(handlers_);			
 		}
 			
-		void set_call_options(IAsyncCall* call) const
-		{
+		void set_call_options(IAsyncCall* call) const {
+			do_set_call_options(call);
+
 			helpers::set_deadline(call->context, call->deadline);
 			helpers::set_metadata(call->context, call->metadata);	
 		}
@@ -77,7 +78,7 @@ namespace services_api
 				          	typeid(T).name(), ClientRequestHandler(cq, callback)));
 		}
 
-		virtual void do_set_call_options(IAsyncCall* call){}
+		virtual void do_set_call_options(IAsyncCall* call) const {}
 
 	private:
 		virtual void do_create_stub     ( std::shared_ptr<grpc::Channel> channel) = 0;

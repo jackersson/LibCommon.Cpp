@@ -13,7 +13,7 @@ namespace data_core
 	class DataContextContainer : public contracts::data::AbstractDataContextContainer	
 	{		
 	public:
-		explicit DataContextContainer(contracts::services::IDatabaseApiPtr api)
+		explicit DataContextContainer(contracts::services::IDatabaseApi* api)
 			: api_(api)
 		{}
 
@@ -33,7 +33,7 @@ namespace data_core
 		{}		
 		
 	private:
-		contracts::services::IDatabaseApiPtr api_;
+		contracts::services::IDatabaseApi* api_;
 		std::unique_ptr<contracts::data::IDataContext<DataTypes::Location>> locations_;
 		std::unique_ptr<contracts::data::IDataContext<DataTypes::VisitRecord>> visit_records_;
 		std::unique_ptr<contracts::data::IDataContext<DataTypes::Person>> persons_;

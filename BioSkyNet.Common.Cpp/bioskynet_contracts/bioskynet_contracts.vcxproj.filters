@@ -28,6 +28,9 @@
     <Filter Include="includes\observers">
       <UniqueIdentifier>{089c4d29-2077-4e56-bfa3-9199e73aa62d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="includes\data\models">
+      <UniqueIdentifier>{17dce346-64f1-4637-8468-69d7fd4553f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\logging\logger.hpp">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="include\services\ifacial_service_api.hpp">
       <Filter>includes\services</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\key.hpp">
+      <Filter>includes\data\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

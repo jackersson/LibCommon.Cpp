@@ -154,6 +154,7 @@
     <ClInclude Include="include\common\raw_image.hpp" />
     <ClInclude Include="include\data\data_utils.hpp" />
     <ClInclude Include="include\data\irepository.hpp" />
+    <ClInclude Include="include\data\models\key.hpp" />
     <ClInclude Include="include\logging\logger.hpp" />
     <ClInclude Include="include\observers\iobservable.hpp" />
     <ClInclude Include="include\observers\observable.hpp" />

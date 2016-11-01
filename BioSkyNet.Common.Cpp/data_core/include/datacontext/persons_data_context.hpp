@@ -13,7 +13,7 @@ namespace data_core
 			: public contracts::data::IDataContext<DataTypes::Person>
 		{
 		public:
-			explicit PersonsDataContext(contracts::services::IDatabaseApiPtr api)
+			explicit PersonsDataContext(contracts::services::IDatabaseApi* api)
 				: context_(api)
 			{}
 
@@ -93,7 +93,7 @@ namespace data_core
 			}
 
 		private:
-			contracts::services::IDatabaseApiPtr context_;
+			contracts::services::IDatabaseApi* context_;
 		};
 
 

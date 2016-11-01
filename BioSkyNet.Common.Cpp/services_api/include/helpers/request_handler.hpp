@@ -4,6 +4,7 @@
 #include <memory>
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <include/grpc++/impl/codegen/server_context.h>
+#include <common/logger.hpp>
 
 namespace grpc_services
 {
@@ -51,7 +52,7 @@ namespace grpc_services
 			{
 				CreateRequest();
 			}
-			catch (std::exception& ex)
+			catch (std::exception&)
 			{
 				//TODO log			
 			}
@@ -81,6 +82,8 @@ namespace grpc_services
 		T* service_;
 		grpc::ServerCompletionQueue* server_completion_queue_;	
 		grpc::ServerContext          server_context_;
+
+		contracts::logging::Logger logger_;
 	private:
 		RequestHandler(const RequestHandler&) = delete;
 		RequestHandler& operator=(const RequestHandler&) = delete;

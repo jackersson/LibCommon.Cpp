@@ -13,6 +13,12 @@ namespace services_api
 			promise.set_value(result);
 		}
 
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncGetFileCall).name();
+			return class_name;
+		}
+
 		std::promise<std::shared_ptr<Services::FileBytes>> promise;
 
 		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::FileBytes>> reader;
@@ -25,25 +31,43 @@ namespace services_api
 			promise.set_value(result);
 		}
 
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncCreateFileCall).name();
+			return class_name;
+		}
+
 		std::promise<std::shared_ptr<Services::FileMessage>> promise;
 
 		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::FileMessage>> reader;
 	};
 
-	struct AsyncDeleteFileCall : AbstractAsyncCall<Services::EmptyMessage> {
+	struct AsyncDeleteFileCall : AbstractAsyncCall<google::protobuf::Empty> {
 		void process() override	{		
 			promise.set_value(true);
 		}
 
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncDeleteFileCall).name();
+			return class_name;
+		}
+
 		std::promise<bool> promise;
 
-		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::EmptyMessage>> reader;
+		std::unique_ptr<grpc::ClientAsyncResponseReader<google::protobuf::Empty>> reader;
 	};
 
 	struct AsyncExistsFileCall : AbstractAsyncCall<Services::ExistMessage> {
 
 		void process() override	{	
 			promise.set_value(response.result());
+		}
+
+		const std::string& identifier() const override
+		{
+			static std::string class_name = typeid(AsyncExistsFileCall).name();
+			return class_name;
 		}
 
 		std::promise<bool> promise;

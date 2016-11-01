@@ -44,7 +44,6 @@ namespace services_api
 			if (queue == nullptr)	return nullptr;
 
 			auto call = new AsyncFaceProcessCall;
-			do_set_call_options(call);
 			set_call_options(call);
 			call->reader = stub_->AsyncProcess(&call->context, request, queue);
 			call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));

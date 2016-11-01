@@ -15,7 +15,7 @@ namespace data_core
 		{
 			
 		public:
-			explicit LocationsDataContext(contracts::services::IDatabaseApiPtr api)
+			explicit LocationsDataContext(contracts::services::IDatabaseApi* api)
 				: context_(api)
 			{}
 
@@ -105,7 +105,7 @@ namespace data_core
 			}
 
 		private:
-			contracts::services::IDatabaseApiPtr context_;
+			contracts::services::IDatabaseApi* context_;
 		};
 
 

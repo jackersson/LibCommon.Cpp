@@ -14,7 +14,7 @@ namespace data_core
 			: public contracts::data::IDataContext<DataTypes::VisitRecord>
 		{
 		public:
-			explicit VisitRecordsDataContext(contracts::services::IDatabaseApiPtr api)
+			explicit VisitRecordsDataContext(contracts::services::IDatabaseApi* api)
 				: context_(api)
 			{}
 
@@ -120,7 +120,7 @@ namespace data_core
 
 		private:
 			mutable contracts::logging::Logger logger_;
-			contracts::services::IDatabaseApiPtr context_;
+			contracts::services::IDatabaseApi* context_;
 		};
 
 
