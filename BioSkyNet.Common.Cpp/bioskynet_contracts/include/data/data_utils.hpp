@@ -1,22 +1,19 @@
 #ifndef DataUtils_Included
 #define DataUtils_Included
 
-#include <datatypes/key.pb.h>
+#include <data/models/key.hpp>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/random_generator.hpp>
-#include <thread/lock_algorithms.hpp>
-#include <datatypes/datetime.pb.h>
 
 namespace contracts
 {
 	namespace data
 	{
-		const int UUID_BYTES_SIZE = 16;
 		
-		inline DataTypes::Key* get_key_from_card_number(const std::string& card_number)
+	/*	inline DataTypes::Key* get_key_from_card_number(const std::string& card_number)
 		{
 			auto key = new DataTypes::Key();
 			key->set_identifier(card_number);
@@ -37,9 +34,9 @@ namespace contracts
 			current_time->set_seconds(now.time_of_day().seconds());
 			return current_time;
 		}
-		
-		inline bool try_parse_guid(const std::string& value
-			, boost::uuids::uuid& uid)
+		*/
+		inline bool try_parse_guid( const std::string& value
+			                        , boost::uuids::uuid& uid)
 		{
 			try
 			{
@@ -52,15 +49,18 @@ namespace contracts
 		}
 
 		//TODO check if guid not empty
+		/*
 		inline void set_guid(const boost::uuids::uuid& guid, DataTypes::Key& key)
 		{
 			unsigned char data[UUID_BYTES_SIZE];
 			memcpy(&data, guid.data, UUID_BYTES_SIZE);
 
-			auto str = new std::string(data, data + sizeof(data) / sizeof(data[0]));
-			key.set_allocated_guid(str);
-		}
+			std::string str(data, data + sizeof(data) / sizeof(data[0]));
+			key.set_guid(str);
+		}	
+		*/
 
+		/*
 		inline std::string to_bytestring(const std::string& guid)
 		{
 			boost::uuids::uuid uuid;
@@ -72,7 +72,7 @@ namespace contracts
 
 			return std::string(data, data + sizeof(data) / sizeof(data[0]));
 		}
-
+		
 		inline void set_guid(const std::string& guid, DataTypes::Key& key)
 		{
 			boost::uuids::uuid uuid;
@@ -81,7 +81,16 @@ namespace contracts
 
 			set_guid(uuid, key);
 		}
+		*/
+		inline data_model::Key to_data_key(const std::string& guid )
+		{
+			boost::uuids::uuid uuid;
+			if (!try_parse_guid(guid, uuid))
+				return data_model::Key();
 
+			return data_model::Key(uuid);
+		}
+		/*
 		inline bool get_guid(const DataTypes::Key& key, boost::uuids::uuid& guid)
 		{
 			if (key.id_type_case() != DataTypes::Key::IdTypeCase::kGuid)
@@ -91,13 +100,13 @@ namespace contracts
 			memcpy(&guid, key_guid.data(), UUID_BYTES_SIZE);
 			return guid.is_nil();
 		}
-
+		
 		inline bool guid_empty(const DataTypes::Key& key)
 		{
 			boost::uuids::uuid guid;
 			return get_guid(key, guid);
 		}
-
+		
 		inline std::string to_string(const DataTypes::Key& key)
 		{
 			if (key.id_type_case() != DataTypes::Key::IdTypeCase::kGuid)
@@ -109,12 +118,13 @@ namespace contracts
 				return "";
 			return to_string(guid);
 		}
+		*/
 
 		inline std::string uuid_to_string(const boost::uuids::uuid& uid)
 		{
 			return to_string(uid);
 		}
-
+		/*
 		//TODO make new
 		inline DataTypes::Key get_random_key()
 		{
@@ -123,13 +133,26 @@ namespace contracts
 			set_guid(uuid, key);
 			return key;
 		}
-
+		*/
 		inline std::string get_random_guid()
 		{
 			auto uuid = boost::uuids::random_generator()();
 			return to_string(uuid);
 		}
 
+		inline boost::uuids::uuid get_random_boost_guid()
+		{
+			return boost::uuids::random_generator()();
+		}
+
+		inline data_model::Key get_random_data_key()
+		{
+			auto uuid = boost::uuids::random_generator()();
+			data_model::Key key(uuid);			
+			return key;
+		}
+
+		/*
 		inline bool keys_equal(const DataTypes::Key& first
 			, const DataTypes::Key& second)
 		{
@@ -150,6 +173,7 @@ namespace contracts
 				return false;
 			}
 		}
+		*/
 
 	}
 }

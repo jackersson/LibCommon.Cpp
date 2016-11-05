@@ -2,56 +2,41 @@
 #define LocationsRepository_Included
 
 #include <data/irepository.hpp>
-#include <localstorage/locations_localstorage.hpp>
+#include <data/models/location.hpp>
 
 namespace data_core
 {
 	namespace datacontext
 	{
 		class LocationsRepository
-			: public contracts::data::IRepository<DataTypes::Location>
+			: public contracts::data::IRepository<data_model::Location>
 		{
 		public:
 			explicit 
-				LocationsRepository(IDataContext<DataTypes::Location>* datacontext)
+				LocationsRepository(IDataContext<data_model::Location>* datacontext)
 				: datacontext_(datacontext)
-				, local_(std::make_shared<localstorage::LocationsLocalStorage>())
-			{}
+			{
+				if (datacontext_ == nullptr)
+					throw std::exception("Datacontext can't be null");
+			}
 
-			bool get(void* request, std::vector<DataTypes::Location>& entities) override
+			bool get( const data_model::GetRequest& request
+				      , std::vector<data_model::Location>& entities) override
 			{
 				return datacontext_->get(request, entities);
 			}
-			
-			bool find(DataTypes::Key key, DataTypes::Location& entity) override {
-				return datacontext_->find(key, entity);
-			}
-			
-			bool add(DataTypes::Location* entity) override
-			{
+						
+			bool add(const data_model::Location& entity) override		{
 				return datacontext_->add(entity);
-			}
+			}		
 
-			bool remove(DataTypes::Location* entity) override
+			contracts::data::ILocalStorage<data_model::Location>& local() override
 			{
-				return datacontext_->remove(entity);
-			}
-
-			bool update(DataTypes::Location* entity) override
-			{
-				return datacontext_->update(entity);
-			}
-
-			//TODO move to pointer just
-			std::shared_ptr<contracts::data::ILocalStorage<DataTypes::Location>> 
-				local() override
-			{
-				return local_;
+				throw std::exception("Not implemented");
 			}
 
 		private:
-			IDataContext<DataTypes::Location>* datacontext_;
-			std::shared_ptr<contracts::data::ILocalStorage<DataTypes::Location>> local_;
+			IDataContext<data_model::Location>* datacontext_;
 		};
 
 

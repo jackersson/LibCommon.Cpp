@@ -2,6 +2,7 @@
 #define FileClientCall_INCLUDED
 
 #include <helpers/service_heplers.hpp>
+#include <services/file_service.pb.h>
 #include <future>
 
 namespace services_api
@@ -9,7 +10,7 @@ namespace services_api
 	struct AsyncGetFileCall : AbstractAsyncCall<Services::FileBytes> {
 		void process() override
 		{			
-			auto result = std::make_shared<Services::FileBytes>(response);
+			auto result = std::make_shared<std::string>(response.data());
 			promise.set_value(result);
 		}
 
@@ -19,16 +20,14 @@ namespace services_api
 			return class_name;
 		}
 
-		std::promise<std::shared_ptr<Services::FileBytes>> promise;
+		std::promise<std::shared_ptr<std::string>> promise;
 
 		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::FileBytes>> reader;
 	};
 
 	struct AsyncCreateFileCall : AbstractAsyncCall<Services::FileMessage> {
-		void process() override
-		{
-			auto result = std::make_shared<Services::FileMessage>(response);
-			promise.set_value(result);
+		void process() override	{
+			promise.set_value(response.id());
 		}
 
 		const std::string& identifier() const override
@@ -37,7 +36,7 @@ namespace services_api
 			return class_name;
 		}
 
-		std::promise<std::shared_ptr<Services::FileMessage>> promise;
+		std::promise<std::string> promise;
 
 		std::unique_ptr<grpc::ClientAsyncResponseReader<Services::FileMessage>> reader;
 	};

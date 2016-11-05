@@ -1,7 +1,6 @@
 #ifndef IObservable_Included
 #define IObservable_Included
 
-
 namespace contracts
 {
 	namespace observers

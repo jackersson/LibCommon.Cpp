@@ -2,71 +2,61 @@
 #define RepositoryContainer_Included
 
 #include <data/irepository.hpp>
-#include "datacontext_container.hpp"
 #include "repository/location_repository.hpp"
 #include "repository/visit_records_repository.hpp"
 #include "repository/persons_repository.hpp"
+#include "repository/face_charst_repository.hpp"
 
 namespace data_core
 {		
 	class RepositoryContainer	: public contracts::data::AbstractRepositoryContainer
 	{
-		typedef contracts::data::IRepository<DataTypes::VisitRecord> IVisitRecordRepository;
-		typedef contracts::data::IRepository<DataTypes::Location>	ILocationRepository;
-		typedef contracts::data::IRepository<DataTypes::Person>	  IPersonRepository;
+		typedef contracts::data::IRepository<data_model::VisitRecord> IVisitRecordRepository;
+		typedef contracts::data::IRepository<data_model::Location>  	ILocationRepository;
+		typedef contracts::data::IRepository<data_model::Person>	    IPersonRepository;
+		typedef 
+			contracts::data::IRepository<data_model::FaceTemplate>  IFaceCharstRepository;
 
-	public:
-		RepositoryContainer()
-			: context_(nullptr)
-			, data_context_container_(nullptr)
-		{}
-
-		explicit RepositoryContainer(contracts::services::IDatabaseApi* context )
-			: context_(context)
+	public:	
+		explicit
+			RepositoryContainer(contracts::data::AbstractDataContextContainer* datacontext)
+			: data_context_(datacontext)
 		{
-			datacontext_container_impl_ = std::make_unique<DataContextContainer>(context);
-			data_context_container_ = datacontext_container_impl_.get();
+			if (data_context_ == nullptr)
+				throw std::exception("Datacontext can't be null");
 		}
 
-		explicit RepositoryContainer(
-			        contracts::data::AbstractDataContextContainer* datacontext)
-			: context_(nullptr)
-			, data_context_container_(datacontext)
-		{	}
-
 		void init() override
-		{		
-			if (data_context_container_ == nullptr)
-				return;
-
-			auto loc_dcontext = data_context_container_->get<DataTypes::Location>();
+		{	
+			auto location_context = data_context_->get<data_model::Location>();
 			locations_ 
-				= std::make_unique<datacontext::LocationsRepository>(loc_dcontext);
-			container_[typeid(DataTypes::Location).hash_code()] = locations_.get();
+				= std::make_unique<datacontext::LocationsRepository>(location_context);
+			container_[typeid(data_model::Location).hash_code()] = locations_.get();
 
-			auto vis_dcontext = data_context_container_->get<DataTypes::VisitRecord>();
+			auto visrecor_context = data_context_->get<data_model::VisitRecord>();
 			visit_records_ 
-				= std::make_unique<datacontext::VisitRecordsRepository>(vis_dcontext);
-			container_[typeid(DataTypes::VisitRecord).hash_code()] = visit_records_.get();
+				= std::make_unique<datacontext::VisitRecordsRepository>(visrecor_context);
+			container_[typeid(data_model::VisitRecord).hash_code()] = visit_records_.get();
 
-			auto per_dcontext = data_context_container_->get<DataTypes::Person>();
-			persons_ = std::make_unique<datacontext::PersonsRepository>(per_dcontext);
-			container_[typeid(DataTypes::Person).hash_code()] = persons_.get();
+			auto person_context = data_context_->get<data_model::Person>();
+			persons_ = std::make_unique<datacontext::PersonsRepository>(person_context);
+			container_[typeid(data_model::Person).hash_code()] = persons_.get();
+
+			auto facechars_context = data_context_->get<data_model::FaceTemplate>();
+			face_charst_ = std::make_unique<datacontext::FaceCharstRepository>(facechars_context);
+			container_[typeid(data_model::FaceTemplate).hash_code()] = persons_.get();
 		}
 
 		void de_init() override	{}	
 
-	private:
-		contracts::services::IDatabaseApi* context_;
-
+	private:		
 		std::unique_ptr<ILocationRepository>	   locations_    ;
-		std::unique_ptr<IVisitRecordRepository> visit_records_;
+		std::unique_ptr<IVisitRecordRepository>  visit_records_;
 		std::unique_ptr<IPersonRepository>		   persons_      ;
+		std::unique_ptr<IFaceCharstRepository>	 face_charst_  ;
 
-		contracts::data::AbstractDataContextContainer* data_context_container_;
-
-		std::unique_ptr<DataContextContainer> datacontext_container_impl_;
-	};	
+		contracts::data::AbstractDataContextContainer* data_context_;
+	};
 }
 
 #endif

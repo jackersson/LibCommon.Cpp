@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utils", "utils\utils.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "services_api", "services_api\services_api.vcxproj", "{6BE36B14-766F-4B2F-919E-1CF87E83A90D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "services_common", "services_common\services_common.vcxproj", "{65CC1AFB-2B55-40A5-882F-3112988EEB59}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "data_core", "data_core\data_core.vcxproj", "{0D78290F-D48B-4C5C-917C-FF52BB9C74BD}"
 EndProject
 Global
@@ -55,14 +53,6 @@ Global
 		{6BE36B14-766F-4B2F-919E-1CF87E83A90D}.Release|x64.Build.0 = Release|x64
 		{6BE36B14-766F-4B2F-919E-1CF87E83A90D}.Release|x86.ActiveCfg = Release|Win32
 		{6BE36B14-766F-4B2F-919E-1CF87E83A90D}.Release|x86.Build.0 = Release|Win32
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Debug|x64.ActiveCfg = Debug|x64
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Debug|x64.Build.0 = Debug|x64
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Debug|x86.ActiveCfg = Debug|Win32
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Debug|x86.Build.0 = Debug|Win32
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Release|x64.ActiveCfg = Release|x64
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Release|x64.Build.0 = Release|x64
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Release|x86.ActiveCfg = Release|Win32
-		{65CC1AFB-2B55-40A5-882F-3112988EEB59}.Release|x86.Build.0 = Release|Win32
 		{0D78290F-D48B-4C5C-917C-FF52BB9C74BD}.Debug|x64.ActiveCfg = Debug|x64
 		{0D78290F-D48B-4C5C-917C-FF52BB9C74BD}.Debug|x64.Build.0 = Debug|x64
 		{0D78290F-D48B-4C5C-917C-FF52BB9C74BD}.Debug|x86.ActiveCfg = Debug|Win32

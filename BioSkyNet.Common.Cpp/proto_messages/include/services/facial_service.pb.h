@@ -216,14 +216,14 @@ class BiometricResponse : public ::google::protobuf::Message {
   ::DataTypes::Photo* release_photo();
   void set_allocated_photo(::DataTypes::Photo* photo);
 
-  // optional .DataTypes.Key person = 2;
-  bool has_person() const;
-  void clear_person();
-  static const int kPersonFieldNumber = 2;
-  const ::DataTypes::Key& person() const;
-  ::DataTypes::Key* mutable_person();
-  ::DataTypes::Key* release_person();
-  void set_allocated_person(::DataTypes::Key* person);
+  // optional .DataTypes.Matches matches = 2;
+  bool has_matches() const;
+  void clear_matches();
+  static const int kMatchesFieldNumber = 2;
+  const ::DataTypes::Matches& matches() const;
+  ::DataTypes::Matches* mutable_matches();
+  ::DataTypes::Matches* release_matches();
+  void set_allocated_matches(::DataTypes::Matches* matches);
 
   // optional .DataTypes.Faces faces = 3;
   bool has_faces() const;
@@ -246,7 +246,7 @@ class BiometricResponse : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::DataTypes::Photo* photo_;
-  ::DataTypes::Key* person_;
+  ::DataTypes::Matches* matches_;
   ::DataTypes::Faces* faces_;
   bool success_;
   mutable int _cached_size_;
@@ -321,23 +321,23 @@ class BiometricUpdate : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional .DataTypes.Photo insert = 1;
+  // optional .DataTypes.FaceCharacteristic insert = 1;
   bool has_insert() const;
   void clear_insert();
   static const int kInsertFieldNumber = 1;
-  const ::DataTypes::Photo& insert() const;
-  ::DataTypes::Photo* mutable_insert();
-  ::DataTypes::Photo* release_insert();
-  void set_allocated_insert(::DataTypes::Photo* insert);
+  const ::DataTypes::FaceCharacteristic& insert() const;
+  ::DataTypes::FaceCharacteristic* mutable_insert();
+  ::DataTypes::FaceCharacteristic* release_insert();
+  void set_allocated_insert(::DataTypes::FaceCharacteristic* insert);
 
-  // optional .DataTypes.Photo remove = 2;
+  // optional .DataTypes.FaceCharacteristic remove = 2;
   bool has_remove() const;
   void clear_remove();
   static const int kRemoveFieldNumber = 2;
-  const ::DataTypes::Photo& remove() const;
-  ::DataTypes::Photo* mutable_remove();
-  ::DataTypes::Photo* release_remove();
-  void set_allocated_remove(::DataTypes::Photo* remove);
+  const ::DataTypes::FaceCharacteristic& remove() const;
+  ::DataTypes::FaceCharacteristic* mutable_remove();
+  ::DataTypes::FaceCharacteristic* release_remove();
+  void set_allocated_remove(::DataTypes::FaceCharacteristic* remove);
 
   UpdateTypeCase update_type_case() const;
   // @@protoc_insertion_point(class_scope:Services.BiometricUpdate)
@@ -353,8 +353,8 @@ class BiometricUpdate : public ::google::protobuf::Message {
   bool _is_default_instance_;
   union UpdateTypeUnion {
     UpdateTypeUnion() {}
-    ::DataTypes::Photo* insert_;
-    ::DataTypes::Photo* remove_;
+    ::DataTypes::FaceCharacteristic* insert_;
+    ::DataTypes::FaceCharacteristic* remove_;
   } update_type_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -520,42 +520,42 @@ inline void BiometricResponse::set_allocated_photo(::DataTypes::Photo* photo) {
   // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.photo)
 }
 
-// optional .DataTypes.Key person = 2;
-inline bool BiometricResponse::has_person() const {
-  return !_is_default_instance_ && person_ != NULL;
+// optional .DataTypes.Matches matches = 2;
+inline bool BiometricResponse::has_matches() const {
+  return !_is_default_instance_ && matches_ != NULL;
 }
-inline void BiometricResponse::clear_person() {
-  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
-  person_ = NULL;
+inline void BiometricResponse::clear_matches() {
+  if (GetArenaNoVirtual() == NULL && matches_ != NULL) delete matches_;
+  matches_ = NULL;
 }
-inline const ::DataTypes::Key& BiometricResponse::person() const {
-  // @@protoc_insertion_point(field_get:Services.BiometricResponse.person)
-  return person_ != NULL ? *person_ : *default_instance_->person_;
+inline const ::DataTypes::Matches& BiometricResponse::matches() const {
+  // @@protoc_insertion_point(field_get:Services.BiometricResponse.matches)
+  return matches_ != NULL ? *matches_ : *default_instance_->matches_;
 }
-inline ::DataTypes::Key* BiometricResponse::mutable_person() {
+inline ::DataTypes::Matches* BiometricResponse::mutable_matches() {
   
-  if (person_ == NULL) {
-    person_ = new ::DataTypes::Key;
+  if (matches_ == NULL) {
+    matches_ = new ::DataTypes::Matches;
   }
-  // @@protoc_insertion_point(field_mutable:Services.BiometricResponse.person)
-  return person_;
+  // @@protoc_insertion_point(field_mutable:Services.BiometricResponse.matches)
+  return matches_;
 }
-inline ::DataTypes::Key* BiometricResponse::release_person() {
-  // @@protoc_insertion_point(field_release:Services.BiometricResponse.person)
+inline ::DataTypes::Matches* BiometricResponse::release_matches() {
+  // @@protoc_insertion_point(field_release:Services.BiometricResponse.matches)
   
-  ::DataTypes::Key* temp = person_;
-  person_ = NULL;
+  ::DataTypes::Matches* temp = matches_;
+  matches_ = NULL;
   return temp;
 }
-inline void BiometricResponse::set_allocated_person(::DataTypes::Key* person) {
-  delete person_;
-  person_ = person;
-  if (person) {
+inline void BiometricResponse::set_allocated_matches(::DataTypes::Matches* matches) {
+  delete matches_;
+  matches_ = matches;
+  if (matches) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.person)
+  // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.matches)
 }
 
 // optional .DataTypes.Faces faces = 3;
@@ -614,7 +614,7 @@ inline void BiometricResponse::set_success(bool value) {
 
 // BiometricUpdate
 
-// optional .DataTypes.Photo insert = 1;
+// optional .DataTypes.FaceCharacteristic insert = 1;
 inline bool BiometricUpdate::has_insert() const {
   return update_type_case() == kInsert;
 }
@@ -627,33 +627,33 @@ inline void BiometricUpdate::clear_insert() {
     clear_has_update_type();
   }
 }
-inline  const ::DataTypes::Photo& BiometricUpdate::insert() const {
+inline  const ::DataTypes::FaceCharacteristic& BiometricUpdate::insert() const {
   // @@protoc_insertion_point(field_get:Services.BiometricUpdate.insert)
   return has_insert()
       ? *update_type_.insert_
-      : ::DataTypes::Photo::default_instance();
+      : ::DataTypes::FaceCharacteristic::default_instance();
 }
-inline ::DataTypes::Photo* BiometricUpdate::mutable_insert() {
+inline ::DataTypes::FaceCharacteristic* BiometricUpdate::mutable_insert() {
   if (!has_insert()) {
     clear_update_type();
     set_has_insert();
-    update_type_.insert_ = new ::DataTypes::Photo;
+    update_type_.insert_ = new ::DataTypes::FaceCharacteristic;
   }
   // @@protoc_insertion_point(field_mutable:Services.BiometricUpdate.insert)
   return update_type_.insert_;
 }
-inline ::DataTypes::Photo* BiometricUpdate::release_insert() {
+inline ::DataTypes::FaceCharacteristic* BiometricUpdate::release_insert() {
   // @@protoc_insertion_point(field_release:Services.BiometricUpdate.insert)
   if (has_insert()) {
     clear_has_update_type();
-    ::DataTypes::Photo* temp = update_type_.insert_;
+    ::DataTypes::FaceCharacteristic* temp = update_type_.insert_;
     update_type_.insert_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-inline void BiometricUpdate::set_allocated_insert(::DataTypes::Photo* insert) {
+inline void BiometricUpdate::set_allocated_insert(::DataTypes::FaceCharacteristic* insert) {
   clear_update_type();
   if (insert) {
     set_has_insert();
@@ -662,7 +662,7 @@ inline void BiometricUpdate::set_allocated_insert(::DataTypes::Photo* insert) {
   // @@protoc_insertion_point(field_set_allocated:Services.BiometricUpdate.insert)
 }
 
-// optional .DataTypes.Photo remove = 2;
+// optional .DataTypes.FaceCharacteristic remove = 2;
 inline bool BiometricUpdate::has_remove() const {
   return update_type_case() == kRemove;
 }
@@ -675,33 +675,33 @@ inline void BiometricUpdate::clear_remove() {
     clear_has_update_type();
   }
 }
-inline  const ::DataTypes::Photo& BiometricUpdate::remove() const {
+inline  const ::DataTypes::FaceCharacteristic& BiometricUpdate::remove() const {
   // @@protoc_insertion_point(field_get:Services.BiometricUpdate.remove)
   return has_remove()
       ? *update_type_.remove_
-      : ::DataTypes::Photo::default_instance();
+      : ::DataTypes::FaceCharacteristic::default_instance();
 }
-inline ::DataTypes::Photo* BiometricUpdate::mutable_remove() {
+inline ::DataTypes::FaceCharacteristic* BiometricUpdate::mutable_remove() {
   if (!has_remove()) {
     clear_update_type();
     set_has_remove();
-    update_type_.remove_ = new ::DataTypes::Photo;
+    update_type_.remove_ = new ::DataTypes::FaceCharacteristic;
   }
   // @@protoc_insertion_point(field_mutable:Services.BiometricUpdate.remove)
   return update_type_.remove_;
 }
-inline ::DataTypes::Photo* BiometricUpdate::release_remove() {
+inline ::DataTypes::FaceCharacteristic* BiometricUpdate::release_remove() {
   // @@protoc_insertion_point(field_release:Services.BiometricUpdate.remove)
   if (has_remove()) {
     clear_has_update_type();
-    ::DataTypes::Photo* temp = update_type_.remove_;
+    ::DataTypes::FaceCharacteristic* temp = update_type_.remove_;
     update_type_.remove_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-inline void BiometricUpdate::set_allocated_remove(::DataTypes::Photo* remove) {
+inline void BiometricUpdate::set_allocated_remove(::DataTypes::FaceCharacteristic* remove) {
   clear_update_type();
   if (remove) {
     set_has_remove();

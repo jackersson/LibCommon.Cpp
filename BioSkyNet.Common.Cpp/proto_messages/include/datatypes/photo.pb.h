@@ -26,7 +26,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "datatypes/biometrics.pb.h"
 #include "datatypes/key.pb.h"
@@ -41,28 +40,6 @@ void protobuf_ShutdownFile_datatypes_2fphoto_2eproto();
 
 class Photo;
 
-enum Purpose {
-  NonePurpose = 0,
-  Thumbnail = 1,
-  Population = 2,
-  Purpose_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  Purpose_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool Purpose_IsValid(int value);
-const Purpose Purpose_MIN = NonePurpose;
-const Purpose Purpose_MAX = Population;
-const int Purpose_ARRAYSIZE = Purpose_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* Purpose_descriptor();
-inline const ::std::string& Purpose_Name(Purpose value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    Purpose_descriptor(), value);
-}
-inline bool Purpose_Parse(
-    const ::std::string& name, Purpose* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Purpose>(
-    Purpose_descriptor(), name, value);
-}
 // ===================================================================
 
 class Photo : public ::google::protobuf::Message {
@@ -153,17 +130,17 @@ class Photo : public ::google::protobuf::Message {
   ::google::protobuf::int32 height() const;
   void set_height(::google::protobuf::int32 value);
 
-  // optional .DataTypes.Purpose purpose = 5;
-  void clear_purpose();
-  static const int kPurposeFieldNumber = 5;
-  ::DataTypes::Purpose purpose() const;
-  void set_purpose(::DataTypes::Purpose value);
+  // optional bool thumbnail = 5;
+  void clear_thumbnail();
+  static const int kThumbnailFieldNumber = 5;
+  bool thumbnail() const;
+  void set_thumbnail(bool value);
 
-  // optional .DataTypes.BiometricType biometric_type = 6;
-  void clear_biometric_type();
-  static const int kBiometricTypeFieldNumber = 6;
-  ::DataTypes::BiometricType biometric_type() const;
-  void set_biometric_type(::DataTypes::BiometricType value);
+  // optional bool use_as_identifier = 6;
+  void clear_use_as_identifier();
+  static const int kUseAsIdentifierFieldNumber = 6;
+  bool use_as_identifier() const;
+  void set_use_as_identifier(bool value);
 
   // optional .DataTypes.Key owner_id = 7;
   bool has_owner_id() const;
@@ -174,6 +151,15 @@ class Photo : public ::google::protobuf::Message {
   ::DataTypes::Key* release_owner_id();
   void set_allocated_owner_id(::DataTypes::Key* owner_id);
 
+  // optional .DataTypes.Faces faces = 8;
+  bool has_faces() const;
+  void clear_faces();
+  static const int kFacesFieldNumber = 8;
+  const ::DataTypes::Faces& faces() const;
+  ::DataTypes::Faces* mutable_faces();
+  ::DataTypes::Faces* release_faces();
+  void set_allocated_faces(::DataTypes::Faces* faces);
+
   // @@protoc_insertion_point(class_scope:DataTypes.Photo)
  private:
 
@@ -183,9 +169,10 @@ class Photo : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr url_;
   ::google::protobuf::int32 width_;
   ::google::protobuf::int32 height_;
-  int purpose_;
-  int biometric_type_;
   ::DataTypes::Key* owner_id_;
+  ::DataTypes::Faces* faces_;
+  bool thumbnail_;
+  bool use_as_identifier_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fphoto_2eproto();
   friend void protobuf_AssignDesc_datatypes_2fphoto_2eproto();
@@ -312,32 +299,32 @@ inline void Photo::set_height(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:DataTypes.Photo.height)
 }
 
-// optional .DataTypes.Purpose purpose = 5;
-inline void Photo::clear_purpose() {
-  purpose_ = 0;
+// optional bool thumbnail = 5;
+inline void Photo::clear_thumbnail() {
+  thumbnail_ = false;
 }
-inline ::DataTypes::Purpose Photo::purpose() const {
-  // @@protoc_insertion_point(field_get:DataTypes.Photo.purpose)
-  return static_cast< ::DataTypes::Purpose >(purpose_);
+inline bool Photo::thumbnail() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Photo.thumbnail)
+  return thumbnail_;
 }
-inline void Photo::set_purpose(::DataTypes::Purpose value) {
+inline void Photo::set_thumbnail(bool value) {
   
-  purpose_ = value;
-  // @@protoc_insertion_point(field_set:DataTypes.Photo.purpose)
+  thumbnail_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.Photo.thumbnail)
 }
 
-// optional .DataTypes.BiometricType biometric_type = 6;
-inline void Photo::clear_biometric_type() {
-  biometric_type_ = 0;
+// optional bool use_as_identifier = 6;
+inline void Photo::clear_use_as_identifier() {
+  use_as_identifier_ = false;
 }
-inline ::DataTypes::BiometricType Photo::biometric_type() const {
-  // @@protoc_insertion_point(field_get:DataTypes.Photo.biometric_type)
-  return static_cast< ::DataTypes::BiometricType >(biometric_type_);
+inline bool Photo::use_as_identifier() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Photo.use_as_identifier)
+  return use_as_identifier_;
 }
-inline void Photo::set_biometric_type(::DataTypes::BiometricType value) {
+inline void Photo::set_use_as_identifier(bool value) {
   
-  biometric_type_ = value;
-  // @@protoc_insertion_point(field_set:DataTypes.Photo.biometric_type)
+  use_as_identifier_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.Photo.use_as_identifier)
 }
 
 // optional .DataTypes.Key owner_id = 7;
@@ -378,25 +365,49 @@ inline void Photo::set_allocated_owner_id(::DataTypes::Key* owner_id) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Photo.owner_id)
 }
 
+// optional .DataTypes.Faces faces = 8;
+inline bool Photo::has_faces() const {
+  return !_is_default_instance_ && faces_ != NULL;
+}
+inline void Photo::clear_faces() {
+  if (GetArenaNoVirtual() == NULL && faces_ != NULL) delete faces_;
+  faces_ = NULL;
+}
+inline const ::DataTypes::Faces& Photo::faces() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Photo.faces)
+  return faces_ != NULL ? *faces_ : *default_instance_->faces_;
+}
+inline ::DataTypes::Faces* Photo::mutable_faces() {
+  
+  if (faces_ == NULL) {
+    faces_ = new ::DataTypes::Faces;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.Photo.faces)
+  return faces_;
+}
+inline ::DataTypes::Faces* Photo::release_faces() {
+  // @@protoc_insertion_point(field_release:DataTypes.Photo.faces)
+  
+  ::DataTypes::Faces* temp = faces_;
+  faces_ = NULL;
+  return temp;
+}
+inline void Photo::set_allocated_faces(::DataTypes::Faces* faces) {
+  delete faces_;
+  faces_ = faces;
+  if (faces) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Photo.faces)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace DataTypes
-
-#ifndef SWIG
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::DataTypes::Purpose> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::DataTypes::Purpose>() {
-  return ::DataTypes::Purpose_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
-#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

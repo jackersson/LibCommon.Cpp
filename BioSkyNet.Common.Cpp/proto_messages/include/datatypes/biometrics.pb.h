@@ -44,6 +44,7 @@ class Faces;
 class FrameBytes;
 class Match;
 class Matches;
+class SimpleFaceCharacteristic;
 
 enum BioActionType {
   NoneActionType = 0,
@@ -405,6 +406,97 @@ class FaceCharacteristic : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class SimpleFaceCharacteristic : public ::google::protobuf::Message {
+ public:
+  SimpleFaceCharacteristic();
+  virtual ~SimpleFaceCharacteristic();
+
+  SimpleFaceCharacteristic(const SimpleFaceCharacteristic& from);
+
+  inline SimpleFaceCharacteristic& operator=(const SimpleFaceCharacteristic& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SimpleFaceCharacteristic& default_instance();
+
+  void Swap(SimpleFaceCharacteristic* other);
+
+  // implements Message ----------------------------------------------
+
+  inline SimpleFaceCharacteristic* New() const { return New(NULL); }
+
+  SimpleFaceCharacteristic* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SimpleFaceCharacteristic& from);
+  void MergeFrom(const SimpleFaceCharacteristic& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(SimpleFaceCharacteristic* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.Key id = 1;
+  bool has_id() const;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  const ::DataTypes::Key& id() const;
+  ::DataTypes::Key* mutable_id();
+  ::DataTypes::Key* release_id();
+  void set_allocated_id(::DataTypes::Key* id);
+
+  // optional .DataTypes.Box box = 2;
+  bool has_box() const;
+  void clear_box();
+  static const int kBoxFieldNumber = 2;
+  const ::DataTypes::Box& box() const;
+  ::DataTypes::Box* mutable_box();
+  ::DataTypes::Box* release_box();
+  void set_allocated_box(::DataTypes::Box* box);
+
+  // @@protoc_insertion_point(class_scope:DataTypes.SimpleFaceCharacteristic)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::DataTypes::Key* id_;
+  ::DataTypes::Box* box_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2fbiometrics_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fbiometrics_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fbiometrics_2eproto();
+
+  void InitAsDefaultInstance();
+  static SimpleFaceCharacteristic* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class FrameBytes : public ::google::protobuf::Message {
  public:
   FrameBytes();
@@ -472,16 +564,16 @@ class FrameBytes : public ::google::protobuf::Message {
   ::std::string* release_frame_data();
   void set_allocated_frame_data(::std::string* frame_data);
 
-  // repeated .DataTypes.FaceCharacteristic faces = 2;
+  // repeated .DataTypes.SimpleFaceCharacteristic faces = 2;
   int faces_size() const;
   void clear_faces();
   static const int kFacesFieldNumber = 2;
-  const ::DataTypes::FaceCharacteristic& faces(int index) const;
-  ::DataTypes::FaceCharacteristic* mutable_faces(int index);
-  ::DataTypes::FaceCharacteristic* add_faces();
-  ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >*
+  const ::DataTypes::SimpleFaceCharacteristic& faces(int index) const;
+  ::DataTypes::SimpleFaceCharacteristic* mutable_faces(int index);
+  ::DataTypes::SimpleFaceCharacteristic* add_faces();
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::SimpleFaceCharacteristic >*
       mutable_faces();
-  const ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >&
+  const ::google::protobuf::RepeatedPtrField< ::DataTypes::SimpleFaceCharacteristic >&
       faces() const;
 
   // @@protoc_insertion_point(class_scope:DataTypes.FrameBytes)
@@ -490,7 +582,7 @@ class FrameBytes : public ::google::protobuf::Message {
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr frame_data_;
-  ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic > faces_;
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::SimpleFaceCharacteristic > faces_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fbiometrics_2eproto();
   friend void protobuf_AssignDesc_datatypes_2fbiometrics_2eproto();
@@ -935,6 +1027,86 @@ inline void FaceCharacteristic::set_allocated_photo_id(::DataTypes::Key* photo_i
 
 // -------------------------------------------------------------------
 
+// SimpleFaceCharacteristic
+
+// optional .DataTypes.Key id = 1;
+inline bool SimpleFaceCharacteristic::has_id() const {
+  return !_is_default_instance_ && id_ != NULL;
+}
+inline void SimpleFaceCharacteristic::clear_id() {
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
+}
+inline const ::DataTypes::Key& SimpleFaceCharacteristic::id() const {
+  // @@protoc_insertion_point(field_get:DataTypes.SimpleFaceCharacteristic.id)
+  return id_ != NULL ? *id_ : *default_instance_->id_;
+}
+inline ::DataTypes::Key* SimpleFaceCharacteristic::mutable_id() {
+  
+  if (id_ == NULL) {
+    id_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.SimpleFaceCharacteristic.id)
+  return id_;
+}
+inline ::DataTypes::Key* SimpleFaceCharacteristic::release_id() {
+  // @@protoc_insertion_point(field_release:DataTypes.SimpleFaceCharacteristic.id)
+  
+  ::DataTypes::Key* temp = id_;
+  id_ = NULL;
+  return temp;
+}
+inline void SimpleFaceCharacteristic::set_allocated_id(::DataTypes::Key* id) {
+  delete id_;
+  id_ = id;
+  if (id) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.SimpleFaceCharacteristic.id)
+}
+
+// optional .DataTypes.Box box = 2;
+inline bool SimpleFaceCharacteristic::has_box() const {
+  return !_is_default_instance_ && box_ != NULL;
+}
+inline void SimpleFaceCharacteristic::clear_box() {
+  if (GetArenaNoVirtual() == NULL && box_ != NULL) delete box_;
+  box_ = NULL;
+}
+inline const ::DataTypes::Box& SimpleFaceCharacteristic::box() const {
+  // @@protoc_insertion_point(field_get:DataTypes.SimpleFaceCharacteristic.box)
+  return box_ != NULL ? *box_ : *default_instance_->box_;
+}
+inline ::DataTypes::Box* SimpleFaceCharacteristic::mutable_box() {
+  
+  if (box_ == NULL) {
+    box_ = new ::DataTypes::Box;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.SimpleFaceCharacteristic.box)
+  return box_;
+}
+inline ::DataTypes::Box* SimpleFaceCharacteristic::release_box() {
+  // @@protoc_insertion_point(field_release:DataTypes.SimpleFaceCharacteristic.box)
+  
+  ::DataTypes::Box* temp = box_;
+  box_ = NULL;
+  return temp;
+}
+inline void SimpleFaceCharacteristic::set_allocated_box(::DataTypes::Box* box) {
+  delete box_;
+  box_ = box;
+  if (box) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.SimpleFaceCharacteristic.box)
+}
+
+// -------------------------------------------------------------------
+
 // FrameBytes
 
 // optional bytes frame_data = 1;
@@ -981,31 +1153,31 @@ inline void FrameBytes::set_allocated_frame_data(::std::string* frame_data) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.FrameBytes.frame_data)
 }
 
-// repeated .DataTypes.FaceCharacteristic faces = 2;
+// repeated .DataTypes.SimpleFaceCharacteristic faces = 2;
 inline int FrameBytes::faces_size() const {
   return faces_.size();
 }
 inline void FrameBytes::clear_faces() {
   faces_.Clear();
 }
-inline const ::DataTypes::FaceCharacteristic& FrameBytes::faces(int index) const {
+inline const ::DataTypes::SimpleFaceCharacteristic& FrameBytes::faces(int index) const {
   // @@protoc_insertion_point(field_get:DataTypes.FrameBytes.faces)
   return faces_.Get(index);
 }
-inline ::DataTypes::FaceCharacteristic* FrameBytes::mutable_faces(int index) {
+inline ::DataTypes::SimpleFaceCharacteristic* FrameBytes::mutable_faces(int index) {
   // @@protoc_insertion_point(field_mutable:DataTypes.FrameBytes.faces)
   return faces_.Mutable(index);
 }
-inline ::DataTypes::FaceCharacteristic* FrameBytes::add_faces() {
+inline ::DataTypes::SimpleFaceCharacteristic* FrameBytes::add_faces() {
   // @@protoc_insertion_point(field_add:DataTypes.FrameBytes.faces)
   return faces_.Add();
 }
-inline ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >*
+inline ::google::protobuf::RepeatedPtrField< ::DataTypes::SimpleFaceCharacteristic >*
 FrameBytes::mutable_faces() {
   // @@protoc_insertion_point(field_mutable_list:DataTypes.FrameBytes.faces)
   return &faces_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::FaceCharacteristic >&
+inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::SimpleFaceCharacteristic >&
 FrameBytes::faces() const {
   // @@protoc_insertion_point(field_list:DataTypes.FrameBytes.faces)
   return faces_;
@@ -1140,6 +1312,8 @@ Matches::matches() const {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

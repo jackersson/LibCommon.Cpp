@@ -14,11 +14,11 @@ namespace utils
 			{}
 
 			virtual void action() = 0;
-			virtual bool can() = 0;
+			virtual bool can   () = 0;
 
 		};
 
-		class RepeatableAction : public utils::Threadable
+		class RepeatableAction : public Threadable
 		{
 		public:
 			explicit RepeatableAction(IRepeatableAction* action

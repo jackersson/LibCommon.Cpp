@@ -145,10 +145,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\concurrent_containers.hpp" />
-    <ClInclude Include="include\containers_utils.hpp" />
     <ClInclude Include="include\flags.hpp" />
     <ClInclude Include="include\network_utils.hpp" />
-    <ClInclude Include="include\platform_includes.hpp" />
     <ClInclude Include="include\repeatable_action.hpp" />
     <ClInclude Include="include\service_utils.hpp" />
     <ClInclude Include="include\threadable.hpp" />

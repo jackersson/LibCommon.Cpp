@@ -41,11 +41,14 @@ namespace services_api
 			stop();
 		}
 
-		std::shared_ptr<Services::FileBytes>
-		  	get(const Services::FileMessage& request) override
-		{
+		std::shared_ptr<std::string>
+		  	get(const std::string& url) override
+		{			
 			auto queue = get_completion_queue<AsyncGetFileCall>();
 			if (queue == nullptr)	return nullptr;
+
+			Services::FileMessage request;
+			request.set_id(url);
 
 			auto call = new AsyncGetFileCall;
 			set_call_options(call);
@@ -55,11 +58,13 @@ namespace services_api
 			return utils::service::get_result(call->promise);
 		}
 
-		std::shared_ptr<Services::FileMessage>
-			create(const Services::FileBytes& request) override
+		std::string create(const char* data) override
 		{
 			auto queue = get_completion_queue<AsyncCreateFileCall>();
 			if (queue == nullptr)	return nullptr;
+
+			Services::FileBytes request;
+			request.set_data(data);
 
 			auto call = new AsyncCreateFileCall;
 			set_call_options(call);
@@ -69,10 +74,13 @@ namespace services_api
 			return utils::service::get_result(call->promise);
 		}
 
-		bool delete_file(const Services::FileMessage& request) override
+		bool delete_file(const std::string& url) override
 		{
 			auto queue = get_completion_queue<AsyncDeleteFileCall>();
 			if (queue == nullptr)	return;
+
+			Services::FileMessage request;
+			request.set_id(url);
 
 			auto call = new AsyncDeleteFileCall;
 			set_call_options(call);
@@ -82,10 +90,13 @@ namespace services_api
 			return utils::service::get_result(call->promise);
 		}
 
-		bool exists(const Services::FileMessage& request) override
+		bool exists(const std::string& url) override
 		{
 			auto queue = get_completion_queue<AsyncExistsFileCall>();
 			if (queue == nullptr)	return;
+
+			Services::FileMessage request;
+			request.set_id(url);
 
 			auto call = new AsyncExistsFileCall;
 			set_call_options(call);

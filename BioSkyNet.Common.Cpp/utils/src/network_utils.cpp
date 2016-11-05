@@ -5,8 +5,7 @@
 #include <asio/ip/tcp.hpp>
 #include <asio/ip/host_name.hpp>
 #include <iostream>
-#include "platform_includes.hpp"
-/*
+
 #if defined(WIN32) || defined(UNDER_CE)
 #   include <windows.h>
 #   include <rpc.h>
@@ -28,7 +27,7 @@
 #   include </sys><sys socket.h="">
 #   include <arpa inet.h="">
 #endif
-*/
+
 namespace utils
 {
 	namespace network

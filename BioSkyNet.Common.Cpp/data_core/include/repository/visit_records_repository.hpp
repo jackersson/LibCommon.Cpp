@@ -2,53 +2,43 @@
 #define VisitRecordsRepository_Included
 
 #include <data/irepository.hpp>
-#include <services/idatabase_api.hpp>
+#include <data/models/visit_record.hpp>
 
 namespace data_core
 {
 	namespace datacontext
 	{
 		class VisitRecordsRepository
-			: public contracts::data::IRepository<DataTypes::VisitRecord>
+			: public contracts::data::IRepository<data_model::VisitRecord>
 		{
 		public:
 			explicit
-				VisitRecordsRepository(IDataContext<DataTypes::VisitRecord>* datacontext)
+				VisitRecordsRepository(IDataContext<data_model::VisitRecord>* datacontext)
 				: datacontext_(datacontext)
-			{}
+			{
+				if (datacontext_ == nullptr)
+					throw std::exception("Datacontext can't be null");
+			}
 
-			bool get(void* request, std::vector<DataTypes::VisitRecord>& entities) override
+			bool get( const data_model::GetRequest& request
+				      , std::vector<data_model::VisitRecord>& entities) override
 			{
 				return datacontext_->get(request, entities);
-			}
+			}			
 
-			bool find(DataTypes::Key key, DataTypes::VisitRecord& entity) override {
-				return datacontext_->find(key, entity);
-			}
-
-			bool add(DataTypes::VisitRecord* entity) override
+			bool add(const data_model::VisitRecord& entity) override
 			{
 				return datacontext_->add(entity);
 			}
 
-			bool remove(DataTypes::VisitRecord* entity) override
-			{
-				return datacontext_->remove(entity);
-			}
-
-			bool update(DataTypes::VisitRecord* entity) override
-			{
-				return datacontext_->update(entity);
-			}
-
-			std::shared_ptr<contracts::data::ILocalStorage<DataTypes::VisitRecord>>
+			contracts::data::ILocalStorage<data_model::VisitRecord>&
 				local() override
 			{
-				return nullptr;
+				throw std::exception("Not implemented");
 			}
 
 		private:
-			IDataContext<DataTypes::VisitRecord>* datacontext_;
+			IDataContext<data_model::VisitRecord>* datacontext_;
 		};
 
 

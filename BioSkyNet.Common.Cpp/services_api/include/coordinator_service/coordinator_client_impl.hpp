@@ -38,13 +38,21 @@ namespace services_api
 		{
 			connect();
 
-			add_call_handler<AsyncConnectCall>      ();
-			add_call_handler<AsyncHeartbeatCall>    ();
+			add_call_handlers();
+		
+		}
+
+	protected:
+		virtual void add_call_handlers()
+		{
+			add_call_handler<AsyncConnectCall      >();
+			add_call_handler<AsyncHeartbeatCall    >();
 			add_call_handler<AsyncUpdateDevicesCall>();
-			add_call_handler<AsyncGetRequestCall>   ();
+			add_call_handler<AsyncGetRequestCall   >();
 			add_call_handler<AsyncCommitRequestCall>();
 		}
 
+	public:
 		void de_init() override	{
 			stop();
 		}
@@ -148,6 +156,8 @@ namespace services_api
 		std::string class_name() const override {
 			return typeid(CoordinatorClientImpl).name();
 		}
+
+
 
 		std::unique_ptr<Services::CoordinatorService::Stub> stub_;
 

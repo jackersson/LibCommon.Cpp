@@ -1,11 +1,15 @@
 #ifndef RawImage_INCLUDED
 #define RawImage_INCLUDED
 #include <string>
+#include <data/models/key.hpp>
+#include <data/data_utils.hpp>
 
+//TODO Move to facial service 
 namespace contracts
 {
 	namespace common
 	{
+		//TODO rename to ImageFormat
 		enum ImageFileType
 		{
 			JPG,      // joint photographic experts group - .jpeg or .jpg
@@ -21,27 +25,44 @@ namespace contracts
 		class RawImage
 		{
 		public:
-			RawImage(const std::string& bytes, long id) : pair_(bytes, id) {
-				pixel_format_ = check_pixel_format(bytes.c_str(), bytes.size());
-				//std::cout << "image_format = " << pixel_format();
-			}
-			RawImage(const RawImage& raw_image) : pair_(raw_image.pair_)
-				, pixel_format_(raw_image.pixel_format_) {}
-
-			long id() const { return pair_.second; }
-
-			const std::string& bytes() const { return pair_.first; }
-
-			std::string pixel_format() const {
-				return get_pixel_fomat_name(pixel_format_);
+			RawImage(	const data_model::Key& key
+				      , const char* bytes
+			        , size_t size) 
+				      : key_ (key )
+				      , pair_(bytes, size)
+			{
+				pixel_format_ = check_pixel_format(bytes, size);				
 			}
 
-			size_t size() const { return pair_.first.size(); }
+			RawImage( const char* bytes
+				      , size_t size) 
+			      	: pair_(bytes, size)
+			{
+				key_          = data::get_random_data_key();
+				pixel_format_ = check_pixel_format(bytes, size);
+			}
+
+			RawImage(const RawImage& raw_image) 
+				: key_         (raw_image.key_         )
+				, pair_        (raw_image.pair_        )
+			  , pixel_format_(raw_image.pixel_format_)
+			{}
+
+			const data_model::Key& id() const { return key_; }
+
+			const char* bytes() const { return pair_.first; }
+
+			//TODO implement
+			ImageFileType pixel_format() const {
+				return ImageFileType::JPG/*get_pixel_fomat_name(pixel_format_)*/;
+			}
+
+			size_t size() const { return pair_.second; }
 
 		private:
-
+			//TODO inline not here
 			static std::string get_pixel_fomat_name(ImageFileType pixel_format)
-			{
+			{				
 				switch (pixel_format)
 				{
 				case	JPG:
@@ -64,6 +85,7 @@ namespace contracts
 				}
 			}
 
+			//TODO inline not here
 			static ImageFileType check_pixel_format(const char* data, size_t len)
 			{
 				if (len < 16) return INVALID;
@@ -125,8 +147,8 @@ namespace contracts
 					return INVALID;
 				}
 			}
-
-			std::pair<std::string, long> pair_;
+			data_model::Key key_;
+			std::pair<const char*, size_t> pair_;
 			ImageFileType pixel_format_;
 
 		};

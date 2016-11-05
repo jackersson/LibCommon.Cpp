@@ -41,6 +41,8 @@ void protobuf_AssignDesc_datatypes_2fqueries_2eproto();
 void protobuf_ShutdownFile_datatypes_2fqueries_2eproto();
 
 class GetCardRequest;
+class GetFaceCharRequest;
+class GetGroupRequest;
 class GetLocationRequest;
 class GetPersonRequest;
 class GetRequest;
@@ -158,6 +160,8 @@ class GetRequest : public ::google::protobuf::Message {
     kCardRequest = 2,
     kLocationRequest = 3,
     kVisitRecordRequest = 4,
+    kGroupRequest = 5,
+    kFacialTemplateRequest = 6,
     REQUEST_TYPE_NOT_SET = 0,
   };
 
@@ -238,6 +242,24 @@ class GetRequest : public ::google::protobuf::Message {
   ::DataTypes::GetVisitRecordRequest* release_visit_record_request();
   void set_allocated_visit_record_request(::DataTypes::GetVisitRecordRequest* visit_record_request);
 
+  // optional .DataTypes.GetGroupRequest group_request = 5;
+  bool has_group_request() const;
+  void clear_group_request();
+  static const int kGroupRequestFieldNumber = 5;
+  const ::DataTypes::GetGroupRequest& group_request() const;
+  ::DataTypes::GetGroupRequest* mutable_group_request();
+  ::DataTypes::GetGroupRequest* release_group_request();
+  void set_allocated_group_request(::DataTypes::GetGroupRequest* group_request);
+
+  // optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+  bool has_facial_template_request() const;
+  void clear_facial_template_request();
+  static const int kFacialTemplateRequestFieldNumber = 6;
+  const ::DataTypes::GetFaceCharRequest& facial_template_request() const;
+  ::DataTypes::GetFaceCharRequest* mutable_facial_template_request();
+  ::DataTypes::GetFaceCharRequest* release_facial_template_request();
+  void set_allocated_facial_template_request(::DataTypes::GetFaceCharRequest* facial_template_request);
+
   RequestTypeCase request_type_case() const;
   // @@protoc_insertion_point(class_scope:DataTypes.GetRequest)
  private:
@@ -245,6 +267,8 @@ class GetRequest : public ::google::protobuf::Message {
   inline void set_has_card_request();
   inline void set_has_location_request();
   inline void set_has_visit_record_request();
+  inline void set_has_group_request();
+  inline void set_has_facial_template_request();
 
   inline bool has_request_type() const;
   void clear_request_type();
@@ -258,6 +282,8 @@ class GetRequest : public ::google::protobuf::Message {
     ::DataTypes::GetCardRequest* card_request_;
     ::DataTypes::GetLocationRequest* location_request_;
     ::DataTypes::GetVisitRecordRequest* visit_record_request_;
+    ::DataTypes::GetGroupRequest* group_request_;
+    ::DataTypes::GetFaceCharRequest* facial_template_request_;
   } request_type_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -532,10 +558,19 @@ class GetLocationRequest : public ::google::protobuf::Message {
   ::DataTypes::Page* release_page();
   void set_allocated_page(::DataTypes::Page* page);
 
-  // optional .DataTypes.Key id = 6;
+  // optional .DataTypes.Key person = 6;
+  bool has_person() const;
+  void clear_person();
+  static const int kPersonFieldNumber = 6;
+  const ::DataTypes::Key& person() const;
+  ::DataTypes::Key* mutable_person();
+  ::DataTypes::Key* release_person();
+  void set_allocated_person(::DataTypes::Key* person);
+
+  // optional .DataTypes.Key id = 7;
   bool has_id() const;
   void clear_id();
-  static const int kIdFieldNumber = 6;
+  static const int kIdFieldNumber = 7;
   const ::DataTypes::Key& id() const;
   ::DataTypes::Key* mutable_id();
   ::DataTypes::Key* release_id();
@@ -551,6 +586,7 @@ class GetLocationRequest : public ::google::protobuf::Message {
   ::google::protobuf::internal::ArenaStringPtr mac_address_;
   ::google::protobuf::internal::ArenaStringPtr device_name_;
   ::DataTypes::Page* page_;
+  ::DataTypes::Key* person_;
   ::DataTypes::Key* id_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fqueries_2eproto();
@@ -931,6 +967,168 @@ class GetCardRequest : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static GetCardRequest* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class GetGroupRequest : public ::google::protobuf::Message {
+ public:
+  GetGroupRequest();
+  virtual ~GetGroupRequest();
+
+  GetGroupRequest(const GetGroupRequest& from);
+
+  inline GetGroupRequest& operator=(const GetGroupRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GetGroupRequest& default_instance();
+
+  void Swap(GetGroupRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline GetGroupRequest* New() const { return New(NULL); }
+
+  GetGroupRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GetGroupRequest& from);
+  void MergeFrom(const GetGroupRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(GetGroupRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.Key location = 1;
+  bool has_location() const;
+  void clear_location();
+  static const int kLocationFieldNumber = 1;
+  const ::DataTypes::Key& location() const;
+  ::DataTypes::Key* mutable_location();
+  ::DataTypes::Key* release_location();
+  void set_allocated_location(::DataTypes::Key* location);
+
+  // @@protoc_insertion_point(class_scope:DataTypes.GetGroupRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::DataTypes::Key* location_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2fqueries_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fqueries_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fqueries_2eproto();
+
+  void InitAsDefaultInstance();
+  static GetGroupRequest* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class GetFaceCharRequest : public ::google::protobuf::Message {
+ public:
+  GetFaceCharRequest();
+  virtual ~GetFaceCharRequest();
+
+  GetFaceCharRequest(const GetFaceCharRequest& from);
+
+  inline GetFaceCharRequest& operator=(const GetFaceCharRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GetFaceCharRequest& default_instance();
+
+  void Swap(GetFaceCharRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline GetFaceCharRequest* New() const { return New(NULL); }
+
+  GetFaceCharRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GetFaceCharRequest& from);
+  void MergeFrom(const GetFaceCharRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(GetFaceCharRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.Key id = 1;
+  bool has_id() const;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  const ::DataTypes::Key& id() const;
+  ::DataTypes::Key* mutable_id();
+  ::DataTypes::Key* release_id();
+  void set_allocated_id(::DataTypes::Key* id);
+
+  // @@protoc_insertion_point(class_scope:DataTypes.GetFaceCharRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::DataTypes::Key* id_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2fqueries_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fqueries_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fqueries_2eproto();
+
+  void InitAsDefaultInstance();
+  static GetFaceCharRequest* default_instance_;
+};
 // ===================================================================
 
 
@@ -1185,6 +1383,102 @@ inline void GetRequest::set_allocated_visit_record_request(::DataTypes::GetVisit
     request_type_.visit_record_request_ = visit_record_request;
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.visit_record_request)
+}
+
+// optional .DataTypes.GetGroupRequest group_request = 5;
+inline bool GetRequest::has_group_request() const {
+  return request_type_case() == kGroupRequest;
+}
+inline void GetRequest::set_has_group_request() {
+  _oneof_case_[0] = kGroupRequest;
+}
+inline void GetRequest::clear_group_request() {
+  if (has_group_request()) {
+    delete request_type_.group_request_;
+    clear_has_request_type();
+  }
+}
+inline  const ::DataTypes::GetGroupRequest& GetRequest::group_request() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetRequest.group_request)
+  return has_group_request()
+      ? *request_type_.group_request_
+      : ::DataTypes::GetGroupRequest::default_instance();
+}
+inline ::DataTypes::GetGroupRequest* GetRequest::mutable_group_request() {
+  if (!has_group_request()) {
+    clear_request_type();
+    set_has_group_request();
+    request_type_.group_request_ = new ::DataTypes::GetGroupRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetRequest.group_request)
+  return request_type_.group_request_;
+}
+inline ::DataTypes::GetGroupRequest* GetRequest::release_group_request() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetRequest.group_request)
+  if (has_group_request()) {
+    clear_has_request_type();
+    ::DataTypes::GetGroupRequest* temp = request_type_.group_request_;
+    request_type_.group_request_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void GetRequest::set_allocated_group_request(::DataTypes::GetGroupRequest* group_request) {
+  clear_request_type();
+  if (group_request) {
+    set_has_group_request();
+    request_type_.group_request_ = group_request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.group_request)
+}
+
+// optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+inline bool GetRequest::has_facial_template_request() const {
+  return request_type_case() == kFacialTemplateRequest;
+}
+inline void GetRequest::set_has_facial_template_request() {
+  _oneof_case_[0] = kFacialTemplateRequest;
+}
+inline void GetRequest::clear_facial_template_request() {
+  if (has_facial_template_request()) {
+    delete request_type_.facial_template_request_;
+    clear_has_request_type();
+  }
+}
+inline  const ::DataTypes::GetFaceCharRequest& GetRequest::facial_template_request() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetRequest.facial_template_request)
+  return has_facial_template_request()
+      ? *request_type_.facial_template_request_
+      : ::DataTypes::GetFaceCharRequest::default_instance();
+}
+inline ::DataTypes::GetFaceCharRequest* GetRequest::mutable_facial_template_request() {
+  if (!has_facial_template_request()) {
+    clear_request_type();
+    set_has_facial_template_request();
+    request_type_.facial_template_request_ = new ::DataTypes::GetFaceCharRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetRequest.facial_template_request)
+  return request_type_.facial_template_request_;
+}
+inline ::DataTypes::GetFaceCharRequest* GetRequest::release_facial_template_request() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetRequest.facial_template_request)
+  if (has_facial_template_request()) {
+    clear_has_request_type();
+    ::DataTypes::GetFaceCharRequest* temp = request_type_.facial_template_request_;
+    request_type_.facial_template_request_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void GetRequest::set_allocated_facial_template_request(::DataTypes::GetFaceCharRequest* facial_template_request) {
+  clear_request_type();
+  if (facial_template_request) {
+    set_has_facial_template_request();
+    request_type_.facial_template_request_ = facial_template_request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.facial_template_request)
 }
 
 inline bool GetRequest::has_request_type() const {
@@ -1700,7 +1994,45 @@ inline void GetLocationRequest::set_allocated_page(::DataTypes::Page* page) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetLocationRequest.page)
 }
 
-// optional .DataTypes.Key id = 6;
+// optional .DataTypes.Key person = 6;
+inline bool GetLocationRequest::has_person() const {
+  return !_is_default_instance_ && person_ != NULL;
+}
+inline void GetLocationRequest::clear_person() {
+  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
+  person_ = NULL;
+}
+inline const ::DataTypes::Key& GetLocationRequest::person() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetLocationRequest.person)
+  return person_ != NULL ? *person_ : *default_instance_->person_;
+}
+inline ::DataTypes::Key* GetLocationRequest::mutable_person() {
+  
+  if (person_ == NULL) {
+    person_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetLocationRequest.person)
+  return person_;
+}
+inline ::DataTypes::Key* GetLocationRequest::release_person() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetLocationRequest.person)
+  
+  ::DataTypes::Key* temp = person_;
+  person_ = NULL;
+  return temp;
+}
+inline void GetLocationRequest::set_allocated_person(::DataTypes::Key* person) {
+  delete person_;
+  person_ = person;
+  if (person) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetLocationRequest.person)
+}
+
+// optional .DataTypes.Key id = 7;
 inline bool GetLocationRequest::has_id() const {
   return !_is_default_instance_ && id_ != NULL;
 }
@@ -2248,7 +2580,95 @@ inline void GetCardRequest::set_allocated_page(::DataTypes::Page* page) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetCardRequest.page)
 }
 
+// -------------------------------------------------------------------
+
+// GetGroupRequest
+
+// optional .DataTypes.Key location = 1;
+inline bool GetGroupRequest::has_location() const {
+  return !_is_default_instance_ && location_ != NULL;
+}
+inline void GetGroupRequest::clear_location() {
+  if (GetArenaNoVirtual() == NULL && location_ != NULL) delete location_;
+  location_ = NULL;
+}
+inline const ::DataTypes::Key& GetGroupRequest::location() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetGroupRequest.location)
+  return location_ != NULL ? *location_ : *default_instance_->location_;
+}
+inline ::DataTypes::Key* GetGroupRequest::mutable_location() {
+  
+  if (location_ == NULL) {
+    location_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetGroupRequest.location)
+  return location_;
+}
+inline ::DataTypes::Key* GetGroupRequest::release_location() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetGroupRequest.location)
+  
+  ::DataTypes::Key* temp = location_;
+  location_ = NULL;
+  return temp;
+}
+inline void GetGroupRequest::set_allocated_location(::DataTypes::Key* location) {
+  delete location_;
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetGroupRequest.location)
+}
+
+// -------------------------------------------------------------------
+
+// GetFaceCharRequest
+
+// optional .DataTypes.Key id = 1;
+inline bool GetFaceCharRequest::has_id() const {
+  return !_is_default_instance_ && id_ != NULL;
+}
+inline void GetFaceCharRequest::clear_id() {
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
+}
+inline const ::DataTypes::Key& GetFaceCharRequest::id() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetFaceCharRequest.id)
+  return id_ != NULL ? *id_ : *default_instance_->id_;
+}
+inline ::DataTypes::Key* GetFaceCharRequest::mutable_id() {
+  
+  if (id_ == NULL) {
+    id_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetFaceCharRequest.id)
+  return id_;
+}
+inline ::DataTypes::Key* GetFaceCharRequest::release_id() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetFaceCharRequest.id)
+  
+  ::DataTypes::Key* temp = id_;
+  id_ = NULL;
+  return temp;
+}
+inline void GetFaceCharRequest::set_allocated_id(::DataTypes::Key* id) {
+  delete id_;
+  id_ = id;
+  if (id) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetFaceCharRequest.id)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

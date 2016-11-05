@@ -32,6 +32,8 @@ struct GetRequestOneofInstance {
   const ::DataTypes::GetCardRequest* card_request_;
   const ::DataTypes::GetLocationRequest* location_request_;
   const ::DataTypes::GetVisitRecordRequest* visit_record_request_;
+  const ::DataTypes::GetGroupRequest* group_request_;
+  const ::DataTypes::GetFaceCharRequest* facial_template_request_;
 }* GetRequest_default_oneof_instance_ = NULL;
 const ::google::protobuf::Descriptor* GetPersonRequest_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
@@ -48,6 +50,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* GetCardRequest_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   GetCardRequest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GetGroupRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GetGroupRequest_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GetFaceCharRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GetFaceCharRequest_reflection_ = NULL;
 
 }  // namespace
 
@@ -75,11 +83,13 @@ void protobuf_AssignDesc_datatypes_2fqueries_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetResponse, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetResponse, _is_default_instance_));
   GetRequest_descriptor_ = file->message_type(1);
-  static const int GetRequest_offsets_[5] = {
+  static const int GetRequest_offsets_[7] = {
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, person_request_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, card_request_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, location_request_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, visit_record_request_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, group_request_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(GetRequest_default_oneof_instance_, facial_template_request_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetRequest, request_type_),
   };
   GetRequest_reflection_ =
@@ -117,12 +127,13 @@ void protobuf_AssignDesc_datatypes_2fqueries_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetPersonRequest, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetPersonRequest, _is_default_instance_));
   GetLocationRequest_descriptor_ = file->message_type(3);
-  static const int GetLocationRequest_offsets_[6] = {
+  static const int GetLocationRequest_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, search_text_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, mac_address_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, device_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, page_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, person_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetLocationRequest, id_),
   };
   GetLocationRequest_reflection_ =
@@ -193,6 +204,36 @@ void protobuf_AssignDesc_datatypes_2fqueries_2eproto() {
       sizeof(GetCardRequest),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetCardRequest, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetCardRequest, _is_default_instance_));
+  GetGroupRequest_descriptor_ = file->message_type(7);
+  static const int GetGroupRequest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetGroupRequest, location_),
+  };
+  GetGroupRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      GetGroupRequest_descriptor_,
+      GetGroupRequest::default_instance_,
+      GetGroupRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(GetGroupRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetGroupRequest, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetGroupRequest, _is_default_instance_));
+  GetFaceCharRequest_descriptor_ = file->message_type(8);
+  static const int GetFaceCharRequest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetFaceCharRequest, id_),
+  };
+  GetFaceCharRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      GetFaceCharRequest_descriptor_,
+      GetFaceCharRequest::default_instance_,
+      GetFaceCharRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(GetFaceCharRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetFaceCharRequest, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetFaceCharRequest, _is_default_instance_));
 }
 
 namespace {
@@ -219,6 +260,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
       Page_descriptor_, &Page::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       GetCardRequest_descriptor_, &GetCardRequest::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      GetGroupRequest_descriptor_, &GetGroupRequest::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      GetFaceCharRequest_descriptor_, &GetFaceCharRequest::default_instance());
 }
 
 }  // namespace
@@ -239,6 +284,10 @@ void protobuf_ShutdownFile_datatypes_2fqueries_2eproto() {
   delete Page_reflection_;
   delete GetCardRequest::default_instance_;
   delete GetCardRequest_reflection_;
+  delete GetGroupRequest::default_instance_;
+  delete GetGroupRequest_reflection_;
+  delete GetFaceCharRequest::default_instance_;
+  delete GetFaceCharRequest_reflection_;
 }
 
 void protobuf_AddDesc_datatypes_2fqueries_2eproto() {
@@ -257,36 +306,42 @@ void protobuf_AddDesc_datatypes_2fqueries_2eproto() {
     "y.proto\032\026datatypes/entity.proto\032\030datatyp"
     "es/datetime.proto\"@\n\013GetResponse\022\"\n\005item"
     "s\030\001 \001(\0132\023.DataTypes.Entities\022\r\n\005count\030\002 "
-    "\001(\003\"\203\002\n\nGetRequest\0225\n\016person_request\030\001 \001"
+    "\001(\003\"\372\002\n\nGetRequest\0225\n\016person_request\030\001 \001"
     "(\0132\033.DataTypes.GetPersonRequestH\000\0221\n\014car"
     "d_request\030\002 \001(\0132\031.DataTypes.GetCardReque"
     "stH\000\0229\n\020location_request\030\003 \001(\0132\035.DataTyp"
     "es.GetLocationRequestH\000\022@\n\024visit_record_"
     "request\030\004 \001(\0132 .DataTypes.GetVisitRecord"
-    "RequestH\000B\016\n\014request_type\"\272\001\n\020GetPersonR"
-    "equest\022\023\n\013search_text\030\001 \001(\t\022\022\n\nfirst_nam"
-    "e\030\002 \001(\t\022\021\n\tlast_name\030\003 \001(\t\022\014\n\004card\030\004 \001(\t"
-    "\022!\n\tlocations\030\005 \003(\0132\016.DataTypes.Key\022\035\n\004p"
-    "age\030\006 \001(\0132\017.DataTypes.Page\022\032\n\002id\030\007 \001(\0132\016"
-    ".DataTypes.Key\"\234\001\n\022GetLocationRequest\022\023\n"
-    "\013search_text\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013mac_"
-    "address\030\003 \001(\t\022\023\n\013device_name\030\004 \001(\t\022\035\n\004pa"
-    "ge\030\005 \001(\0132\017.DataTypes.Page\022\032\n\002id\030\006 \001(\0132\016."
-    "DataTypes.Key\"\266\002\n\025GetVisitRecordRequest\022"
-    "\023\n\013search_text\030\001 \001(\t\022%\n\005state\030\002 \001(\0162\026.Da"
-    "taTypes.AccessState\022!\n\tlocations\030\003 \003(\0132\016"
-    ".DataTypes.Key\022\037\n\007persons\030\004 \003(\0132\016.DataTy"
-    "pes.Key\022*\n\rdatetime_from\030\005 \001(\0132\023.DataTyp"
-    "es.DateTime\022(\n\013datetime_to\030\006 \001(\0132\023.DataT"
-    "ypes.DateTime\022\014\n\004card\030\007 \001(\t\022\035\n\004page\030\010 \001("
-    "\0132\017.DataTypes.Page\022\032\n\002id\030\t \001(\0132\016.DataTyp"
-    "es.Key\"#\n\004Page\022\r\n\005index\030\001 \001(\005\022\014\n\004size\030\002 "
-    "\001(\005\"\177\n\016GetCardRequest\022\023\n\013search_text\030\001 \001"
-    "(\t\022\031\n\021unique_identifier\030\002 \001(\t\022\036\n\006owners\030"
-    "\003 \003(\0132\016.DataTypes.Key\022\035\n\004page\030\004 \001(\0132\017.Da"
-    "taTypes.PageBL\n\007ex.grpcZ;github.com/Eneb"
-    "ra/ServiceCoordinator/grpc/datatypes/que"
-    "ries\242\002\003RTGb\006proto3", 1378);
+    "RequestH\000\0223\n\rgroup_request\030\005 \001(\0132\032.DataT"
+    "ypes.GetGroupRequestH\000\022@\n\027facial_templat"
+    "e_request\030\006 \001(\0132\035.DataTypes.GetFaceCharR"
+    "equestH\000B\016\n\014request_type\"\272\001\n\020GetPersonRe"
+    "quest\022\023\n\013search_text\030\001 \001(\t\022\022\n\nfirst_name"
+    "\030\002 \001(\t\022\021\n\tlast_name\030\003 \001(\t\022\014\n\004card\030\004 \001(\t\022"
+    "!\n\tlocations\030\005 \003(\0132\016.DataTypes.Key\022\035\n\004pa"
+    "ge\030\006 \001(\0132\017.DataTypes.Page\022\032\n\002id\030\007 \001(\0132\016."
+    "DataTypes.Key\"\274\001\n\022GetLocationRequest\022\023\n\013"
+    "search_text\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013mac_a"
+    "ddress\030\003 \001(\t\022\023\n\013device_name\030\004 \001(\t\022\035\n\004pag"
+    "e\030\005 \001(\0132\017.DataTypes.Page\022\036\n\006person\030\006 \001(\013"
+    "2\016.DataTypes.Key\022\032\n\002id\030\007 \001(\0132\016.DataTypes"
+    ".Key\"\266\002\n\025GetVisitRecordRequest\022\023\n\013search"
+    "_text\030\001 \001(\t\022%\n\005state\030\002 \001(\0162\026.DataTypes.A"
+    "ccessState\022!\n\tlocations\030\003 \003(\0132\016.DataType"
+    "s.Key\022\037\n\007persons\030\004 \003(\0132\016.DataTypes.Key\022*"
+    "\n\rdatetime_from\030\005 \001(\0132\023.DataTypes.DateTi"
+    "me\022(\n\013datetime_to\030\006 \001(\0132\023.DataTypes.Date"
+    "Time\022\014\n\004card\030\007 \001(\t\022\035\n\004page\030\010 \001(\0132\017.DataT"
+    "ypes.Page\022\032\n\002id\030\t \001(\0132\016.DataTypes.Key\"#\n"
+    "\004Page\022\r\n\005index\030\001 \001(\005\022\014\n\004size\030\002 \001(\005\"\177\n\016Ge"
+    "tCardRequest\022\023\n\013search_text\030\001 \001(\t\022\031\n\021uni"
+    "que_identifier\030\002 \001(\t\022\036\n\006owners\030\003 \003(\0132\016.D"
+    "ataTypes.Key\022\035\n\004page\030\004 \001(\0132\017.DataTypes.P"
+    "age\"3\n\017GetGroupRequest\022 \n\010location\030\001 \001(\013"
+    "2\016.DataTypes.Key\"0\n\022GetFaceCharRequest\022\032"
+    "\n\002id\030\001 \001(\0132\016.DataTypes.KeyBL\n\007ex.grpcZ;g"
+    "ithub.com/Enebra/ServiceCoordinator/grpc"
+    "/datatypes/queries\242\002\003RTGb\006proto3", 1632);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/queries.proto", &protobuf_RegisterTypes);
   GetResponse::default_instance_ = new GetResponse();
@@ -297,6 +352,8 @@ void protobuf_AddDesc_datatypes_2fqueries_2eproto() {
   GetVisitRecordRequest::default_instance_ = new GetVisitRecordRequest();
   Page::default_instance_ = new Page();
   GetCardRequest::default_instance_ = new GetCardRequest();
+  GetGroupRequest::default_instance_ = new GetGroupRequest();
+  GetFaceCharRequest::default_instance_ = new GetFaceCharRequest();
   GetResponse::default_instance_->InitAsDefaultInstance();
   GetRequest::default_instance_->InitAsDefaultInstance();
   GetPersonRequest::default_instance_->InitAsDefaultInstance();
@@ -304,6 +361,8 @@ void protobuf_AddDesc_datatypes_2fqueries_2eproto() {
   GetVisitRecordRequest::default_instance_->InitAsDefaultInstance();
   Page::default_instance_->InitAsDefaultInstance();
   GetCardRequest::default_instance_->InitAsDefaultInstance();
+  GetGroupRequest::default_instance_->InitAsDefaultInstance();
+  GetFaceCharRequest::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_datatypes_2fqueries_2eproto);
 }
 
@@ -646,6 +705,8 @@ const int GetRequest::kPersonRequestFieldNumber;
 const int GetRequest::kCardRequestFieldNumber;
 const int GetRequest::kLocationRequestFieldNumber;
 const int GetRequest::kVisitRecordRequestFieldNumber;
+const int GetRequest::kGroupRequestFieldNumber;
+const int GetRequest::kFacialTemplateRequestFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 GetRequest::GetRequest()
@@ -660,6 +721,8 @@ void GetRequest::InitAsDefaultInstance() {
   GetRequest_default_oneof_instance_->card_request_ = const_cast< ::DataTypes::GetCardRequest*>(&::DataTypes::GetCardRequest::default_instance());
   GetRequest_default_oneof_instance_->location_request_ = const_cast< ::DataTypes::GetLocationRequest*>(&::DataTypes::GetLocationRequest::default_instance());
   GetRequest_default_oneof_instance_->visit_record_request_ = const_cast< ::DataTypes::GetVisitRecordRequest*>(&::DataTypes::GetVisitRecordRequest::default_instance());
+  GetRequest_default_oneof_instance_->group_request_ = const_cast< ::DataTypes::GetGroupRequest*>(&::DataTypes::GetGroupRequest::default_instance());
+  GetRequest_default_oneof_instance_->facial_template_request_ = const_cast< ::DataTypes::GetFaceCharRequest*>(&::DataTypes::GetFaceCharRequest::default_instance());
 }
 
 GetRequest::GetRequest(const GetRequest& from)
@@ -733,6 +796,14 @@ void GetRequest::clear_request_type() {
       delete request_type_.visit_record_request_;
       break;
     }
+    case kGroupRequest: {
+      delete request_type_.group_request_;
+      break;
+    }
+    case kFacialTemplateRequest: {
+      delete request_type_.facial_template_request_;
+      break;
+    }
     case REQUEST_TYPE_NOT_SET: {
       break;
     }
@@ -803,6 +874,32 @@ bool GetRequest::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(42)) goto parse_group_request;
+        break;
+      }
+
+      // optional .DataTypes.GetGroupRequest group_request = 5;
+      case 5: {
+        if (tag == 42) {
+         parse_group_request:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_group_request()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_facial_template_request;
+        break;
+      }
+
+      // optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_facial_template_request:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_facial_template_request()));
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -855,6 +952,18 @@ void GetRequest::SerializeWithCachedSizes(
       4, *request_type_.visit_record_request_, output);
   }
 
+  // optional .DataTypes.GetGroupRequest group_request = 5;
+  if (has_group_request()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      5, *request_type_.group_request_, output);
+  }
+
+  // optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+  if (has_facial_template_request()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, *request_type_.facial_template_request_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:DataTypes.GetRequest)
 }
 
@@ -887,6 +996,20 @@ void GetRequest::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         4, *request_type_.visit_record_request_, target);
+  }
+
+  // optional .DataTypes.GetGroupRequest group_request = 5;
+  if (has_group_request()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        5, *request_type_.group_request_, target);
+  }
+
+  // optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+  if (has_facial_template_request()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, *request_type_.facial_template_request_, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.GetRequest)
@@ -924,6 +1047,20 @@ int GetRequest::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *request_type_.visit_record_request_);
+      break;
+    }
+    // optional .DataTypes.GetGroupRequest group_request = 5;
+    case kGroupRequest: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *request_type_.group_request_);
+      break;
+    }
+    // optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+    case kFacialTemplateRequest: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *request_type_.facial_template_request_);
       break;
     }
     case REQUEST_TYPE_NOT_SET: {
@@ -969,6 +1106,14 @@ void GetRequest::MergeFrom(const GetRequest& from) {
     }
     case kVisitRecordRequest: {
       mutable_visit_record_request()->::DataTypes::GetVisitRecordRequest::MergeFrom(from.visit_record_request());
+      break;
+    }
+    case kGroupRequest: {
+      mutable_group_request()->::DataTypes::GetGroupRequest::MergeFrom(from.group_request());
+      break;
+    }
+    case kFacialTemplateRequest: {
+      mutable_facial_template_request()->::DataTypes::GetFaceCharRequest::MergeFrom(from.facial_template_request());
       break;
     }
     case REQUEST_TYPE_NOT_SET: {
@@ -1208,6 +1353,102 @@ void GetRequest::set_allocated_visit_record_request(::DataTypes::GetVisitRecordR
     request_type_.visit_record_request_ = visit_record_request;
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.visit_record_request)
+}
+
+// optional .DataTypes.GetGroupRequest group_request = 5;
+bool GetRequest::has_group_request() const {
+  return request_type_case() == kGroupRequest;
+}
+void GetRequest::set_has_group_request() {
+  _oneof_case_[0] = kGroupRequest;
+}
+void GetRequest::clear_group_request() {
+  if (has_group_request()) {
+    delete request_type_.group_request_;
+    clear_has_request_type();
+  }
+}
+ const ::DataTypes::GetGroupRequest& GetRequest::group_request() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetRequest.group_request)
+  return has_group_request()
+      ? *request_type_.group_request_
+      : ::DataTypes::GetGroupRequest::default_instance();
+}
+::DataTypes::GetGroupRequest* GetRequest::mutable_group_request() {
+  if (!has_group_request()) {
+    clear_request_type();
+    set_has_group_request();
+    request_type_.group_request_ = new ::DataTypes::GetGroupRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetRequest.group_request)
+  return request_type_.group_request_;
+}
+::DataTypes::GetGroupRequest* GetRequest::release_group_request() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetRequest.group_request)
+  if (has_group_request()) {
+    clear_has_request_type();
+    ::DataTypes::GetGroupRequest* temp = request_type_.group_request_;
+    request_type_.group_request_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void GetRequest::set_allocated_group_request(::DataTypes::GetGroupRequest* group_request) {
+  clear_request_type();
+  if (group_request) {
+    set_has_group_request();
+    request_type_.group_request_ = group_request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.group_request)
+}
+
+// optional .DataTypes.GetFaceCharRequest facial_template_request = 6;
+bool GetRequest::has_facial_template_request() const {
+  return request_type_case() == kFacialTemplateRequest;
+}
+void GetRequest::set_has_facial_template_request() {
+  _oneof_case_[0] = kFacialTemplateRequest;
+}
+void GetRequest::clear_facial_template_request() {
+  if (has_facial_template_request()) {
+    delete request_type_.facial_template_request_;
+    clear_has_request_type();
+  }
+}
+ const ::DataTypes::GetFaceCharRequest& GetRequest::facial_template_request() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetRequest.facial_template_request)
+  return has_facial_template_request()
+      ? *request_type_.facial_template_request_
+      : ::DataTypes::GetFaceCharRequest::default_instance();
+}
+::DataTypes::GetFaceCharRequest* GetRequest::mutable_facial_template_request() {
+  if (!has_facial_template_request()) {
+    clear_request_type();
+    set_has_facial_template_request();
+    request_type_.facial_template_request_ = new ::DataTypes::GetFaceCharRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetRequest.facial_template_request)
+  return request_type_.facial_template_request_;
+}
+::DataTypes::GetFaceCharRequest* GetRequest::release_facial_template_request() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetRequest.facial_template_request)
+  if (has_facial_template_request()) {
+    clear_has_request_type();
+    ::DataTypes::GetFaceCharRequest* temp = request_type_.facial_template_request_;
+    request_type_.facial_template_request_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void GetRequest::set_allocated_facial_template_request(::DataTypes::GetFaceCharRequest* facial_template_request) {
+  clear_request_type();
+  if (facial_template_request) {
+    set_has_facial_template_request();
+    request_type_.facial_template_request_ = facial_template_request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetRequest.facial_template_request)
 }
 
 bool GetRequest::has_request_type() const {
@@ -2037,6 +2278,7 @@ const int GetLocationRequest::kNameFieldNumber;
 const int GetLocationRequest::kMacAddressFieldNumber;
 const int GetLocationRequest::kDeviceNameFieldNumber;
 const int GetLocationRequest::kPageFieldNumber;
+const int GetLocationRequest::kPersonFieldNumber;
 const int GetLocationRequest::kIdFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -2049,6 +2291,7 @@ GetLocationRequest::GetLocationRequest()
 void GetLocationRequest::InitAsDefaultInstance() {
   _is_default_instance_ = true;
   page_ = const_cast< ::DataTypes::Page*>(&::DataTypes::Page::default_instance());
+  person_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
   id_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
 }
 
@@ -2069,6 +2312,7 @@ void GetLocationRequest::SharedCtor() {
   mac_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   device_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   page_ = NULL;
+  person_ = NULL;
   id_ = NULL;
 }
 
@@ -2084,6 +2328,7 @@ void GetLocationRequest::SharedDtor() {
   device_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
     delete page_;
+    delete person_;
     delete id_;
   }
 }
@@ -2121,6 +2366,8 @@ void GetLocationRequest::Clear() {
   device_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == NULL && page_ != NULL) delete page_;
   page_ = NULL;
+  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
+  person_ = NULL;
   if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
   id_ = NULL;
 }
@@ -2211,13 +2458,26 @@ bool GetLocationRequest::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(50)) goto parse_id;
+        if (input->ExpectTag(50)) goto parse_person;
         break;
       }
 
-      // optional .DataTypes.Key id = 6;
+      // optional .DataTypes.Key person = 6;
       case 6: {
         if (tag == 50) {
+         parse_person:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_person()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(58)) goto parse_id;
+        break;
+      }
+
+      // optional .DataTypes.Key id = 7;
+      case 7: {
+        if (tag == 58) {
          parse_id:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                input, mutable_id()));
@@ -2298,10 +2558,16 @@ void GetLocationRequest::SerializeWithCachedSizes(
       5, *this->page_, output);
   }
 
-  // optional .DataTypes.Key id = 6;
+  // optional .DataTypes.Key person = 6;
+  if (this->has_person()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, *this->person_, output);
+  }
+
+  // optional .DataTypes.Key id = 7;
   if (this->has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      6, *this->id_, output);
+      7, *this->id_, output);
   }
 
   // @@protoc_insertion_point(serialize_end:DataTypes.GetLocationRequest)
@@ -2361,11 +2627,18 @@ void GetLocationRequest::SerializeWithCachedSizes(
         5, *this->page_, target);
   }
 
-  // optional .DataTypes.Key id = 6;
+  // optional .DataTypes.Key person = 6;
+  if (this->has_person()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, *this->person_, target);
+  }
+
+  // optional .DataTypes.Key id = 7;
   if (this->has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        6, *this->id_, target);
+        7, *this->id_, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.GetLocationRequest)
@@ -2411,7 +2684,14 @@ int GetLocationRequest::ByteSize() const {
         *this->page_);
   }
 
-  // optional .DataTypes.Key id = 6;
+  // optional .DataTypes.Key person = 6;
+  if (this->has_person()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->person_);
+  }
+
+  // optional .DataTypes.Key id = 7;
   if (this->has_id()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -2461,6 +2741,9 @@ void GetLocationRequest::MergeFrom(const GetLocationRequest& from) {
   if (from.has_page()) {
     mutable_page()->::DataTypes::Page::MergeFrom(from.page());
   }
+  if (from.has_person()) {
+    mutable_person()->::DataTypes::Key::MergeFrom(from.person());
+  }
   if (from.has_id()) {
     mutable_id()->::DataTypes::Key::MergeFrom(from.id());
   }
@@ -2495,6 +2778,7 @@ void GetLocationRequest::InternalSwap(GetLocationRequest* other) {
   mac_address_.Swap(&other->mac_address_);
   device_name_.Swap(&other->device_name_);
   std::swap(page_, other->page_);
+  std::swap(person_, other->person_);
   std::swap(id_, other->id_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -2725,7 +3009,45 @@ void GetLocationRequest::set_allocated_page(::DataTypes::Page* page) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetLocationRequest.page)
 }
 
-// optional .DataTypes.Key id = 6;
+// optional .DataTypes.Key person = 6;
+bool GetLocationRequest::has_person() const {
+  return !_is_default_instance_ && person_ != NULL;
+}
+void GetLocationRequest::clear_person() {
+  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
+  person_ = NULL;
+}
+const ::DataTypes::Key& GetLocationRequest::person() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetLocationRequest.person)
+  return person_ != NULL ? *person_ : *default_instance_->person_;
+}
+::DataTypes::Key* GetLocationRequest::mutable_person() {
+  
+  if (person_ == NULL) {
+    person_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetLocationRequest.person)
+  return person_;
+}
+::DataTypes::Key* GetLocationRequest::release_person() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetLocationRequest.person)
+  
+  ::DataTypes::Key* temp = person_;
+  person_ = NULL;
+  return temp;
+}
+void GetLocationRequest::set_allocated_person(::DataTypes::Key* person) {
+  delete person_;
+  person_ = person;
+  if (person) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetLocationRequest.person)
+}
+
+// optional .DataTypes.Key id = 7;
 bool GetLocationRequest::has_id() const {
   return !_is_default_instance_ && id_ != NULL;
 }
@@ -4498,6 +4820,530 @@ void GetCardRequest::set_allocated_page(::DataTypes::Page* page) {
     
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.GetCardRequest.page)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetGroupRequest::kLocationFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetGroupRequest::GetGroupRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DataTypes.GetGroupRequest)
+}
+
+void GetGroupRequest::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  location_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
+}
+
+GetGroupRequest::GetGroupRequest(const GetGroupRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:DataTypes.GetGroupRequest)
+}
+
+void GetGroupRequest::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  location_ = NULL;
+}
+
+GetGroupRequest::~GetGroupRequest() {
+  // @@protoc_insertion_point(destructor:DataTypes.GetGroupRequest)
+  SharedDtor();
+}
+
+void GetGroupRequest::SharedDtor() {
+  if (this != default_instance_) {
+    delete location_;
+  }
+}
+
+void GetGroupRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* GetGroupRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GetGroupRequest_descriptor_;
+}
+
+const GetGroupRequest& GetGroupRequest::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_datatypes_2fqueries_2eproto();
+  return *default_instance_;
+}
+
+GetGroupRequest* GetGroupRequest::default_instance_ = NULL;
+
+GetGroupRequest* GetGroupRequest::New(::google::protobuf::Arena* arena) const {
+  GetGroupRequest* n = new GetGroupRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void GetGroupRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:DataTypes.GetGroupRequest)
+  if (GetArenaNoVirtual() == NULL && location_ != NULL) delete location_;
+  location_ = NULL;
+}
+
+bool GetGroupRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DataTypes.GetGroupRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .DataTypes.Key location = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_location()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DataTypes.GetGroupRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DataTypes.GetGroupRequest)
+  return false;
+#undef DO_
+}
+
+void GetGroupRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DataTypes.GetGroupRequest)
+  // optional .DataTypes.Key location = 1;
+  if (this->has_location()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *this->location_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:DataTypes.GetGroupRequest)
+}
+
+::google::protobuf::uint8* GetGroupRequest::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DataTypes.GetGroupRequest)
+  // optional .DataTypes.Key location = 1;
+  if (this->has_location()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *this->location_, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:DataTypes.GetGroupRequest)
+  return target;
+}
+
+int GetGroupRequest::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:DataTypes.GetGroupRequest)
+  int total_size = 0;
+
+  // optional .DataTypes.Key location = 1;
+  if (this->has_location()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->location_);
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void GetGroupRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DataTypes.GetGroupRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const GetGroupRequest* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const GetGroupRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DataTypes.GetGroupRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DataTypes.GetGroupRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetGroupRequest::MergeFrom(const GetGroupRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.GetGroupRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.has_location()) {
+    mutable_location()->::DataTypes::Key::MergeFrom(from.location());
+  }
+}
+
+void GetGroupRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DataTypes.GetGroupRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetGroupRequest::CopyFrom(const GetGroupRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DataTypes.GetGroupRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetGroupRequest::IsInitialized() const {
+
+  return true;
+}
+
+void GetGroupRequest::Swap(GetGroupRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetGroupRequest::InternalSwap(GetGroupRequest* other) {
+  std::swap(location_, other->location_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata GetGroupRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GetGroupRequest_descriptor_;
+  metadata.reflection = GetGroupRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// GetGroupRequest
+
+// optional .DataTypes.Key location = 1;
+bool GetGroupRequest::has_location() const {
+  return !_is_default_instance_ && location_ != NULL;
+}
+void GetGroupRequest::clear_location() {
+  if (GetArenaNoVirtual() == NULL && location_ != NULL) delete location_;
+  location_ = NULL;
+}
+const ::DataTypes::Key& GetGroupRequest::location() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetGroupRequest.location)
+  return location_ != NULL ? *location_ : *default_instance_->location_;
+}
+::DataTypes::Key* GetGroupRequest::mutable_location() {
+  
+  if (location_ == NULL) {
+    location_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetGroupRequest.location)
+  return location_;
+}
+::DataTypes::Key* GetGroupRequest::release_location() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetGroupRequest.location)
+  
+  ::DataTypes::Key* temp = location_;
+  location_ = NULL;
+  return temp;
+}
+void GetGroupRequest::set_allocated_location(::DataTypes::Key* location) {
+  delete location_;
+  location_ = location;
+  if (location) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetGroupRequest.location)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetFaceCharRequest::kIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetFaceCharRequest::GetFaceCharRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DataTypes.GetFaceCharRequest)
+}
+
+void GetFaceCharRequest::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  id_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
+}
+
+GetFaceCharRequest::GetFaceCharRequest(const GetFaceCharRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:DataTypes.GetFaceCharRequest)
+}
+
+void GetFaceCharRequest::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  id_ = NULL;
+}
+
+GetFaceCharRequest::~GetFaceCharRequest() {
+  // @@protoc_insertion_point(destructor:DataTypes.GetFaceCharRequest)
+  SharedDtor();
+}
+
+void GetFaceCharRequest::SharedDtor() {
+  if (this != default_instance_) {
+    delete id_;
+  }
+}
+
+void GetFaceCharRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* GetFaceCharRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GetFaceCharRequest_descriptor_;
+}
+
+const GetFaceCharRequest& GetFaceCharRequest::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_datatypes_2fqueries_2eproto();
+  return *default_instance_;
+}
+
+GetFaceCharRequest* GetFaceCharRequest::default_instance_ = NULL;
+
+GetFaceCharRequest* GetFaceCharRequest::New(::google::protobuf::Arena* arena) const {
+  GetFaceCharRequest* n = new GetFaceCharRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void GetFaceCharRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:DataTypes.GetFaceCharRequest)
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
+}
+
+bool GetFaceCharRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DataTypes.GetFaceCharRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .DataTypes.Key id = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_id()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DataTypes.GetFaceCharRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DataTypes.GetFaceCharRequest)
+  return false;
+#undef DO_
+}
+
+void GetFaceCharRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DataTypes.GetFaceCharRequest)
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *this->id_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:DataTypes.GetFaceCharRequest)
+}
+
+::google::protobuf::uint8* GetFaceCharRequest::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DataTypes.GetFaceCharRequest)
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *this->id_, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:DataTypes.GetFaceCharRequest)
+  return target;
+}
+
+int GetFaceCharRequest::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:DataTypes.GetFaceCharRequest)
+  int total_size = 0;
+
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->id_);
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void GetFaceCharRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DataTypes.GetFaceCharRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const GetFaceCharRequest* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const GetFaceCharRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DataTypes.GetFaceCharRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DataTypes.GetFaceCharRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetFaceCharRequest::MergeFrom(const GetFaceCharRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.GetFaceCharRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.has_id()) {
+    mutable_id()->::DataTypes::Key::MergeFrom(from.id());
+  }
+}
+
+void GetFaceCharRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DataTypes.GetFaceCharRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetFaceCharRequest::CopyFrom(const GetFaceCharRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DataTypes.GetFaceCharRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetFaceCharRequest::IsInitialized() const {
+
+  return true;
+}
+
+void GetFaceCharRequest::Swap(GetFaceCharRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetFaceCharRequest::InternalSwap(GetFaceCharRequest* other) {
+  std::swap(id_, other->id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata GetFaceCharRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GetFaceCharRequest_descriptor_;
+  metadata.reflection = GetFaceCharRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// GetFaceCharRequest
+
+// optional .DataTypes.Key id = 1;
+bool GetFaceCharRequest::has_id() const {
+  return !_is_default_instance_ && id_ != NULL;
+}
+void GetFaceCharRequest::clear_id() {
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
+}
+const ::DataTypes::Key& GetFaceCharRequest::id() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetFaceCharRequest.id)
+  return id_ != NULL ? *id_ : *default_instance_->id_;
+}
+::DataTypes::Key* GetFaceCharRequest::mutable_id() {
+  
+  if (id_ == NULL) {
+    id_ = new ::DataTypes::Key;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.GetFaceCharRequest.id)
+  return id_;
+}
+::DataTypes::Key* GetFaceCharRequest::release_id() {
+  // @@protoc_insertion_point(field_release:DataTypes.GetFaceCharRequest.id)
+  
+  ::DataTypes::Key* temp = id_;
+  id_ = NULL;
+  return temp;
+}
+void GetFaceCharRequest::set_allocated_id(::DataTypes::Key* id) {
+  delete id_;
+  id_ = id;
+  if (id) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.GetFaceCharRequest.id)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

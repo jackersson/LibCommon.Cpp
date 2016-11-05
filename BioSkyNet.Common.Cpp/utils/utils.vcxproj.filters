@@ -18,16 +18,10 @@
     <ClInclude Include="include\concurrent_containers.hpp">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="include\containers_utils.hpp">
-      <Filter>includes</Filter>
-    </ClInclude>
     <ClInclude Include="include\flags.hpp">
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="include\network_utils.hpp">
-      <Filter>includes</Filter>
-    </ClInclude>
-    <ClInclude Include="include\platform_includes.hpp">
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="include\service_utils.hpp">

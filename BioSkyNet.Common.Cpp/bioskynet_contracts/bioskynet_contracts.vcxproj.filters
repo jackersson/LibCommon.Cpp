@@ -81,6 +81,27 @@
     <ClInclude Include="include\data\models\key.hpp">
       <Filter>includes\data\models</Filter>
     </ClInclude>
+    <ClInclude Include="include\data\models\location.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\person.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\visit_record.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\face_characteristics.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\common\geometries.hpp">
+      <Filter>includes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\queries.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\datetime.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\logger.cpp">

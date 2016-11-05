@@ -150,11 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\datacontext\locations_data_context.hpp" />
-    <ClInclude Include="include\datacontext\persons_data_context.hpp" />
-    <ClInclude Include="include\datacontext\visit_records_datacontext.hpp" />
-    <ClInclude Include="include\datacontext_container.hpp" />
-    <ClInclude Include="include\localstorage\locations_localstorage.hpp" />
+    <ClInclude Include="include\repository\face_charst_repository.hpp" />
     <ClInclude Include="include\repository\location_repository.hpp" />
     <ClInclude Include="include\repository\persons_repository.hpp" />
     <ClInclude Include="include\repository\visit_records_repository.hpp" />

@@ -33,6 +33,7 @@
 #include "datatypes/location.pb.h"
 #include "datatypes/visit_record.pb.h"
 #include "datatypes/group.pb.h"
+#include "datatypes/biometrics.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace DataTypes {
@@ -69,6 +70,7 @@ class Entity : public ::google::protobuf::Message {
     kLocation = 4,
     kPhoto = 5,
     kGroup = 6,
+    kFace = 7,
     VALUE_TYPE_NOT_SET = 0,
   };
 
@@ -167,6 +169,15 @@ class Entity : public ::google::protobuf::Message {
   ::DataTypes::Group* release_group();
   void set_allocated_group(::DataTypes::Group* group);
 
+  // optional .DataTypes.FaceCharacteristic face = 7;
+  bool has_face() const;
+  void clear_face();
+  static const int kFaceFieldNumber = 7;
+  const ::DataTypes::FaceCharacteristic& face() const;
+  ::DataTypes::FaceCharacteristic* mutable_face();
+  ::DataTypes::FaceCharacteristic* release_face();
+  void set_allocated_face(::DataTypes::FaceCharacteristic* face);
+
   ValueTypeCase value_type_case() const;
   // @@protoc_insertion_point(class_scope:DataTypes.Entity)
  private:
@@ -176,6 +187,7 @@ class Entity : public ::google::protobuf::Message {
   inline void set_has_location();
   inline void set_has_photo();
   inline void set_has_group();
+  inline void set_has_face();
 
   inline bool has_value_type() const;
   void clear_value_type();
@@ -191,6 +203,7 @@ class Entity : public ::google::protobuf::Message {
     ::DataTypes::Location* location_;
     ::DataTypes::Photo* photo_;
     ::DataTypes::Group* group_;
+    ::DataTypes::FaceCharacteristic* face_;
   } value_type_;
   mutable int _cached_size_;
   ::google::protobuf::uint32 _oneof_case_[1];
@@ -580,6 +593,54 @@ inline void Entity::set_allocated_group(::DataTypes::Group* group) {
     value_type_.group_ = group;
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Entity.group)
+}
+
+// optional .DataTypes.FaceCharacteristic face = 7;
+inline bool Entity::has_face() const {
+  return value_type_case() == kFace;
+}
+inline void Entity::set_has_face() {
+  _oneof_case_[0] = kFace;
+}
+inline void Entity::clear_face() {
+  if (has_face()) {
+    delete value_type_.face_;
+    clear_has_value_type();
+  }
+}
+inline  const ::DataTypes::FaceCharacteristic& Entity::face() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Entity.face)
+  return has_face()
+      ? *value_type_.face_
+      : ::DataTypes::FaceCharacteristic::default_instance();
+}
+inline ::DataTypes::FaceCharacteristic* Entity::mutable_face() {
+  if (!has_face()) {
+    clear_value_type();
+    set_has_face();
+    value_type_.face_ = new ::DataTypes::FaceCharacteristic;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.Entity.face)
+  return value_type_.face_;
+}
+inline ::DataTypes::FaceCharacteristic* Entity::release_face() {
+  // @@protoc_insertion_point(field_release:DataTypes.Entity.face)
+  if (has_face()) {
+    clear_has_value_type();
+    ::DataTypes::FaceCharacteristic* temp = value_type_.face_;
+    value_type_.face_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void Entity::set_allocated_face(::DataTypes::FaceCharacteristic* face) {
+  clear_value_type();
+  if (face) {
+    set_has_face();
+    value_type_.face_ = face;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Entity.face)
 }
 
 inline bool Entity::has_value_type() const {

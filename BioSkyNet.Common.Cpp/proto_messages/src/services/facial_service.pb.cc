@@ -31,8 +31,8 @@ const ::google::protobuf::Descriptor* BiometricUpdate_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   BiometricUpdate_reflection_ = NULL;
 struct BiometricUpdateOneofInstance {
-  const ::DataTypes::Photo* insert_;
-  const ::DataTypes::Photo* remove_;
+  const ::DataTypes::FaceCharacteristic* insert_;
+  const ::DataTypes::FaceCharacteristic* remove_;
 }* BiometricUpdate_default_oneof_instance_ = NULL;
 
 }  // namespace
@@ -65,7 +65,7 @@ void protobuf_AssignDesc_services_2ffacial_5fservice_2eproto() {
   BiometricResponse_descriptor_ = file->message_type(1);
   static const int BiometricResponse_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BiometricResponse, photo_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BiometricResponse, person_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BiometricResponse, matches_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BiometricResponse, faces_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BiometricResponse, success_),
   };
@@ -149,20 +149,21 @@ void protobuf_AddDesc_services_2ffacial_5fservice_2eproto() {
     "est\022$\n\005frame\030\001 \001(\0132\025.DataTypes.FrameByte"
     "s\022\036\n\006person\030\002 \001(\0132\016.DataTypes.Key\022(\n\006act"
     "ion\030\003 \001(\0162\030.DataTypes.BioActionType\022&\n\004t"
-    "ype\030\004 \001(\0162\030.DataTypes.BiometricType\"\206\001\n\021"
+    "ype\030\004 \001(\0162\030.DataTypes.BiometricType\"\213\001\n\021"
     "BiometricResponse\022\037\n\005photo\030\001 \001(\0132\020.DataT"
-    "ypes.Photo\022\036\n\006person\030\002 \001(\0132\016.DataTypes.K"
-    "ey\022\037\n\005faces\030\003 \001(\0132\020.DataTypes.Faces\022\017\n\007s"
-    "uccess\030\004 \001(\010\"h\n\017BiometricUpdate\022\"\n\006inser"
-    "t\030\001 \001(\0132\020.DataTypes.PhotoH\000\022\"\n\006remove\030\002 "
-    "\001(\0132\020.DataTypes.PhotoH\000B\r\n\013update_type2\235"
-    "\001\n\026BiometricFacialService\022D\n\007Process\022\032.S"
-    "ervices.BiometricRequest\032\033.Services.Biom"
-    "etricResponse\"\000\022=\n\006Update\022\031.Services.Bio"
-    "metricUpdate\032\026.google.protobuf.Empty\"\000BQ"
-    "\n\007ex.grpcZ@github.com/Enebra/ServiceCoor"
-    "dinator/grpc/services/facialservice\242\002\003RT"
-    "Gb\006proto3", 809);
+    "ypes.Photo\022#\n\007matches\030\002 \001(\0132\022.DataTypes."
+    "Matches\022\037\n\005faces\030\003 \001(\0132\020.DataTypes.Faces"
+    "\022\017\n\007success\030\004 \001(\010\"\202\001\n\017BiometricUpdate\022/\n"
+    "\006insert\030\001 \001(\0132\035.DataTypes.FaceCharacteri"
+    "sticH\000\022/\n\006remove\030\002 \001(\0132\035.DataTypes.FaceC"
+    "haracteristicH\000B\r\n\013update_type2\235\001\n\026Biome"
+    "tricFacialService\022D\n\007Process\022\032.Services."
+    "BiometricRequest\032\033.Services.BiometricRes"
+    "ponse\"\000\022=\n\006Update\022\031.Services.BiometricUp"
+    "date\032\026.google.protobuf.Empty\"\000BQ\n\007ex.grp"
+    "cZ@github.com/Enebra/ServiceCoordinator/"
+    "grpc/services/facialservice\242\002\003RTGb\006proto"
+    "3", 841);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "services/facial_service.proto", &protobuf_RegisterTypes);
   BiometricRequest::default_instance_ = new BiometricRequest();
@@ -668,7 +669,7 @@ void BiometricRequest::clear_type() {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int BiometricResponse::kPhotoFieldNumber;
-const int BiometricResponse::kPersonFieldNumber;
+const int BiometricResponse::kMatchesFieldNumber;
 const int BiometricResponse::kFacesFieldNumber;
 const int BiometricResponse::kSuccessFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -682,7 +683,7 @@ BiometricResponse::BiometricResponse()
 void BiometricResponse::InitAsDefaultInstance() {
   _is_default_instance_ = true;
   photo_ = const_cast< ::DataTypes::Photo*>(&::DataTypes::Photo::default_instance());
-  person_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
+  matches_ = const_cast< ::DataTypes::Matches*>(&::DataTypes::Matches::default_instance());
   faces_ = const_cast< ::DataTypes::Faces*>(&::DataTypes::Faces::default_instance());
 }
 
@@ -698,7 +699,7 @@ void BiometricResponse::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
   photo_ = NULL;
-  person_ = NULL;
+  matches_ = NULL;
   faces_ = NULL;
   success_ = false;
 }
@@ -711,7 +712,7 @@ BiometricResponse::~BiometricResponse() {
 void BiometricResponse::SharedDtor() {
   if (this != default_instance_) {
     delete photo_;
-    delete person_;
+    delete matches_;
     delete faces_;
   }
 }
@@ -745,8 +746,8 @@ void BiometricResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:Services.BiometricResponse)
   if (GetArenaNoVirtual() == NULL && photo_ != NULL) delete photo_;
   photo_ = NULL;
-  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
-  person_ = NULL;
+  if (GetArenaNoVirtual() == NULL && matches_ != NULL) delete matches_;
+  matches_ = NULL;
   if (GetArenaNoVirtual() == NULL && faces_ != NULL) delete faces_;
   faces_ = NULL;
   success_ = false;
@@ -770,16 +771,16 @@ bool BiometricResponse::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_person;
+        if (input->ExpectTag(18)) goto parse_matches;
         break;
       }
 
-      // optional .DataTypes.Key person = 2;
+      // optional .DataTypes.Matches matches = 2;
       case 2: {
         if (tag == 18) {
-         parse_person:
+         parse_matches:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_person()));
+               input, mutable_matches()));
         } else {
           goto handle_unusual;
         }
@@ -845,10 +846,10 @@ void BiometricResponse::SerializeWithCachedSizes(
       1, *this->photo_, output);
   }
 
-  // optional .DataTypes.Key person = 2;
-  if (this->has_person()) {
+  // optional .DataTypes.Matches matches = 2;
+  if (this->has_matches()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, *this->person_, output);
+      2, *this->matches_, output);
   }
 
   // optional .DataTypes.Faces faces = 3;
@@ -875,11 +876,11 @@ void BiometricResponse::SerializeWithCachedSizes(
         1, *this->photo_, target);
   }
 
-  // optional .DataTypes.Key person = 2;
-  if (this->has_person()) {
+  // optional .DataTypes.Matches matches = 2;
+  if (this->has_matches()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        2, *this->person_, target);
+        2, *this->matches_, target);
   }
 
   // optional .DataTypes.Faces faces = 3;
@@ -909,11 +910,11 @@ int BiometricResponse::ByteSize() const {
         *this->photo_);
   }
 
-  // optional .DataTypes.Key person = 2;
-  if (this->has_person()) {
+  // optional .DataTypes.Matches matches = 2;
+  if (this->has_matches()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->person_);
+        *this->matches_);
   }
 
   // optional .DataTypes.Faces faces = 3;
@@ -955,8 +956,8 @@ void BiometricResponse::MergeFrom(const BiometricResponse& from) {
   if (from.has_photo()) {
     mutable_photo()->::DataTypes::Photo::MergeFrom(from.photo());
   }
-  if (from.has_person()) {
-    mutable_person()->::DataTypes::Key::MergeFrom(from.person());
+  if (from.has_matches()) {
+    mutable_matches()->::DataTypes::Matches::MergeFrom(from.matches());
   }
   if (from.has_faces()) {
     mutable_faces()->::DataTypes::Faces::MergeFrom(from.faces());
@@ -991,7 +992,7 @@ void BiometricResponse::Swap(BiometricResponse* other) {
 }
 void BiometricResponse::InternalSwap(BiometricResponse* other) {
   std::swap(photo_, other->photo_);
-  std::swap(person_, other->person_);
+  std::swap(matches_, other->matches_);
   std::swap(faces_, other->faces_);
   std::swap(success_, other->success_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
@@ -1047,42 +1048,42 @@ void BiometricResponse::set_allocated_photo(::DataTypes::Photo* photo) {
   // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.photo)
 }
 
-// optional .DataTypes.Key person = 2;
-bool BiometricResponse::has_person() const {
-  return !_is_default_instance_ && person_ != NULL;
+// optional .DataTypes.Matches matches = 2;
+bool BiometricResponse::has_matches() const {
+  return !_is_default_instance_ && matches_ != NULL;
 }
-void BiometricResponse::clear_person() {
-  if (GetArenaNoVirtual() == NULL && person_ != NULL) delete person_;
-  person_ = NULL;
+void BiometricResponse::clear_matches() {
+  if (GetArenaNoVirtual() == NULL && matches_ != NULL) delete matches_;
+  matches_ = NULL;
 }
-const ::DataTypes::Key& BiometricResponse::person() const {
-  // @@protoc_insertion_point(field_get:Services.BiometricResponse.person)
-  return person_ != NULL ? *person_ : *default_instance_->person_;
+const ::DataTypes::Matches& BiometricResponse::matches() const {
+  // @@protoc_insertion_point(field_get:Services.BiometricResponse.matches)
+  return matches_ != NULL ? *matches_ : *default_instance_->matches_;
 }
-::DataTypes::Key* BiometricResponse::mutable_person() {
+::DataTypes::Matches* BiometricResponse::mutable_matches() {
   
-  if (person_ == NULL) {
-    person_ = new ::DataTypes::Key;
+  if (matches_ == NULL) {
+    matches_ = new ::DataTypes::Matches;
   }
-  // @@protoc_insertion_point(field_mutable:Services.BiometricResponse.person)
-  return person_;
+  // @@protoc_insertion_point(field_mutable:Services.BiometricResponse.matches)
+  return matches_;
 }
-::DataTypes::Key* BiometricResponse::release_person() {
-  // @@protoc_insertion_point(field_release:Services.BiometricResponse.person)
+::DataTypes::Matches* BiometricResponse::release_matches() {
+  // @@protoc_insertion_point(field_release:Services.BiometricResponse.matches)
   
-  ::DataTypes::Key* temp = person_;
-  person_ = NULL;
+  ::DataTypes::Matches* temp = matches_;
+  matches_ = NULL;
   return temp;
 }
-void BiometricResponse::set_allocated_person(::DataTypes::Key* person) {
-  delete person_;
-  person_ = person;
-  if (person) {
+void BiometricResponse::set_allocated_matches(::DataTypes::Matches* matches) {
+  delete matches_;
+  matches_ = matches;
+  if (matches) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.person)
+  // @@protoc_insertion_point(field_set_allocated:Services.BiometricResponse.matches)
 }
 
 // optional .DataTypes.Faces faces = 3;
@@ -1154,8 +1155,8 @@ BiometricUpdate::BiometricUpdate()
 
 void BiometricUpdate::InitAsDefaultInstance() {
   _is_default_instance_ = true;
-  BiometricUpdate_default_oneof_instance_->insert_ = const_cast< ::DataTypes::Photo*>(&::DataTypes::Photo::default_instance());
-  BiometricUpdate_default_oneof_instance_->remove_ = const_cast< ::DataTypes::Photo*>(&::DataTypes::Photo::default_instance());
+  BiometricUpdate_default_oneof_instance_->insert_ = const_cast< ::DataTypes::FaceCharacteristic*>(&::DataTypes::FaceCharacteristic::default_instance());
+  BiometricUpdate_default_oneof_instance_->remove_ = const_cast< ::DataTypes::FaceCharacteristic*>(&::DataTypes::FaceCharacteristic::default_instance());
 }
 
 BiometricUpdate::BiometricUpdate(const BiometricUpdate& from)
@@ -1244,7 +1245,7 @@ bool BiometricUpdate::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .DataTypes.Photo insert = 1;
+      // optional .DataTypes.FaceCharacteristic insert = 1;
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
@@ -1256,7 +1257,7 @@ bool BiometricUpdate::MergePartialFromCodedStream(
         break;
       }
 
-      // optional .DataTypes.Photo remove = 2;
+      // optional .DataTypes.FaceCharacteristic remove = 2;
       case 2: {
         if (tag == 18) {
          parse_remove:
@@ -1293,13 +1294,13 @@ failure:
 void BiometricUpdate::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Services.BiometricUpdate)
-  // optional .DataTypes.Photo insert = 1;
+  // optional .DataTypes.FaceCharacteristic insert = 1;
   if (has_insert()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, *update_type_.insert_, output);
   }
 
-  // optional .DataTypes.Photo remove = 2;
+  // optional .DataTypes.FaceCharacteristic remove = 2;
   if (has_remove()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       2, *update_type_.remove_, output);
@@ -1311,14 +1312,14 @@ void BiometricUpdate::SerializeWithCachedSizes(
 ::google::protobuf::uint8* BiometricUpdate::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:Services.BiometricUpdate)
-  // optional .DataTypes.Photo insert = 1;
+  // optional .DataTypes.FaceCharacteristic insert = 1;
   if (has_insert()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         1, *update_type_.insert_, target);
   }
 
-  // optional .DataTypes.Photo remove = 2;
+  // optional .DataTypes.FaceCharacteristic remove = 2;
   if (has_remove()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1334,14 +1335,14 @@ int BiometricUpdate::ByteSize() const {
   int total_size = 0;
 
   switch (update_type_case()) {
-    // optional .DataTypes.Photo insert = 1;
+    // optional .DataTypes.FaceCharacteristic insert = 1;
     case kInsert: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           *update_type_.insert_);
       break;
     }
-    // optional .DataTypes.Photo remove = 2;
+    // optional .DataTypes.FaceCharacteristic remove = 2;
     case kRemove: {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -1378,11 +1379,11 @@ void BiometricUpdate::MergeFrom(const BiometricUpdate& from) {
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
   switch (from.update_type_case()) {
     case kInsert: {
-      mutable_insert()->::DataTypes::Photo::MergeFrom(from.insert());
+      mutable_insert()->::DataTypes::FaceCharacteristic::MergeFrom(from.insert());
       break;
     }
     case kRemove: {
-      mutable_remove()->::DataTypes::Photo::MergeFrom(from.remove());
+      mutable_remove()->::DataTypes::FaceCharacteristic::MergeFrom(from.remove());
       break;
     }
     case UPDATE_TYPE_NOT_SET: {
@@ -1432,7 +1433,7 @@ void BiometricUpdate::InternalSwap(BiometricUpdate* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // BiometricUpdate
 
-// optional .DataTypes.Photo insert = 1;
+// optional .DataTypes.FaceCharacteristic insert = 1;
 bool BiometricUpdate::has_insert() const {
   return update_type_case() == kInsert;
 }
@@ -1445,33 +1446,33 @@ void BiometricUpdate::clear_insert() {
     clear_has_update_type();
   }
 }
- const ::DataTypes::Photo& BiometricUpdate::insert() const {
+ const ::DataTypes::FaceCharacteristic& BiometricUpdate::insert() const {
   // @@protoc_insertion_point(field_get:Services.BiometricUpdate.insert)
   return has_insert()
       ? *update_type_.insert_
-      : ::DataTypes::Photo::default_instance();
+      : ::DataTypes::FaceCharacteristic::default_instance();
 }
-::DataTypes::Photo* BiometricUpdate::mutable_insert() {
+::DataTypes::FaceCharacteristic* BiometricUpdate::mutable_insert() {
   if (!has_insert()) {
     clear_update_type();
     set_has_insert();
-    update_type_.insert_ = new ::DataTypes::Photo;
+    update_type_.insert_ = new ::DataTypes::FaceCharacteristic;
   }
   // @@protoc_insertion_point(field_mutable:Services.BiometricUpdate.insert)
   return update_type_.insert_;
 }
-::DataTypes::Photo* BiometricUpdate::release_insert() {
+::DataTypes::FaceCharacteristic* BiometricUpdate::release_insert() {
   // @@protoc_insertion_point(field_release:Services.BiometricUpdate.insert)
   if (has_insert()) {
     clear_has_update_type();
-    ::DataTypes::Photo* temp = update_type_.insert_;
+    ::DataTypes::FaceCharacteristic* temp = update_type_.insert_;
     update_type_.insert_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-void BiometricUpdate::set_allocated_insert(::DataTypes::Photo* insert) {
+void BiometricUpdate::set_allocated_insert(::DataTypes::FaceCharacteristic* insert) {
   clear_update_type();
   if (insert) {
     set_has_insert();
@@ -1480,7 +1481,7 @@ void BiometricUpdate::set_allocated_insert(::DataTypes::Photo* insert) {
   // @@protoc_insertion_point(field_set_allocated:Services.BiometricUpdate.insert)
 }
 
-// optional .DataTypes.Photo remove = 2;
+// optional .DataTypes.FaceCharacteristic remove = 2;
 bool BiometricUpdate::has_remove() const {
   return update_type_case() == kRemove;
 }
@@ -1493,33 +1494,33 @@ void BiometricUpdate::clear_remove() {
     clear_has_update_type();
   }
 }
- const ::DataTypes::Photo& BiometricUpdate::remove() const {
+ const ::DataTypes::FaceCharacteristic& BiometricUpdate::remove() const {
   // @@protoc_insertion_point(field_get:Services.BiometricUpdate.remove)
   return has_remove()
       ? *update_type_.remove_
-      : ::DataTypes::Photo::default_instance();
+      : ::DataTypes::FaceCharacteristic::default_instance();
 }
-::DataTypes::Photo* BiometricUpdate::mutable_remove() {
+::DataTypes::FaceCharacteristic* BiometricUpdate::mutable_remove() {
   if (!has_remove()) {
     clear_update_type();
     set_has_remove();
-    update_type_.remove_ = new ::DataTypes::Photo;
+    update_type_.remove_ = new ::DataTypes::FaceCharacteristic;
   }
   // @@protoc_insertion_point(field_mutable:Services.BiometricUpdate.remove)
   return update_type_.remove_;
 }
-::DataTypes::Photo* BiometricUpdate::release_remove() {
+::DataTypes::FaceCharacteristic* BiometricUpdate::release_remove() {
   // @@protoc_insertion_point(field_release:Services.BiometricUpdate.remove)
   if (has_remove()) {
     clear_has_update_type();
-    ::DataTypes::Photo* temp = update_type_.remove_;
+    ::DataTypes::FaceCharacteristic* temp = update_type_.remove_;
     update_type_.remove_ = NULL;
     return temp;
   } else {
     return NULL;
   }
 }
-void BiometricUpdate::set_allocated_remove(::DataTypes::Photo* remove) {
+void BiometricUpdate::set_allocated_remove(::DataTypes::FaceCharacteristic* remove) {
   clear_update_type();
   if (remove) {
     set_has_remove();

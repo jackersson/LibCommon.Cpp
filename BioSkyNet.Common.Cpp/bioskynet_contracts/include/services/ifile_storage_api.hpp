@@ -2,7 +2,7 @@
 #define IFileStorageApi_INCLUDED
 
 #include <memory>
-#include <services/file_service.pb.h>
+#include <string>
 
 namespace contracts
 {
@@ -13,15 +13,13 @@ namespace contracts
 		public:
 			virtual ~IFileStorageApi() {}
 
-			virtual std::shared_ptr<Services::FileBytes>
-				get(const Services::FileMessage& request) = 0;
-			
+			virtual std::shared_ptr<std::string>
+				get(const std::string& url) = 0;			
 
-			virtual	std::shared_ptr<Services::FileMessage>
-				create(const Services::FileBytes& request) = 0;
+			virtual	std::string	create(const char* data) = 0;
 
-			virtual	bool delete_file(const Services::FileMessage& request) = 0;
-			virtual bool exists     (const Services::FileMessage& request) = 0;
+			virtual	bool delete_file(const std::string& url) = 0;
+			virtual bool exists     (const std::string& url) = 0;
 	
 		};
 		typedef std::shared_ptr<IFileStorageApi> IFileStorageApiPtr;

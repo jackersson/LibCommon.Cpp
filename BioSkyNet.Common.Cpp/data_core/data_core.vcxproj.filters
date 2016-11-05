@@ -13,29 +13,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="includes\datacontext">
-      <UniqueIdentifier>{5577e8f9-f6bc-4d30-8357-4525c1fec322}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="includes\localstorage">
-      <UniqueIdentifier>{fa63a2e3-936c-4eb7-bcc9-8c615b87ad9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="includes\repositories">
       <UniqueIdentifier>{83a4e571-96aa-4847-aba0-9b99f59eab78}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\datacontext\locations_data_context.hpp">
-      <Filter>includes\datacontext</Filter>
-    </ClInclude>
-    <ClInclude Include="include\datacontext\persons_data_context.hpp">
-      <Filter>includes\datacontext</Filter>
-    </ClInclude>
-    <ClInclude Include="include\datacontext\visit_records_datacontext.hpp">
-      <Filter>includes\datacontext</Filter>
-    </ClInclude>
-    <ClInclude Include="include\localstorage\locations_localstorage.hpp">
-      <Filter>includes\localstorage</Filter>
-    </ClInclude>
     <ClInclude Include="include\repository\location_repository.hpp">
       <Filter>includes\repositories</Filter>
     </ClInclude>
@@ -45,11 +27,11 @@
     <ClInclude Include="include\repository\visit_records_repository.hpp">
       <Filter>includes\repositories</Filter>
     </ClInclude>
-    <ClInclude Include="include\datacontext_container.hpp">
-      <Filter>includes</Filter>
-    </ClInclude>
     <ClInclude Include="include\repository_container.hpp">
       <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\repository\face_charst_repository.hpp">
+      <Filter>includes\repositories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

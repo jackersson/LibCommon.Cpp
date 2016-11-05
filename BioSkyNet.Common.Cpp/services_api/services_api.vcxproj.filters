@@ -34,6 +34,9 @@
     <Filter Include="includes\facial_service\client">
       <UniqueIdentifier>{a1c0f536-c478-457d-8c64-e2bb8093ceac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="includes\database_service\datacontext">
+      <UniqueIdentifier>{989de73c-f711-4a63-92c5-70c4ee1389b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp">
@@ -70,6 +73,24 @@
       <Filter>includes</Filter>
     </ClInclude>
     <ClInclude Include="include\helpers\request_handler.hpp">
+      <Filter>includes\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\datacontext\datacontext_container.hpp">
+      <Filter>includes\database_service\datacontext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\datacontext\facial_charst_data_context.hpp">
+      <Filter>includes\database_service\datacontext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\datacontext\locations_data_context.hpp">
+      <Filter>includes\database_service\datacontext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\datacontext\persons_data_context.hpp">
+      <Filter>includes\database_service\datacontext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\datacontext\visit_records_datacontext.hpp">
+      <Filter>includes\database_service\datacontext</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helpers\request_adapters.hpp">
       <Filter>includes\helpers</Filter>
     </ClInclude>
   </ItemGroup>

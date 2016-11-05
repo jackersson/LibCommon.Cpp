@@ -6,6 +6,7 @@
 #include <observers/iobservable.hpp>
 #include <observers/observable.hpp>
 #include <any.hpp>
+#include <data/models/queries.hpp>
 
 namespace contracts
 {
@@ -39,15 +40,16 @@ namespace contracts
 		public:
 			virtual ~IDataContext() {}
 
-			virtual bool get(void* request, std::vector<TEntity>&) = 0;
+			virtual bool get( const data_model::GetRequest& request
+				              , std::vector<TEntity>&) = 0;
 
-			virtual bool find(DataTypes::Key key, TEntity&) = 0;
+			//virtual bool find(DataTypes::Key key, TEntity&) = 0;
 
-			virtual bool add(TEntity* entity) = 0;
+			virtual bool add(const TEntity& entity) = 0;
 
-			virtual bool remove(TEntity* entity) = 0;
+			//virtual bool remove(TEntity* entity) = 0;
 
-			virtual bool update(TEntity* entity) = 0;
+			//virtual bool update(TEntity* entity) = 0;
 		};
 	
 		template <typename TEntity>
@@ -56,7 +58,7 @@ namespace contracts
 		public:
 			virtual ~IRepository() {}
 
-			virtual std::shared_ptr<ILocalStorage<TEntity>> local() = 0;
+			virtual ILocalStorage<TEntity>& local() = 0;
 		};
 
 	
