@@ -27,7 +27,7 @@ namespace services_api
 			bool get( const data_model::GetRequest& request
 				      , std::vector<data_model::FaceTemplate>& entities) override
 			{			
-				return get(request.get_face_char_request, entities);
+				return do_get(request, entities);
 			}
 
 			bool add(const data_model::FaceTemplate& entity) override
@@ -36,13 +36,12 @@ namespace services_api
 			}
 
 		private:
-			bool get( const data_model::GetFaceCharRequest& request
-				      , std::vector<data_model::FaceTemplate>& entities) const
+			bool do_get( const data_model::GetRequest& request
+				         , std::vector<data_model::FaceTemplate>& entities) const
 			{
-				auto service_request = helpers::to_proto_get_request(request);			
 				try
 				{
-					auto result = context_->get(service_request);
+					auto result = context_->get(request);
 					parse(result, entities);
 					return true;
 				}
@@ -52,23 +51,15 @@ namespace services_api
 				}
 			}
 
-			void parse( std::shared_ptr<DataTypes::GetResponse> response
+			void parse( std::shared_ptr<data_model::GetResponse> response
 				        , std::vector<data_model::FaceTemplate>& entities) const
 			{
 				if (response == nullptr)
 					return;
 
-				const auto& items = response->items().items();
-				for (const auto& item : items)
-				{
-					if (item.value_type_case()
-						!= DataTypes::Entity::ValueTypeCase::kFace)
-					{
-						logger_.error("Wrong item in entities. Not face");
-						continue;
-					}
-					entities.push_back(helpers::to_data_face_template(item.face()));					
-				}
+				const auto& items = response->entities;
+				for (const auto& item : items)									
+					entities.push_back(helpers::to_data_face_template(item.face));					
 			}
 
 			contracts::services::IDatabaseApi* context_;

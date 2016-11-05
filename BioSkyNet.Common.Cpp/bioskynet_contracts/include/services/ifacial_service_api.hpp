@@ -2,7 +2,7 @@
 #define IFacialServiceApi_INCLUDED
 
 #include <memory>
-#include <services/facial_service.pb.h>
+#include <data/models/commands.hpp>
 
 namespace contracts
 {
@@ -13,8 +13,8 @@ namespace contracts
 		public:
 			virtual ~IFacialServiceApi() {}
 
-			virtual std::shared_ptr<Services::BiometricResponse>
-				process(const Services::BiometricRequest& request) = 0;
+			virtual std::shared_ptr<data_model::BiometricResponse>
+				process(const data_model::BiometricRequest& request) = 0;
 		};
 
 		typedef std::shared_ptr<IFacialServiceApi> IFacialServiceApiPtr;

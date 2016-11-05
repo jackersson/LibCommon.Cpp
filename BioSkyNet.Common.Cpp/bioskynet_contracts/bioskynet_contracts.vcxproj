@@ -155,16 +155,20 @@
     <ClInclude Include="include\common\raw_image.hpp" />
     <ClInclude Include="include\data\data_utils.hpp" />
     <ClInclude Include="include\data\irepository.hpp" />
+    <ClInclude Include="include\data\models\commands.hpp" />
     <ClInclude Include="include\data\models\datetime.hpp" />
+    <ClInclude Include="include\data\models\devices.hpp" />
     <ClInclude Include="include\data\models\face_characteristics.hpp" />
     <ClInclude Include="include\data\models\key.hpp" />
     <ClInclude Include="include\data\models\location.hpp" />
     <ClInclude Include="include\data\models\person.hpp" />
     <ClInclude Include="include\data\models\queries.hpp" />
+    <ClInclude Include="include\data\models\unit.hpp" />
     <ClInclude Include="include\data\models\visit_record.hpp" />
     <ClInclude Include="include\logging\logger.hpp" />
     <ClInclude Include="include\observers\iobservable.hpp" />
     <ClInclude Include="include\observers\observable.hpp" />
+    <ClInclude Include="include\services\iconnection_state.hpp" />
     <ClInclude Include="include\services\ifacial_service_api.hpp" />
     <ClInclude Include="include\services\icoordinator_api.hpp" />
     <ClInclude Include="include\services\idatabase_api.hpp" />
@@ -173,6 +177,8 @@
     <ClInclude Include="include\services\service_address.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\data\date_time.cpp" />
+    <ClCompile Include="src\data_utils.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>

@@ -1,7 +1,9 @@
 #ifndef ICoordinatorApi_INCLUDED
 #define ICoordinatorApi_INCLUDED
 
-#include <datatypes/unit.pb.h>
+#include <data/models/unit.hpp>
+#include <data/models/devices.hpp>
+#include <memory>
 
 namespace contracts
 {
@@ -13,7 +15,7 @@ namespace contracts
 			virtual ~IHeartbeat() {}
 
 			virtual void
-				heart_beat(const DataTypes::HeartbeatMessage& request) const = 0;
+				heart_beat(const data_model::HeartbeatMessage& request) const = 0;
 
 		};
 
@@ -23,11 +25,19 @@ namespace contracts
 			virtual ~ICoordinatorApi() {}
 
 			virtual bool 
-				connect_request    (const DataTypes::ConnectMsg& request) = 0;		
-														     
+				connect_request (const data_model::ConnectMsg& request) = 0;														     
 		
 			virtual void
-				update_devices(const DataTypes::DeviceUpdate& request) const = 0;		
+				update_devices (const data_model::DeviceUpdate& request) const = 0;
+		};
+
+		class ICoordinatorMessages
+		{
+		public:
+			virtual ~ICoordinatorMessages() {}
+
+			virtual data_model::ConnectMsg        connect_msg  () const = 0;
+			virtual data_model::HeartbeatMessage	heartbeat_msg() const = 0;
 		};
 
 		typedef std::shared_ptr<ICoordinatorApi> ICoordinatorApiPtr;

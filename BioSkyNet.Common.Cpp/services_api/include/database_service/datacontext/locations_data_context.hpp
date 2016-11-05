@@ -6,7 +6,6 @@
 #include <vector>
 #include <data/models/location.hpp>
 #include <data/models/queries.hpp>
-#include <helpers/request_adapters.hpp>
 #include <common/logger.hpp>
 
 namespace services_api
@@ -28,7 +27,7 @@ namespace services_api
 			bool get( const data_model::GetRequest& request
 				      , std::vector<data_model::Location>& entities) override
 			{			
-			 return get(request.get_locations_request, entities);
+			 return do_get(request, entities);
 			}
 
 			bool add(const data_model::Location& entity) override
@@ -37,13 +36,12 @@ namespace services_api
 			}
 
 		private:
-			bool get( const data_model::GetLocationRequest& request
+			bool do_get( const data_model::GetRequest& request
 				      , std::vector<data_model::Location>& entities)
 			{
-				auto service_request = helpers::to_proto_get_request(request);
 				try
 				{					
-					auto result = context_->get(service_request);
+					auto result = context_->get(request);
 					parse(result, entities);
 					return true;
 				}
@@ -53,22 +51,14 @@ namespace services_api
 				}				
 			}
 
-			void parse(std::shared_ptr<DataTypes::GetResponse> response
+			void parse(std::shared_ptr<data_model::GetResponse> response
 		          	, std::vector<data_model::Location>& entities) const
 			{
 				if (response == nullptr)
 					return;			
-				const auto& items = response->items().items();
-				for (const auto& item : items)
-				{
-					if (item.value_type_case()
-						!= DataTypes::Entity::ValueTypeCase::kLocation)
-					{
-						logger_.error("Wrong type in entities. Not location");
-						continue;
-					}
-					entities.push_back(helpers::to_data_location(item.location()));
-				}
+				const auto& items = response->entities;
+				for (const auto& item : items)									
+					entities.push_back(item.location);				
 			}
 		
 			contracts::services::IDatabaseApi* context_;

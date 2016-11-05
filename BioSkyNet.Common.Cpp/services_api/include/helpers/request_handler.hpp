@@ -52,9 +52,8 @@ namespace grpc_services
 			{
 				CreateRequest();
 			}
-			catch (std::exception&)
-			{
-				//TODO log			
+			catch (std::exception& exception)	{
+				logger_.error(exception.what());
 			}
 		}
 		

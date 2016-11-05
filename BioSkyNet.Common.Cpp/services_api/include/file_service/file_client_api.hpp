@@ -1,30 +1,27 @@
 #ifndef FileClientImpl_INCLUDED
 #define FileClientImpl_INCLUDED
 
-#include <grpc++/grpc++.h>
 #include <client_service_base.hpp>
 #include <services/file_service.grpc.pb.h>
 #include "file_client_calls.hpp"
 #include <service_utils.hpp>
 #include <services/ifile_storage_api.hpp>
 
-using grpc::ServerBuilder;
-
 namespace services_api
 {
 	//TODO add try catch to calls
-	class FileClientImpl : public AbstractClientService
+	class FileClientApi : public AbstractClientService
 		                   , public contracts::services::IFileStorageApi
 	{
 	public:
-		explicit FileClientImpl(contracts::services::IServiceAddress& address)
+		explicit FileClientApi(contracts::services::IServiceAddress& address)
 			: AbstractClientService(address)
 		{
-			FileClientImpl::init();
+			FileClientApi::init();
 		}
 
-		~FileClientImpl() {
-			FileClientImpl::de_init();
+		~FileClientApi() {
+			FileClientApi::de_init();
 		}
 
 		void init() override
@@ -77,7 +74,7 @@ namespace services_api
 		bool delete_file(const std::string& url) override
 		{
 			auto queue = get_completion_queue<AsyncDeleteFileCall>();
-			if (queue == nullptr)	return;
+			if (queue == nullptr)	return false;
 
 			Services::FileMessage request;
 			request.set_id(url);
@@ -93,7 +90,7 @@ namespace services_api
 		bool exists(const std::string& url) override
 		{
 			auto queue = get_completion_queue<AsyncExistsFileCall>();
-			if (queue == nullptr)	return;
+			if (queue == nullptr)	return false;
 
 			Services::FileMessage request;
 			request.set_id(url);
@@ -108,7 +105,7 @@ namespace services_api
 
 	private:
 		std::string class_name() const override {
-			return typeid(FileClientImpl).name();
+			return typeid(FileClientApi).name();
 		}
 
 		void do_create_stub(std::shared_ptr<grpc::Channel> channel) override {
@@ -117,8 +114,8 @@ namespace services_api
 
 		std::unique_ptr<Services::FileService::Stub> stub_;
 
-		FileClientImpl(const FileClientImpl&) = delete;
-		FileClientImpl& operator=(const FileClientImpl&) = delete;
+		FileClientApi(const FileClientApi&) = delete;
+		FileClientApi& operator=(const FileClientApi&) = delete;
 	};
 }
 

@@ -1,45 +1,38 @@
-#ifndef CoordinatorClientImpl_INCLUDED
-#define CoordinatorClientImpl_INCLUDED
+#ifndef CoordinatorClientApi_INCLUDED
+#define CoordinatorClientApi_INCLUDED
 
-#include <grpc++/grpc++.h>
 #include <services/coordinator_service.grpc.pb.h>
 #include <database_service/database_client_calls.hpp>
 
 #include <service_utils.hpp>
 
-#include <services/icoordinator_api.hpp>
-#include <services/idatabase_api.hpp>
 #include <services/service_address.hpp>
 #include <helpers/service_heplers.hpp>
 #include "coordinator_client_calls.hpp"
 #include <common/logger.hpp>
 #include <client_service_base.hpp>
-
-using grpc::ServerBuilder;
+#include <helpers/request_adapters.hpp>
 
 namespace services_api
 {
-	class CoordinatorClientImpl : public AbstractClientService
-		                          , public contracts::services::IDatabaseApi
-	                           	, public contracts::services::ICoordinatorApi
+	class CoordinatorClientApi : public AbstractClientService				                          
 	{
 	public:
-		explicit CoordinatorClientImpl( contracts::services::IServiceAddress& address)
+		explicit CoordinatorClientApi( contracts::services::IServiceAddress& address)
 			                            : AbstractClientService(address)		
 		{		
-			CoordinatorClientImpl::init();
+			CoordinatorClientApi::init();
 		}
 
-		~CoordinatorClientImpl(){
-			CoordinatorClientImpl::de_init();
+		~CoordinatorClientApi(){
+			CoordinatorClientApi::de_init();
 		}
 
 		void init() override
 		{
 			connect();
 
-			add_call_handlers();
-		
+			add_call_handlers();		
 		}
 
 	protected:
@@ -56,8 +49,8 @@ namespace services_api
 		void de_init() override	{
 			stop();
 		}
-			
-		bool connect_request(const DataTypes::ConnectMsg& request) override
+		
+		bool connect_request(const DataTypes::ConnectMsg& request) 
 		{			
 			auto queue = get_completion_queue<AsyncConnectCall>();
 			if (queue == nullptr)	return false;
@@ -81,7 +74,7 @@ namespace services_api
 			}			
 		}		
 	
-		void heart_beat(const DataTypes::HeartbeatMessage& request) const override
+		void heart_beat(const DataTypes::HeartbeatMessage& request) const 
 		{
 			auto queue = get_completion_queue<AsyncHeartbeatCall>();
 			if (queue == nullptr)	return;
@@ -101,7 +94,7 @@ namespace services_api
 		}
 
 		//TODO send with guid in metadata
-		void update_devices(const DataTypes::DeviceUpdate& request) const override
+		void update_devices(const DataTypes::DeviceUpdate& request) const 
 		{
 			auto queue = get_completion_queue<AsyncUpdateDevicesCall>();
 			if (queue == nullptr)	return;
@@ -113,10 +106,10 @@ namespace services_api
 		}
 
 		std::shared_ptr<DataTypes::GetResponse>
-			get(const DataTypes::GetRequest& request) override
+			get(const DataTypes::GetRequest& request) 
 		{
 			DataTypes::MessageBytes message;
-			helpers::to_bytes(request, message);
+			helpers::to_message_bytes(request, message);
 
 			auto queue = get_completion_queue<AsyncGetRequestCall>();
 			if (queue == nullptr)	return nullptr;
@@ -131,10 +124,10 @@ namespace services_api
 
 		//TODO send with guid in metadata
 		std::shared_ptr<DataTypes::CommitResponse>
-			commit(const DataTypes::CommitRequest& request) override
+			commit(const DataTypes::CommitRequest& request) 
 		{
 			DataTypes::MessageBytes message;
-			helpers::to_bytes(request, message);
+			helpers::to_message_bytes(request, message);
 
 			auto queue = get_completion_queue<AsyncCommitRequestCall>();
 			if (queue == nullptr)	return nullptr;
@@ -154,15 +147,13 @@ namespace services_api
 		}
 
 		std::string class_name() const override {
-			return typeid(CoordinatorClientImpl).name();
+			return typeid(CoordinatorClientApi).name();
 		}
-
-
-
+		
 		std::unique_ptr<Services::CoordinatorService::Stub> stub_;
 
-		CoordinatorClientImpl(const CoordinatorClientImpl&) = delete;
-		CoordinatorClientImpl& operator=(const CoordinatorClientImpl&) = delete;
+		CoordinatorClientApi(const CoordinatorClientApi&) = delete;
+		CoordinatorClientApi& operator=(const CoordinatorClientApi&) = delete;
 	};
 }
 

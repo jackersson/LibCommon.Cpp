@@ -4,7 +4,6 @@
 #include <data/irepository.hpp>
 #include <services/idatabase_api.hpp>
 #include <data/models/person.hpp>
-#include <helpers/request_adapters.hpp>
 #include <common/logger.hpp>
 
 namespace services_api
@@ -25,7 +24,7 @@ namespace services_api
 			bool get( const data_model::GetRequest& request
 				      , std::vector<data_model::Person>& entities) override
 			{	
-				return get(request.get_person_request, entities);
+				return do_get(request, entities);
 			}
 
 			bool add(const data_model::Person& entity) override
@@ -34,13 +33,12 @@ namespace services_api
 			}
 
 		private:
-			bool get( const data_model::GetPersonRequest& request
-			      	, std::vector<data_model::Person>& entities) const
+			bool do_get( const data_model::GetRequest& request
+			      	   , std::vector<data_model::Person>& entities) const
 			{			
-				auto service_request = helpers::to_proto_get_request(request);
 				try
 				{
-					auto result = context_->get(service_request);
+					auto result = context_->get(request);
 					parse(result, entities);
 					return true;
 				}
@@ -50,22 +48,14 @@ namespace services_api
 				}
 			}
 
-			void parse(std::shared_ptr<DataTypes::GetResponse> response
-				, std::vector<data_model::Person>& entities) const
+			void parse( std::shared_ptr<data_model::GetResponse> response
+				        , std::vector<data_model::Person>& entities) const
 			{
 				if (response == nullptr)
 					return;
-				const auto& items = response->items().items();
-				for (const auto& item : items)
-				{
-					if (item.value_type_case()
-						!= DataTypes::Entity::ValueTypeCase::kPerson)
-					{
-						logger_.error("Wrong type in entities. Not location");
-						continue;
-					}
-					entities.push_back(helpers::to_data_person(item.person()));
-				}
+				const auto& items = response->entities;
+				for (const auto& item : items)									
+					entities.push_back(item.person);				
 			}		
 
 			contracts::services::IDatabaseApi* context_;

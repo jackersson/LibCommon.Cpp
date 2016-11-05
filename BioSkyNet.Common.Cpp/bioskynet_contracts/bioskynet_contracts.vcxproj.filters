@@ -31,6 +31,9 @@
     <Filter Include="includes\data\models">
       <UniqueIdentifier>{17dce346-64f1-4637-8468-69d7fd4553f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\data">
+      <UniqueIdentifier>{2e54044d-fb4e-4ca7-a8d1-3316a9f09cab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\logging\logger.hpp">
@@ -102,6 +105,18 @@
     <ClInclude Include="include\data\models\datetime.hpp">
       <Filter>includes\data\models</Filter>
     </ClInclude>
+    <ClInclude Include="include\data\models\unit.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\commands.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\devices.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\services\iconnection_state.hpp">
+      <Filter>includes\services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\logger.cpp">
@@ -109,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data_utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\data\date_time.cpp">
+      <Filter>src\data</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,12 +1,10 @@
 #ifndef ServiceHelpers_INCLUDED
 #define ServiceHelpers_INCLUDED
 
-#include <datatypes/queries.pb.h>
-#include <datatypes/commands.pb.h>
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <grpc++/grpc++.h>
-#include <services/unit_service.grpc.pb.h>
 #include <future>
+#include <google/protobuf/empty.pb.h>
 
 namespace services_api
 {
@@ -100,7 +98,8 @@ namespace services_api
 		}
 
 		inline
-			void set_metadata(grpc::ClientContext& context, const Metadata& metadata)
+			void set_metadata( grpc::ClientContext& context
+				                , const Metadata& metadata)
 		{
 			if (metadata.size() <= 0)
 				return;
@@ -113,25 +112,6 @@ namespace services_api
 				, const std::pair<std::string, std::string>& metadata)
 		{
 			context.AddMetadata(metadata.first, metadata.second);
-		}
-
-
-		inline void to_bytes(const DataTypes::GetRequest& request
-			, DataTypes::MessageBytes& message)
-		{
-			std::string bytes;
-			request.SerializeToString(&bytes);
-			message.set_data(bytes);
-			message.set_type(DataTypes::DataType::GetRequestType);
-		}
-
-		inline void to_bytes(const DataTypes::CommitRequest& request
-			, DataTypes::MessageBytes& message)
-		{
-			std::string bytes;
-			request.SerializeToString(&bytes);
-			message.set_data(bytes);
-			message.set_type(DataTypes::DataType::CommitRequestType);
 		}
 
 		template <typename T>

@@ -28,6 +28,9 @@ namespace data_model
 
 	struct FaceTemplate
 	{
+		//FaceTemplate(const data_model::Key& key, const std::string& temp_url)
+			//: person_id(key), url(temp_url) {}
+
 		Key         person_id;
 		std::string url      ;
 	};

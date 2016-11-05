@@ -1,8 +1,6 @@
 #ifndef FacialClientCalls_INCLUDED
 #define FacialClientCalls_INCLUDED
 
-#include <datatypes/queries.pb.h>
-#include <datatypes/commands.pb.h>
 #include <future>
 #include <helpers/service_heplers.hpp>
 #include <services/facial_service.pb.h>

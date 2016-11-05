@@ -2,6 +2,8 @@
 #define QueriesDataModel_INCLUDED
 
 #include <string>
+#include <vector>
+#include "commands.hpp"
 
 namespace data_model
 {
@@ -29,6 +31,13 @@ namespace data_model
 		GetFaceCharRequest    get_face_char_request   ;
 		GetPersonRequest      get_person_request      ;
 		GetVisitRecordRequest get_visit_record_request;
+	};
+
+	
+	struct GetResponse
+	{
+		std::vector<Entity> entities;
+		int count;
 	};
 }
 

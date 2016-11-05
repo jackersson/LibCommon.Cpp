@@ -9,7 +9,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\dependencies\BioSkyNet.Common.Cpp\BioSkyNet.Common.Cpp\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>utils_x32d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

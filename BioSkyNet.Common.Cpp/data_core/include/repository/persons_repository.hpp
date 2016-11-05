@@ -29,11 +29,7 @@ namespace data_core
 			bool add(const data_model::Person& entity) override
 			{
 				return datacontext_->add(entity);
-			}		
-
-			contracts::data::ILocalStorage<data_model::Person>&	local() override {
-				throw std::exception("Not implemented");
-			}
+			}	
 
 		private:	
 			IDataContext<data_model::Person>*    datacontext_;

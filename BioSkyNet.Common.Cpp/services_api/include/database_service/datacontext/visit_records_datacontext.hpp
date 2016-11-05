@@ -31,21 +31,20 @@ namespace services_api
 			bool add(const data_model::VisitRecord& entity) override
 			{
 				auto service_entity = helpers::to_proto_entity(entity);
-				auto request        = helpers::to_commit_insert(service_entity);
+				auto request        = helpers::to_data_commit_insert(service_entity);
 				
 				auto result = context_->commit(request);
 				
-				return valid(result, DataTypes::Entity::ValueTypeCase::kVisitRecord);
+				return valid(result);
 			}
 
 		private:
-			bool get( const data_model::GetVisitRecordRequest& request
-				       , std::vector<data_model::VisitRecord>& entities) const
+			bool do_get( const data_model::GetRequest& request
+				         , std::vector<data_model::VisitRecord>& entities) const
 			{				
-				auto service_request = helpers::to_proto_get_request(request);
 				try
 				{
-					auto result = context_->get(service_request);
+					auto result = context_->get(request);
 					parse(result, entities);
 					return true;
 				}
@@ -55,44 +54,34 @@ namespace services_api
 				}
 			}
 
-			void parse(std::shared_ptr<DataTypes::GetResponse> response
-				, std::vector<data_model::VisitRecord>& entities) const
+			void parse( std::shared_ptr<data_model::GetResponse> response
+				        , std::vector<data_model::VisitRecord>& entities   ) const
 			{
 				if (response == nullptr)
 					return;
-				const auto& items = response->items().items();
-				for (const auto& item : items)
-				{
-					if (item.value_type_case()
-						!= DataTypes::Entity::ValueTypeCase::kVisitRecord)
-					{
-						logger_.error("Wrong type in entities. Not location");
-						continue;
-					}
-					entities.push_back(helpers::to_visit_record(item.visit_record()));
-				}
+				const auto& items = response->entities;
+				for (const auto& item : items)					
+					entities.push_back(item.visit_record);				
 			}
 
 		
 			//TODO to utils, common for all 
-			bool valid( std::shared_ptr<DataTypes::CommitResponse> response
-			          , DataTypes::Entity::ValueTypeCase target_type) const
+			bool valid( std::shared_ptr<data_model::CommitResponse> response ) const
 			{
 				if (response == nullptr)
 					return false;
-				const auto& mutations = response->mutation_results();
+				const auto& mutations = response->mutations;
 				for (const auto& item : mutations)
 				{
-					const auto& error_message = item.error();
+					const auto& error_message = item.error;
 					if (error_message != "")
 					{
 						logger_.error("Mutation error {0}", error_message);
 						continue;
 					}
-					const auto& entity = item.entity();
-					if (entity.value_type_case() != target_type)
-						logger_.error("Mutation error. Type mismatch {0} != "
-						            	, entity.value_type_case(), target_type );
+					const auto& entity = item.entity;
+					if (!entity.has_visit_record())
+						logger_.error("Mutation error. Type mismatch");
 				}
 				return mutations.size() > 0;
 			}

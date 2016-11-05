@@ -1,39 +1,16 @@
 #ifndef IRepository_Included
 #define IRepository_Included
 
-#include <datatypes/data.pb.h>
 #include <common/ilifecycle.hpp>
-#include <observers/iobservable.hpp>
-#include <observers/observable.hpp>
 #include <any.hpp>
 #include <data/models/queries.hpp>
+#include <vector>
+#include <map>
 
 namespace contracts
 {
 	namespace data
-	{
-		template <typename TEntity>
-		class ILocalStorage : public observers::Observable<observers::IObserver>
-		{
-		public:
-			virtual ~ILocalStorage() {}
-
-			virtual void clear() = 0;
-
-			virtual const TEntity& operator[](const size_t& i) const = 0;
-
-			virtual size_t size() const = 0;
-
-			virtual bool add(TEntity* entity) = 0;
-
-			virtual bool remove(const DataTypes::Key& key) = 0;
-
-			virtual bool update(TEntity* entity) = 0;
-
-			//TODO maybe const
-			virtual bool contains(const DataTypes::Key& key) = 0;
-		};
-
+	{		
 		template <typename TEntity>
 		class IDataContext
 		{
@@ -43,13 +20,7 @@ namespace contracts
 			virtual bool get( const data_model::GetRequest& request
 				              , std::vector<TEntity>&) = 0;
 
-			//virtual bool find(DataTypes::Key key, TEntity&) = 0;
-
 			virtual bool add(const TEntity& entity) = 0;
-
-			//virtual bool remove(TEntity* entity) = 0;
-
-			//virtual bool update(TEntity* entity) = 0;
 		};
 	
 		template <typename TEntity>
@@ -57,8 +28,6 @@ namespace contracts
 		{
 		public:
 			virtual ~IRepository() {}
-
-			virtual ILocalStorage<TEntity>& local() = 0;
 		};
 
 	

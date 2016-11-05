@@ -1,29 +1,24 @@
-#ifndef FacialClientImpl_INCLUDED
-#define FacialClientImpl_INCLUDED
+#ifndef FacialClientApi_INCLUDED
+#define FacialClientApi_INCLUDED
 
-#include <grpc++/grpc++.h>
 #include <client_service_base.hpp>
 #include <services/facial_service.grpc.pb.h>
 #include "facial_client_calls.hpp"
 #include <service_utils.hpp>
-#include <services/ifacial_service_api.hpp>
-
-using grpc::ServerBuilder;
 
 namespace services_api
 {
-	class FacialClientImpl : public AbstractClientService	
-		                     , public contracts::services::IFacialServiceApi
+	class FacialClientApi : public AbstractClientService			                    
 	{
 	public:
-		explicit FacialClientImpl(contracts::services::IServiceAddress& address)
+		explicit FacialClientApi(contracts::services::IServiceAddress& address)
 			                       : AbstractClientService(address)
 		{		
-			FacialClientImpl::init();
+			FacialClientApi::init();
 		}
 
-		~FacialClientImpl()	{
-			FacialClientImpl::de_init();
+		~FacialClientApi()	{
+			FacialClientApi::de_init();
 		}
 
 		void init() override
@@ -38,7 +33,7 @@ namespace services_api
 		}
 
 		std::shared_ptr<Services::BiometricResponse>
-			process(const Services::BiometricRequest& request) override
+			process(const Services::BiometricRequest& request)
 		{
 			auto queue = get_completion_queue<AsyncFaceProcessCall>();
 			if (queue == nullptr)	return nullptr;
@@ -54,7 +49,7 @@ namespace services_api
 		
 	private:		
 		std::string class_name() const override {
-			return typeid(FacialClientImpl).name();
+			return typeid(FacialClientApi).name();
 		}
 
 		void do_create_stub(std::shared_ptr<grpc::Channel> channel) override {
@@ -63,8 +58,8 @@ namespace services_api
 
 		std::unique_ptr<Services::BiometricFacialService::Stub> stub_;
 
-		FacialClientImpl(const FacialClientImpl&) = delete;
-		FacialClientImpl& operator=(const FacialClientImpl&) = delete;
+		FacialClientApi(const FacialClientApi&) = delete;
+		FacialClientApi& operator=(const FacialClientApi&) = delete;
 	};
 }
 

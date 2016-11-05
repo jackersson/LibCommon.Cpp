@@ -30,13 +30,7 @@ namespace data_core
 			{
 				return datacontext_->add(entity);
 			}
-
-			contracts::data::ILocalStorage<data_model::VisitRecord>&
-				local() override
-			{
-				throw std::exception("Not implemented");
-			}
-
+			
 		private:
 			IDataContext<data_model::VisitRecord>* datacontext_;
 		};

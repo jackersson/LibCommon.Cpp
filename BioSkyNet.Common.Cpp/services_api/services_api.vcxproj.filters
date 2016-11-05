@@ -42,13 +42,7 @@
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp">
       <Filter>includes\coordinator_service</Filter>
     </ClInclude>
-    <ClInclude Include="include\coordinator_service\coordinator_client_impl.hpp">
-      <Filter>includes\coordinator_service</Filter>
-    </ClInclude>
     <ClInclude Include="include\database_service\database_client_calls.hpp">
-      <Filter>includes\database_service</Filter>
-    </ClInclude>
-    <ClInclude Include="include\database_service\database_client_impl.hpp">
       <Filter>includes\database_service</Filter>
     </ClInclude>
     <ClInclude Include="include\helpers\service_heplers.hpp">
@@ -57,16 +51,10 @@
     <ClInclude Include="include\client_service_base.hpp">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="include\file_service\file_client_impl.hpp">
-      <Filter>includes\file_service</Filter>
-    </ClInclude>
     <ClInclude Include="include\file_service\file_client_calls.hpp">
       <Filter>includes\file_service</Filter>
     </ClInclude>
     <ClInclude Include="include\facial_service\client\facial_client_calls.hpp">
-      <Filter>includes\facial_service\client</Filter>
-    </ClInclude>
-    <ClInclude Include="include\facial_service\client\facial_client_impl.hpp">
       <Filter>includes\facial_service\client</Filter>
     </ClInclude>
     <ClInclude Include="include\service_base.hpp">
@@ -92,6 +80,27 @@
     </ClInclude>
     <ClInclude Include="include\helpers\request_adapters.hpp">
       <Filter>includes\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coordinator_service\coordinator_client_api.hpp">
+      <Filter>includes\coordinator_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coordinator_service\coordinator_client_adapted.hpp">
+      <Filter>includes\coordinator_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\database_service_adapted.hpp">
+      <Filter>includes\database_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\database_service\database_client_api.hpp">
+      <Filter>includes\database_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\facial_service\client\facial_client_api.hpp">
+      <Filter>includes\facial_service\client</Filter>
+    </ClInclude>
+    <ClInclude Include="include\file_service\file_client_api.hpp">
+      <Filter>includes\file_service</Filter>
+    </ClInclude>
+    <ClInclude Include="include\facial_service\client\facial_client_adapted.hpp">
+      <Filter>includes\facial_service\client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

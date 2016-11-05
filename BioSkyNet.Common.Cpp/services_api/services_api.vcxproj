@@ -64,6 +64,7 @@
     <Import Project="..\properties\utils_x32d.props" />
     <Import Project="..\properties\protobuf_x32d.props" />
     <Import Project="..\properties\boost_32d.props" />
+    <Import Project="..\properties\spdlog_x32d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -150,19 +151,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\client_service_base.hpp" />
+    <ClInclude Include="include\coordinator_service\coordinator_client_adapted.hpp" />
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_impl.hpp" />
+    <ClInclude Include="include\coordinator_service\coordinator_client_api.hpp" />
     <ClInclude Include="include\database_service\database_client_calls.hpp" />
-    <ClInclude Include="include\database_service\database_client_impl.hpp" />
+    <ClInclude Include="include\database_service\database_client_api.hpp" />
+    <ClInclude Include="include\database_service\database_service_adapted.hpp" />
     <ClInclude Include="include\database_service\datacontext\datacontext_container.hpp" />
     <ClInclude Include="include\database_service\datacontext\facial_charst_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\locations_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\persons_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\visit_records_datacontext.hpp" />
+    <ClInclude Include="include\facial_service\client\facial_client_adapted.hpp" />
     <ClInclude Include="include\facial_service\client\facial_client_calls.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_impl.hpp" />
+    <ClInclude Include="include\facial_service\client\facial_client_api.hpp" />
     <ClInclude Include="include\file_service\file_client_calls.hpp" />
-    <ClInclude Include="include\file_service\file_client_impl.hpp" />
+    <ClInclude Include="include\file_service\file_client_api.hpp" />
     <ClInclude Include="include\helpers\request_adapters.hpp" />
     <ClInclude Include="include\helpers\request_handler.hpp" />
     <ClInclude Include="include\helpers\service_heplers.hpp" />

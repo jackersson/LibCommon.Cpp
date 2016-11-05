@@ -1,31 +1,28 @@
 #ifndef DatabaseClientImpl_INCLUDED
 #define DatabaseClientImpl_INCLUDED
 
-#include <grpc++/grpc++.h>
 #include <services/database_service.grpc.pb.h>
 #include "database_service/database_client_calls.hpp"
-#include <services/idatabase_api.hpp>
 #include <service_utils.hpp>
 #include <services/service_address.hpp>
 #include <logging/logger.hpp>
 #include <client_service_base.hpp>
+#include <helpers/request_adapters.hpp>
 
-using grpc::ServerBuilder;
 
 namespace services_api
 {
-	class DatabaseClientImpl : public AbstractClientService
-		                       , public contracts::services::IDatabaseApi
+	class DatabaseClientApi : public AbstractClientService		                       
 	{
 	public:
-		explicit DatabaseClientImpl(contracts::services::IServiceAddress& address)
+		explicit DatabaseClientApi(contracts::services::IServiceAddress& address)
 			                         : AbstractClientService(address)
 		{
-			DatabaseClientImpl::init();
+			DatabaseClientApi::init();
 		}
 
-		~DatabaseClientImpl() {
-			DatabaseClientImpl::de_init();
+		~DatabaseClientApi() {
+			DatabaseClientApi::de_init();
 		}	
 
 		void init() override
@@ -41,12 +38,12 @@ namespace services_api
 		}
 		
 		std::shared_ptr<DataTypes::GetResponse>
-			get(const DataTypes::GetRequest& request) override
+			get(const DataTypes::GetRequest& request)
 		{
 			logger_.info("{0} Get request ", class_name());
 
 			DataTypes::MessageBytes message;
-			helpers::to_bytes(request, message);
+			helpers::to_message_bytes(request, message);
 
 			auto queue = get_completion_queue<AsyncGetRequestCall>();
 			if (queue == nullptr)	return nullptr;
@@ -67,10 +64,10 @@ namespace services_api
 		}
 
 		std::shared_ptr<DataTypes::CommitResponse>
-			commit(const DataTypes::CommitRequest& request) override
+			commit(const DataTypes::CommitRequest& request) 
 		{
 			DataTypes::MessageBytes message;
-			helpers::to_bytes(request, message);
+			helpers::to_message_bytes(request, message);
 
 			auto queue = get_completion_queue<AsyncGetRequestCall>();
 			if (queue == nullptr)	return nullptr;
@@ -96,13 +93,13 @@ namespace services_api
 		}
 	
 		std::string class_name() const override {
-			return typeid(DatabaseClientImpl).name();
+			return typeid(DatabaseClientApi).name();
 		}
 				
 		std::unique_ptr<Services::DatabaseService::Stub> stub_;
 		
-		DatabaseClientImpl(const DatabaseClientImpl&) = delete;
-		DatabaseClientImpl& operator=(const DatabaseClientImpl&) = delete;
+		DatabaseClientApi(const DatabaseClientApi&) = delete;
+		DatabaseClientApi& operator=(const DatabaseClientApi&) = delete;
 	};
 }
 

@@ -32,11 +32,7 @@ namespace data_core
 			bool add(const data_model::FaceTemplate& entity) override
 			{
 				return datacontext_->add(entity);
-			}
-					
-			contracts::data::ILocalStorage<data_model::FaceTemplate>&	local() override {
-				throw std::exception("Not implemented exception");
-			}
+			}				
 
 		private:
 			IDataContext<data_model::FaceTemplate>*    datacontext_;
