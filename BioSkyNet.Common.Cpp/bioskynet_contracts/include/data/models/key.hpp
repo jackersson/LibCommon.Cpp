@@ -47,7 +47,9 @@ namespace data_model
 		}
 
 		bool is_empty() const	{
-			return uuid_.second || identifier_.second || number_.second;
+			return    ( uuid_.second       && !uuid_.first.is_nil()   )
+				     || ( identifier_.second && identifier_.first != "" )
+				     || ( number_.second     && number_.first > 0       );
 		}
 
 		bool operator==(const Key& val) const
@@ -55,6 +57,21 @@ namespace data_model
 			return   val.uuid_       == this->uuid_
 				   &&  val.identifier_ == this->identifier_
 				   &&  val.number_     == this->number_;
+		}
+
+		bool operator<(const Key& val) const
+		{
+			return val.number_ < this->number_;
+		}
+
+		bool operator>(const Key& val) const
+		{
+			return val.number_ > this->number_;
+		}
+
+		bool operator!=(const Key& val) const
+		{
+			return !(*this == val);
 		}
 
 		static const Key& empty()

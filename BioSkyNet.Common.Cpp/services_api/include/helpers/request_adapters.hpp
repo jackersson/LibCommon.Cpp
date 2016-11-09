@@ -140,6 +140,12 @@ namespace services_api
 			return DataTypes::DeviceUpdate();
 		}
 
+		inline DataTypes::Devices
+			to_proto_devices(const data_model::Devices& gr)
+		{
+			return DataTypes::Devices();
+		}
+
 		inline DataTypes::HeartbeatMessage
 			to_proto_heartbeat_msg(const data_model::HeartbeatMessage& gr)
 		{
@@ -151,6 +157,7 @@ namespace services_api
 		{
 			return DataTypes::ConnectMsg();
 		}
+
 
 		const int UUID_BYTES_SIZE = 16;
 		inline void set_guid(const boost::uuids::uuid& guid, DataTypes::Key& key)
@@ -194,7 +201,7 @@ namespace services_api
 		}
 
 		inline
-			data_model::Key to_data_key(const DataTypes::Key& key)
+			data_model::Key to_data_model_key(const DataTypes::Key& key)
 		{
 			switch (key.id_type_case())
 			{
@@ -259,6 +266,99 @@ namespace services_api
 			message.set_data(bytes);
 			message.set_type(DataTypes::DataType::CommitRequestType);
 		}
+
+
+		/*
+		inline DataTypes::Position*
+		to_proto_position(float xpos, float ypos)
+		{
+		auto proto_position = new DataTypes::Position();
+		proto_position->set_x(xpos);
+		proto_position->set_y(ypos);
+		return proto_position;
+		}
+
+		inline DataTypes::Position*
+		to_proto_position(const contracts::geometries::IPosition& pos)
+		{
+		return to_proto_position(pos.x(), pos.y());
+		}
+		*/
+		/*
+		inline
+		DataTypes::Key* to_proto_key(const data_model::Key& key)
+		{
+		auto target_key = new DataTypes::Key();
+
+		if (key.has_guid())
+		contracts::data::set_guid(key.guid(), *target_key);
+		else if (key.has_identifier())
+		target_key->set_identifier(key.identifier());
+		else if (key.has_numeric_id())
+		target_key->set_number(key.number());
+
+		return target_key;
+		}
+
+		inline
+		data_model::Key to_data_key(const DataTypes::Key& key)
+		{
+		switch (key.id_type_case())
+		{
+		case DataTypes::Key::kNumber:
+		return data_model::Key(key.number());
+		case DataTypes::Key::kIdentifier:
+		return data_model::Key(key.identifier());
+		case DataTypes::Key::kGuid:
+		return data_model::Key(key.guid());
+		case DataTypes::Key::ID_TYPE_NOT_SET: break;
+		default: break;
+		}
+		return data_model::Key();
+		}
+		*/
+		/*
+		inline
+		DataTypes::Box* to_service_box(const contracts::geometries::IBox& box)
+		{
+		const auto& origin = box.origin();
+		const auto& end    = box.end();
+
+		auto target_box = new DataTypes::Box();
+		target_box->set_allocated_begin(to_proto_position(origin));
+		target_box->set_width (std::abs(origin.x() - end.x()));
+		target_box->set_height(std::abs(origin.y() - end.y()));
+
+		return target_box;
+		}
+
+		inline
+		void to_service_faces( const contracts::faces::IFaces& faces
+		, DataTypes::Faces& target_faces)
+		{
+		auto count = faces.size();
+		if (count <= 0)
+		return;
+
+		auto photo_id = to_proto_key(faces.id());
+		for (auto i = 0; i < faces.size(); ++i)
+		{
+		auto& iface = faces[i];
+		auto face = target_faces.add_faces();
+
+		face->set_allocated_id(to_proto_key(iface.id()));
+		face->set_allocated_box(to_service_box(iface.bounding_box()));
+		face->set_fir_url(iface.template_url());
+		face->set_confidence(iface.confidence());
+
+		face->set_allocated_person_id(to_proto_key(iface.person_id()));
+		face->set_allocated_photo_id(photo_id);
+		}
+		}
+
+
+		*/
+
 
 	}
 }

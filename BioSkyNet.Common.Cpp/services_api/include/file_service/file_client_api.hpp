@@ -1,7 +1,7 @@
 #ifndef FileClientImpl_INCLUDED
 #define FileClientImpl_INCLUDED
 
-#include <client_service_base.hpp>
+#include "abstract_client_service.hpp"
 #include <services/file_service.grpc.pb.h>
 #include "file_client_calls.hpp"
 #include <service_utils.hpp>
@@ -11,7 +11,7 @@ namespace services_api
 {
 	//TODO add try catch to calls
 	class FileClientApi : public AbstractClientService
-		                   , public contracts::services::IFileStorageApi
+		                  , public contracts::services::IFileStorageApi
 	{
 	public:
 		explicit FileClientApi(contracts::services::IServiceAddress& address)

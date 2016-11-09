@@ -5,23 +5,23 @@
 #include <services/idatabase_api.hpp>
 #include <services/service_address.hpp>
 #include <helpers/request_adapters.hpp>
-#include "database_client_api.hpp"
+#include "database_client_proto_api.hpp"
 
 namespace services_api
 {
-	class DatabaseClientAdapted : public DatabaseClientApi
+	class DatabaseClientDataApi : public DatabaseClientProtoApi
 		                          , public contracts::services::IDatabaseApi
 	{
 	public:
-		explicit DatabaseClientAdapted(contracts::services::IServiceAddress& address)
-			: DatabaseClientApi(address)
+		explicit DatabaseClientDataApi(contracts::services::IServiceAddress& address)
+			: DatabaseClientProtoApi(address)
 		{}
 		
 		std::shared_ptr<data_model::GetResponse>
 			get(const data_model::GetRequest& request) override
 		{
 			auto proto_request = helpers::to_proto_get_request(request);
-			auto result        = DatabaseClientApi::get(proto_request);
+			auto result        = DatabaseClientProtoApi::get(proto_request);
 
 			auto adapted = helpers::to_data_get_response(*result);
 			return std::make_shared<data_model::GetResponse>(adapted);
@@ -31,15 +31,15 @@ namespace services_api
 			commit(const data_model::CommitRequest& request) override
 		{
 			auto proto_request = helpers::to_proto_commit_request(request);
-			auto result  = DatabaseClientApi::commit(proto_request);
+			auto result  = DatabaseClientProtoApi::commit(proto_request);
 
 			auto adapted = helpers::to_data_commit_response(*result);
 			return std::make_shared<data_model::CommitResponse>(adapted);
 		}
 
 	private:		
-		DatabaseClientAdapted(const DatabaseClientAdapted&) = delete;
-		DatabaseClientAdapted& operator=(const DatabaseClientAdapted&) = delete;
+		DatabaseClientDataApi(const DatabaseClientDataApi&) = delete;
+		DatabaseClientDataApi& operator=(const DatabaseClientDataApi&) = delete;
 	};
 }
 

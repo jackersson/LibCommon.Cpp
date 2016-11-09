@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="include\common\geometries.hpp" />
     <ClInclude Include="include\common\iequatable.hpp" />
+    <ClInclude Include="include\common\ifile_io.hpp" />
     <ClInclude Include="include\common\ilifecycle.hpp" />
     <ClInclude Include="include\common\logger.hpp" />
     <ClInclude Include="include\common\raw_image.hpp" />

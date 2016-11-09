@@ -9,6 +9,10 @@
 
 namespace services_api
 {
+
+	//Virtual : 
+	// do_set_call_options ( metadata)
+	// do_create_stub ( for each client)
 	class AbstractClientService : public contracts::services::IService
 	{
 	public:
@@ -72,12 +76,17 @@ namespace services_api
 		{
 			auto cq = std::make_shared<grpc::CompletionQueue>();
 
-			auto callback
-				= std::bind(&AbstractClientService::async_complete_rpc<T>, this, cq.get());
+			RpcCallbackFunction callback = [cq, this]()	{				
+				AbstractClientService::async_complete_rpc<T>(cq.get());
+			};
+		
+			//auto callback
+			//	= std::bind(&AbstractClientService::async_complete_rpc<T>, this, cq.get());
 			handlers_.insert(std::pair<std::string, ClientRequestHandler>(
 				          	typeid(T).name(), ClientRequestHandler(cq, callback)));
 		}
 
+		
 		virtual void do_set_call_options(IAsyncCall* call) const {}
 
 	private:

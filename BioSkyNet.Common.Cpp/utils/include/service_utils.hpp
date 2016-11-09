@@ -2,6 +2,7 @@
 #define ServiceUtils_Included
 
 #include <future>
+#include <fstream>
 
 namespace utils
 {
@@ -25,6 +26,15 @@ namespace utils
 
 			return future.get();
 		}
+
+		inline
+		void create_file(const std::string& filename)
+		{
+			std::fstream outfile(filename, std::fstream::out);
+			outfile.close();
+		}
+
+		
 	}
 }
 

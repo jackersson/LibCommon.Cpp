@@ -1,6 +1,5 @@
 #ifndef Threadable_Included
 #define Threadable_Included
-#include <thread>
 
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>

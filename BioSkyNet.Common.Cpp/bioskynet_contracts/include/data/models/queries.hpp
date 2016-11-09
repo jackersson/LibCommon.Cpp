@@ -16,21 +16,45 @@ namespace data_model
 	{		
 	};
 
-	struct GetPersonRequest
+	class GetPersonRequest
 	{
-		std::string card;
+	public:
+		void set_card(const Card& card) {
+			card_ = card;
+		}
+
+		const Card& card() const {
+			return card_;
+		}
+
+	private:
+		Card card_;
 	};
 
 	struct GetVisitRecordRequest
 	{
 	};
 
-	struct GetRequest
+	class GetRequest
 	{
-		GetLocationRequest    get_locations_request   ;
-		GetFaceCharRequest    get_face_char_request   ;
-		GetPersonRequest      get_person_request      ;
-		GetVisitRecordRequest get_visit_record_request;
+	public:
+		explicit GetRequest(const GetPersonRequest& get_person_request)
+			: get_person_request_(get_person_request, true)
+		{}
+
+		bool has_person_request() const	{
+			return get_person_request_.second;
+		}
+
+		const GetPersonRequest& person_request() const{
+			return get_person_request_.first;
+		}
+
+	private:
+		std::pair<GetLocationRequest   , bool> get_locations_request_   ;
+		std::pair<GetFaceCharRequest   , bool> get_face_char_request_   ;
+		std::pair<GetPersonRequest     , bool> get_person_request_      ;
+		std::pair<GetVisitRecordRequest, bool> get_visit_record_request_;
 	};
 
 	

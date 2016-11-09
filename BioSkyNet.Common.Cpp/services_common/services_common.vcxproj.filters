@@ -18,7 +18,10 @@
     <ClInclude Include="include\coordinator_service_connector.hpp">
       <Filter>includes</Filter>
     </ClInclude>
-    <ClInclude Include="include\service_types_adapter.hpp">
+    <ClInclude Include="include\coordinator_service_heartbeat.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\coordinator_utils.hpp">
       <Filter>includes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -27,6 +30,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\coordinator_service_connector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\coordinator_service_heartbeat.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\coordinator_utils.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

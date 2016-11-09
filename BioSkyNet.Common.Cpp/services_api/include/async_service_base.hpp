@@ -13,8 +13,6 @@
 #include <common/logger.hpp>
 #include <helpers/service_heplers.hpp>
 
-using grpc::ServerBuilder;
-
 namespace services_api
 {
 	typedef
@@ -22,13 +20,13 @@ namespace services_api
 
 	typedef Services::BiometricFacialService::AsyncService AsyncFacialService;
 	typedef Services::UnitService::AsyncService            AsyncUnitService  ;
-
+	
 	template <typename TService>
 	class AsyncServiceBase : public contracts::services::IService
 	{
 	public:
 		explicit AsyncServiceBase(contracts::services::IServiceAddress& address
-			, ServerBuilder* server_builder)
+			, grpc::ServerBuilder* server_builder)
 			: address_(address)
 			, server_builder_(server_builder)
 			, cancelation_requested_(false)
@@ -82,13 +80,16 @@ namespace services_api
 		void add_rpc_handler()
 		{
 			auto cq_ = server_builder_->AddCompletionQueue();
+			std::shared_ptr<grpc::ServerCompletionQueue> sptr(move(cq_));
 
 			threadpool_.create_thread(
 				boost::bind(&boost::asio::io_service::run, &io_service_)
 			);		
-
-			auto callback = std::bind(&AsyncServiceBase::handle_rpc<T>, this, cq_.get());
-			handlers_.push_back(ServerRequestHandler(move(cq_), callback));
+			RpcCallbackFunction callback = [sptr, this]() {
+				AsyncServiceBase::handle_rpc<T>(sptr.get());
+			};
+			//auto callback = std::bind(&AsyncServiceBase::handle_rpc<T>, this, cq_.get());
+			handlers_.push_back(ServerRequestHandler(sptr, callback));
 		}
 
 		template <typename T>
@@ -139,20 +140,16 @@ namespace services_api
 				logger_.error("Not found handler creation method");
 		}
 
-
-		virtual std::string class_name() const = 0;		
-	
+		virtual std::string class_name() const = 0;			
 
 		AsyncServiceBase(const AsyncServiceBase&) = delete;
 		AsyncServiceBase& operator=(const AsyncServiceBase&) = delete;
 
 		contracts::services::IServiceAddress& address_       ;
-		ServerBuilder*                        server_builder_;
-
+		grpc::ServerBuilder*                  server_builder_;
 
 		bool cancelation_requested_;
-
-		services_api::ServerRequestHandlers handlers_;
+		ServerRequestHandlers handlers_;
 
 		boost::asio::io_service       io_service_;
 		boost::thread_group           threadpool_;

@@ -73,6 +73,10 @@ namespace data_model
 			return miliseconds_;
 		}
 
+		static DateTime now(){
+			return DateTime();
+		}
+
 	private:
 		uint32_t year_       ;
 		uint32_t month_      ;

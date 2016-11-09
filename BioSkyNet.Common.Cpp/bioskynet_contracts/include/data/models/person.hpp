@@ -10,15 +10,42 @@ namespace data_model
 	{
 		Person() {}
 
-		Key id        ;
+		void set_id(const Key& val) {
+			id_ = val;
+		}
+
+		const Key& id() const {
+			return id_;
+		}
+
+	private:
+		Key id_;
 		//std::string first_name;
 		//std::string last_name ;
 	};
 
-	struct Card
+	class Card
 	{
-		Key id      ;
-		Key owner_id;
+	public:
+		void set_owner_id(const Key& val) {
+			owner_id_ = val;
+		}
+
+		const Key& owner_id() const {
+			return owner_id_;
+		}
+
+		void set_id(const Key& val) {
+			id_ = val;
+		}
+
+		const Key& id() const {
+			return id_;
+		} 
+
+	private:
+		Key id_      ;
+		Key owner_id_;
 	};
 
 

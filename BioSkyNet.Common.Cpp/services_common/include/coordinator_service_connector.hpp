@@ -19,7 +19,7 @@ namespace services
 		public:
 			explicit
 				CoordinatorConnector( contracts::services::ICoordinatorApi*
-					                   , const contracts::services::ICoordinatorMessages&);
+					                  , const contracts::services::ICoordinatorMessages&);
 
 			~CoordinatorConnector() {
 				CoordinatorConnector::de_init();

@@ -54,6 +54,6 @@ namespace contracts
 			auto uuid = boost::uuids::random_generator()();
 			data_model::Key key(uuid);
 			return key;
-		}
+		}		
 	}
 }

@@ -148,10 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\coordinator_service_connector.hpp" />
-    <ClInclude Include="include\service_types_adapter.hpp" />
+    <ClInclude Include="include\coordinator_service_heartbeat.hpp" />
+    <ClInclude Include="include\coordinator_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\coordinator_service_connector.cpp" />
+    <ClCompile Include="src\coordinator_service_heartbeat.cpp" />
+    <ClCompile Include="src\coordinator_utils.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

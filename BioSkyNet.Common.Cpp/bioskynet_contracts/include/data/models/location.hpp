@@ -3,39 +3,59 @@
 
 #include <string>
 #include "key.hpp"
-
+#include "devices.hpp"
 namespace data_model
 {
-	struct AccessDevice
-	{
-		AccessDevice() : serial_number(0) {}
-		explicit AccessDevice(uint16_t sn)
-			: serial_number(sn)
-		{}
-		
-		uint16_t serial_number;
-	};
-
-	struct CaptureDevice
-	{
-		CaptureDevice() : device_name("") {}
-
-		explicit CaptureDevice(const std::string& name)
-			: device_name(name)
-		{}
-
-		std::string device_name;
-	};
-
-
-	struct Location
+	class Location
 	{	
-		Key           id  ;
-		std::string   name;
+	public:
+		void set_id(const Key& val) {
+			id_ = val;
+		}
 
-		std::string   unit_mac_address;
-		AccessDevice  access_device   ;
-		CaptureDevice capture_device  ;
+		const Key& id() const {
+			return id_;
+		}
+
+		void set_name(const std::string& val) {
+			name_ = val;
+		}
+
+		const std::string& name() const {
+			return name_;
+		}
+
+		void set_unit_mac_address(const std::string& val) {
+			unit_mac_address_ = val;
+		}
+
+		const std::string& unit_mac_address() const {
+			return unit_mac_address_;
+		}
+
+		void set_access_device(const AccessDevice& val) {
+			access_device_ = val;
+		}
+
+		const AccessDevice& access_device() const {
+			return access_device_;
+		}
+
+		void set_capture_device(const CaptureDevice& val) {
+			capture_device_ = val;
+		}
+
+		const CaptureDevice& capture_device() const {
+			return capture_device_;
+		}
+
+	private:
+		Key           id_  ;
+		std::string   name_;
+
+		std::string   unit_mac_address_;
+		AccessDevice  access_device_   ;
+		CaptureDevice capture_device_  ;
 	};
 }
 

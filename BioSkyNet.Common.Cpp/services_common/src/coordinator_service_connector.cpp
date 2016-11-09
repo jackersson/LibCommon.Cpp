@@ -31,6 +31,7 @@ namespace services
 				logger_.info("Coordinator connection error {0}"
 					, exception.what());
 			}
+
 			if (connected_)
 			{
 				logger_.info("Connected to coordinator successfully");

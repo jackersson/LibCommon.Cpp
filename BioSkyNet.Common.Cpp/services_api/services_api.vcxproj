@@ -150,27 +150,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\client_service_base.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_adapted.hpp" />
+    <ClInclude Include="include\abstract_client_service.hpp" />
+    <ClInclude Include="include\coordinator_service\coordinator_client_data_api.hpp" />
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_api.hpp" />
+    <ClInclude Include="include\coordinator_service\coordinator_client_proto_api.hpp" />
     <ClInclude Include="include\database_service\database_client_calls.hpp" />
-    <ClInclude Include="include\database_service\database_client_api.hpp" />
-    <ClInclude Include="include\database_service\database_service_adapted.hpp" />
+    <ClInclude Include="include\database_service\database_client_proto_api.hpp" />
+    <ClInclude Include="include\database_service\database_client_data_api.hpp" />
     <ClInclude Include="include\database_service\datacontext\datacontext_container.hpp" />
     <ClInclude Include="include\database_service\datacontext\facial_charst_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\locations_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\persons_data_context.hpp" />
     <ClInclude Include="include\database_service\datacontext\visit_records_datacontext.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_adapted.hpp" />
+    <ClInclude Include="include\facial_service\client\facial_client_data_api.hpp" />
     <ClInclude Include="include\facial_service\client\facial_client_calls.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_api.hpp" />
+    <ClInclude Include="include\facial_service\client\facial_client_proto_api.hpp" />
     <ClInclude Include="include\file_service\file_client_calls.hpp" />
     <ClInclude Include="include\file_service\file_client_api.hpp" />
     <ClInclude Include="include\helpers\request_adapters.hpp" />
     <ClInclude Include="include\helpers\request_handler.hpp" />
     <ClInclude Include="include\helpers\service_heplers.hpp" />
-    <ClInclude Include="include\service_base.hpp" />
+    <ClInclude Include="include\async_service_base.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

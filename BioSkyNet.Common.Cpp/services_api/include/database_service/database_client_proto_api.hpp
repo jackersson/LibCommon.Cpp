@@ -1,28 +1,27 @@
-#ifndef DatabaseClientImpl_INCLUDED
-#define DatabaseClientImpl_INCLUDED
+#ifndef DatabaseClientProtoApi_INCLUDED
+#define DatabaseClientProtoApi_INCLUDED
 
 #include <services/database_service.grpc.pb.h>
 #include "database_service/database_client_calls.hpp"
 #include <service_utils.hpp>
 #include <services/service_address.hpp>
 #include <logging/logger.hpp>
-#include <client_service_base.hpp>
 #include <helpers/request_adapters.hpp>
-
+#include "abstract_client_service.hpp"
 
 namespace services_api
 {
-	class DatabaseClientApi : public AbstractClientService		                       
+	class DatabaseClientProtoApi : public AbstractClientService		                       
 	{
 	public:
-		explicit DatabaseClientApi(contracts::services::IServiceAddress& address)
+		explicit DatabaseClientProtoApi(contracts::services::IServiceAddress& address)
 			                         : AbstractClientService(address)
 		{
-			DatabaseClientApi::init();
+			DatabaseClientProtoApi::init();
 		}
 
-		~DatabaseClientApi() {
-			DatabaseClientApi::de_init();
+		~DatabaseClientProtoApi() {
+			DatabaseClientProtoApi::de_init();
 		}	
 
 		void init() override
@@ -93,13 +92,13 @@ namespace services_api
 		}
 	
 		std::string class_name() const override {
-			return typeid(DatabaseClientApi).name();
+			return typeid(DatabaseClientProtoApi).name();
 		}
 				
 		std::unique_ptr<Services::DatabaseService::Stub> stub_;
 		
-		DatabaseClientApi(const DatabaseClientApi&) = delete;
-		DatabaseClientApi& operator=(const DatabaseClientApi&) = delete;
+		DatabaseClientProtoApi(const DatabaseClientProtoApi&) = delete;
+		DatabaseClientProtoApi& operator=(const DatabaseClientProtoApi&) = delete;
 	};
 }
 

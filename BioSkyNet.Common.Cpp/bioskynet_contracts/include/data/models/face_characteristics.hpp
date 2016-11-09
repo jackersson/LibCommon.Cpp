@@ -16,12 +16,37 @@ namespace data_model
 		virtual const contracts::geometries::IBox& bounding_box() const = 0;
 	};
 
-	struct FaceCharacteristics
+	class FaceCharacteristics
 	{
-		//FaceCharacteristics() {}
+	public:		
+		void set_id(const Key& val) {
+			id_ = val;
+		}
 
-		Key   id        ;
-		float confidence;
+		const Key& id() const {
+			return id_;
+		}
+
+		void set_person_id(const Key& val) {
+			person_id_ = val;
+		}
+
+		const Key& person_id() const {
+			return person_id_;
+		}
+
+		void set_confidence(float val) {
+			confidence_ = val;
+		}
+
+		float confidence() const {
+			return confidence_;
+		}
+
+	private:
+		Key   id_        ;
+		Key   person_id_ ;
+		float confidence_;
 		//std::string first_name;
 		//std::string last_name ;
 	};

@@ -1,5 +1,5 @@
-#ifndef CoordinatorClientApi_INCLUDED
-#define CoordinatorClientApi_INCLUDED
+#ifndef CoordinatorClientProtoApi_INCLUDED
+#define CoordinatorClientProtoApi_INCLUDED
 
 #include <services/coordinator_service.grpc.pb.h>
 #include <database_service/database_client_calls.hpp>
@@ -10,22 +10,24 @@
 #include <helpers/service_heplers.hpp>
 #include "coordinator_client_calls.hpp"
 #include <common/logger.hpp>
-#include <client_service_base.hpp>
 #include <helpers/request_adapters.hpp>
+#include <abstract_client_service.hpp>
 
 namespace services_api
 {
-	class CoordinatorClientApi : public AbstractClientService				                          
+	//Virtual:
+	//add_call_handlers (if we do't want to use other call handlers
+	class CoordinatorClientProtoApi : public AbstractClientService				                          
 	{
 	public:
-		explicit CoordinatorClientApi( contracts::services::IServiceAddress& address)
+		explicit CoordinatorClientProtoApi( contracts::services::IServiceAddress& address)
 			                            : AbstractClientService(address)		
 		{		
-			CoordinatorClientApi::init();
+			CoordinatorClientProtoApi::init();
 		}
 
-		~CoordinatorClientApi(){
-			CoordinatorClientApi::de_init();
+		~CoordinatorClientProtoApi(){
+			CoordinatorClientProtoApi::de_init();
 		}
 
 		void init() override
@@ -147,13 +149,13 @@ namespace services_api
 		}
 
 		std::string class_name() const override {
-			return typeid(CoordinatorClientApi).name();
+			return typeid(CoordinatorClientProtoApi).name();
 		}
 		
 		std::unique_ptr<Services::CoordinatorService::Stub> stub_;
 
-		CoordinatorClientApi(const CoordinatorClientApi&) = delete;
-		CoordinatorClientApi& operator=(const CoordinatorClientApi&) = delete;
+		CoordinatorClientProtoApi(const CoordinatorClientProtoApi&) = delete;
+		CoordinatorClientProtoApi& operator=(const CoordinatorClientProtoApi&) = delete;
 	};
 }
 

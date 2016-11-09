@@ -1,24 +1,25 @@
-#ifndef FacialClientApi_INCLUDED
-#define FacialClientApi_INCLUDED
+#ifndef FacialClientProtoApi_INCLUDED
+#define FacialClientProtoApi_INCLUDED
 
-#include <client_service_base.hpp>
+#include <abstract_client_service.hpp>
 #include <services/facial_service.grpc.pb.h>
 #include "facial_client_calls.hpp"
 #include <service_utils.hpp>
 
 namespace services_api
 {
-	class FacialClientApi : public AbstractClientService			                    
+	class FacialClientProtoApi : public AbstractClientService			                    
 	{
 	public:
-		explicit FacialClientApi(contracts::services::IServiceAddress& address)
-			                       : AbstractClientService(address)
+		explicit 
+			FacialClientProtoApi( contracts::services::IServiceAddress& address)
+			                    : AbstractClientService(address)
 		{		
-			FacialClientApi::init();
+			FacialClientProtoApi::init();
 		}
 
-		~FacialClientApi()	{
-			FacialClientApi::de_init();
+		~FacialClientProtoApi()	{
+			FacialClientProtoApi::de_init();
 		}
 
 		void init() override
@@ -49,7 +50,7 @@ namespace services_api
 		
 	private:		
 		std::string class_name() const override {
-			return typeid(FacialClientApi).name();
+			return typeid(FacialClientProtoApi).name();
 		}
 
 		void do_create_stub(std::shared_ptr<grpc::Channel> channel) override {
@@ -58,8 +59,8 @@ namespace services_api
 
 		std::unique_ptr<Services::BiometricFacialService::Stub> stub_;
 
-		FacialClientApi(const FacialClientApi&) = delete;
-		FacialClientApi& operator=(const FacialClientApi&) = delete;
+		FacialClientProtoApi(const FacialClientProtoApi&) = delete;
+		FacialClientProtoApi& operator=(const FacialClientProtoApi&) = delete;
 	};
 }
 
