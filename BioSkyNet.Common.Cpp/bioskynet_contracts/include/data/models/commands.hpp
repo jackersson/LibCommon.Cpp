@@ -1,61 +1,73 @@
 #ifndef CommandsDataModel_INCLUDED
 #define CommandsDataModel_INCLUDED
 
-#include <string>
 #include <vector>
-#include "visit_record.hpp"
-#include "face_characteristics.hpp"
-#include "location.hpp"
-#include "person.hpp"
+#include "mutations.hpp"
 
 namespace data_model
-{
-	struct Entity
+{	
+	class CommitResponse
 	{
-		FaceCharacteristics face;
-		Location            location;
-		Person              person;
-		VisitRecord         visit_record;
-
-		//TODO implement
-		bool has_visit_record() const
+	public:
+		void add(const MutationResult& entity)
 		{
-			return true;
+			mutations_.push_back(entity);
 		}
+
+		std::vector<MutationResult>::const_iterator begin() const
+		{
+			return mutations_.cbegin();
+		}
+
+		std::vector<MutationResult>::const_iterator end() const
+		{
+			return mutations_.cend();
+		}
+
+		void clear() {
+			mutations_.clear();
+		}
+
+		size_t size() const	{
+			return mutations_.size();
+		}
+
+	private:
+		std::vector<MutationResult> mutations_;
 	};
 
-	struct MutationResult
+	class CommitRequest
 	{
-		Entity      entity;
-		std::string error;
-	};
+	public:
+		void add(const Mutation& entity)
+		{
+			mutations_.push_back(entity);
+		}
 
-	struct Mutation
+		std::vector<Mutation>::const_iterator begin() const
+		{
+			return mutations_.cbegin();
+		}
+
+		std::vector<Mutation>::const_iterator end() const
+		{
+			return mutations_.cend();
+		}
+
+		void clear() {
+			mutations_.clear();
+		}
+
+	private:
+		std::vector<Mutation> mutations_;
+	};	
+
+	class BiometricRequest
 	{
-		Entity inserted;
-		Entity updated;
-		Entity deleted;
-	};
-
-	struct CommitRequest
-	{
-		std::vector<Mutation> mutations;
-	};
-
-	struct CommitResponse
-	{
-		std::vector<MutationResult> mutations;
-	};
-
-
-	
-
-	struct BiometricRequest
-	{
 
 	};
 
-	struct BiometricResponse
+	class BiometricResponse
 	{
 	};
 

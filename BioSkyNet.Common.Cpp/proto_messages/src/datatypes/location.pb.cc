@@ -24,6 +24,14 @@ namespace {
 const ::google::protobuf::Descriptor* Location_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Location_reflection_ = NULL;
+const ::google::protobuf::Descriptor* LocationUpdate_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  LocationUpdate_reflection_ = NULL;
+struct LocationUpdateOneofInstance {
+  const ::DataTypes::Location* inserted_;
+  const ::DataTypes::Location* deleted_;
+  const ::DataTypes::Location* updated_;
+}* LocationUpdate_default_oneof_instance_ = NULL;
 
 }  // namespace
 
@@ -54,6 +62,26 @@ void protobuf_AssignDesc_datatypes_2flocation_2eproto() {
       sizeof(Location),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Location, _is_default_instance_));
+  LocationUpdate_descriptor_ = file->message_type(1);
+  static const int LocationUpdate_offsets_[4] = {
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(LocationUpdate_default_oneof_instance_, inserted_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(LocationUpdate_default_oneof_instance_, deleted_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(LocationUpdate_default_oneof_instance_, updated_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LocationUpdate, update_type_),
+  };
+  LocationUpdate_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      LocationUpdate_descriptor_,
+      LocationUpdate::default_instance_,
+      LocationUpdate_offsets_,
+      -1,
+      -1,
+      -1,
+      LocationUpdate_default_oneof_instance_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LocationUpdate, _oneof_case_[0]),
+      sizeof(LocationUpdate),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LocationUpdate, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LocationUpdate, _is_default_instance_));
 }
 
 namespace {
@@ -68,6 +96,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Location_descriptor_, &Location::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      LocationUpdate_descriptor_, &LocationUpdate::default_instance());
 }
 
 }  // namespace
@@ -75,6 +105,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_datatypes_2flocation_2eproto() {
   delete Location::default_instance_;
   delete Location_reflection_;
+  delete LocationUpdate::default_instance_;
+  delete LocationUpdate_default_oneof_instance_;
+  delete LocationUpdate_reflection_;
 }
 
 void protobuf_AddDesc_datatypes_2flocation_2eproto() {
@@ -93,13 +126,20 @@ void protobuf_AddDesc_datatypes_2flocation_2eproto() {
     "\030\n\020unit_mac_address\030\004 \001(\t\022.\n\raccess_devi"
     "ce\030\005 \001(\0132\027.DataTypes.AccessDevice\0220\n\016cap"
     "ture_device\030\006 \001(\0132\030.DataTypes.CaptureDev"
-    "iceBM\n\007ex.grpcZ<github.com/Enebra/Servic"
-    "eCoordinator/grpc/datatypes/location\242\002\003R"
-    "TGb\006proto3", 370);
+    "ice\"\230\001\n\016LocationUpdate\022\'\n\010inserted\030\001 \001(\013"
+    "2\023.DataTypes.LocationH\000\022&\n\007deleted\030\002 \001(\013"
+    "2\023.DataTypes.LocationH\000\022&\n\007updated\030\003 \001(\013"
+    "2\023.DataTypes.LocationH\000B\r\n\013update_typeBM"
+    "\n\007ex.grpcZ<github.com/Enebra/ServiceCoor"
+    "dinator/grpc/datatypes/location\242\002\003RTGb\006p"
+    "roto3", 525);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/location.proto", &protobuf_RegisterTypes);
   Location::default_instance_ = new Location();
+  LocationUpdate::default_instance_ = new LocationUpdate();
+  LocationUpdate_default_oneof_instance_ = new LocationUpdateOneofInstance();
   Location::default_instance_->InitAsDefaultInstance();
+  LocationUpdate::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_datatypes_2flocation_2eproto);
 }
 
@@ -837,6 +877,497 @@ void Location::set_allocated_capture_device(::DataTypes::CaptureDevice* capture_
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.capture_device)
 }
 
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int LocationUpdate::kInsertedFieldNumber;
+const int LocationUpdate::kDeletedFieldNumber;
+const int LocationUpdate::kUpdatedFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+LocationUpdate::LocationUpdate()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DataTypes.LocationUpdate)
+}
+
+void LocationUpdate::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  LocationUpdate_default_oneof_instance_->inserted_ = const_cast< ::DataTypes::Location*>(&::DataTypes::Location::default_instance());
+  LocationUpdate_default_oneof_instance_->deleted_ = const_cast< ::DataTypes::Location*>(&::DataTypes::Location::default_instance());
+  LocationUpdate_default_oneof_instance_->updated_ = const_cast< ::DataTypes::Location*>(&::DataTypes::Location::default_instance());
+}
+
+LocationUpdate::LocationUpdate(const LocationUpdate& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:DataTypes.LocationUpdate)
+}
+
+void LocationUpdate::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  clear_has_update_type();
+}
+
+LocationUpdate::~LocationUpdate() {
+  // @@protoc_insertion_point(destructor:DataTypes.LocationUpdate)
+  SharedDtor();
+}
+
+void LocationUpdate::SharedDtor() {
+  if (has_update_type()) {
+    clear_update_type();
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void LocationUpdate::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* LocationUpdate::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return LocationUpdate_descriptor_;
+}
+
+const LocationUpdate& LocationUpdate::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_datatypes_2flocation_2eproto();
+  return *default_instance_;
+}
+
+LocationUpdate* LocationUpdate::default_instance_ = NULL;
+
+LocationUpdate* LocationUpdate::New(::google::protobuf::Arena* arena) const {
+  LocationUpdate* n = new LocationUpdate;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void LocationUpdate::clear_update_type() {
+// @@protoc_insertion_point(one_of_clear_start:DataTypes.LocationUpdate)
+  switch(update_type_case()) {
+    case kInserted: {
+      delete update_type_.inserted_;
+      break;
+    }
+    case kDeleted: {
+      delete update_type_.deleted_;
+      break;
+    }
+    case kUpdated: {
+      delete update_type_.updated_;
+      break;
+    }
+    case UPDATE_TYPE_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = UPDATE_TYPE_NOT_SET;
+}
+
+
+void LocationUpdate::Clear() {
+// @@protoc_insertion_point(message_clear_start:DataTypes.LocationUpdate)
+  clear_update_type();
+}
+
+bool LocationUpdate::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DataTypes.LocationUpdate)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .DataTypes.Location inserted = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_inserted()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_deleted;
+        break;
+      }
+
+      // optional .DataTypes.Location deleted = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_deleted:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_deleted()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_updated;
+        break;
+      }
+
+      // optional .DataTypes.Location updated = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_updated:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_updated()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DataTypes.LocationUpdate)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DataTypes.LocationUpdate)
+  return false;
+#undef DO_
+}
+
+void LocationUpdate::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DataTypes.LocationUpdate)
+  // optional .DataTypes.Location inserted = 1;
+  if (has_inserted()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *update_type_.inserted_, output);
+  }
+
+  // optional .DataTypes.Location deleted = 2;
+  if (has_deleted()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, *update_type_.deleted_, output);
+  }
+
+  // optional .DataTypes.Location updated = 3;
+  if (has_updated()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, *update_type_.updated_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:DataTypes.LocationUpdate)
+}
+
+::google::protobuf::uint8* LocationUpdate::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DataTypes.LocationUpdate)
+  // optional .DataTypes.Location inserted = 1;
+  if (has_inserted()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *update_type_.inserted_, target);
+  }
+
+  // optional .DataTypes.Location deleted = 2;
+  if (has_deleted()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, *update_type_.deleted_, target);
+  }
+
+  // optional .DataTypes.Location updated = 3;
+  if (has_updated()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, *update_type_.updated_, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:DataTypes.LocationUpdate)
+  return target;
+}
+
+int LocationUpdate::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:DataTypes.LocationUpdate)
+  int total_size = 0;
+
+  switch (update_type_case()) {
+    // optional .DataTypes.Location inserted = 1;
+    case kInserted: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *update_type_.inserted_);
+      break;
+    }
+    // optional .DataTypes.Location deleted = 2;
+    case kDeleted: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *update_type_.deleted_);
+      break;
+    }
+    // optional .DataTypes.Location updated = 3;
+    case kUpdated: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *update_type_.updated_);
+      break;
+    }
+    case UPDATE_TYPE_NOT_SET: {
+      break;
+    }
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void LocationUpdate::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DataTypes.LocationUpdate)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const LocationUpdate* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const LocationUpdate>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DataTypes.LocationUpdate)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DataTypes.LocationUpdate)
+    MergeFrom(*source);
+  }
+}
+
+void LocationUpdate::MergeFrom(const LocationUpdate& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.LocationUpdate)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  switch (from.update_type_case()) {
+    case kInserted: {
+      mutable_inserted()->::DataTypes::Location::MergeFrom(from.inserted());
+      break;
+    }
+    case kDeleted: {
+      mutable_deleted()->::DataTypes::Location::MergeFrom(from.deleted());
+      break;
+    }
+    case kUpdated: {
+      mutable_updated()->::DataTypes::Location::MergeFrom(from.updated());
+      break;
+    }
+    case UPDATE_TYPE_NOT_SET: {
+      break;
+    }
+  }
+}
+
+void LocationUpdate::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DataTypes.LocationUpdate)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void LocationUpdate::CopyFrom(const LocationUpdate& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DataTypes.LocationUpdate)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool LocationUpdate::IsInitialized() const {
+
+  return true;
+}
+
+void LocationUpdate::Swap(LocationUpdate* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void LocationUpdate::InternalSwap(LocationUpdate* other) {
+  std::swap(update_type_, other->update_type_);
+  std::swap(_oneof_case_[0], other->_oneof_case_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata LocationUpdate::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = LocationUpdate_descriptor_;
+  metadata.reflection = LocationUpdate_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// LocationUpdate
+
+// optional .DataTypes.Location inserted = 1;
+bool LocationUpdate::has_inserted() const {
+  return update_type_case() == kInserted;
+}
+void LocationUpdate::set_has_inserted() {
+  _oneof_case_[0] = kInserted;
+}
+void LocationUpdate::clear_inserted() {
+  if (has_inserted()) {
+    delete update_type_.inserted_;
+    clear_has_update_type();
+  }
+}
+ const ::DataTypes::Location& LocationUpdate::inserted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.inserted)
+  return has_inserted()
+      ? *update_type_.inserted_
+      : ::DataTypes::Location::default_instance();
+}
+::DataTypes::Location* LocationUpdate::mutable_inserted() {
+  if (!has_inserted()) {
+    clear_update_type();
+    set_has_inserted();
+    update_type_.inserted_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.inserted)
+  return update_type_.inserted_;
+}
+::DataTypes::Location* LocationUpdate::release_inserted() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.inserted)
+  if (has_inserted()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.inserted_;
+    update_type_.inserted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LocationUpdate::set_allocated_inserted(::DataTypes::Location* inserted) {
+  clear_update_type();
+  if (inserted) {
+    set_has_inserted();
+    update_type_.inserted_ = inserted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.inserted)
+}
+
+// optional .DataTypes.Location deleted = 2;
+bool LocationUpdate::has_deleted() const {
+  return update_type_case() == kDeleted;
+}
+void LocationUpdate::set_has_deleted() {
+  _oneof_case_[0] = kDeleted;
+}
+void LocationUpdate::clear_deleted() {
+  if (has_deleted()) {
+    delete update_type_.deleted_;
+    clear_has_update_type();
+  }
+}
+ const ::DataTypes::Location& LocationUpdate::deleted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.deleted)
+  return has_deleted()
+      ? *update_type_.deleted_
+      : ::DataTypes::Location::default_instance();
+}
+::DataTypes::Location* LocationUpdate::mutable_deleted() {
+  if (!has_deleted()) {
+    clear_update_type();
+    set_has_deleted();
+    update_type_.deleted_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.deleted)
+  return update_type_.deleted_;
+}
+::DataTypes::Location* LocationUpdate::release_deleted() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.deleted)
+  if (has_deleted()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.deleted_;
+    update_type_.deleted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LocationUpdate::set_allocated_deleted(::DataTypes::Location* deleted) {
+  clear_update_type();
+  if (deleted) {
+    set_has_deleted();
+    update_type_.deleted_ = deleted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.deleted)
+}
+
+// optional .DataTypes.Location updated = 3;
+bool LocationUpdate::has_updated() const {
+  return update_type_case() == kUpdated;
+}
+void LocationUpdate::set_has_updated() {
+  _oneof_case_[0] = kUpdated;
+}
+void LocationUpdate::clear_updated() {
+  if (has_updated()) {
+    delete update_type_.updated_;
+    clear_has_update_type();
+  }
+}
+ const ::DataTypes::Location& LocationUpdate::updated() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.updated)
+  return has_updated()
+      ? *update_type_.updated_
+      : ::DataTypes::Location::default_instance();
+}
+::DataTypes::Location* LocationUpdate::mutable_updated() {
+  if (!has_updated()) {
+    clear_update_type();
+    set_has_updated();
+    update_type_.updated_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.updated)
+  return update_type_.updated_;
+}
+::DataTypes::Location* LocationUpdate::release_updated() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.updated)
+  if (has_updated()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.updated_;
+    update_type_.updated_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void LocationUpdate::set_allocated_updated(::DataTypes::Location* updated) {
+  clear_update_type();
+  if (updated) {
+    set_has_updated();
+    update_type_.updated_ = updated;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.updated)
+}
+
+bool LocationUpdate::has_update_type() const {
+  return update_type_case() != UPDATE_TYPE_NOT_SET;
+}
+void LocationUpdate::clear_has_update_type() {
+  _oneof_case_[0] = UPDATE_TYPE_NOT_SET;
+}
+LocationUpdate::UpdateTypeCase LocationUpdate::update_type_case() const {
+  return LocationUpdate::UpdateTypeCase(_oneof_case_[0]);
+}
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)

@@ -16,11 +16,11 @@ namespace data_model
 			                                         , number_(0 , false)
 		{}
 
-		explicit Key(const std::string& id) : identifier_(id, false)
+		explicit Key(const std::string& id) : identifier_(id, true)
 			                                  , number_(0 , false)
 		{}
 
-		explicit Key(long id) : number_(id, false) {}
+		explicit Key(long id) : number_(id, true) {}
 
 		bool has_guid() const {
 			return uuid_.second;
@@ -47,9 +47,9 @@ namespace data_model
 		}
 
 		bool is_empty() const	{
-			return    ( uuid_.second       && !uuid_.first.is_nil()   )
+			return !( ( uuid_.second     && !uuid_.first.is_nil()   )
 				     || ( identifier_.second && identifier_.first != "" )
-				     || ( number_.second     && number_.first > 0       );
+				     || ( number_.second     && number_.first > 0       ) );
 		}
 
 		bool operator==(const Key& val) const
@@ -61,12 +61,16 @@ namespace data_model
 
 		bool operator<(const Key& val) const
 		{
-			return val.number_ < this->number_;
+			return  val.uuid_      .first < this->uuid_      .first
+				  ||  val.identifier_.first < this->identifier_.first
+				  ||  val.number_    .first < this->number_    .first;
 		}
 
 		bool operator>(const Key& val) const
 		{
-			return val.number_ > this->number_;
+				return  val.uuid_      .first > this->uuid_      .first
+				    ||  val.identifier_.first > this->identifier_.first
+				    ||  val.number_    .first > this->number_    .first;
 		}
 
 		bool operator!=(const Key& val) const

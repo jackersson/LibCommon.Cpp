@@ -19,7 +19,7 @@ namespace services_api
 		explicit AbstractClientService( contracts::services::IServiceAddress& address)
 			                         : active_(false)
 			                         , thread_pool_(0)
-			                         , address_(address)
+			                         , address_(address.get())
 		{}
 
 		virtual ~AbstractClientService() {
@@ -28,10 +28,11 @@ namespace services_api
 
 		void connect()
 		{
-			auto address = address_.get();
-			logger_.info("Try create channel {0}", address);
+			//auto address = address_.get();
+			logger_.info("Try create channel {0}", address_);
 
-			channel_ = CreateChannel(address, grpc::InsecureChannelCredentials());			
+			channel_ = CreateChannel(address_, grpc::InsecureChannelCredentials());
+			do_create_stub(channel_);
 		}
 		
 		void start() override
@@ -43,11 +44,14 @@ namespace services_api
 			for (auto handler : handlers_)
 				thread_pool_.Add(handler.second.callback);
 
-			logger_.info("{0} connected to {1}", class_name(), address_.get());
+			logger_.info("{0} connected to {1}", class_name(), address_);
 		}
 
 		void stop() override
 		{
+			if (handlers_.empty())
+				return;
+
 			for (auto it : handlers_)
 				it.second.completion_queue->Shutdown();
 			handlers_.clear();
@@ -122,7 +126,8 @@ namespace services_api
 		ClientRequestHandlers          handlers_   ;
 		grpc::DynamicThreadPool        thread_pool_;
 
-		contracts::services::IServiceAddress& address_;
+		std::string address_;
+		//contracts::services::IServiceAddress& address_;
 
 		AbstractClientService(const AbstractClientService&) = delete;
 		AbstractClientService& operator=(const AbstractClientService&) = delete;

@@ -4,7 +4,7 @@
 #include <data/irepository.hpp>
 #include <services/idatabase_api.hpp>
 #include <data/models/person.hpp>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 
 namespace services_api
 {
@@ -53,9 +53,13 @@ namespace services_api
 			{
 				if (response == nullptr)
 					return;
-				const auto& items = response->entities;
-				for (const auto& item : items)									
-					entities.push_back(item.person);				
+				for (const auto& item : *response)
+				{
+					if (item.type() == data_model::EntityPerson)
+						entities.push_back(item.person());
+					else
+						logger_.error("Get Response Error : Entity not contain person");
+				}
 			}		
 
 			contracts::services::IDatabaseApi* context_;

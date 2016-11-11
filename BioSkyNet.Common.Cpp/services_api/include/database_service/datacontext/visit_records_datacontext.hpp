@@ -30,10 +30,8 @@ namespace services_api
 
 			bool add(const data_model::VisitRecord& entity) override
 			{
-				auto service_entity = helpers::to_proto_entity(entity);
-				auto request        = helpers::to_data_commit_insert(service_entity);
-				
-				auto result = context_->commit(request);
+				auto request = helpers::to_data_commit_insert(entity);				
+				auto result  = context_->commit(request);
 				
 				return valid(result);
 			}
@@ -59,9 +57,13 @@ namespace services_api
 			{
 				if (response == nullptr)
 					return;
-				const auto& items = response->entities;
-				for (const auto& item : items)					
-					entities.push_back(item.visit_record);				
+				for (const auto& item : *response)
+				{
+					if (item.type() == data_model::EntityVisitRecord)
+						entities.push_back(item.visit_record());
+					else
+						logger_.error("Get Response Error : Entity not contain visitrecord");
+				}
 			}
 
 		
@@ -70,20 +72,19 @@ namespace services_api
 			{
 				if (response == nullptr)
 					return false;
-				const auto& mutations = response->mutations;
-				for (const auto& item : mutations)
+				for (const auto& item : *response)
 				{
-					const auto& error_message = item.error;
+					const auto& error_message = item.error();
 					if (error_message != "")
 					{
 						logger_.error("Mutation error {0}", error_message);
 						continue;
 					}
-					const auto& entity = item.entity;
-					if (!entity.has_visit_record())
-						logger_.error("Mutation error. Type mismatch");
+					const auto& entity = item.id();
+					if (item.id().is_empty())
+						logger_.error("Mutation error. Id empty");
 				}
-				return mutations.size() > 0;
+				return response->size() > 0;
 			}
 
 			mutable contracts::logging::Logger logger_;

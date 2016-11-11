@@ -34,6 +34,12 @@
     <Filter Include="src\data">
       <UniqueIdentifier>{2e54044d-fb4e-4ca7-a8d1-3316a9f09cab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{38755cae-8f3c-4d46-9954-32c787281552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\observers">
+      <UniqueIdentifier>{30665a47-3628-446d-82ab-b395f3855ae4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\logging\logger.hpp">
@@ -46,9 +52,6 @@
       <Filter>includes\common</Filter>
     </ClInclude>
     <ClInclude Include="include\common\raw_image.hpp">
-      <Filter>includes\common</Filter>
-    </ClInclude>
-    <ClInclude Include="include\common\logger.hpp">
       <Filter>includes\common</Filter>
     </ClInclude>
     <ClInclude Include="include\common\iequatable.hpp">
@@ -119,6 +122,18 @@
     </ClInclude>
     <ClInclude Include="include\common\ifile_io.hpp">
       <Filter>includes\common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\entity.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\mutations.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\card.hpp">
+      <Filter>includes\data\models</Filter>
+    </ClInclude>
+    <ClInclude Include="include\data\models\photo.hpp">
+      <Filter>includes\data\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

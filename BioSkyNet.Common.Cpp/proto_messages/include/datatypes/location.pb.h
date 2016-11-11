@@ -39,6 +39,7 @@ void protobuf_AssignDesc_datatypes_2flocation_2eproto();
 void protobuf_ShutdownFile_datatypes_2flocation_2eproto();
 
 class Location;
+class LocationUpdate;
 
 // ===================================================================
 
@@ -176,6 +177,127 @@ class Location : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static Location* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class LocationUpdate : public ::google::protobuf::Message {
+ public:
+  LocationUpdate();
+  virtual ~LocationUpdate();
+
+  LocationUpdate(const LocationUpdate& from);
+
+  inline LocationUpdate& operator=(const LocationUpdate& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LocationUpdate& default_instance();
+
+  enum UpdateTypeCase {
+    kInserted = 1,
+    kDeleted = 2,
+    kUpdated = 3,
+    UPDATE_TYPE_NOT_SET = 0,
+  };
+
+  void Swap(LocationUpdate* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LocationUpdate* New() const { return New(NULL); }
+
+  LocationUpdate* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const LocationUpdate& from);
+  void MergeFrom(const LocationUpdate& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(LocationUpdate* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.Location inserted = 1;
+  bool has_inserted() const;
+  void clear_inserted();
+  static const int kInsertedFieldNumber = 1;
+  const ::DataTypes::Location& inserted() const;
+  ::DataTypes::Location* mutable_inserted();
+  ::DataTypes::Location* release_inserted();
+  void set_allocated_inserted(::DataTypes::Location* inserted);
+
+  // optional .DataTypes.Location deleted = 2;
+  bool has_deleted() const;
+  void clear_deleted();
+  static const int kDeletedFieldNumber = 2;
+  const ::DataTypes::Location& deleted() const;
+  ::DataTypes::Location* mutable_deleted();
+  ::DataTypes::Location* release_deleted();
+  void set_allocated_deleted(::DataTypes::Location* deleted);
+
+  // optional .DataTypes.Location updated = 3;
+  bool has_updated() const;
+  void clear_updated();
+  static const int kUpdatedFieldNumber = 3;
+  const ::DataTypes::Location& updated() const;
+  ::DataTypes::Location* mutable_updated();
+  ::DataTypes::Location* release_updated();
+  void set_allocated_updated(::DataTypes::Location* updated);
+
+  UpdateTypeCase update_type_case() const;
+  // @@protoc_insertion_point(class_scope:DataTypes.LocationUpdate)
+ private:
+  inline void set_has_inserted();
+  inline void set_has_deleted();
+  inline void set_has_updated();
+
+  inline bool has_update_type() const;
+  void clear_update_type();
+  inline void clear_has_update_type();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  union UpdateTypeUnion {
+    UpdateTypeUnion() {}
+    ::DataTypes::Location* inserted_;
+    ::DataTypes::Location* deleted_;
+    ::DataTypes::Location* updated_;
+  } update_type_;
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
+  friend void  protobuf_AddDesc_datatypes_2flocation_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2flocation_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2flocation_2eproto();
+
+  void InitAsDefaultInstance();
+  static LocationUpdate* default_instance_;
 };
 // ===================================================================
 
@@ -431,7 +553,166 @@ inline void Location::set_allocated_capture_device(::DataTypes::CaptureDevice* c
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Location.capture_device)
 }
 
+// -------------------------------------------------------------------
+
+// LocationUpdate
+
+// optional .DataTypes.Location inserted = 1;
+inline bool LocationUpdate::has_inserted() const {
+  return update_type_case() == kInserted;
+}
+inline void LocationUpdate::set_has_inserted() {
+  _oneof_case_[0] = kInserted;
+}
+inline void LocationUpdate::clear_inserted() {
+  if (has_inserted()) {
+    delete update_type_.inserted_;
+    clear_has_update_type();
+  }
+}
+inline  const ::DataTypes::Location& LocationUpdate::inserted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.inserted)
+  return has_inserted()
+      ? *update_type_.inserted_
+      : ::DataTypes::Location::default_instance();
+}
+inline ::DataTypes::Location* LocationUpdate::mutable_inserted() {
+  if (!has_inserted()) {
+    clear_update_type();
+    set_has_inserted();
+    update_type_.inserted_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.inserted)
+  return update_type_.inserted_;
+}
+inline ::DataTypes::Location* LocationUpdate::release_inserted() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.inserted)
+  if (has_inserted()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.inserted_;
+    update_type_.inserted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LocationUpdate::set_allocated_inserted(::DataTypes::Location* inserted) {
+  clear_update_type();
+  if (inserted) {
+    set_has_inserted();
+    update_type_.inserted_ = inserted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.inserted)
+}
+
+// optional .DataTypes.Location deleted = 2;
+inline bool LocationUpdate::has_deleted() const {
+  return update_type_case() == kDeleted;
+}
+inline void LocationUpdate::set_has_deleted() {
+  _oneof_case_[0] = kDeleted;
+}
+inline void LocationUpdate::clear_deleted() {
+  if (has_deleted()) {
+    delete update_type_.deleted_;
+    clear_has_update_type();
+  }
+}
+inline  const ::DataTypes::Location& LocationUpdate::deleted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.deleted)
+  return has_deleted()
+      ? *update_type_.deleted_
+      : ::DataTypes::Location::default_instance();
+}
+inline ::DataTypes::Location* LocationUpdate::mutable_deleted() {
+  if (!has_deleted()) {
+    clear_update_type();
+    set_has_deleted();
+    update_type_.deleted_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.deleted)
+  return update_type_.deleted_;
+}
+inline ::DataTypes::Location* LocationUpdate::release_deleted() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.deleted)
+  if (has_deleted()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.deleted_;
+    update_type_.deleted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LocationUpdate::set_allocated_deleted(::DataTypes::Location* deleted) {
+  clear_update_type();
+  if (deleted) {
+    set_has_deleted();
+    update_type_.deleted_ = deleted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.deleted)
+}
+
+// optional .DataTypes.Location updated = 3;
+inline bool LocationUpdate::has_updated() const {
+  return update_type_case() == kUpdated;
+}
+inline void LocationUpdate::set_has_updated() {
+  _oneof_case_[0] = kUpdated;
+}
+inline void LocationUpdate::clear_updated() {
+  if (has_updated()) {
+    delete update_type_.updated_;
+    clear_has_update_type();
+  }
+}
+inline  const ::DataTypes::Location& LocationUpdate::updated() const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdate.updated)
+  return has_updated()
+      ? *update_type_.updated_
+      : ::DataTypes::Location::default_instance();
+}
+inline ::DataTypes::Location* LocationUpdate::mutable_updated() {
+  if (!has_updated()) {
+    clear_update_type();
+    set_has_updated();
+    update_type_.updated_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdate.updated)
+  return update_type_.updated_;
+}
+inline ::DataTypes::Location* LocationUpdate::release_updated() {
+  // @@protoc_insertion_point(field_release:DataTypes.LocationUpdate.updated)
+  if (has_updated()) {
+    clear_has_update_type();
+    ::DataTypes::Location* temp = update_type_.updated_;
+    update_type_.updated_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void LocationUpdate::set_allocated_updated(::DataTypes::Location* updated) {
+  clear_update_type();
+  if (updated) {
+    set_has_updated();
+    update_type_.updated_ = updated;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.LocationUpdate.updated)
+}
+
+inline bool LocationUpdate::has_update_type() const {
+  return update_type_case() != UPDATE_TYPE_NOT_SET;
+}
+inline void LocationUpdate::clear_has_update_type() {
+  _oneof_case_[0] = UPDATE_TYPE_NOT_SET;
+}
+inline LocationUpdate::UpdateTypeCase LocationUpdate::update_type_case() const {
+  return LocationUpdate::UpdateTypeCase(_oneof_case_[0]);
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

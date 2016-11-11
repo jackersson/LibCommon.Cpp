@@ -27,7 +27,7 @@ namespace services_api
 	public:
 		explicit AsyncServiceBase(contracts::services::IServiceAddress& address
 			, grpc::ServerBuilder* server_builder)
-			: address_(address)
+			: address_(address.get())
 			, server_builder_(server_builder)
 			, cancelation_requested_(false)
 			, work_(io_service_)
@@ -40,10 +40,9 @@ namespace services_api
 
 		void connect()
 		{
-			auto address = address_.get();
-			logger_.info("Try open port on {0}", address);
+			logger_.info("Try open port on {0}", address_);
 
-			server_builder_->AddListeningPort(address, grpc::InsecureServerCredentials());
+			server_builder_->AddListeningPort(address_, grpc::InsecureServerCredentials());
 			server_builder_->RegisterService(&service_);
 		}		
 
@@ -53,7 +52,7 @@ namespace services_api
 			for (auto handler : handlers_)
 				io_service_.post(handler.callback);
 
-			logger_.info("{0} listening on {1}", class_name(), address_.get());
+			logger_.info("{0} listening on {1}", class_name(), address_);
 		}
 
 		void stop() override
@@ -88,7 +87,6 @@ namespace services_api
 			RpcCallbackFunction callback = [sptr, this]() {
 				AsyncServiceBase::handle_rpc<T>(sptr.get());
 			};
-			//auto callback = std::bind(&AsyncServiceBase::handle_rpc<T>, this, cq_.get());
 			handlers_.push_back(ServerRequestHandler(sptr, callback));
 		}
 
@@ -118,7 +116,7 @@ namespace services_api
 				{
 					queue->Next(&tag, &ok);
 					if (ok)
-						static_cast<T*>(tag)->Proceed();
+						static_cast<T*>(tag)->proceed();
 				}
 				catch (std::exception& ex) {
 					logger_.error(ex.what());
@@ -145,8 +143,8 @@ namespace services_api
 		AsyncServiceBase(const AsyncServiceBase&) = delete;
 		AsyncServiceBase& operator=(const AsyncServiceBase&) = delete;
 
-		contracts::services::IServiceAddress& address_       ;
-		grpc::ServerBuilder*                  server_builder_;
+		std::string           address_       ;
+		grpc::ServerBuilder*  server_builder_;
 
 		bool cancelation_requested_;
 		ServerRequestHandlers handlers_;

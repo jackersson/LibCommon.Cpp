@@ -173,6 +173,7 @@
     <ClInclude Include="include\async_service_base.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\helpers\request_adapters.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

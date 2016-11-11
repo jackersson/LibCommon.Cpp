@@ -64,7 +64,7 @@ void protobuf_AssignDesc_datatypes_2fdata_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MessageBytes, _is_default_instance_));
   MutationResult_descriptor_ = file->message_type(1);
   static const int MutationResult_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MutationResult, entity_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MutationResult, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MutationResult, error_),
   };
   MutationResult_reflection_ =
@@ -138,21 +138,22 @@ void protobuf_AddDesc_datatypes_2fdata_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::DataTypes::protobuf_AddDesc_datatypes_2fentity_2eproto();
+  ::DataTypes::protobuf_AddDesc_datatypes_2fkey_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\024datatypes/data.proto\022\tDataTypes\032\026datat"
-    "ypes/entity.proto\"\?\n\014MessageBytes\022\014\n\004dat"
-    "a\030\001 \001(\014\022!\n\004type\030\002 \001(\0162\023.DataTypes.DataTy"
-    "pe\"B\n\016MutationResult\022!\n\006entity\030\001 \001(\0132\021.D"
-    "ataTypes.Entity\022\r\n\005error\030\002 \001(\t\"\206\001\n\010Mutat"
-    "ion\022#\n\006insert\030\001 \001(\0132\021.DataTypes.EntityH\000"
-    "\022#\n\006update\030\002 \001(\0132\021.DataTypes.EntityH\000\022#\n"
-    "\006delete\030\003 \001(\0132\021.DataTypes.EntityH\000B\013\n\top"
-    "eration*p\n\010DataType\022\014\n\010NoneType\020\000\022\022\n\016Get"
-    "RequestType\020\001\022\023\n\017GetResponseType\020\002\022\025\n\021Co"
-    "mmitRequestType\020\003\022\026\n\022CommitResponseType\020"
-    "\004BI\n\007ex.grpcZ8github.com/Enebra/ServiceC"
-    "oordinator/grpc/datatypes/data\242\002\003RTGb\006pr"
-    "oto3", 524);
+    "ypes/entity.proto\032\023datatypes/key.proto\"\?"
+    "\n\014MessageBytes\022\014\n\004data\030\001 \001(\014\022!\n\004type\030\002 \001"
+    "(\0162\023.DataTypes.DataType\";\n\016MutationResul"
+    "t\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022\r\n\005error\030\002"
+    " \001(\t\"\206\001\n\010Mutation\022#\n\006insert\030\001 \001(\0132\021.Data"
+    "Types.EntityH\000\022#\n\006update\030\002 \001(\0132\021.DataTyp"
+    "es.EntityH\000\022#\n\006delete\030\003 \001(\0132\021.DataTypes."
+    "EntityH\000B\013\n\toperation*p\n\010DataType\022\014\n\010Non"
+    "eType\020\000\022\022\n\016GetRequestType\020\001\022\023\n\017GetRespon"
+    "seType\020\002\022\025\n\021CommitRequestType\020\003\022\026\n\022Commi"
+    "tResponseType\020\004BI\n\007ex.grpcZ8github.com/E"
+    "nebra/ServiceCoordinator/grpc/datatypes/"
+    "data\242\002\003RTGb\006proto3", 538);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/data.proto", &protobuf_RegisterTypes);
   MessageBytes::default_instance_ = new MessageBytes();
@@ -525,7 +526,7 @@ void MessageBytes::clear_type() {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MutationResult::kEntityFieldNumber;
+const int MutationResult::kIdFieldNumber;
 const int MutationResult::kErrorFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -537,7 +538,7 @@ MutationResult::MutationResult()
 
 void MutationResult::InitAsDefaultInstance() {
   _is_default_instance_ = true;
-  entity_ = const_cast< ::DataTypes::Entity*>(&::DataTypes::Entity::default_instance());
+  id_ = const_cast< ::DataTypes::Key*>(&::DataTypes::Key::default_instance());
 }
 
 MutationResult::MutationResult(const MutationResult& from)
@@ -552,7 +553,7 @@ void MutationResult::SharedCtor() {
     _is_default_instance_ = false;
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
-  entity_ = NULL;
+  id_ = NULL;
   error_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -564,7 +565,7 @@ MutationResult::~MutationResult() {
 void MutationResult::SharedDtor() {
   error_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
-    delete entity_;
+    delete id_;
   }
 }
 
@@ -595,8 +596,8 @@ MutationResult* MutationResult::New(::google::protobuf::Arena* arena) const {
 
 void MutationResult::Clear() {
 // @@protoc_insertion_point(message_clear_start:DataTypes.MutationResult)
-  if (GetArenaNoVirtual() == NULL && entity_ != NULL) delete entity_;
-  entity_ = NULL;
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
   error_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -610,11 +611,11 @@ bool MutationResult::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .DataTypes.Entity entity = 1;
+      // optional .DataTypes.Key id = 1;
       case 1: {
         if (tag == 10) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_entity()));
+               input, mutable_id()));
         } else {
           goto handle_unusual;
         }
@@ -663,10 +664,10 @@ failure:
 void MutationResult::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:DataTypes.MutationResult)
-  // optional .DataTypes.Entity entity = 1;
-  if (this->has_entity()) {
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, *this->entity_, output);
+      1, *this->id_, output);
   }
 
   // optional string error = 2;
@@ -685,11 +686,11 @@ void MutationResult::SerializeWithCachedSizes(
 ::google::protobuf::uint8* MutationResult::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:DataTypes.MutationResult)
-  // optional .DataTypes.Entity entity = 1;
-  if (this->has_entity()) {
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, *this->entity_, target);
+        1, *this->id_, target);
   }
 
   // optional string error = 2;
@@ -711,11 +712,11 @@ int MutationResult::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:DataTypes.MutationResult)
   int total_size = 0;
 
-  // optional .DataTypes.Entity entity = 1;
-  if (this->has_entity()) {
+  // optional .DataTypes.Key id = 1;
+  if (this->has_id()) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->entity_);
+        *this->id_);
   }
 
   // optional string error = 2;
@@ -749,8 +750,8 @@ void MutationResult::MergeFrom(const ::google::protobuf::Message& from) {
 void MutationResult::MergeFrom(const MutationResult& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.MutationResult)
   if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
-  if (from.has_entity()) {
-    mutable_entity()->::DataTypes::Entity::MergeFrom(from.entity());
+  if (from.has_id()) {
+    mutable_id()->::DataTypes::Key::MergeFrom(from.id());
   }
   if (from.error().size() > 0) {
 
@@ -782,7 +783,7 @@ void MutationResult::Swap(MutationResult* other) {
   InternalSwap(other);
 }
 void MutationResult::InternalSwap(MutationResult* other) {
-  std::swap(entity_, other->entity_);
+  std::swap(id_, other->id_);
   error_.Swap(&other->error_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -799,42 +800,42 @@ void MutationResult::InternalSwap(MutationResult* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // MutationResult
 
-// optional .DataTypes.Entity entity = 1;
-bool MutationResult::has_entity() const {
-  return !_is_default_instance_ && entity_ != NULL;
+// optional .DataTypes.Key id = 1;
+bool MutationResult::has_id() const {
+  return !_is_default_instance_ && id_ != NULL;
 }
-void MutationResult::clear_entity() {
-  if (GetArenaNoVirtual() == NULL && entity_ != NULL) delete entity_;
-  entity_ = NULL;
+void MutationResult::clear_id() {
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
 }
-const ::DataTypes::Entity& MutationResult::entity() const {
-  // @@protoc_insertion_point(field_get:DataTypes.MutationResult.entity)
-  return entity_ != NULL ? *entity_ : *default_instance_->entity_;
+const ::DataTypes::Key& MutationResult::id() const {
+  // @@protoc_insertion_point(field_get:DataTypes.MutationResult.id)
+  return id_ != NULL ? *id_ : *default_instance_->id_;
 }
-::DataTypes::Entity* MutationResult::mutable_entity() {
+::DataTypes::Key* MutationResult::mutable_id() {
   
-  if (entity_ == NULL) {
-    entity_ = new ::DataTypes::Entity;
+  if (id_ == NULL) {
+    id_ = new ::DataTypes::Key;
   }
-  // @@protoc_insertion_point(field_mutable:DataTypes.MutationResult.entity)
-  return entity_;
+  // @@protoc_insertion_point(field_mutable:DataTypes.MutationResult.id)
+  return id_;
 }
-::DataTypes::Entity* MutationResult::release_entity() {
-  // @@protoc_insertion_point(field_release:DataTypes.MutationResult.entity)
+::DataTypes::Key* MutationResult::release_id() {
+  // @@protoc_insertion_point(field_release:DataTypes.MutationResult.id)
   
-  ::DataTypes::Entity* temp = entity_;
-  entity_ = NULL;
+  ::DataTypes::Key* temp = id_;
+  id_ = NULL;
   return temp;
 }
-void MutationResult::set_allocated_entity(::DataTypes::Entity* entity) {
-  delete entity_;
-  entity_ = entity;
-  if (entity) {
+void MutationResult::set_allocated_id(::DataTypes::Key* id) {
+  delete id_;
+  id_ = id;
+  if (id) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:DataTypes.MutationResult.entity)
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.MutationResult.id)
 }
 
 // optional string error = 2;

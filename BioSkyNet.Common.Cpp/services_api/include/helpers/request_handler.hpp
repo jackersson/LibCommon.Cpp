@@ -4,16 +4,14 @@
 #include <memory>
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <include/grpc++/impl/codegen/server_context.h>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 
 namespace grpc_services
 {
 	template <typename T>
 	class RequestHandler
 	{
-		enum RequestStatus { CREATE, PROCESS, FINISH };
-	public:
-	
+	public:	
 		RequestHandler( T* service
 			            , grpc::ServerCompletionQueue* completion_queue	)
 			            : service_(service)
@@ -23,21 +21,21 @@ namespace grpc_services
 
 		virtual ~RequestHandler() {	}
 
-		virtual void CreateRequestHandler() = 0;
-		virtual void CreateRequest()        = 0;
-		virtual void ProcessRequest()       = 0;
+		virtual void create_request_handler() = 0;
+		virtual void create_request()         = 0;
+		virtual void process_request()        = 0;
 
-		void Proceed()
+		void proceed()
 		{
 			if (status_ == CREATE)
 			{
-				Next();
-				TryCreateRequest();
+				next();
+				try_create_request();
 			}
 			else if (status_ == PROCESS)
 			{
-				CreateRequestHandler();
-				TryProcessRequest();
+				create_request_handler();
+				try_create_request    ();
 			}
 			else
 			{
@@ -46,11 +44,11 @@ namespace grpc_services
 			}
 		}		
 
-		void TryCreateRequest()
+		void try_create_request()
 		{
 			try
 			{
-				CreateRequest();
+				create_request();
 			}
 			catch (std::exception& exception)	{
 				logger_.error(exception.what());
@@ -59,11 +57,10 @@ namespace grpc_services
 		
 		void TryProcessRequest()
 		{
-			Next();
-			ProcessRequest();
+			process_request();
 		}
 
-		void Next()
+		void next()
 		{
 			switch (status_)
 			{
@@ -78,16 +75,19 @@ namespace grpc_services
 		}
 
 	protected:
+		enum RequestStatus { CREATE, PROCESS, FINISH };
+		
 		T* service_;
 		grpc::ServerCompletionQueue* server_completion_queue_;	
 		grpc::ServerContext          server_context_;
 
 		contracts::logging::Logger logger_;
+		RequestStatus              status_;
+
 	private:
 		RequestHandler(const RequestHandler&) = delete;
 		RequestHandler& operator=(const RequestHandler&) = delete;
 
-		RequestStatus status_;
 	};
 
 }

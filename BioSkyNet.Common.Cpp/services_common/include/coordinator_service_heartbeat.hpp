@@ -5,7 +5,7 @@
 #include <common/ilifecycle.hpp>
 #include <services/icoordinator_api.hpp>
 #include <chrono>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 #include <services/iconnection_state.hpp>
 
 namespace services

@@ -31,6 +31,7 @@ struct EntityOneofInstance {
   const ::DataTypes::Location* location_;
   const ::DataTypes::Photo* photo_;
   const ::DataTypes::Group* group_;
+  const ::DataTypes::FaceCharacteristic* face_;
 }* Entity_default_oneof_instance_ = NULL;
 const ::google::protobuf::Descriptor* Entities_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
@@ -46,13 +47,14 @@ void protobuf_AssignDesc_datatypes_2fentity_2eproto() {
       "datatypes/entity.proto");
   GOOGLE_CHECK(file != NULL);
   Entity_descriptor_ = file->message_type(0);
-  static const int Entity_offsets_[7] = {
+  static const int Entity_offsets_[8] = {
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, card_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, person_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, visit_record_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, location_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, photo_),
     PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, group_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(Entity_default_oneof_instance_, face_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Entity, value_type_),
   };
   Entity_reflection_ =
@@ -123,22 +125,25 @@ void protobuf_AddDesc_datatypes_2fentity_2eproto() {
   ::DataTypes::protobuf_AddDesc_datatypes_2flocation_2eproto();
   ::DataTypes::protobuf_AddDesc_datatypes_2fvisit_5frecord_2eproto();
   ::DataTypes::protobuf_AddDesc_datatypes_2fgroup_2eproto();
+  ::DataTypes::protobuf_AddDesc_datatypes_2fbiometrics_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\026datatypes/entity.proto\022\tDataTypes\032\026dat"
     "atypes/person.proto\032\024datatypes/card.prot"
     "o\032\025datatypes/photo.proto\032\030datatypes/loca"
     "tion.proto\032\034datatypes/visit_record.proto"
-    "\032\025datatypes/group.proto\"\373\001\n\006Entity\022\037\n\004ca"
-    "rd\030\001 \001(\0132\017.DataTypes.CardH\000\022#\n\006person\030\002 "
-    "\001(\0132\021.DataTypes.PersonH\000\022.\n\014visit_record"
-    "\030\003 \001(\0132\026.DataTypes.VisitRecordH\000\022\'\n\010loca"
-    "tion\030\004 \001(\0132\023.DataTypes.LocationH\000\022!\n\005pho"
-    "to\030\005 \001(\0132\020.DataTypes.PhotoH\000\022!\n\005group\030\006 "
-    "\001(\0132\020.DataTypes.GroupH\000B\014\n\nvalue_type\",\n"
-    "\010Entities\022 \n\005items\030\001 \003(\0132\021.DataTypes.Ent"
-    "ityBK\n\007ex.grpcZ:github.com/Enebra/Servic"
-    "eCoordinator/grpc/datatypes/entity\242\002\003RTG"
-    "b\006proto3", 568);
+    "\032\025datatypes/group.proto\032\032datatypes/biome"
+    "trics.proto\"\252\002\n\006Entity\022\037\n\004card\030\001 \001(\0132\017.D"
+    "ataTypes.CardH\000\022#\n\006person\030\002 \001(\0132\021.DataTy"
+    "pes.PersonH\000\022.\n\014visit_record\030\003 \001(\0132\026.Dat"
+    "aTypes.VisitRecordH\000\022\'\n\010location\030\004 \001(\0132\023"
+    ".DataTypes.LocationH\000\022!\n\005photo\030\005 \001(\0132\020.D"
+    "ataTypes.PhotoH\000\022!\n\005group\030\006 \001(\0132\020.DataTy"
+    "pes.GroupH\000\022-\n\004face\030\007 \001(\0132\035.DataTypes.Fa"
+    "ceCharacteristicH\000B\014\n\nvalue_type\",\n\010Enti"
+    "ties\022 \n\005items\030\001 \003(\0132\021.DataTypes.EntityBK"
+    "\n\007ex.grpcZ:github.com/Enebra/ServiceCoor"
+    "dinator/grpc/datatypes/entity\242\002\003RTGb\006pro"
+    "to3", 643);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/entity.proto", &protobuf_RegisterTypes);
   Entity::default_instance_ = new Entity();
@@ -175,6 +180,7 @@ const int Entity::kVisitRecordFieldNumber;
 const int Entity::kLocationFieldNumber;
 const int Entity::kPhotoFieldNumber;
 const int Entity::kGroupFieldNumber;
+const int Entity::kFaceFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Entity::Entity()
@@ -191,6 +197,7 @@ void Entity::InitAsDefaultInstance() {
   Entity_default_oneof_instance_->location_ = const_cast< ::DataTypes::Location*>(&::DataTypes::Location::default_instance());
   Entity_default_oneof_instance_->photo_ = const_cast< ::DataTypes::Photo*>(&::DataTypes::Photo::default_instance());
   Entity_default_oneof_instance_->group_ = const_cast< ::DataTypes::Group*>(&::DataTypes::Group::default_instance());
+  Entity_default_oneof_instance_->face_ = const_cast< ::DataTypes::FaceCharacteristic*>(&::DataTypes::FaceCharacteristic::default_instance());
 }
 
 Entity::Entity(const Entity& from)
@@ -270,6 +277,10 @@ void Entity::clear_value_type() {
     }
     case kGroup: {
       delete value_type_.group_;
+      break;
+    }
+    case kFace: {
+      delete value_type_.face_;
       break;
     }
     case VALUE_TYPE_NOT_SET: {
@@ -368,6 +379,19 @@ bool Entity::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(58)) goto parse_face;
+        break;
+      }
+
+      // optional .DataTypes.FaceCharacteristic face = 7;
+      case 7: {
+        if (tag == 58) {
+         parse_face:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_face()));
+        } else {
+          goto handle_unusual;
+        }
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -432,6 +456,12 @@ void Entity::SerializeWithCachedSizes(
       6, *value_type_.group_, output);
   }
 
+  // optional .DataTypes.FaceCharacteristic face = 7;
+  if (has_face()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      7, *value_type_.face_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:DataTypes.Entity)
 }
 
@@ -478,6 +508,13 @@ void Entity::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         6, *value_type_.group_, target);
+  }
+
+  // optional .DataTypes.FaceCharacteristic face = 7;
+  if (has_face()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        7, *value_type_.face_, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.Entity)
@@ -531,6 +568,13 @@ int Entity::ByteSize() const {
           *value_type_.group_);
       break;
     }
+    // optional .DataTypes.FaceCharacteristic face = 7;
+    case kFace: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *value_type_.face_);
+      break;
+    }
     case VALUE_TYPE_NOT_SET: {
       break;
     }
@@ -582,6 +626,10 @@ void Entity::MergeFrom(const Entity& from) {
     }
     case kGroup: {
       mutable_group()->::DataTypes::Group::MergeFrom(from.group());
+      break;
+    }
+    case kFace: {
+      mutable_face()->::DataTypes::FaceCharacteristic::MergeFrom(from.face());
       break;
     }
     case VALUE_TYPE_NOT_SET: {
@@ -917,6 +965,54 @@ void Entity::set_allocated_group(::DataTypes::Group* group) {
     value_type_.group_ = group;
   }
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Entity.group)
+}
+
+// optional .DataTypes.FaceCharacteristic face = 7;
+bool Entity::has_face() const {
+  return value_type_case() == kFace;
+}
+void Entity::set_has_face() {
+  _oneof_case_[0] = kFace;
+}
+void Entity::clear_face() {
+  if (has_face()) {
+    delete value_type_.face_;
+    clear_has_value_type();
+  }
+}
+ const ::DataTypes::FaceCharacteristic& Entity::face() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Entity.face)
+  return has_face()
+      ? *value_type_.face_
+      : ::DataTypes::FaceCharacteristic::default_instance();
+}
+::DataTypes::FaceCharacteristic* Entity::mutable_face() {
+  if (!has_face()) {
+    clear_value_type();
+    set_has_face();
+    value_type_.face_ = new ::DataTypes::FaceCharacteristic;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.Entity.face)
+  return value_type_.face_;
+}
+::DataTypes::FaceCharacteristic* Entity::release_face() {
+  // @@protoc_insertion_point(field_release:DataTypes.Entity.face)
+  if (has_face()) {
+    clear_has_value_type();
+    ::DataTypes::FaceCharacteristic* temp = value_type_.face_;
+    value_type_.face_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void Entity::set_allocated_face(::DataTypes::FaceCharacteristic* face) {
+  clear_value_type();
+  if (face) {
+    set_has_face();
+    value_type_.face_ = face;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Entity.face)
 }
 
 bool Entity::has_value_type() const {

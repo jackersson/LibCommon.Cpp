@@ -42,7 +42,8 @@ void protobuf_AssignDesc_datatypes_2fvisit_5frecord_2eproto();
 void protobuf_ShutdownFile_datatypes_2fvisit_5frecord_2eproto();
 
 class VisitRecord;
-class VisitRecords;
+class VisitRecordUpdate;
+class VisitRecordUpdates;
 
 enum AccessState {
   NoneState = 0,
@@ -206,32 +207,39 @@ class VisitRecord : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class VisitRecords : public ::google::protobuf::Message {
+class VisitRecordUpdate : public ::google::protobuf::Message {
  public:
-  VisitRecords();
-  virtual ~VisitRecords();
+  VisitRecordUpdate();
+  virtual ~VisitRecordUpdate();
 
-  VisitRecords(const VisitRecords& from);
+  VisitRecordUpdate(const VisitRecordUpdate& from);
 
-  inline VisitRecords& operator=(const VisitRecords& from) {
+  inline VisitRecordUpdate& operator=(const VisitRecordUpdate& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const VisitRecords& default_instance();
+  static const VisitRecordUpdate& default_instance();
 
-  void Swap(VisitRecords* other);
+  enum RecordTypeCase {
+    kInserted = 1,
+    kDeleted = 2,
+    kUpdated = 3,
+    RECORD_TYPE_NOT_SET = 0,
+  };
+
+  void Swap(VisitRecordUpdate* other);
 
   // implements Message ----------------------------------------------
 
-  inline VisitRecords* New() const { return New(NULL); }
+  inline VisitRecordUpdate* New() const { return New(NULL); }
 
-  VisitRecords* New(::google::protobuf::Arena* arena) const;
+  VisitRecordUpdate* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const VisitRecords& from);
-  void MergeFrom(const VisitRecords& from);
+  void CopyFrom(const VisitRecordUpdate& from);
+  void MergeFrom(const VisitRecordUpdate& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -246,7 +254,7 @@ class VisitRecords : public ::google::protobuf::Message {
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(VisitRecords* other);
+  void InternalSwap(VisitRecordUpdate* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -262,31 +270,145 @@ class VisitRecords : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .DataTypes.VisitRecord items = 1;
+  // optional .DataTypes.VisitRecord inserted = 1;
+  bool has_inserted() const;
+  void clear_inserted();
+  static const int kInsertedFieldNumber = 1;
+  const ::DataTypes::VisitRecord& inserted() const;
+  ::DataTypes::VisitRecord* mutable_inserted();
+  ::DataTypes::VisitRecord* release_inserted();
+  void set_allocated_inserted(::DataTypes::VisitRecord* inserted);
+
+  // optional .DataTypes.VisitRecord deleted = 2;
+  bool has_deleted() const;
+  void clear_deleted();
+  static const int kDeletedFieldNumber = 2;
+  const ::DataTypes::VisitRecord& deleted() const;
+  ::DataTypes::VisitRecord* mutable_deleted();
+  ::DataTypes::VisitRecord* release_deleted();
+  void set_allocated_deleted(::DataTypes::VisitRecord* deleted);
+
+  // optional .DataTypes.VisitRecord updated = 3;
+  bool has_updated() const;
+  void clear_updated();
+  static const int kUpdatedFieldNumber = 3;
+  const ::DataTypes::VisitRecord& updated() const;
+  ::DataTypes::VisitRecord* mutable_updated();
+  ::DataTypes::VisitRecord* release_updated();
+  void set_allocated_updated(::DataTypes::VisitRecord* updated);
+
+  RecordTypeCase record_type_case() const;
+  // @@protoc_insertion_point(class_scope:DataTypes.VisitRecordUpdate)
+ private:
+  inline void set_has_inserted();
+  inline void set_has_deleted();
+  inline void set_has_updated();
+
+  inline bool has_record_type() const;
+  void clear_record_type();
+  inline void clear_has_record_type();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  union RecordTypeUnion {
+    RecordTypeUnion() {}
+    ::DataTypes::VisitRecord* inserted_;
+    ::DataTypes::VisitRecord* deleted_;
+    ::DataTypes::VisitRecord* updated_;
+  } record_type_;
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
+  friend void  protobuf_AddDesc_datatypes_2fvisit_5frecord_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fvisit_5frecord_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fvisit_5frecord_2eproto();
+
+  void InitAsDefaultInstance();
+  static VisitRecordUpdate* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class VisitRecordUpdates : public ::google::protobuf::Message {
+ public:
+  VisitRecordUpdates();
+  virtual ~VisitRecordUpdates();
+
+  VisitRecordUpdates(const VisitRecordUpdates& from);
+
+  inline VisitRecordUpdates& operator=(const VisitRecordUpdates& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const VisitRecordUpdates& default_instance();
+
+  void Swap(VisitRecordUpdates* other);
+
+  // implements Message ----------------------------------------------
+
+  inline VisitRecordUpdates* New() const { return New(NULL); }
+
+  VisitRecordUpdates* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const VisitRecordUpdates& from);
+  void MergeFrom(const VisitRecordUpdates& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(VisitRecordUpdates* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .DataTypes.VisitRecordUpdate items = 1;
   int items_size() const;
   void clear_items();
   static const int kItemsFieldNumber = 1;
-  const ::DataTypes::VisitRecord& items(int index) const;
-  ::DataTypes::VisitRecord* mutable_items(int index);
-  ::DataTypes::VisitRecord* add_items();
-  ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecord >*
+  const ::DataTypes::VisitRecordUpdate& items(int index) const;
+  ::DataTypes::VisitRecordUpdate* mutable_items(int index);
+  ::DataTypes::VisitRecordUpdate* add_items();
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecordUpdate >*
       mutable_items();
-  const ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecord >&
+  const ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecordUpdate >&
       items() const;
 
-  // @@protoc_insertion_point(class_scope:DataTypes.VisitRecords)
+  // @@protoc_insertion_point(class_scope:DataTypes.VisitRecordUpdates)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecord > items_;
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecordUpdate > items_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fvisit_5frecord_2eproto();
   friend void protobuf_AssignDesc_datatypes_2fvisit_5frecord_2eproto();
   friend void protobuf_ShutdownFile_datatypes_2fvisit_5frecord_2eproto();
 
   void InitAsDefaultInstance();
-  static VisitRecords* default_instance_;
+  static VisitRecordUpdates* default_instance_;
 };
 // ===================================================================
 
@@ -540,39 +662,198 @@ inline void VisitRecord::set_state(::DataTypes::AccessState value) {
 
 // -------------------------------------------------------------------
 
-// VisitRecords
+// VisitRecordUpdate
 
-// repeated .DataTypes.VisitRecord items = 1;
-inline int VisitRecords::items_size() const {
+// optional .DataTypes.VisitRecord inserted = 1;
+inline bool VisitRecordUpdate::has_inserted() const {
+  return record_type_case() == kInserted;
+}
+inline void VisitRecordUpdate::set_has_inserted() {
+  _oneof_case_[0] = kInserted;
+}
+inline void VisitRecordUpdate::clear_inserted() {
+  if (has_inserted()) {
+    delete record_type_.inserted_;
+    clear_has_record_type();
+  }
+}
+inline  const ::DataTypes::VisitRecord& VisitRecordUpdate::inserted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecordUpdate.inserted)
+  return has_inserted()
+      ? *record_type_.inserted_
+      : ::DataTypes::VisitRecord::default_instance();
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::mutable_inserted() {
+  if (!has_inserted()) {
+    clear_record_type();
+    set_has_inserted();
+    record_type_.inserted_ = new ::DataTypes::VisitRecord;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecordUpdate.inserted)
+  return record_type_.inserted_;
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::release_inserted() {
+  // @@protoc_insertion_point(field_release:DataTypes.VisitRecordUpdate.inserted)
+  if (has_inserted()) {
+    clear_has_record_type();
+    ::DataTypes::VisitRecord* temp = record_type_.inserted_;
+    record_type_.inserted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void VisitRecordUpdate::set_allocated_inserted(::DataTypes::VisitRecord* inserted) {
+  clear_record_type();
+  if (inserted) {
+    set_has_inserted();
+    record_type_.inserted_ = inserted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecordUpdate.inserted)
+}
+
+// optional .DataTypes.VisitRecord deleted = 2;
+inline bool VisitRecordUpdate::has_deleted() const {
+  return record_type_case() == kDeleted;
+}
+inline void VisitRecordUpdate::set_has_deleted() {
+  _oneof_case_[0] = kDeleted;
+}
+inline void VisitRecordUpdate::clear_deleted() {
+  if (has_deleted()) {
+    delete record_type_.deleted_;
+    clear_has_record_type();
+  }
+}
+inline  const ::DataTypes::VisitRecord& VisitRecordUpdate::deleted() const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecordUpdate.deleted)
+  return has_deleted()
+      ? *record_type_.deleted_
+      : ::DataTypes::VisitRecord::default_instance();
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::mutable_deleted() {
+  if (!has_deleted()) {
+    clear_record_type();
+    set_has_deleted();
+    record_type_.deleted_ = new ::DataTypes::VisitRecord;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecordUpdate.deleted)
+  return record_type_.deleted_;
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::release_deleted() {
+  // @@protoc_insertion_point(field_release:DataTypes.VisitRecordUpdate.deleted)
+  if (has_deleted()) {
+    clear_has_record_type();
+    ::DataTypes::VisitRecord* temp = record_type_.deleted_;
+    record_type_.deleted_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void VisitRecordUpdate::set_allocated_deleted(::DataTypes::VisitRecord* deleted) {
+  clear_record_type();
+  if (deleted) {
+    set_has_deleted();
+    record_type_.deleted_ = deleted;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecordUpdate.deleted)
+}
+
+// optional .DataTypes.VisitRecord updated = 3;
+inline bool VisitRecordUpdate::has_updated() const {
+  return record_type_case() == kUpdated;
+}
+inline void VisitRecordUpdate::set_has_updated() {
+  _oneof_case_[0] = kUpdated;
+}
+inline void VisitRecordUpdate::clear_updated() {
+  if (has_updated()) {
+    delete record_type_.updated_;
+    clear_has_record_type();
+  }
+}
+inline  const ::DataTypes::VisitRecord& VisitRecordUpdate::updated() const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecordUpdate.updated)
+  return has_updated()
+      ? *record_type_.updated_
+      : ::DataTypes::VisitRecord::default_instance();
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::mutable_updated() {
+  if (!has_updated()) {
+    clear_record_type();
+    set_has_updated();
+    record_type_.updated_ = new ::DataTypes::VisitRecord;
+  }
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecordUpdate.updated)
+  return record_type_.updated_;
+}
+inline ::DataTypes::VisitRecord* VisitRecordUpdate::release_updated() {
+  // @@protoc_insertion_point(field_release:DataTypes.VisitRecordUpdate.updated)
+  if (has_updated()) {
+    clear_has_record_type();
+    ::DataTypes::VisitRecord* temp = record_type_.updated_;
+    record_type_.updated_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void VisitRecordUpdate::set_allocated_updated(::DataTypes::VisitRecord* updated) {
+  clear_record_type();
+  if (updated) {
+    set_has_updated();
+    record_type_.updated_ = updated;
+  }
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.VisitRecordUpdate.updated)
+}
+
+inline bool VisitRecordUpdate::has_record_type() const {
+  return record_type_case() != RECORD_TYPE_NOT_SET;
+}
+inline void VisitRecordUpdate::clear_has_record_type() {
+  _oneof_case_[0] = RECORD_TYPE_NOT_SET;
+}
+inline VisitRecordUpdate::RecordTypeCase VisitRecordUpdate::record_type_case() const {
+  return VisitRecordUpdate::RecordTypeCase(_oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// VisitRecordUpdates
+
+// repeated .DataTypes.VisitRecordUpdate items = 1;
+inline int VisitRecordUpdates::items_size() const {
   return items_.size();
 }
-inline void VisitRecords::clear_items() {
+inline void VisitRecordUpdates::clear_items() {
   items_.Clear();
 }
-inline const ::DataTypes::VisitRecord& VisitRecords::items(int index) const {
-  // @@protoc_insertion_point(field_get:DataTypes.VisitRecords.items)
+inline const ::DataTypes::VisitRecordUpdate& VisitRecordUpdates::items(int index) const {
+  // @@protoc_insertion_point(field_get:DataTypes.VisitRecordUpdates.items)
   return items_.Get(index);
 }
-inline ::DataTypes::VisitRecord* VisitRecords::mutable_items(int index) {
-  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecords.items)
+inline ::DataTypes::VisitRecordUpdate* VisitRecordUpdates::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:DataTypes.VisitRecordUpdates.items)
   return items_.Mutable(index);
 }
-inline ::DataTypes::VisitRecord* VisitRecords::add_items() {
-  // @@protoc_insertion_point(field_add:DataTypes.VisitRecords.items)
+inline ::DataTypes::VisitRecordUpdate* VisitRecordUpdates::add_items() {
+  // @@protoc_insertion_point(field_add:DataTypes.VisitRecordUpdates.items)
   return items_.Add();
 }
-inline ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecord >*
-VisitRecords::mutable_items() {
-  // @@protoc_insertion_point(field_mutable_list:DataTypes.VisitRecords.items)
+inline ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecordUpdate >*
+VisitRecordUpdates::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:DataTypes.VisitRecordUpdates.items)
   return &items_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecord >&
-VisitRecords::items() const {
-  // @@protoc_insertion_point(field_list:DataTypes.VisitRecords.items)
+inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::VisitRecordUpdate >&
+VisitRecordUpdates::items() const {
+  // @@protoc_insertion_point(field_list:DataTypes.VisitRecordUpdates.items)
   return items_;
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

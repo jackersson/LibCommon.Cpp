@@ -6,8 +6,9 @@
 
 namespace data_model
 {
-	struct Person
+	class Person
 	{
+	public:
 		Person() {}
 
 		void set_id(const Key& val) {
@@ -18,42 +19,28 @@ namespace data_model
 			return id_;
 		}
 
+		void set_first_name(const std::string& val) {
+			first_name_ = val;
+		}
+
+		const std::string& first_name() const {
+			return first_name_;
+		}
+
+
+		void set_last_name(const std::string& val) {
+			last_name_ = val;
+		}
+
+		const std::string& last_name() const {
+			return last_name_;
+		}
+
 	private:
 		Key id_;
-		//std::string first_name;
-		//std::string last_name ;
-	};
-
-	class Card
-	{
-	public:
-		void set_owner_id(const Key& val) {
-			owner_id_ = val;
-		}
-
-		const Key& owner_id() const {
-			return owner_id_;
-		}
-
-		void set_id(const Key& val) {
-			id_ = val;
-		}
-
-		const Key& id() const {
-			return id_;
-		} 
-
-	private:
-		Key id_      ;
-		Key owner_id_;
-	};
-
-
-	struct Photo
-	{
-		Key           id;
-		std::string   url;
-	};
+		std::string first_name_;
+		std::string last_name_ ;
+	};	
 }
 
 #endif

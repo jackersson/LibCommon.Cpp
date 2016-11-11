@@ -1,6 +1,7 @@
 #include "coordinator_utils.hpp"
 #include <network_utils.hpp>
 #include <services/service_address.hpp>
+#include <data/models/unit.hpp>
 
 namespace services
 {

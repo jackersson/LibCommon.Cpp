@@ -44,8 +44,8 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Devices>> AsyncGetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Devices>>(AsyncGetDevicesRaw(context, request, cq));
     }
-    virtual ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::google::protobuf::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) {
+    virtual ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncUpdateLocationRaw(context, request, cq));
     }
     // on person registration      
@@ -63,7 +63,7 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>> AsyncGetDeviceStream(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq, void* tag) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>>(AsyncGetDeviceStreamRaw(context, request, cq, tag));
     }
-    // on person registration & identification      
+    // on person registration & identification         
     virtual ::grpc::Status Enroll(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::DataTypes::Faces* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Faces>> AsyncEnroll(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Faces>>(AsyncEnrollRaw(context, request, cq));
@@ -73,7 +73,7 @@ class UnitService GRPC_FINAL {
     virtual ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Devices>* AsyncGetDevicesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CardMsg>* AsyncGetCardRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CheckMsg>* AsyncCheckDeviceRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request) = 0;
@@ -97,8 +97,8 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>> AsyncGetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>>(AsyncGetDevicesRaw(context, request, cq));
     }
-    ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::google::protobuf::Empty* response) GRPC_OVERRIDE;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) {
+    ::grpc::Status UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::google::protobuf::Empty* response) GRPC_OVERRIDE;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncUpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncUpdateLocationRaw(context, request, cq));
     }
     ::grpc::Status GetCard(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::DataTypes::CardMsg* response) GRPC_OVERRIDE;
@@ -126,7 +126,7 @@ class UnitService GRPC_FINAL {
     ::grpc::ClientReader< ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request) GRPC_OVERRIDE;
     ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>* AsyncGetDevicesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
-    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::CardMsg>* AsyncGetCardRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::CheckMsg>* AsyncCheckDeviceRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientReader< ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request) GRPC_OVERRIDE;
@@ -150,12 +150,12 @@ class UnitService GRPC_FINAL {
     virtual ::grpc::Status OpenDoor(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status GetLocationStream(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer);
     virtual ::grpc::Status GetDevices(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::DataTypes::Devices* response);
-    virtual ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response);
+    virtual ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::LocationUpdate* request, ::google::protobuf::Empty* response);
     // on person registration      
     virtual ::grpc::Status GetCard(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::CardMsg* response);
     virtual ::grpc::Status CheckDevice(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::CheckMsg* response);
     virtual ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer);
-    // on person registration & identification      
+    // on person registration & identification         
     virtual ::grpc::Status Enroll(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::Faces* response);
   };
   template <class BaseClass>
@@ -230,11 +230,11 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::LocationUpdate* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdateLocation(::grpc::ServerContext* context, ::DataTypes::Location* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdateLocation(::grpc::ServerContext* context, ::DataTypes::LocationUpdate* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -382,7 +382,7 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::LocationUpdate* request, ::google::protobuf::Empty* response) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }

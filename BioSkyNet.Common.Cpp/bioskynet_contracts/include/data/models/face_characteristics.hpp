@@ -51,7 +51,7 @@ namespace data_model
 		//std::string last_name ;
 	};
 
-	struct FaceTemplate
+	class FaceTemplate
 	{
 		//FaceTemplate(const data_model::Key& key, const std::string& temp_url)
 			//: person_id(key), url(temp_url) {}

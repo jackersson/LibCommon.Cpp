@@ -66,11 +66,11 @@ UnitService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   return new ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>(channel_.get(), cq, rpcmethod_GetDevices_, context, request);
 }
 
-::grpc::Status UnitService::Stub::UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::google::protobuf::Empty* response) {
+::grpc::Status UnitService::Stub::UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::google::protobuf::Empty* response) {
   return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateLocation_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* UnitService::Stub::AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* UnitService::Stub::AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) {
   return new ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request);
 }
 
@@ -126,7 +126,7 @@ UnitService::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       UnitService_method_names[3],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< UnitService::Service, ::DataTypes::Location, ::google::protobuf::Empty>(
+      new ::grpc::RpcMethodHandler< UnitService::Service, ::DataTypes::LocationUpdate, ::google::protobuf::Empty>(
           std::mem_fn(&UnitService::Service::UpdateLocation), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       UnitService_method_names[4],
@@ -174,7 +174,7 @@ UnitService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status UnitService::Service::UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response) {
+::grpc::Status UnitService::Service::UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::LocationUpdate* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

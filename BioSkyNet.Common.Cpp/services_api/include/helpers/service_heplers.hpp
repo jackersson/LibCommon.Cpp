@@ -4,11 +4,10 @@
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <grpc++/grpc++.h>
 #include <future>
-#include <google/protobuf/empty.pb.h>
+//#include <google/protobuf/empty.pb.h>
 
 namespace services_api
 {
-
 	typedef std::function<void()> RpcCallbackFunction;
 	typedef std::vector<std::pair<std::string, std::string>> Metadata;
 

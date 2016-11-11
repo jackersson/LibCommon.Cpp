@@ -2,10 +2,10 @@
 #define VisitRecordDataModel_INCLUDED
 
 #include "key.hpp"
-#include "person.hpp"
 #include "datetime.hpp"
 #include "face_characteristics.hpp"
 #include <data/data_utils.hpp>
+#include "card.hpp"
 
 namespace data_model
 {
@@ -41,11 +41,11 @@ namespace data_model
 		}
 
 		void set_location_id(const Key& val) {
-			person_id_ = val;
+			location_id_ = val;
 		}
 
 		const Key& location_id() const {
-			return person_id_;
+			return location_id_;
 		}
 
 		void set_card(const Card& card){

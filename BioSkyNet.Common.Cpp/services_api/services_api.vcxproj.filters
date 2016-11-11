@@ -37,6 +37,9 @@
     <Filter Include="includes\database_service\datacontext">
       <UniqueIdentifier>{989de73c-f711-4a63-92c5-70c4ee1389b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\helpers">
+      <UniqueIdentifier>{6395b349-98d5-4bb9-869e-0be23b69a34c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp">
@@ -106,6 +109,9 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helpers\request_adapters.cpp">
+      <Filter>src\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

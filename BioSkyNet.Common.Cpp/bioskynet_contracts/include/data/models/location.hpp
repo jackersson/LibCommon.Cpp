@@ -49,6 +49,15 @@ namespace data_model
 			return capture_device_;
 		}
 
+		bool operator==(const Location& r) const
+		{
+			return r.name()             == this->name()
+				  && r.unit_mac_address() == this->unit_mac_address()
+				  && r.id()               == this->id()
+				  && r.access_device()    == this->access_device()
+				  && r.capture_device()   == this->capture_device();
+		}
+
 	private:
 		Key           id_  ;
 		std::string   name_;

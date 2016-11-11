@@ -1,5 +1,5 @@
 #include "coordinator_service_heartbeat.hpp"
-
+#include <data/models/unit.hpp>
 namespace services
 {
 	namespace helpers

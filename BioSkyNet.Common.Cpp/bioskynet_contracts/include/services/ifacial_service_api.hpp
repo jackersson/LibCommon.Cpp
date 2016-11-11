@@ -2,7 +2,13 @@
 #define IFacialServiceApi_INCLUDED
 
 #include <memory>
-#include <data/models/commands.hpp>
+//#include <data/models/commands.hpp>
+
+namespace data_model {
+	class BiometricResponse;
+	class BiometricRequest ;	
+}
+
 
 namespace contracts
 {

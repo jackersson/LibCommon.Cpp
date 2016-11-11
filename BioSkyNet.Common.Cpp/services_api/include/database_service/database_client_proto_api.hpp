@@ -14,15 +14,13 @@ namespace services_api
 	class DatabaseClientProtoApi : public AbstractClientService		                       
 	{
 	public:
-		explicit DatabaseClientProtoApi(contracts::services::IServiceAddress& address)
-			                         : AbstractClientService(address)
+		explicit DatabaseClientProtoApi( contracts::services::IServiceAddress& address)
+			                             : AbstractClientService(address)
 		{
 			DatabaseClientProtoApi::init();
 		}
 
-		~DatabaseClientProtoApi() {
-			DatabaseClientProtoApi::de_init();
-		}	
+		virtual ~DatabaseClientProtoApi() {}	
 
 		void init() override
 		{
@@ -41,7 +39,7 @@ namespace services_api
 		{
 			logger_.info("{0} Get request ", class_name());
 
-			DataTypes::MessageBytes message;
+			DataTypes::MessageBytes message;		
 			helpers::to_message_bytes(request, message);
 
 			auto queue = get_completion_queue<AsyncGetRequestCall>();

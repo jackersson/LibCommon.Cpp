@@ -14,14 +14,16 @@ namespace data_model
 		, FacialService
 	};
 
-	struct HeartbeatMessage
+	class HeartbeatMessage
 	{
+	public:
 		Key         id;
 		ServiceType type;
 	};
 
-	struct ConnectMsg
+	class ConnectMsg
 	{
+	public:
 		Key         id  ;
 		ServiceType type;
 

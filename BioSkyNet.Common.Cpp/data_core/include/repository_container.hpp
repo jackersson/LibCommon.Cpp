@@ -2,11 +2,14 @@
 #define RepositoryContainer_Included
 
 #include <data/irepository.hpp>
-#include "repository/location_repository.hpp"
-#include "repository/visit_records_repository.hpp"
-#include "repository/persons_repository.hpp"
-#include "repository/face_charst_repository.hpp"
 #include <memory>
+
+namespace data_model {
+	class VisitRecord ;
+	class Location    ;
+	class Person      ;
+	class FaceTemplate;
+}
 
 namespace data_core
 {		
@@ -17,18 +20,17 @@ namespace data_core
 		typedef contracts::data::IRepository<data_model::Person>	    IPersonRepository;
 		typedef 
 			contracts::data::IRepository<data_model::FaceTemplate>  IFaceCharstRepository;
-
 	public:	
 		explicit
-			RepositoryContainer(contracts::data::AbstractDataContextContainer* datacontext)
-			: data_context_(datacontext)
-		{
-			if (data_context_ == nullptr)
-				throw std::exception("Datacontext can't be null");
-		}
+			RepositoryContainer(contracts::data::AbstractDataContextContainer* datacontext);
+			//: data_context_(datacontext)
+	//	{
+		//	if (data_context_ == nullptr)
+		//		throw std::exception("Datacontext can't be null");
+	//	}
 
-		void init() override
-		{	
+		void init() override;
+	/*	{	
 			auto location_context = data_context_->get<data_model::Location>();
 			locations_ 
 				= std::make_unique<datacontext::LocationsRepository>(location_context);
@@ -47,8 +49,8 @@ namespace data_core
 			face_charst_ = std::make_unique<datacontext::FaceCharstRepository>(facechars_context);
 			container_[typeid(data_model::FaceTemplate).hash_code()] = persons_.get();
 		}
-
-		void de_init() override	{}	
+		*/
+		void de_init() override;// {}
 
 	private:		
 		std::unique_ptr<ILocationRepository>	   locations_    ;

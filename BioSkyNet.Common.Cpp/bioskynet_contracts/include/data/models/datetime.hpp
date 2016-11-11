@@ -4,8 +4,9 @@
 #include <cstdint>
 namespace data_model
 {	
-	struct DateTime
+	class DateTime
 	{
+	public:
 		DateTime();
 
 		DateTime(  uint32_t year , uint32_t month  , uint32_t day

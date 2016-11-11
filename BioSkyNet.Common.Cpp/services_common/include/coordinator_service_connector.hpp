@@ -5,7 +5,7 @@
 #include "repeatable_action.hpp"
 #include <common/ilifecycle.hpp>
 #include <chrono>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 #include <services/iconnection_state.hpp>
 
 namespace services

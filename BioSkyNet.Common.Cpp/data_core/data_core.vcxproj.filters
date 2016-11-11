@@ -16,6 +16,9 @@
     <Filter Include="includes\repositories">
       <UniqueIdentifier>{83a4e571-96aa-4847-aba0-9b99f59eab78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\repositories">
+      <UniqueIdentifier>{3ca62c7e-f0f1-410e-a143-83cb07e151ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\repository\location_repository.hpp">
@@ -36,6 +39,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\repositories\face_charst_repository.cpp">
+      <Filter>src\repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\repositories\location_repository.cpp">
+      <Filter>src\repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\repositories\persons_repository.cpp">
+      <Filter>src\repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\repositories\visit_records_repository.cpp">
+      <Filter>src\repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\repository_container.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

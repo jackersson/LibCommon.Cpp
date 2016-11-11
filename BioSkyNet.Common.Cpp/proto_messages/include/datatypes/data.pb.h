@@ -29,6 +29,7 @@
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "datatypes/entity.pb.h"
+#include "datatypes/key.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace DataTypes {
@@ -214,14 +215,14 @@ class MutationResult : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional .DataTypes.Entity entity = 1;
-  bool has_entity() const;
-  void clear_entity();
-  static const int kEntityFieldNumber = 1;
-  const ::DataTypes::Entity& entity() const;
-  ::DataTypes::Entity* mutable_entity();
-  ::DataTypes::Entity* release_entity();
-  void set_allocated_entity(::DataTypes::Entity* entity);
+  // optional .DataTypes.Key id = 1;
+  bool has_id() const;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  const ::DataTypes::Key& id() const;
+  ::DataTypes::Key* mutable_id();
+  ::DataTypes::Key* release_id();
+  void set_allocated_id(::DataTypes::Key* id);
 
   // optional string error = 2;
   void clear_error();
@@ -239,7 +240,7 @@ class MutationResult : public ::google::protobuf::Message {
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  ::DataTypes::Entity* entity_;
+  ::DataTypes::Key* id_;
   ::google::protobuf::internal::ArenaStringPtr error_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fdata_2eproto();
@@ -440,42 +441,42 @@ inline void MessageBytes::set_type(::DataTypes::DataType value) {
 
 // MutationResult
 
-// optional .DataTypes.Entity entity = 1;
-inline bool MutationResult::has_entity() const {
-  return !_is_default_instance_ && entity_ != NULL;
+// optional .DataTypes.Key id = 1;
+inline bool MutationResult::has_id() const {
+  return !_is_default_instance_ && id_ != NULL;
 }
-inline void MutationResult::clear_entity() {
-  if (GetArenaNoVirtual() == NULL && entity_ != NULL) delete entity_;
-  entity_ = NULL;
+inline void MutationResult::clear_id() {
+  if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
+  id_ = NULL;
 }
-inline const ::DataTypes::Entity& MutationResult::entity() const {
-  // @@protoc_insertion_point(field_get:DataTypes.MutationResult.entity)
-  return entity_ != NULL ? *entity_ : *default_instance_->entity_;
+inline const ::DataTypes::Key& MutationResult::id() const {
+  // @@protoc_insertion_point(field_get:DataTypes.MutationResult.id)
+  return id_ != NULL ? *id_ : *default_instance_->id_;
 }
-inline ::DataTypes::Entity* MutationResult::mutable_entity() {
+inline ::DataTypes::Key* MutationResult::mutable_id() {
   
-  if (entity_ == NULL) {
-    entity_ = new ::DataTypes::Entity;
+  if (id_ == NULL) {
+    id_ = new ::DataTypes::Key;
   }
-  // @@protoc_insertion_point(field_mutable:DataTypes.MutationResult.entity)
-  return entity_;
+  // @@protoc_insertion_point(field_mutable:DataTypes.MutationResult.id)
+  return id_;
 }
-inline ::DataTypes::Entity* MutationResult::release_entity() {
-  // @@protoc_insertion_point(field_release:DataTypes.MutationResult.entity)
+inline ::DataTypes::Key* MutationResult::release_id() {
+  // @@protoc_insertion_point(field_release:DataTypes.MutationResult.id)
   
-  ::DataTypes::Entity* temp = entity_;
-  entity_ = NULL;
+  ::DataTypes::Key* temp = id_;
+  id_ = NULL;
   return temp;
 }
-inline void MutationResult::set_allocated_entity(::DataTypes::Entity* entity) {
-  delete entity_;
-  entity_ = entity;
-  if (entity) {
+inline void MutationResult::set_allocated_id(::DataTypes::Key* id) {
+  delete id_;
+  id_ = id;
+  if (id) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_set_allocated:DataTypes.MutationResult.entity)
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.MutationResult.id)
 }
 
 // optional string error = 2;

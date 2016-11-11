@@ -3,12 +3,16 @@
 
 #include <common/ilifecycle.hpp>
 #include <any.hpp>
-#include <data/models/queries.hpp>
+//#include <data/models/queries.hpp>
 #include <vector>
 #include <map>
 
+namespace data_model {
+	class GetRequest;
+}
+
 namespace contracts
-{
+{	
 	namespace data
 	{		
 		template <typename TEntity>
@@ -42,8 +46,17 @@ namespace contracts
 				auto key = typeid(T).hash_code();
 				if (container_.find(key) == container_.end())
 					return nullptr;
-				auto target = boost::any_cast<IRepository<T>*>(container_[key]);
-				return target;
+				try
+				{
+					auto target = boost::any_cast<IRepository<T>*>(container_[key]);
+					return target;
+				}
+				catch (std::exception& )
+				{
+					//Can't cast
+					//TODO handle
+					return nullptr;
+				}
 			}
 
 		protected:

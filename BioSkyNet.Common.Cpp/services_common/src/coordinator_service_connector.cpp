@@ -1,4 +1,5 @@
 #include <coordinator_service_connector.hpp>
+#include <data/models/unit.hpp>
 
 namespace services
 {

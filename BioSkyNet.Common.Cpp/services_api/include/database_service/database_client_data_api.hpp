@@ -1,7 +1,6 @@
 #ifndef DatabaseClientAdapted_INCLUDED
 #define DatabaseClientAdapted_INCLUDED
 
-#include "database_service/database_client_calls.hpp"
 #include <services/idatabase_api.hpp>
 #include <services/service_address.hpp>
 #include <helpers/request_adapters.hpp>
@@ -16,12 +15,17 @@ namespace services_api
 		explicit DatabaseClientDataApi(contracts::services::IServiceAddress& address)
 			: DatabaseClientProtoApi(address)
 		{}
+
+		virtual ~DatabaseClientDataApi() {}
 		
 		std::shared_ptr<data_model::GetResponse>
 			get(const data_model::GetRequest& request) override
 		{
 			auto proto_request = helpers::to_proto_get_request(request);
 			auto result        = DatabaseClientProtoApi::get(proto_request);
+
+			if (result == nullptr)
+				return nullptr;
 
 			auto adapted = helpers::to_data_get_response(*result);
 			return std::make_shared<data_model::GetResponse>(adapted);
@@ -32,6 +36,9 @@ namespace services_api
 		{
 			auto proto_request = helpers::to_proto_commit_request(request);
 			auto result  = DatabaseClientProtoApi::commit(proto_request);
+
+			if (result == nullptr)
+				return nullptr;
 
 			auto adapted = helpers::to_data_commit_response(*result);
 			return std::make_shared<data_model::CommitResponse>(adapted);

@@ -6,7 +6,7 @@
 #include <vector>
 #include <data/models/location.hpp>
 #include <data/models/queries.hpp>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 
 namespace services_api
 {
@@ -56,9 +56,13 @@ namespace services_api
 			{
 				if (response == nullptr)
 					return;			
-				const auto& items = response->entities;
-				for (const auto& item : items)									
-					entities.push_back(item.location);				
+				for (const auto& item : *response)
+				{
+					if (item.type() == data_model::EntityLocation)
+						entities.push_back(item.location());
+					else
+						logger_.error("Get Response Error : Entity not contain location");
+				}
 			}
 		
 			contracts::services::IDatabaseApi* context_;

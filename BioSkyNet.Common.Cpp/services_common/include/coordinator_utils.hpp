@@ -2,6 +2,11 @@
 #define CoordinatorUtils_Included
 
 #include <services/icoordinator_api.hpp>
+#include <string>
+
+namespace data_model{
+	enum ServiceType;	
+}
 
 namespace services
 {
@@ -15,7 +20,7 @@ namespace services
 
 		data_model::HeartbeatMessage 
 			generate_heartbeat_msg( const std::string& service_id
-			                      , data_model::ServiceType   service_type );
+			                      , data_model::ServiceType  service_type );
 	
 	}
 }

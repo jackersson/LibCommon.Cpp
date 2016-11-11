@@ -9,7 +9,7 @@
 #include <services/service_address.hpp>
 #include <helpers/service_heplers.hpp>
 #include "coordinator_client_calls.hpp"
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 #include <helpers/request_adapters.hpp>
 #include <abstract_client_service.hpp>
 

@@ -6,7 +6,7 @@
 #include <vector>
 #include <data/models/face_characteristics.hpp>
 #include <helpers/request_adapters.hpp>
-#include <common/logger.hpp>
+#include <logging/logger.hpp>
 
 namespace services_api
 {
@@ -56,10 +56,13 @@ namespace services_api
 			{
 				if (response == nullptr)
 					return;
-
-				const auto& items = response->entities;
-				for (const auto& item : items)									
-					entities.push_back(helpers::to_data_face_template(item.face));					
+				for (const auto& item : *response)
+				{
+					if (item.type() == data_model::EntityFaceCharacteristics)
+						entities.push_back(helpers::to_data_face_template(item.face()));
+					else
+						logger_.error("Get Response Error : Entity not contain face");
+				}
 			}
 
 			contracts::services::IDatabaseApi* context_;
