@@ -1,7 +1,7 @@
 #ifndef CoordinatorClientCall_INCLUDED
 #define CoordinatorClientCall_INCLUDED
 
-#include <helpers/service_heplers.hpp>
+#include "helpers/abstract_async_call.hpp"
 
 namespace services_api
 { 
@@ -13,6 +13,7 @@ namespace services_api
 			return class_name;
 		}
 	};
+
 	struct AsyncHeartbeatCall     : AsyncEmptyCall
 	{
 		const std::string& identifier() const override
@@ -21,6 +22,7 @@ namespace services_api
 			return class_name;
 		}
 	};
+
 	struct AsyncUpdateDevicesCall : AsyncEmptyCall
 	{
 		const std::string& identifier() const override

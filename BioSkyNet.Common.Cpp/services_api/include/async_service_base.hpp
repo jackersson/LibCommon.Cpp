@@ -1,26 +1,21 @@
 #ifndef AsyncServiceBaseImpl_INCLUDED
 #define AsyncServiceBaseImpl_INCLUDED
 
-#include <services/unit_service.grpc.pb.h>
 #include <services/iservice.hpp>
 #include <services/service_address.hpp>
-#include <services/facial_service.grpc.pb.h>
 
 #include <boost/asio/io_service.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread/thread.hpp>
 #include <include/grpc++/security/server_credentials.h>
-#include <common/logger.hpp>
-#include <helpers/service_heplers.hpp>
+#include <logging/logger.hpp>
+#include "helpers/service_heplers.hpp"
 
 namespace services_api
 {
 	typedef
 		std::function<void(grpc::ServerCompletionQueue*)>	CreateRequestHandlerFunc;
 
-	typedef Services::BiometricFacialService::AsyncService AsyncFacialService;
-	typedef Services::UnitService::AsyncService            AsyncUnitService  ;
-	
 	template <typename TService>
 	class AsyncServiceBase : public contracts::services::IService
 	{

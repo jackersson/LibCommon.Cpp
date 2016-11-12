@@ -22,35 +22,11 @@ namespace data_core
 			contracts::data::IRepository<data_model::FaceTemplate>  IFaceCharstRepository;
 	public:	
 		explicit
-			RepositoryContainer(contracts::data::AbstractDataContextContainer* datacontext);
-			//: data_context_(datacontext)
-	//	{
-		//	if (data_context_ == nullptr)
-		//		throw std::exception("Datacontext can't be null");
-	//	}
-
-		void init() override;
-	/*	{	
-			auto location_context = data_context_->get<data_model::Location>();
-			locations_ 
-				= std::make_unique<datacontext::LocationsRepository>(location_context);
-			container_[typeid(data_model::Location).hash_code()] = locations_.get();
-
-			auto visrecor_context = data_context_->get<data_model::VisitRecord>();
-			visit_records_ 
-				= std::make_unique<datacontext::VisitRecordsRepository>(visrecor_context);
-			container_[typeid(data_model::VisitRecord).hash_code()] = visit_records_.get();
-
-			auto person_context = data_context_->get<data_model::Person>();
-			persons_ = std::make_unique<datacontext::PersonsRepository>(person_context);
-			container_[typeid(data_model::Person).hash_code()] = persons_.get();
-
-			auto facechars_context = data_context_->get<data_model::FaceTemplate>();
-			face_charst_ = std::make_unique<datacontext::FaceCharstRepository>(facechars_context);
-			container_[typeid(data_model::FaceTemplate).hash_code()] = persons_.get();
-		}
-		*/
-		void de_init() override;// {}
+			RepositoryContainer(
+				       contracts::data::AbstractDataContextContainer* datacontext);
+		
+		void init   () override;	
+		void de_init() override;
 
 	private:		
 		std::unique_ptr<ILocationRepository>	   locations_    ;

@@ -1,6 +1,6 @@
-#include <data/irepository.hpp>
+#include "repository/persons_repository.hpp"
+
 #include <data/models/person.hpp>
-#include <repository/persons_repository.hpp>
 
 namespace data_core
 {

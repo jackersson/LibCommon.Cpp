@@ -2,7 +2,6 @@
 #define FacialClientCalls_INCLUDED
 
 #include <future>
-#include <helpers/service_heplers.hpp>
 #include <services/facial_service.pb.h>
 
 namespace services_api

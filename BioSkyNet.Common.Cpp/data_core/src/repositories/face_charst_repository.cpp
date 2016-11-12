@@ -1,6 +1,6 @@
-#include <data/irepository.hpp>
+#include "repository/face_charst_repository.hpp"
+
 #include <data/models/face_characteristics.hpp>
-#include <repository/face_charst_repository.hpp>
 
 using namespace data_model;
 using namespace contracts::data;

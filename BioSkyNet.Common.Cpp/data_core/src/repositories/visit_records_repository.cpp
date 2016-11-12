@@ -1,6 +1,6 @@
-#include <data/irepository.hpp>
+#include "repository/visit_records_repository.hpp"
+
 #include <data/models/visit_record.hpp>
-#include <repository/visit_records_repository.hpp>
 
 namespace data_core
 {

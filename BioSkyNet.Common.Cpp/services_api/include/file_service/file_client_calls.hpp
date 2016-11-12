@@ -1,9 +1,14 @@
 #ifndef FileClientCall_INCLUDED
 #define FileClientCall_INCLUDED
 
-#include <helpers/service_heplers.hpp>
-#include <services/file_service.pb.h>
+//#include <services/file_service.pb.h>
 #include <future>
+
+namespace Services
+{
+	class FileBytes;
+	class FileMessage;
+};
 
 namespace services_api
 {

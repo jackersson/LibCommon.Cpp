@@ -167,12 +167,27 @@
     <ClInclude Include="include\facial_service\client\facial_client_proto_api.hpp" />
     <ClInclude Include="include\file_service\file_client_calls.hpp" />
     <ClInclude Include="include\file_service\file_client_api.hpp" />
+    <ClInclude Include="include\helpers\abstract_async_call.hpp" />
     <ClInclude Include="include\helpers\request_adapters.hpp" />
     <ClInclude Include="include\helpers\request_handler.hpp" />
+    <ClInclude Include="include\helpers\request_handler_types.hpp" />
     <ClInclude Include="include\helpers\service_heplers.hpp" />
     <ClInclude Include="include\async_service_base.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\abstract_client_service.cpp" />
+    <ClCompile Include="src\coordinator_service\coordinator_client_data_api.cpp" />
+    <ClCompile Include="src\coordinator_service\coordinator_client_proto_api.cpp" />
+    <ClCompile Include="src\database_service\database_client_data_api.cpp" />
+    <ClCompile Include="src\database_service\database_client_proto_api.cpp" />
+    <ClCompile Include="src\database_service\datacontext\datacontext_container.cpp" />
+    <ClCompile Include="src\database_service\datacontext\facial_charst_data_context.cpp" />
+    <ClCompile Include="src\database_service\datacontext\locations_data_context.cpp" />
+    <ClCompile Include="src\database_service\datacontext\persons_data_context.cpp" />
+    <ClCompile Include="src\database_service\datacontext\visit_records_data_context.cpp" />
+    <ClCompile Include="src\facial_service\facial_service_data_api.cpp" />
+    <ClCompile Include="src\facial_service\facial_service_proto_api.cpp" />
+    <ClCompile Include="src\file_service\file_client_api.cpp" />
     <ClCompile Include="src\helpers\request_adapters.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>

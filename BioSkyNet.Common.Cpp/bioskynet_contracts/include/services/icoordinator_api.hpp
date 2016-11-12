@@ -1,8 +1,6 @@
 #ifndef ICoordinatorApi_INCLUDED
 #define ICoordinatorApi_INCLUDED
 
-//#include <data/models/unit.hpp>
-//#include <data/models/devices.hpp>
 #include <memory>
 
 namespace data_model{

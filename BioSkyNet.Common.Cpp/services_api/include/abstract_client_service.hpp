@@ -6,58 +6,24 @@
 #include <services/iservice.hpp>
 #include <src/cpp/server/dynamic_thread_pool.h>
 #include <logging/logger.hpp>
+#include "helpers/abstract_async_call.hpp"
 
 namespace services_api
 {
-
 	//Virtual : 
 	// do_set_call_options ( metadata)
 	// do_create_stub ( for each client)
 	class AbstractClientService : public contracts::services::IService
 	{
 	public:
-		explicit AbstractClientService( contracts::services::IServiceAddress& address)
-			                         : active_(false)
-			                         , thread_pool_(0)
-			                         , address_(address.get())
-		{}
+		explicit AbstractClientService(contracts::services::IServiceAddress& address);
+			   
+		virtual ~AbstractClientService();
 
-		virtual ~AbstractClientService() {
-			AbstractClientService::stop();		
-		}
-
-		void connect()
-		{
-			//auto address = address_.get();
-			logger_.info("Try create channel {0}", address_);
-
-			channel_ = CreateChannel(address_, grpc::InsecureChannelCredentials());
-			do_create_stub(channel_);
-		}
-		
-		void start() override
-		{
-			if (active_)
-				return;
-
-			active_ = true;
-			for (auto handler : handlers_)
-				thread_pool_.Add(handler.second.callback);
-
-			logger_.info("{0} connected to {1}", class_name(), address_);
-		}
-
-		void stop() override
-		{
-			if (handlers_.empty())
-				return;
-
-			for (auto it : handlers_)
-				it.second.completion_queue->Shutdown();
-			handlers_.clear();
-
-			logger_.info("{0} stopped", class_name());
-		}
+		void connect();
+	
+		void start() override;		
+		void stop () override;	
 
 	protected:
 		mutable contracts::logging::Logger    logger_;
@@ -68,12 +34,7 @@ namespace services_api
 			return helpers::get_completion_queue<T>(handlers_);			
 		}
 			
-		void set_call_options(IAsyncCall* call) const {
-			do_set_call_options(call);
-
-			helpers::set_deadline(call->context, call->deadline);
-			helpers::set_metadata(call->context, call->metadata);	
-		}
+		void set_call_options(IAsyncCall* call) const;
 			
 		template<typename T>
 		void add_call_handler()
@@ -82,10 +43,8 @@ namespace services_api
 
 			RpcCallbackFunction callback = [cq, this]()	{				
 				AbstractClientService::async_complete_rpc<T>(cq.get());
-			};
-		
-			//auto callback
-			//	= std::bind(&AbstractClientService::async_complete_rpc<T>, this, cq.get());
+			};		
+			
 			handlers_.insert(std::pair<std::string, ClientRequestHandler>(
 				          	typeid(T).name(), ClientRequestHandler(cq, callback)));
 		}

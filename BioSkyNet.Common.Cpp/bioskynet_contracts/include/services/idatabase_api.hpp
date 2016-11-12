@@ -2,9 +2,6 @@
 #define IDatabaseApi_INCLUDED
 
 #include <memory>
-//#include <data/models/commands.hpp>
-//#include <data/models/queries.hpp>
-
 namespace data_model {
 	class GetResponse   ;
 	class GetRequest    ;

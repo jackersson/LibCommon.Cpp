@@ -4,9 +4,12 @@
 #include <data/irepository.hpp>
 #include <services/idatabase_api.hpp>
 #include <vector>
-#include <data/models/face_characteristics.hpp>
-#include <helpers/request_adapters.hpp>
 #include <logging/logger.hpp>
+
+namespace data_model
+{
+	class FaceTemplate;
+}
 
 namespace services_api
 {
@@ -17,54 +20,20 @@ namespace services_api
 		{
 
 		public:
-			explicit FaceCharstDataContext(contracts::services::IDatabaseApi* api)
-				: context_(api)
-			{
-				if (context_ == nullptr)
-					throw std::exception("Database Api cannot be null");
-			}
-
-			bool get( const data_model::GetRequest& request
-				      , std::vector<data_model::FaceTemplate>& entities) override
-			{			
-				return do_get(request, entities);
-			}
-
-			bool add(const data_model::FaceTemplate& entity) override
-			{
-				throw std::exception("Not implemented");
-			}
+			explicit FaceCharstDataContext(contracts::services::IDatabaseApi* api);
+		
+			bool get(const data_model::GetRequest& request
+				, std::vector<data_model::FaceTemplate>& entities) override;
+		
+			bool add(const data_model::FaceTemplate& entity) override;		
 
 		private:
-			bool do_get( const data_model::GetRequest& request
-				         , std::vector<data_model::FaceTemplate>& entities) const
-			{
-				try
-				{
-					auto result = context_->get(request);
-					parse(result, entities);
-					return true;
-				}
-				catch (std::exception& exception) {
-					logger_.error(exception.what());
-					return false;
-				}
-			}
-
-			void parse( std::shared_ptr<data_model::GetResponse> response
-				        , std::vector<data_model::FaceTemplate>& entities) const
-			{
-				if (response == nullptr)
-					return;
-				for (const auto& item : *response)
-				{
-					if (item.type() == data_model::EntityFaceCharacteristics)
-						entities.push_back(helpers::to_data_face_template(item.face()));
-					else
-						logger_.error("Get Response Error : Entity not contain face");
-				}
-			}
-
+			bool do_get(const data_model::GetRequest& request
+				, std::vector<data_model::FaceTemplate>& entities) const;
+			
+			void parse(std::shared_ptr<data_model::GetResponse> response
+				, std::vector<data_model::FaceTemplate>& entities) const;
+		
 			contracts::services::IDatabaseApi* context_;
 			mutable contracts::logging::Logger logger_ ;
 		};

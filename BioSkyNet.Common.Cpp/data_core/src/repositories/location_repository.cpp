@@ -1,6 +1,6 @@
-#include <data/irepository.hpp>
+#include "repository/location_repository.hpp"
+
 #include <data/models/location.hpp>
-#include <repository/location_repository.hpp>
 
 namespace data_core
 {

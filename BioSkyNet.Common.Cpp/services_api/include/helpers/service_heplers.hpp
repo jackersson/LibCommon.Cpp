@@ -2,82 +2,11 @@
 #define ServiceHelpers_INCLUDED
 
 #include <include/grpc++/impl/codegen/completion_queue.h>
-#include <grpc++/grpc++.h>
-#include <future>
-//#include <google/protobuf/empty.pb.h>
+#include "request_handler_types.hpp"
 
 namespace services_api
-{
-	typedef std::function<void()> RpcCallbackFunction;
+{	
 	typedef std::vector<std::pair<std::string, std::string>> Metadata;
-
-	const int REQUEST_DEADLINE = 1;
-
-	struct IAsyncCall
-	{
-		IAsyncCall() : deadline(REQUEST_DEADLINE) {}
-
-		virtual ~IAsyncCall() {}
-
-		virtual void               process   ()       = 0;
-		virtual const std::string& identifier() const = 0;
-
-		grpc::ClientContext  context;
-		grpc::Status         status;
-		uint32_t             deadline; //in seconds
-		Metadata             metadata;
-	};
-	
-	//**************************
-	template <typename TResponse>
-	struct AbstractAsyncCall : IAsyncCall
-	{
-		AbstractAsyncCall() : IAsyncCall() {}
-		virtual ~AbstractAsyncCall(){}
-		TResponse            response;	
-	};
-
-	struct AsyncEmptyCall : AbstractAsyncCall<google::protobuf::Empty>
-	{
-		void process() override {
-			promise.set_value(true);
-		}
-
-		std::promise<bool>  promise;
-		std::unique_ptr<grpc::ClientAsyncResponseReader<google::protobuf::Empty>> reader;
-	};
-
-	//************************
-	template<typename TQueue>
-	struct RequestHandlerBase
-	{
-		RequestHandlerBase() {}
-
-		RequestHandlerBase( std::shared_ptr<TQueue> cq
-			                 , RpcCallbackFunction callback_)
-			                 : completion_queue(cq), callback(callback_)
-		{	}
-		std::shared_ptr<TQueue> completion_queue;
-		RpcCallbackFunction callback;
-	};
-
-	struct ServerRequestHandler : RequestHandlerBase<grpc::ServerCompletionQueue>
-	{
-		ServerRequestHandler(std::shared_ptr<grpc::ServerCompletionQueue> cq
-			, RpcCallbackFunction callback_)
-			: RequestHandlerBase(cq, callback_)
-		{	}
-	};
-	typedef std::list<ServerRequestHandler>              ServerRequestHandlers;
-
-	struct ClientRequestHandler : RequestHandlerBase<grpc::CompletionQueue>
-	{
-		ClientRequestHandler(std::shared_ptr<grpc::CompletionQueue> cq
-			, RpcCallbackFunction callback_)
-			: RequestHandlerBase(cq, callback_)
-		{	}
-	};
-	typedef std::map<std::string, ClientRequestHandler> ClientRequestHandlers;
 
 	//*****************************
 	namespace helpers

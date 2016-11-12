@@ -51,10 +51,9 @@ namespace contracts
 			const std::string& get() const override { return formatted_address_; }
 
 		private:
-			std::string  ip_address_;
-			unsigned int port_;
-			std::string  formatted_address_;
-		
+			std::string  ip_address_       ;
+			unsigned int port_             ;
+			std::string  formatted_address_;		
 		};
 	}	
 }

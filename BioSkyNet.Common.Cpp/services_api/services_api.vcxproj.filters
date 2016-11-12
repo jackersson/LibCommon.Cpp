@@ -40,6 +40,21 @@
     <Filter Include="src\helpers">
       <UniqueIdentifier>{6395b349-98d5-4bb9-869e-0be23b69a34c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\file_service">
+      <UniqueIdentifier>{26b4e8f3-d280-443c-a9b5-4cc969979a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\database_service">
+      <UniqueIdentifier>{a04e15a7-44ef-443c-a64e-cf1e2a705b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\database_service\datacontext">
+      <UniqueIdentifier>{74ec0e3f-15bb-4787-8d48-14ef7167cb28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\facial_service">
+      <UniqueIdentifier>{c9333637-393c-4592-9285-0aebd0254414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\coordinator_service">
+      <UniqueIdentifier>{0b1115d5-3233-4d51-9f8a-0eea17f138bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp">
@@ -105,6 +120,12 @@
     <ClInclude Include="include\coordinator_service\coordinator_client_data_api.hpp">
       <Filter>includes\coordinator_service</Filter>
     </ClInclude>
+    <ClInclude Include="include\helpers\abstract_async_call.hpp">
+      <Filter>includes\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helpers\request_handler_types.hpp">
+      <Filter>includes\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -112,6 +133,45 @@
     </ClCompile>
     <ClCompile Include="src\helpers\request_adapters.cpp">
       <Filter>src\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\abstract_client_service.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\file_service\file_client_api.cpp">
+      <Filter>src\file_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\database_client_proto_api.cpp">
+      <Filter>src\database_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\database_client_data_api.cpp">
+      <Filter>src\database_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\datacontext\facial_charst_data_context.cpp">
+      <Filter>src\database_service\datacontext</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\datacontext\locations_data_context.cpp">
+      <Filter>src\database_service\datacontext</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\datacontext\persons_data_context.cpp">
+      <Filter>src\database_service\datacontext</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\datacontext\visit_records_data_context.cpp">
+      <Filter>src\database_service\datacontext</Filter>
+    </ClCompile>
+    <ClCompile Include="src\database_service\datacontext\datacontext_container.cpp">
+      <Filter>src\database_service\datacontext</Filter>
+    </ClCompile>
+    <ClCompile Include="src\facial_service\facial_service_data_api.cpp">
+      <Filter>src\facial_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\facial_service\facial_service_proto_api.cpp">
+      <Filter>src\facial_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\coordinator_service\coordinator_client_proto_api.cpp">
+      <Filter>src\coordinator_service</Filter>
+    </ClCompile>
+    <ClCompile Include="src\coordinator_service\coordinator_client_data_api.cpp">
+      <Filter>src\coordinator_service</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
