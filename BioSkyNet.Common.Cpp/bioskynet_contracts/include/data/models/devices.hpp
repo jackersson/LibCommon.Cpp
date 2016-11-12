@@ -28,6 +28,52 @@ namespace data_model
 	{
 
 	};
+
+	class DeviceId
+	{
+	public:
+		DeviceId() : name_("")
+			         , serial_number_(0)
+		{}
+
+		explicit DeviceId(const std::string& name) : name_(name)
+			, serial_number_(0)
+		{}
+
+		explicit DeviceId(uint16_t sn) : name_("")
+			, serial_number_(sn)
+		{}
+
+		void set_name(const std::string& device_name) {
+			 name_ = device_name;
+		}
+
+		const std::string& name() const {
+			return name_;
+		}
+
+		uint16_t serial_number() const {
+			return serial_number_;
+		}
+
+		void set_serial_number(uint16_t serial_number) {
+			serial_number_ = serial_number;
+		}
+
+		bool is_empty() const {
+			return name_ == "" && serial_number_ <= 0;
+		}
+
+		bool operator==(const DeviceId& rhs) const
+		{
+			return this->name()          == rhs.name() 
+				  && this->serial_number() == rhs.serial_number();
+		}
+
+	private:
+		std::string name_         ;
+		uint16_t    serial_number_;
+	};
 	
 	class Device
 	{

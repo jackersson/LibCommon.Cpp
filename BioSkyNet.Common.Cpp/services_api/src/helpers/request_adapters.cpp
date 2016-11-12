@@ -372,6 +372,12 @@ namespace services_api
 			throw std::exception("not implemented");
 		}
 
+		DataTypes::Devices
+			to_proto_devices(const data_model::Devices& gr)
+		{
+			throw std::exception("not implemented");
+		}
+
 		/*
 
 		inline DataTypes::Position

@@ -8,6 +8,7 @@ namespace Services{
 
 namespace data_model
 {
+	class Devices;
 	class FaceTemplate;
 	class BiometricResponse;
 	class BiometricRequest;
@@ -38,6 +39,7 @@ namespace data_model
 }
 
 namespace DataTypes{
+	class Devices;
 	class DeviceUpdate;
 	class ConnectMsg;
 	class HeartbeatMessage;
@@ -152,6 +154,9 @@ namespace services_api
 
 		data_model::FaceTemplate 
 			to_data_face_template(const DataTypes::FaceCharacteristic& key);
+
+		DataTypes::Devices
+			to_proto_devices(const data_model::Devices& gr);
 	}
 }
 
