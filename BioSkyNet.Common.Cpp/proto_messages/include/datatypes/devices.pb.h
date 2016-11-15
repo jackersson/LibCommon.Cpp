@@ -554,12 +554,19 @@ class Device : public ::google::protobuf::Message {
   ::std::string* release_device_name();
   void set_allocated_device_name(::std::string* device_name);
 
+  // optional fixed64 serial_number = 3;
+  void clear_serial_number();
+  static const int kSerialNumberFieldNumber = 3;
+  ::google::protobuf::uint64 serial_number() const;
+  void set_serial_number(::google::protobuf::uint64 value);
+
   // @@protoc_insertion_point(class_scope:DataTypes.Device)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr device_name_;
+  ::google::protobuf::uint64 serial_number_;
   int device_type_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2fdevices_2eproto();
@@ -1415,6 +1422,20 @@ inline void Device::set_allocated_device_name(::std::string* device_name) {
   }
   device_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), device_name);
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Device.device_name)
+}
+
+// optional fixed64 serial_number = 3;
+inline void Device::clear_serial_number() {
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 Device::serial_number() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Device.serial_number)
+  return serial_number_;
+}
+inline void Device::set_serial_number(::google::protobuf::uint64 value) {
+  
+  serial_number_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.Device.serial_number)
 }
 
 // -------------------------------------------------------------------

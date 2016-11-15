@@ -60,9 +60,10 @@ void protobuf_AssignDesc_datatypes_2funit_2eproto() {
       "datatypes/unit.proto");
   GOOGLE_CHECK(file != NULL);
   Unit_descriptor_ = file->message_type(0);
-  static const int Unit_offsets_[3] = {
+  static const int Unit_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Unit, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Unit, ip_address_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Unit, mac_address_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Unit, locations_),
   };
   Unit_reflection_ =
@@ -237,29 +238,29 @@ void protobuf_AddDesc_datatypes_2funit_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\024datatypes/unit.proto\022\tDataTypes\032\030datat"
     "ypes/location.proto\032\023datatypes/key.proto"
-    "\"^\n\004Unit\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022\022\n\n"
-    "ip_address\030\002 \001(\t\022&\n\tlocations\030\003 \003(\0132\023.Da"
-    "taTypes.Location\"j\n\nConnectMsg\022\032\n\002id\030\001 \001"
-    "(\0132\016.DataTypes.Key\022\022\n\nip_address\030\002 \001(\t\022,"
-    "\n\014service_type\030\003 \001(\0162\026.DataTypes.Service"
-    "Type\"\\\n\020HeartbeatMessage\022\032\n\002id\030\001 \001(\0132\016.D"
-    "ataTypes.Key\022,\n\014service_type\030\002 \001(\0162\026.Dat"
-    "aTypes.ServiceType\"^\n\017SubscriptionMsg\022$\n"
-    "\014publisher_id\030\001 \001(\0132\016.DataTypes.Key\022%\n\rs"
-    "ubscriber_id\030\002 \001(\0132\016.DataTypes.Key\"\'\n\005Un"
-    "its\022\036\n\005items\030\001 \003(\0132\017.DataTypes.Unit\"\253\001\n\n"
-    "UnitUpdate\022#\n\010inserted\030\001 \001(\0132\017.DataTypes"
-    ".UnitH\000\022\"\n\007deleted\030\002 \001(\0132\017.DataTypes.Uni"
-    "tH\000\022\"\n\007updated\030\003 \001(\0132\017.DataTypes.UnitH\000\022"
-    "#\n\005state\030\004 \001(\0162\024.DataTypes.UnitStateB\013\n\t"
-    "unit_type\"3\n\013UnitUpdates\022$\n\005items\030\001 \003(\0132"
-    "\025.DataTypes.UnitUpdate*7\n\tUnitState\022\t\n\005N"
-    "one_\020\000\022\r\n\tConnected\020\001\022\020\n\014Disconnected\020\002*"
-    "Y\n\013ServiceType\022\020\n\014None_Service\020\000\022\022\n\016Faci"
-    "al_Service\020\001\022\022\n\016Client_Service\020\002\022\020\n\014Unit"
-    "_Service\020\003BI\n\007ex.grpcZ8github.com/Enebra"
-    "/ServiceCoordinator/grpc/datatypes/unit\242"
-    "\002\003RTGb\006proto3", 973);
+    "\"s\n\004Unit\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022\022\n\n"
+    "ip_address\030\002 \001(\t\022\023\n\013mac_address\030\003 \001(\t\022&\n"
+    "\tlocations\030\004 \003(\0132\023.DataTypes.Location\"j\n"
+    "\nConnectMsg\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022"
+    "\022\n\nip_address\030\002 \001(\t\022,\n\014service_type\030\003 \001("
+    "\0162\026.DataTypes.ServiceType\"\\\n\020HeartbeatMe"
+    "ssage\022\032\n\002id\030\001 \001(\0132\016.DataTypes.Key\022,\n\014ser"
+    "vice_type\030\002 \001(\0162\026.DataTypes.ServiceType\""
+    "^\n\017SubscriptionMsg\022$\n\014publisher_id\030\001 \001(\013"
+    "2\016.DataTypes.Key\022%\n\rsubscriber_id\030\002 \001(\0132"
+    "\016.DataTypes.Key\"\'\n\005Units\022\036\n\005items\030\001 \003(\0132"
+    "\017.DataTypes.Unit\"\253\001\n\nUnitUpdate\022#\n\010inser"
+    "ted\030\001 \001(\0132\017.DataTypes.UnitH\000\022\"\n\007deleted\030"
+    "\002 \001(\0132\017.DataTypes.UnitH\000\022\"\n\007updated\030\003 \001("
+    "\0132\017.DataTypes.UnitH\000\022#\n\005state\030\004 \001(\0162\024.Da"
+    "taTypes.UnitStateB\013\n\tunit_type\"3\n\013UnitUp"
+    "dates\022$\n\005items\030\001 \003(\0132\025.DataTypes.UnitUpd"
+    "ate*7\n\tUnitState\022\t\n\005None_\020\000\022\r\n\tConnected"
+    "\020\001\022\020\n\014Disconnected\020\002*Y\n\013ServiceType\022\020\n\014N"
+    "one_Service\020\000\022\022\n\016Facial_Service\020\001\022\022\n\016Cli"
+    "ent_Service\020\002\022\020\n\014Unit_Service\020\003BI\n\007ex.gr"
+    "pcZ8github.com/Enebra/ServiceCoordinator"
+    "/grpc/datatypes/unit\242\002\003RTGb\006proto3", 994);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/unit.proto", &protobuf_RegisterTypes);
   Unit::default_instance_ = new Unit();
@@ -333,6 +334,7 @@ static void MergeFromFail(int line) {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Unit::kIdFieldNumber;
 const int Unit::kIpAddressFieldNumber;
+const int Unit::kMacAddressFieldNumber;
 const int Unit::kLocationsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -361,6 +363,7 @@ void Unit::SharedCtor() {
   _cached_size_ = 0;
   id_ = NULL;
   ip_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  mac_address_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 Unit::~Unit() {
@@ -370,6 +373,7 @@ Unit::~Unit() {
 
 void Unit::SharedDtor() {
   ip_address_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  mac_address_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
     delete id_;
   }
@@ -405,6 +409,7 @@ void Unit::Clear() {
   if (GetArenaNoVirtual() == NULL && id_ != NULL) delete id_;
   id_ = NULL;
   ip_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  mac_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   locations_.Clear();
 }
 
@@ -443,13 +448,30 @@ bool Unit::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_locations;
+        if (input->ExpectTag(26)) goto parse_mac_address;
         break;
       }
 
-      // repeated .DataTypes.Location locations = 3;
+      // optional string mac_address = 3;
       case 3: {
         if (tag == 26) {
+         parse_mac_address:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_mac_address()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->mac_address().data(), this->mac_address().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "DataTypes.Unit.mac_address"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(34)) goto parse_locations;
+        break;
+      }
+
+      // repeated .DataTypes.Location locations = 4;
+      case 4: {
+        if (tag == 34) {
          parse_locations:
           DO_(input->IncrementRecursionDepth());
          parse_loop_locations:
@@ -458,7 +480,7 @@ bool Unit::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_loop_locations;
+        if (input->ExpectTag(34)) goto parse_loop_locations;
         input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
@@ -504,10 +526,20 @@ void Unit::SerializeWithCachedSizes(
       2, this->ip_address(), output);
   }
 
-  // repeated .DataTypes.Location locations = 3;
+  // optional string mac_address = 3;
+  if (this->mac_address().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->mac_address().data(), this->mac_address().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "DataTypes.Unit.mac_address");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->mac_address(), output);
+  }
+
+  // repeated .DataTypes.Location locations = 4;
   for (unsigned int i = 0, n = this->locations_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      3, this->locations(i), output);
+      4, this->locations(i), output);
   }
 
   // @@protoc_insertion_point(serialize_end:DataTypes.Unit)
@@ -534,11 +566,22 @@ void Unit::SerializeWithCachedSizes(
         2, this->ip_address(), target);
   }
 
-  // repeated .DataTypes.Location locations = 3;
+  // optional string mac_address = 3;
+  if (this->mac_address().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->mac_address().data(), this->mac_address().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "DataTypes.Unit.mac_address");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->mac_address(), target);
+  }
+
+  // repeated .DataTypes.Location locations = 4;
   for (unsigned int i = 0, n = this->locations_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->locations(i), target);
+        4, this->locations(i), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.Unit)
@@ -563,7 +606,14 @@ int Unit::ByteSize() const {
         this->ip_address());
   }
 
-  // repeated .DataTypes.Location locations = 3;
+  // optional string mac_address = 3;
+  if (this->mac_address().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->mac_address());
+  }
+
+  // repeated .DataTypes.Location locations = 4;
   total_size += 1 * this->locations_size();
   for (int i = 0; i < this->locations_size(); i++) {
     total_size +=
@@ -603,6 +653,10 @@ void Unit::MergeFrom(const Unit& from) {
 
     ip_address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.ip_address_);
   }
+  if (from.mac_address().size() > 0) {
+
+    mac_address_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.mac_address_);
+  }
 }
 
 void Unit::CopyFrom(const ::google::protobuf::Message& from) {
@@ -631,6 +685,7 @@ void Unit::Swap(Unit* other) {
 void Unit::InternalSwap(Unit* other) {
   std::swap(id_, other->id_);
   ip_address_.Swap(&other->ip_address_);
+  mac_address_.Swap(&other->mac_address_);
   locations_.UnsafeArenaSwap(&other->locations_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -729,7 +784,51 @@ void Unit::clear_ip_address() {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Unit.ip_address)
 }
 
-// repeated .DataTypes.Location locations = 3;
+// optional string mac_address = 3;
+void Unit::clear_mac_address() {
+  mac_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& Unit::mac_address() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Unit.mac_address)
+  return mac_address_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void Unit::set_mac_address(const ::std::string& value) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DataTypes.Unit.mac_address)
+}
+ void Unit::set_mac_address(const char* value) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DataTypes.Unit.mac_address)
+}
+ void Unit::set_mac_address(const char* value, size_t size) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DataTypes.Unit.mac_address)
+}
+ ::std::string* Unit::mutable_mac_address() {
+  
+  // @@protoc_insertion_point(field_mutable:DataTypes.Unit.mac_address)
+  return mac_address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* Unit::release_mac_address() {
+  // @@protoc_insertion_point(field_release:DataTypes.Unit.mac_address)
+  
+  return mac_address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void Unit::set_allocated_mac_address(::std::string* mac_address) {
+  if (mac_address != NULL) {
+    
+  } else {
+    
+  }
+  mac_address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), mac_address);
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Unit.mac_address)
+}
+
+// repeated .DataTypes.Location locations = 4;
 int Unit::locations_size() const {
   return locations_.size();
 }

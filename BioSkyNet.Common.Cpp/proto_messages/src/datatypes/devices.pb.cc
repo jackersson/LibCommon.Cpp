@@ -139,9 +139,10 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Devices, _is_default_instance_));
   Device_descriptor_ = file->message_type(4);
-  static const int Device_offsets_[2] = {
+  static const int Device_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, device_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, device_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Device, serial_number_),
   };
   Device_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -318,26 +319,27 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
     "\001(\0132\035.DataTypes.DeviceStateMessageH\000B\010\n\006"
     "update\"R\n\007Devices\022#\n\013location_id\030\001 \001(\0132\016"
     ".DataTypes.Key\022\"\n\007devices\030\002 \003(\0132\021.DataTy"
-    "pes.Device\"I\n\006Device\022*\n\013device_type\030\001 \001("
+    "pes.Device\"`\n\006Device\022*\n\013device_type\030\001 \001("
     "\0162\025.DataTypes.DeviceType\022\023\n\013device_name\030"
-    "\002 \001(\t\"\245\001\n\022DeviceStateMessage\022D\n\030generic_"
-    "device_state_msg\030\001 \001(\0132 .DataTypes.Gener"
-    "icDeviceStateMsgH\000\022B\n\027access_device_stat"
-    "e_msg\030\002 \001(\0132\037.DataTypes.AccessDeviceStat"
-    "eMsgH\000B\005\n\003msg\"\231\001\n\025GenericDeviceStateMsg\022"
-    "#\n\013location_id\030\001 \001(\0132\016.DataTypes.Key\022#\n\004"
-    "type\030\002 \001(\0162\025.DataTypes.DeviceType\022%\n\005sta"
-    "te\030\003 \001(\0162\026.DataTypes.DeviceState\022\017\n\007mess"
-    "age\030\004 \001(\t\"K\n\024AccessDeviceStateMsg\022#\n\013loc"
-    "ation_id\030\001 \001(\0132\016.DataTypes.Key\022\016\n\006opened"
-    "\030\002 \001(\010\"\033\n\007CardMsg\022\020\n\010card_num\030\001 \001(\t\"\'\n\010C"
-    "heckMsg\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 \001(\t*8\n\n"
-    "DeviceType\022\r\n\tNone_Type\020\000\022\016\n\nCardReader\020"
-    "\001\022\013\n\007Capture\020\002*`\n\013DeviceState\022\016\n\nNone_St"
-    "ate\020\000\022\n\n\006Active\020\001\022\021\n\rStoppedByUser\020\002\022\n\n\006"
-    "Paused\020\003\022\013\n\007Stopped\020\004\022\t\n\005Error\020\005BL\n\007ex.g"
-    "rpcZ;github.com/Enebra/ServiceCoordinato"
-    "r/grpc/datatypes/devices\242\002\003RTGb\006proto3", 1158);
+    "\002 \001(\t\022\025\n\rserial_number\030\003 \001(\006\"\245\001\n\022DeviceS"
+    "tateMessage\022D\n\030generic_device_state_msg\030"
+    "\001 \001(\0132 .DataTypes.GenericDeviceStateMsgH"
+    "\000\022B\n\027access_device_state_msg\030\002 \001(\0132\037.Dat"
+    "aTypes.AccessDeviceStateMsgH\000B\005\n\003msg\"\231\001\n"
+    "\025GenericDeviceStateMsg\022#\n\013location_id\030\001 "
+    "\001(\0132\016.DataTypes.Key\022#\n\004type\030\002 \001(\0162\025.Data"
+    "Types.DeviceType\022%\n\005state\030\003 \001(\0162\026.DataTy"
+    "pes.DeviceState\022\017\n\007message\030\004 \001(\t\"K\n\024Acce"
+    "ssDeviceStateMsg\022#\n\013location_id\030\001 \001(\0132\016."
+    "DataTypes.Key\022\016\n\006opened\030\002 \001(\010\"\033\n\007CardMsg"
+    "\022\020\n\010card_num\030\001 \001(\t\"\'\n\010CheckMsg\022\n\n\002ok\030\001 \001"
+    "(\010\022\017\n\007message\030\002 \001(\t*8\n\nDeviceType\022\r\n\tNon"
+    "e_Type\020\000\022\016\n\nCardReader\020\001\022\013\n\007Capture\020\002*`\n"
+    "\013DeviceState\022\016\n\nNone_State\020\000\022\n\n\006Active\020\001"
+    "\022\021\n\rStoppedByUser\020\002\022\n\n\006Paused\020\003\022\013\n\007Stopp"
+    "ed\020\004\022\t\n\005Error\020\005BL\n\007ex.grpcZ;github.com/E"
+    "nebra/ServiceCoordinator/grpc/datatypes/"
+    "devices\242\002\003RTGb\006proto3", 1181);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/devices.proto", &protobuf_RegisterTypes);
   AccessDevice::default_instance_ = new AccessDevice();
@@ -1816,6 +1818,7 @@ Devices::devices() const {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Device::kDeviceTypeFieldNumber;
 const int Device::kDeviceNameFieldNumber;
+const int Device::kSerialNumberFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Device::Device()
@@ -1842,6 +1845,7 @@ void Device::SharedCtor() {
   _cached_size_ = 0;
   device_type_ = 0;
   device_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  serial_number_ = GOOGLE_ULONGLONG(0);
 }
 
 Device::~Device() {
@@ -1882,8 +1886,28 @@ Device* Device::New(::google::protobuf::Arena* arena) const {
 
 void Device::Clear() {
 // @@protoc_insertion_point(message_clear_start:DataTypes.Device)
-  device_type_ = 0;
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(Device, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<Device*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(serial_number_, device_type_);
   device_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+
+#undef ZR_HELPER_
+#undef ZR_
+
 }
 
 bool Device::MergePartialFromCodedStream(
@@ -1921,6 +1945,21 @@ bool Device::MergePartialFromCodedStream(
             this->device_name().data(), this->device_name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "DataTypes.Device.device_name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(25)) goto parse_serial_number;
+        break;
+      }
+
+      // optional fixed64 serial_number = 3;
+      case 3: {
+        if (tag == 25) {
+         parse_serial_number:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
+                 input, &serial_number_)));
+
         } else {
           goto handle_unusual;
         }
@@ -1968,6 +2007,11 @@ void Device::SerializeWithCachedSizes(
       2, this->device_name(), output);
   }
 
+  // optional fixed64 serial_number = 3;
+  if (this->serial_number() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64(3, this->serial_number(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:DataTypes.Device)
 }
 
@@ -1991,6 +2035,11 @@ void Device::SerializeWithCachedSizes(
         2, this->device_name(), target);
   }
 
+  // optional fixed64 serial_number = 3;
+  if (this->serial_number() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(3, this->serial_number(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:DataTypes.Device)
   return target;
 }
@@ -2010,6 +2059,11 @@ int Device::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->device_name());
+  }
+
+  // optional fixed64 serial_number = 3;
+  if (this->serial_number() != 0) {
+    total_size += 1 + 8;
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -2043,6 +2097,9 @@ void Device::MergeFrom(const Device& from) {
 
     device_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.device_name_);
   }
+  if (from.serial_number() != 0) {
+    set_serial_number(from.serial_number());
+  }
 }
 
 void Device::CopyFrom(const ::google::protobuf::Message& from) {
@@ -2071,6 +2128,7 @@ void Device::Swap(Device* other) {
 void Device::InternalSwap(Device* other) {
   std::swap(device_type_, other->device_type_);
   device_name_.Swap(&other->device_name_);
+  std::swap(serial_number_, other->serial_number_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -2142,6 +2200,20 @@ void Device::clear_device_name() {
   }
   device_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), device_name);
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Device.device_name)
+}
+
+// optional fixed64 serial_number = 3;
+void Device::clear_serial_number() {
+  serial_number_ = GOOGLE_ULONGLONG(0);
+}
+ ::google::protobuf::uint64 Device::serial_number() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Device.serial_number)
+  return serial_number_;
+}
+ void Device::set_serial_number(::google::protobuf::uint64 value) {
+  
+  serial_number_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.Device.serial_number)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

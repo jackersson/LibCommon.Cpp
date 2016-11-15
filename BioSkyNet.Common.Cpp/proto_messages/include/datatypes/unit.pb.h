@@ -170,10 +170,21 @@ class Unit : public ::google::protobuf::Message {
   ::std::string* release_ip_address();
   void set_allocated_ip_address(::std::string* ip_address);
 
-  // repeated .DataTypes.Location locations = 3;
+  // optional string mac_address = 3;
+  void clear_mac_address();
+  static const int kMacAddressFieldNumber = 3;
+  const ::std::string& mac_address() const;
+  void set_mac_address(const ::std::string& value);
+  void set_mac_address(const char* value);
+  void set_mac_address(const char* value, size_t size);
+  ::std::string* mutable_mac_address();
+  ::std::string* release_mac_address();
+  void set_allocated_mac_address(::std::string* mac_address);
+
+  // repeated .DataTypes.Location locations = 4;
   int locations_size() const;
   void clear_locations();
-  static const int kLocationsFieldNumber = 3;
+  static const int kLocationsFieldNumber = 4;
   const ::DataTypes::Location& locations(int index) const;
   ::DataTypes::Location* mutable_locations(int index);
   ::DataTypes::Location* add_locations();
@@ -189,6 +200,7 @@ class Unit : public ::google::protobuf::Message {
   bool _is_default_instance_;
   ::DataTypes::Key* id_;
   ::google::protobuf::internal::ArenaStringPtr ip_address_;
+  ::google::protobuf::internal::ArenaStringPtr mac_address_;
   ::google::protobuf::RepeatedPtrField< ::DataTypes::Location > locations_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_datatypes_2funit_2eproto();
@@ -863,7 +875,51 @@ inline void Unit::set_allocated_ip_address(::std::string* ip_address) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Unit.ip_address)
 }
 
-// repeated .DataTypes.Location locations = 3;
+// optional string mac_address = 3;
+inline void Unit::clear_mac_address() {
+  mac_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& Unit::mac_address() const {
+  // @@protoc_insertion_point(field_get:DataTypes.Unit.mac_address)
+  return mac_address_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Unit::set_mac_address(const ::std::string& value) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:DataTypes.Unit.mac_address)
+}
+inline void Unit::set_mac_address(const char* value) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:DataTypes.Unit.mac_address)
+}
+inline void Unit::set_mac_address(const char* value, size_t size) {
+  
+  mac_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:DataTypes.Unit.mac_address)
+}
+inline ::std::string* Unit::mutable_mac_address() {
+  
+  // @@protoc_insertion_point(field_mutable:DataTypes.Unit.mac_address)
+  return mac_address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* Unit::release_mac_address() {
+  // @@protoc_insertion_point(field_release:DataTypes.Unit.mac_address)
+  
+  return mac_address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void Unit::set_allocated_mac_address(::std::string* mac_address) {
+  if (mac_address != NULL) {
+    
+  } else {
+    
+  }
+  mac_address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), mac_address);
+  // @@protoc_insertion_point(field_set_allocated:DataTypes.Unit.mac_address)
+}
+
+// repeated .DataTypes.Location locations = 4;
 inline int Unit::locations_size() const {
   return locations_.size();
 }

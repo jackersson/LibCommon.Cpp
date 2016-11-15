@@ -19,7 +19,7 @@ static const char* UnitService_method_names[] = {
   "/Services.UnitService/OpenDoor",
   "/Services.UnitService/GetLocationStream",
   "/Services.UnitService/GetDevices",
-  "/Services.UnitService/UpdateLocation",
+  "/Services.UnitService/UpdateLocations",
   "/Services.UnitService/GetCard",
   "/Services.UnitService/CheckDevice",
   "/Services.UnitService/GetDeviceStream",
@@ -35,7 +35,7 @@ UnitService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   : channel_(channel), rpcmethod_OpenDoor_(UnitService_method_names[0], ::grpc::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetLocationStream_(UnitService_method_names[1], ::grpc::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_GetDevices_(UnitService_method_names[2], ::grpc::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateLocation_(UnitService_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateLocations_(UnitService_method_names[3], ::grpc::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetCard_(UnitService_method_names[4], ::grpc::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_CheckDevice_(UnitService_method_names[5], ::grpc::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetDeviceStream_(UnitService_method_names[6], ::grpc::RpcMethod::SERVER_STREAMING, channel)
@@ -66,12 +66,12 @@ UnitService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   return new ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>(channel_.get(), cq, rpcmethod_GetDevices_, context, request);
 }
 
-::grpc::Status UnitService::Stub::UpdateLocation(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::google::protobuf::Empty* response) {
-  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateLocation_, context, request, response);
+::grpc::Status UnitService::Stub::UpdateLocations(::grpc::ClientContext* context, const ::DataTypes::LocationUpdates& request, ::google::protobuf::Empty* response) {
+  return ::grpc::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateLocations_, context, request, response);
 }
 
-::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* UnitService::Stub::AsyncUpdateLocationRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdate& request, ::grpc::CompletionQueue* cq) {
-  return new ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>(channel_.get(), cq, rpcmethod_UpdateLocation_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* UnitService::Stub::AsyncUpdateLocationsRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdates& request, ::grpc::CompletionQueue* cq) {
+  return new ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>(channel_.get(), cq, rpcmethod_UpdateLocations_, context, request);
 }
 
 ::grpc::Status UnitService::Stub::GetCard(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::DataTypes::CardMsg* response) {
@@ -126,8 +126,8 @@ UnitService::Service::Service() {
   AddMethod(new ::grpc::RpcServiceMethod(
       UnitService_method_names[3],
       ::grpc::RpcMethod::NORMAL_RPC,
-      new ::grpc::RpcMethodHandler< UnitService::Service, ::DataTypes::LocationUpdate, ::google::protobuf::Empty>(
-          std::mem_fn(&UnitService::Service::UpdateLocation), this)));
+      new ::grpc::RpcMethodHandler< UnitService::Service, ::DataTypes::LocationUpdates, ::google::protobuf::Empty>(
+          std::mem_fn(&UnitService::Service::UpdateLocations), this)));
   AddMethod(new ::grpc::RpcServiceMethod(
       UnitService_method_names[4],
       ::grpc::RpcMethod::NORMAL_RPC,
@@ -174,7 +174,7 @@ UnitService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status UnitService::Service::UpdateLocation(::grpc::ServerContext* context, const ::DataTypes::LocationUpdate* request, ::google::protobuf::Empty* response) {
+::grpc::Status UnitService::Service::UpdateLocations(::grpc::ServerContext* context, const ::DataTypes::LocationUpdates* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

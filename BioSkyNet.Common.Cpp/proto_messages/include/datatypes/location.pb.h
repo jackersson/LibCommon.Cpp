@@ -40,6 +40,7 @@ void protobuf_ShutdownFile_datatypes_2flocation_2eproto();
 
 class Location;
 class LocationUpdate;
+class LocationUpdates;
 
 // ===================================================================
 
@@ -298,6 +299,90 @@ class LocationUpdate : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static LocationUpdate* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class LocationUpdates : public ::google::protobuf::Message {
+ public:
+  LocationUpdates();
+  virtual ~LocationUpdates();
+
+  LocationUpdates(const LocationUpdates& from);
+
+  inline LocationUpdates& operator=(const LocationUpdates& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const LocationUpdates& default_instance();
+
+  void Swap(LocationUpdates* other);
+
+  // implements Message ----------------------------------------------
+
+  inline LocationUpdates* New() const { return New(NULL); }
+
+  LocationUpdates* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const LocationUpdates& from);
+  void MergeFrom(const LocationUpdates& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(LocationUpdates* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .DataTypes.LocationUpdate items = 1;
+  int items_size() const;
+  void clear_items();
+  static const int kItemsFieldNumber = 1;
+  const ::DataTypes::LocationUpdate& items(int index) const;
+  ::DataTypes::LocationUpdate* mutable_items(int index);
+  ::DataTypes::LocationUpdate* add_items();
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::LocationUpdate >*
+      mutable_items();
+  const ::google::protobuf::RepeatedPtrField< ::DataTypes::LocationUpdate >&
+      items() const;
+
+  // @@protoc_insertion_point(class_scope:DataTypes.LocationUpdates)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::RepeatedPtrField< ::DataTypes::LocationUpdate > items_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2flocation_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2flocation_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2flocation_2eproto();
+
+  void InitAsDefaultInstance();
+  static LocationUpdates* default_instance_;
 };
 // ===================================================================
 
@@ -710,7 +795,43 @@ inline void LocationUpdate::clear_has_update_type() {
 inline LocationUpdate::UpdateTypeCase LocationUpdate::update_type_case() const {
   return LocationUpdate::UpdateTypeCase(_oneof_case_[0]);
 }
+// -------------------------------------------------------------------
+
+// LocationUpdates
+
+// repeated .DataTypes.LocationUpdate items = 1;
+inline int LocationUpdates::items_size() const {
+  return items_.size();
+}
+inline void LocationUpdates::clear_items() {
+  items_.Clear();
+}
+inline const ::DataTypes::LocationUpdate& LocationUpdates::items(int index) const {
+  // @@protoc_insertion_point(field_get:DataTypes.LocationUpdates.items)
+  return items_.Get(index);
+}
+inline ::DataTypes::LocationUpdate* LocationUpdates::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:DataTypes.LocationUpdates.items)
+  return items_.Mutable(index);
+}
+inline ::DataTypes::LocationUpdate* LocationUpdates::add_items() {
+  // @@protoc_insertion_point(field_add:DataTypes.LocationUpdates.items)
+  return items_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::DataTypes::LocationUpdate >*
+LocationUpdates::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:DataTypes.LocationUpdates.items)
+  return &items_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DataTypes::LocationUpdate >&
+LocationUpdates::items() const {
+  // @@protoc_insertion_point(field_list:DataTypes.LocationUpdates.items)
+  return items_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

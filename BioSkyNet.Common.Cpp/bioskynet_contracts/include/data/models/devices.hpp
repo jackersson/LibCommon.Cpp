@@ -36,14 +36,20 @@ namespace data_model
 			         , serial_number_(0)
 		{}
 
-		explicit DeviceId(const std::string& name) : name_(name)
-			, serial_number_(0)
+		explicit DeviceId( const std::string& name
+		                 , uint16_t device_id) 
+			               : name_(name)
+			               , serial_number_(device_id)
 		{}
 
 		explicit DeviceId(uint16_t sn) : name_("")
 			, serial_number_(sn)
 		{}
 
+		explicit DeviceId(const std::string& name) : name_(name)
+			, serial_number_(0)
+		{}
+		
 		void set_name(const std::string& device_name) {
 			 name_ = device_name;
 		}
@@ -68,6 +74,18 @@ namespace data_model
 		{
 			return this->name()          == rhs.name() 
 				  && this->serial_number() == rhs.serial_number();
+		}
+
+		bool operator>(const DeviceId& rhs) const
+		{
+			return  this->name()          > rhs.name()
+				   && this->serial_number() > rhs.serial_number();
+		}
+
+		bool operator<(const DeviceId& rhs) const
+		{
+			return  this->name()          < rhs.name()
+				   && this->serial_number() < rhs.serial_number();
 		}
 
 	private:

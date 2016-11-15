@@ -13,17 +13,22 @@ namespace utils
 			           , work(io_service)
 			           , active_(false)
 		{
-			threads.create_thread(boost::bind(&boost::asio::io_service::run, &io_service));
 		}
 
-		virtual ~Threadable() {}
+		virtual ~Threadable()
+		{
+			Threadable::stop();
+		}
 		
 		void start()
 		{
 			if (active_)
 				return;
-
-			io_service.post(boost::bind(thread_procedure, this));
+			active_               = true;
+			cancelation_requested = false;
+			threads.create_thread(boost::bind(&boost::asio::io_service::run, &io_service));
+			io_service.reset();
+			io_service.post(boost::bind(thread_procedure, this));		
 		}
 
 		virtual void stop()
