@@ -30,7 +30,7 @@ namespace concurrent
 				map_.clear();
 			}
 
-			size_t size()
+			size_t size() const
 			{
 				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				return map_.size();
@@ -81,7 +81,7 @@ namespace concurrent
 
 
 			std::map<Key, Value> map_;
-			std::recursive_mutex mutex_;
+			mutable std::recursive_mutex mutex_;
 		};
 
 

@@ -36,6 +36,12 @@ namespace data_model
 			         , serial_number_(0)
 		{}
 
+		DeviceId( const DeviceId& device_id)
+		{
+			name_          = device_id.name();
+			serial_number_ = device_id.serial_number();
+		}
+
 		explicit DeviceId( const std::string& name
 		                 , uint16_t device_id) 
 			               : name_(name)
@@ -93,26 +99,33 @@ namespace data_model
 		uint16_t    serial_number_;
 	};
 	
-	class Device
+	class Device : public DeviceId
 	{
 	public:
-		Device( const std::string& name
-			    , DeviceType type )
-			    : type_(type)
-			    , name_(name)
+		Device( const DeviceId& dev
+			     , DeviceType type)
+			     : DeviceId(dev)
+			     , type_(type)
 		{}
 
-		const std::string& name() const	{
-			return name_;
-		}
+		Device( const std::string& name
+			    , DeviceType type )
+			    : DeviceId(name)
+			    , type_(type)			   
+		{}
+
+		Device( uint16_t serial_number
+			    , DeviceType type)
+			    : DeviceId(serial_number)
+			    , type_(type)
+		{}
 
 		DeviceType type() const {
 			return type_;
 		}
 
 	private:
-		DeviceType  type_;
-		std::string name_;
+		DeviceType  type_;		
 	};
 
 	class Devices
@@ -152,59 +165,26 @@ namespace data_model
 		std::vector<Device> devices_;
 	};	
 
-	class AccessDevice
+	class AccessDevice : public DeviceId
 	{
 	public:
-		AccessDevice(): serial_number_(0)
-		{}
+		AccessDevice(){}
 
 		explicit AccessDevice(uint16_t sn)
-			: serial_number_(sn)
-		{}
+			: DeviceId(sn){}
 
 		explicit AccessDevice(const std::string& name)
-			: serial_number_(0), name_(name)
-		{}
-
-		bool operator==(const AccessDevice& r) const
-		{
-			return r.name()          == this->name()
-			  	&& r.serial_number() == this->serial_number();
-		}
-
-		uint16_t serial_number() const {
-			return serial_number_;
-		}
-
-		const std::string& name() const {
-			return name_;
-		}
-
-	private:
-		uint16_t    serial_number_;
-		std::string name_         ;
+			: DeviceId(name){}		
 	};
 
-	class CaptureDevice
+	class CaptureDevice : public DeviceId
 	{
 	public:
-		CaptureDevice() : name_("") {}
+		CaptureDevice() : DeviceId() {}
 
 		explicit CaptureDevice(const std::string& name)
-			: name_(name)
+			: DeviceId(name)
 		{}
-
-		bool operator==(const CaptureDevice& r) const
-		{
-			return r.name() == this->name();
-		}
-
-		const std::string& name() const {
-			return name_;
-		}
-
-	private:
-		std::string name_;
 	};
 }
 

@@ -124,7 +124,7 @@ namespace services_api
 			to_proto_heartbeat_msg(const data_model::HeartbeatMessage& gr);
 		
 
-		inline DataTypes::ConnectMsg
+		DataTypes::ConnectMsg
 			to_proto_connect_msg(const data_model::ConnectMsg& gr);
 	
 

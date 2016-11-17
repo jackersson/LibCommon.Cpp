@@ -4,19 +4,27 @@
 #include <future>
 #include <fstream>
 
+
 namespace utils
 {
 	namespace service {
 		
 		template <typename T>
 		T get_result(std::promise<T>& promise
-			, std::chrono::milliseconds time_duration = std::chrono::milliseconds(50))
+			, std::chrono::milliseconds time_duration = std::chrono::milliseconds(1000))
 		{
 			auto future = promise.get_future();
-			const auto max_try_count = 10;
+			return get_result(future, time_duration);
+		}
 
+		template <typename T>
+		T get_result(std::future<T>& future
+			, std::chrono::milliseconds time_duration = std::chrono::milliseconds(1000))
+		{
+			std::chrono::milliseconds step(50);
+			const auto max_try_count = time_duration.count() / step.count();
 			auto try_count = 0;
-			while (future.wait_for(time_duration) == std::future_status::timeout
+			while (future.wait_for(step) == std::future_status::timeout
 				&& try_count < max_try_count)
 				try_count++;
 
@@ -26,7 +34,7 @@ namespace utils
 
 			return future.get();
 		}
-
+		
 		inline
 		void create_file(const std::string& filename)
 		{

@@ -1,50 +1,21 @@
 #ifndef Threadable_Included
 #define Threadable_Included
 
-#include <boost/asio.hpp>
-#include <boost/thread.hpp>
+#include <asio/io_service.hpp>
+#include <thread.hpp>
 
 namespace utils
 {
 	class Threadable
 	{
 	public:
-		Threadable() : cancelation_requested(false)
-			           , work(io_service)
-			           , active_(false)
-		{
-		}
+		Threadable();
 
-		virtual ~Threadable()
-		{
-			Threadable::stop();
-		}
+		virtual ~Threadable();
 		
-		void start()
-		{
-			if (active_)
-				return;
-			active_               = true;
-			cancelation_requested = false;
-			threads.create_thread(boost::bind(&boost::asio::io_service::run, &io_service));
-			io_service.reset();
-			io_service.post(boost::bind(thread_procedure, this));		
-		}
+		void start();
 
-		virtual void stop()
-		{
-			try
-			{
-				cancelation_requested = true;
-				active_ = false;
-				io_service.stop();
-				threads.join_all();
-			}
-			catch (std::exception&)
-			{
-				//Not implemented
-			}
-		}
+		virtual void stop();
 
 		bool active() const {
 			return active_;
@@ -55,25 +26,13 @@ namespace utils
 
 		bool cancelation_requested;
 	private:
-		static void thread_procedure(void* thread_context)
-		{
-			auto instance = static_cast<Threadable*>(thread_context);
-
-			if (instance == nullptr)
-				return;
-			instance->active_ = true;
-			instance->run();
-			instance->active_ = false;
-		}
-
-		//std::thread thread_;
-
-		boost::asio::io_service io_service;
-	  boost::thread_group threads;
-		boost::asio::io_service::work work;
+		static void thread_procedure(void* thread_context);
+		
+		boost::asio::io_service       io_service_;
+	  boost::thread_group           threads_   ;
+		boost::asio::io_service::work work_ ;
 
 		bool active_;
-
 	};
 }
 

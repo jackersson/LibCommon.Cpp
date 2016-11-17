@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6BE36B14-766F-4B2F-919E-1CF87E83A90D}</ProjectGuid>
+    <ProjectGuid>{1C25FBCD-E621-44AA-992F-DE631B76EE31}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>services_api</RootNamespace>
+    <RootNamespace>testable_project</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -58,12 +58,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\properties\grpc_x32d.props" />
-    <Import Project="..\properties\bioskynet_contracts_x32d.props" />
-    <Import Project="..\properties\messages_x32d.props" />
-    <Import Project="..\properties\protobuf_x32d.props" />
     <Import Project="..\properties\boost_32d.props" />
-    <Import Project="..\properties\spdlog_x32d.props" />
     <Import Project="..\properties\utils_x32d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,7 +73,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)$(ProjectName)\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -150,46 +144,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\abstract_client_service.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_data_api.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_calls.hpp" />
-    <ClInclude Include="include\coordinator_service\coordinator_client_proto_api.hpp" />
-    <ClInclude Include="include\database_service\database_client_calls.hpp" />
-    <ClInclude Include="include\database_service\database_client_proto_api.hpp" />
-    <ClInclude Include="include\database_service\database_client_data_api.hpp" />
-    <ClInclude Include="include\database_service\datacontext\datacontext_container.hpp" />
-    <ClInclude Include="include\database_service\datacontext\facial_charst_data_context.hpp" />
-    <ClInclude Include="include\database_service\datacontext\locations_data_context.hpp" />
-    <ClInclude Include="include\database_service\datacontext\persons_data_context.hpp" />
-    <ClInclude Include="include\database_service\datacontext\visit_records_datacontext.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_data_api.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_calls.hpp" />
-    <ClInclude Include="include\facial_service\client\facial_client_proto_api.hpp" />
-    <ClInclude Include="include\file_service\file_client_calls.hpp" />
-    <ClInclude Include="include\file_service\file_client_api.hpp" />
-    <ClInclude Include="include\helpers\abstract_async_call.hpp" />
-    <ClInclude Include="include\helpers\request_adapters.hpp" />
-    <ClInclude Include="include\helpers\request_handler.hpp" />
-    <ClInclude Include="include\helpers\request_handler_types.hpp" />
-    <ClInclude Include="include\helpers\service_heplers.hpp" />
-    <ClInclude Include="include\async_service_base.hpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\abstract_client_service.cpp" />
-    <ClCompile Include="src\coordinator_service\coordinator_client_data_api.cpp" />
-    <ClCompile Include="src\coordinator_service\coordinator_client_proto_api.cpp" />
-    <ClCompile Include="src\database_service\database_client_data_api.cpp" />
-    <ClCompile Include="src\database_service\database_client_proto_api.cpp" />
-    <ClCompile Include="src\database_service\datacontext\datacontext_container.cpp" />
-    <ClCompile Include="src\database_service\datacontext\facial_charst_data_context.cpp" />
-    <ClCompile Include="src\database_service\datacontext\locations_data_context.cpp" />
-    <ClCompile Include="src\database_service\datacontext\persons_data_context.cpp" />
-    <ClCompile Include="src\database_service\datacontext\visit_records_data_context.cpp" />
-    <ClCompile Include="src\facial_service\facial_service_data_api.cpp" />
-    <ClCompile Include="src\facial_service\facial_service_proto_api.cpp" />
-    <ClCompile Include="src\file_service\file_client_api.cpp" />
-    <ClCompile Include="src\helpers\request_adapters.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClInclude Include="test.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

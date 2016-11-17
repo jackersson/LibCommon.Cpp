@@ -40,8 +40,8 @@ namespace contracts
 		public:
 			virtual ~ICoordinatorMessages() {}
 
-			virtual data_model::ConnectMsg        connect_msg  () const = 0;
-			virtual data_model::HeartbeatMessage	heartbeat_msg() const = 0;
+			virtual const data_model::ConnectMsg&        connect_msg  () const = 0;
+			virtual const data_model::HeartbeatMessage&	heartbeat_msg() const = 0;
 		};
 
 		typedef std::shared_ptr<ICoordinatorApi> ICoordinatorApiPtr;
