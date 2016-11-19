@@ -1,8 +1,6 @@
 #ifndef AbstractAsyncClient_INCLUDED
 #define AbstractAsyncClient_INCLUDED
 
-#include <include/grpc++/impl/codegen/completion_queue.h>
-#include <grpc++/grpc++.h>
 #include <future>
 #include "service_heplers.hpp"
 #include <google/protobuf/empty.pb.h>

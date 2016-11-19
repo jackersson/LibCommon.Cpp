@@ -1,4 +1,4 @@
-#ifndef CoordinatorHeartbeat_Included
+/*#ifndef CoordinatorHeartbeat_Included
 #define CoordinatorHeartbeat_Included
 
 #include "repeatable_action.hpp"
@@ -49,4 +49,4 @@ namespace services
 	}
 }
 
-#endif
+#endif */

@@ -117,9 +117,6 @@
     <ClInclude Include="include\data\models\devices.hpp">
       <Filter>includes\data\models</Filter>
     </ClInclude>
-    <ClInclude Include="include\services\iconnection_state.hpp">
-      <Filter>includes\services</Filter>
-    </ClInclude>
     <ClInclude Include="include\common\ifile_io.hpp">
       <Filter>includes\common</Filter>
     </ClInclude>

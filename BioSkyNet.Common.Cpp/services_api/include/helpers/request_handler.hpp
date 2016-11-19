@@ -1,7 +1,6 @@
 #ifndef RequestHandler_Included
 #define RequestHandler_Included
 
-#include <memory>
 #include <include/grpc++/impl/codegen/completion_queue.h>
 #include <include/grpc++/impl/codegen/server_context.h>
 #include <logging/logger.hpp>
@@ -35,7 +34,7 @@ namespace grpc_services
 			else if (status_ == PROCESS)
 			{
 				create_request_handler();
-				try_create_request    ();
+				try_process_request();
 			}
 			else
 			{
@@ -55,7 +54,7 @@ namespace grpc_services
 			}
 		}
 		
-		void TryProcessRequest()
+		void try_process_request()
 		{
 			process_request();
 		}

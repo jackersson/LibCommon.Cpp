@@ -1,6 +1,12 @@
 #ifndef RequestAdapters_Included
 #define RequestAdapters_Included
 
+namespace boost{
+	namespace uuids{
+		struct uuid;
+	}
+}
+
 namespace Services{
 	class BiometricResponse;
 	class BiometricRequest;
@@ -36,6 +42,10 @@ namespace data_model
 	class GetRequest           ;
 	class GetFaceCharRequest   ;
 	class GetVisitRecordRequest;
+
+	enum ServiceType;
+	class Device;
+	enum DeviceType;
 }
 
 namespace DataTypes{
@@ -61,12 +71,26 @@ namespace DataTypes{
 	class CommitResponse;
 	class GetResponse;
 	class GetRequest;
+
+	enum ServiceType;
+	class Device;
+	enum DeviceType;
 }
 
 namespace services_api
 {
 	namespace helpers
 	{
+
+		/*
+		void set_guid(const boost::uuids::uuid& guid, DataTypes::Key& key);
+
+		bool get_guid(const DataTypes::Key& key, boost::uuids::uuid& guid);
+		*/
+		//boost::uuids::uuid get_guid_from_key(const DataTypes::Key& key);
+
+		DataTypes::Key to_proto_key(const data_model::Key& key);
+
 		DataTypes::GetRequest
 			to_proto_get_request(const data_model::GetRequest& gr);
 	
@@ -125,8 +149,7 @@ namespace services_api
 		
 
 		DataTypes::ConnectMsg
-			to_proto_connect_msg(const data_model::ConnectMsg& gr);
-	
+			to_proto_connect_msg(const data_model::ConnectMsg& gr);	
 
 
 		void to_message_bytes(const DataTypes::GetRequest& request
@@ -157,6 +180,16 @@ namespace services_api
 
 		DataTypes::Devices
 			to_proto_devices(const data_model::Devices& gr);
+
+		DataTypes::ServiceType
+			to_proto_service_type(data_model::ServiceType service_type);
+
+		
+		void to_proto_device( DataTypes::Device& device
+			                  , const data_model::Device&);
+
+
+		DataTypes::DeviceType to_proto_device_type(data_model::DeviceType);
 	}
 }
 

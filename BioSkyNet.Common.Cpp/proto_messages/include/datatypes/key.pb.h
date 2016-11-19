@@ -126,7 +126,7 @@ class Key : public ::google::protobuf::Message {
   ::std::string* release_identifier();
   void set_allocated_identifier(::std::string* identifier);
 
-  // optional bytes guid = 3;
+  // optional string guid = 3;
   private:
   bool has_guid() const;
   public:
@@ -135,7 +135,7 @@ class Key : public ::google::protobuf::Message {
   const ::std::string& guid() const;
   void set_guid(const ::std::string& value);
   void set_guid(const char* value);
-  void set_guid(const void* value, size_t size);
+  void set_guid(const char* value, size_t size);
   ::std::string* mutable_guid();
   ::std::string* release_guid();
   void set_allocated_guid(::std::string* guid);
@@ -287,7 +287,7 @@ inline void Key::set_allocated_identifier(::std::string* identifier) {
   // @@protoc_insertion_point(field_set_allocated:DataTypes.Key.identifier)
 }
 
-// optional bytes guid = 3;
+// optional string guid = 3;
 inline bool Key::has_guid() const {
   return id_type_case() == kGuid;
 }
@@ -327,7 +327,7 @@ inline void Key::set_guid(const char* value) {
       ::std::string(value));
   // @@protoc_insertion_point(field_set_char:DataTypes.Key.guid)
 }
-inline void Key::set_guid(const void* value, size_t size) {
+inline void Key::set_guid(const char* value, size_t size) {
   if (!has_guid()) {
     clear_id_type();
     set_has_guid();

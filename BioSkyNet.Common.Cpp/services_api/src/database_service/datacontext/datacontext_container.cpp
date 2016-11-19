@@ -20,7 +20,12 @@ namespace services_api
 	{
 		DataContextContainer::DataContextContainer(IDatabaseApi* api)
 				: api_(api)
-		{}
+		{
+			if (api == nullptr)
+				throw std::exception("IDatabase Api can't be null");
+
+			DataContextContainer::init();
+		}
 
 		void DataContextContainer::init()
 		{
@@ -37,8 +42,10 @@ namespace services_api
 			container_[typeid(FaceTemplate).hash_code()] = face_templates_.get();
 		}
 
-		void DataContextContainer::de_init() 
-		{}
+		void DataContextContainer::de_init()
+		{
+			container_.clear();
+		}
 	}
 }
 

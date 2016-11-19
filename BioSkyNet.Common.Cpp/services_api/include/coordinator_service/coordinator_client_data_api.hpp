@@ -17,7 +17,7 @@ namespace services_api
 			
 		bool connect_request(const data_model::ConnectMsg& request)  override;
 
-		void heart_beat(const data_model::HeartbeatMessage& request) const override;
+		bool heart_beat(const data_model::HeartbeatMessage& request) const override;
 		//TODO send with guid in metadata
 		void update_devices(const data_model::DeviceUpdate& request) const override;
 		

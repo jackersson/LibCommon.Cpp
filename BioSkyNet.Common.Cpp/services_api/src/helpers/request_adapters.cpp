@@ -13,36 +13,46 @@
 #include <data/models/unit.hpp>
 #include <services/facial_service.grpc.pb.h>
 
+#include <boost/uuid/uuid_io.hpp>
+
 namespace services_api
 {
 	namespace helpers
 	{
-		const int UUID_BYTES_SIZE = 16;
+		
+		//const int UUID_BYTES_SIZE = 16;
 		void set_guid(const boost::uuids::uuid& guid, DataTypes::Key& key)
 		{
-			unsigned char data[UUID_BYTES_SIZE];
-			memcpy(&data, guid.data, UUID_BYTES_SIZE);
+			key.set_guid(to_string(guid));
+			//unsigned char data[UUID_BYTES_SIZE];
+			//memcpy(&data, guid.data, UUID_BYTES_SIZE);
 
-			std::string str(data, data + sizeof(data) / sizeof(data[0]));
-			key.set_guid(str);
+			//std::string str(data, data + sizeof(data) / sizeof(data[0]));
+			//key.set_guid(str);
 		}
 
+		/*
 		bool get_guid(const DataTypes::Key& key, boost::uuids::uuid& guid)
 		{
+			
 			if (key.id_type_case() != DataTypes::Key::IdTypeCase::kGuid)
 				return false;
 
+			key.guid() to_string(guid));
+			to_data_key()
 			auto key_guid = key.guid();
 			memcpy(&guid, key_guid.data(), UUID_BYTES_SIZE);
 			return guid.is_nil();
 		}
-		
+		*/
+		/*
 		boost::uuids::uuid get_guid_from_key(const DataTypes::Key& key)
 		{
 			boost::uuids::uuid uuid;
 			get_guid(key, uuid);
 			return uuid;
 		}
+		*/
 		
 		DataTypes::Key to_proto_key(const data_model::Key& key)
 		{
@@ -234,7 +244,7 @@ namespace services_api
 			case DataTypes::Key::kIdentifier:
 				return data_model::Key(key.identifier());
 			case DataTypes::Key::kGuid:
-				return data_model::Key(get_guid_from_key(key));
+				return contracts::data::to_data_key(key.guid());
 			case DataTypes::Key::ID_TYPE_NOT_SET: break;
 			default: break;
 			}
@@ -339,43 +349,96 @@ namespace services_api
 		DataTypes::HeartbeatMessage
 			to_proto_heartbeat_msg(const data_model::HeartbeatMessage& gr)
 		{
-			throw std::exception("not implemented");
+			DataTypes::HeartbeatMessage heartbeat;
+			heartbeat.mutable_id()->CopyFrom(to_proto_key(gr.id));
+			heartbeat.set_service_type(to_proto_service_type(gr.type));		
+			return heartbeat;
+		}
+
+		DataTypes::ServiceType
+			to_proto_service_type(data_model::ServiceType service_type)
+		{
+			switch (service_type)
+			{	
+			case data_model::ClientService: 
+				return DataTypes::ServiceType::Client_Service;			
+			case data_model::UnitService:
+				return DataTypes::ServiceType::Unit_Service;
+			case data_model::FacialService:
+				return DataTypes::ServiceType::Facial_Service;
+			default: 
+				throw std::exception("Argument exception to_proto_service_type");
+			}
 		}
 
 		DataTypes::ConnectMsg
 			to_proto_connect_msg(const data_model::ConnectMsg& gr)
 		{
-			throw std::exception("not implemented");
+			DataTypes::ConnectMsg cn_msg;
+			cn_msg.set_service_type(to_proto_service_type(gr.type));
+			cn_msg.mutable_id()->CopyFrom(to_proto_key(gr.id));
+			cn_msg.set_ip_address(gr.ip_address);
+
+			return cn_msg;
 		}
 
 		DataTypes::DeviceUpdate
 			to_proto_device_update(const data_model::DeviceUpdate& gr)
 		{
-			throw std::exception("not implemented");
+			throw std::exception(" to_proto_device_update not implemented");
 		}
 
 		Services::BiometricRequest
 			to_proto_biometric_request(const data_model::BiometricRequest& gr)
 		{
-			throw std::exception("not implemented");
+			throw std::exception(" to_proto_biometric_request not implemented");
 		}
 
 		data_model::BiometricResponse
 			to_data_biometric_response(const Services::BiometricResponse& gr)
 		{
-			throw std::exception("not implemented");
+			throw std::exception(" to_data_biometric_response not implemented");
 		}
 
 		data_model::FaceTemplate
 			to_data_face_template(const DataTypes::FaceCharacteristic& key)
 		{
-			throw std::exception("not implemented");
+			throw std::exception(" to_data_face_template not implemented");
 		}
 
 		DataTypes::Devices
 			to_proto_devices(const data_model::Devices& gr)
 		{
-			throw std::exception("not implemented");
+			DataTypes::Devices devices;
+			for (const auto& dev : gr)
+			{
+				auto proto_dev = devices.add_devices();
+				to_proto_device(*proto_dev, dev);
+			}
+			return devices;
+		}
+
+
+		void to_proto_device( DataTypes::Device& device
+			                  , const data_model::Device& dev)
+		{
+			device.set_serial_number(dev.serial_number());
+			device.set_device_type(to_proto_device_type(dev.type()));
+			device.set_device_name(dev.name());
+		}
+
+		DataTypes::DeviceType 
+			to_proto_device_type(data_model::DeviceType dev_type)
+		{
+			switch (dev_type)
+			{
+			case data_model::CardReader:
+				return DataTypes::DeviceType::CardReader;
+			case data_model::Capture: 
+				return DataTypes::DeviceType::Capture;
+			default: 
+				throw std::exception("to_proto_device_type argument exception");
+			}
 		}
 
 		/*

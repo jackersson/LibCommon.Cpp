@@ -33,7 +33,7 @@ namespace services_api
 		
 		bool connect_request(const DataTypes::ConnectMsg& request);	
 	
-		void heart_beat(const DataTypes::HeartbeatMessage& request) const;		
+		bool heart_beat(const DataTypes::HeartbeatMessage& request) const;		
 
 		//TODO send with guid in metadata
 		void update_devices(const DataTypes::DeviceUpdate& request) const;	

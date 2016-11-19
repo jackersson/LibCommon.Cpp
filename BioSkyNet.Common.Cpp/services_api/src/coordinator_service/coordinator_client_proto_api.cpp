@@ -54,7 +54,8 @@ namespace services_api
 			//TODO check if there is a need to handle exception here
 			try
 			{
-				auto result = utils::service::get_result(call->promise);
+				auto result = utils::service::get_result(call->promise
+					                                      , std::chrono::seconds(1));
 				return result;
 			}
 			catch (std::exception& exception) {
@@ -63,10 +64,10 @@ namespace services_api
 			}
 		}
 
-		void CoordinatorClientProtoApi::heart_beat(const DataTypes::HeartbeatMessage& request) const
+		bool CoordinatorClientProtoApi::heart_beat(const DataTypes::HeartbeatMessage& request) const
 		{
 			auto queue = get_completion_queue<AsyncHeartbeatCall>();
-			if (queue == nullptr)	return;
+			if (queue == nullptr)	return false;
 
 			auto call = new AsyncHeartbeatCall;
 			set_call_options(call);
@@ -74,11 +75,13 @@ namespace services_api
 			call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
 			try {
-				utils::service::get_result(call->promise);
+				utils::service::get_result(call->promise, std::chrono::seconds(1));
+				return true;
 			}
 			catch (std::exception& exception) {
 				//TODO handle broken promise as no response from server
 				logger_.error("Coordinator client {0}", exception.what());
+				return false;
 			}
 		}
 

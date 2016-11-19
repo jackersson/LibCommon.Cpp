@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{97C8A4B0-2EA3-4251-B445-8A4AAE75CA93}</ProjectGuid>
+    <ProjectGuid>{AB6D903D-D25A-4540-B92E-3A4412503ABF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>bioskynet_contracts</RootNamespace>
+    <RootNamespace>services_api_tests</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -58,11 +58,15 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\properties\spdlog_x32d.props" />
-    <Import Project="..\properties\messages_x32d.props" />
-    <Import Project="..\properties\protobuf_x32d.props" />
     <Import Project="..\properties\boost_32d.props" />
+    <Import Project="..\properties\messages_x32d.props" />
+    <Import Project="..\properties\services_api_x32d.props" />
+    <Import Project="..\properties\bioskynet_contracts_x32d.props" />
     <Import Project="..\properties\utils_x32d.props" />
+    <Import Project="..\properties\grpc_x32d.props" />
+    <Import Project="..\properties\protobuf_x32d.props" />
+    <Import Project="..\properties\spdlog_x32d.props" />
+      <Import Project="..\properties\gtest_x32d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -93,7 +97,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,42 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\common\geometries.hpp" />
-    <ClInclude Include="include\common\iequatable.hpp" />
-    <ClInclude Include="include\common\ifile_io.hpp" />
-    <ClInclude Include="include\common\ilifecycle.hpp" />
-    <ClInclude Include="include\common\raw_image.hpp" />
-    <ClInclude Include="include\data\data_utils.hpp" />
-    <ClInclude Include="include\data\irepository.hpp" />
-    <ClInclude Include="include\data\models\card.hpp" />
-    <ClInclude Include="include\data\models\commands.hpp" />
-    <ClInclude Include="include\data\models\datetime.hpp" />
-    <ClInclude Include="include\data\models\devices.hpp" />
-    <ClInclude Include="include\data\models\entity.hpp" />
-    <ClInclude Include="include\data\models\face_characteristics.hpp" />
-    <ClInclude Include="include\data\models\key.hpp" />
-    <ClInclude Include="include\data\models\location.hpp" />
-    <ClInclude Include="include\data\models\mutations.hpp" />
-    <ClInclude Include="include\data\models\person.hpp" />
-    <ClInclude Include="include\data\models\photo.hpp" />
-    <ClInclude Include="include\data\models\queries.hpp" />
-    <ClInclude Include="include\data\models\unit.hpp" />
-    <ClInclude Include="include\data\models\visit_record.hpp" />
-    <ClInclude Include="include\logging\logger.hpp" />
-    <ClInclude Include="include\observers\iobservable.hpp" />
-    <ClInclude Include="include\observers\observable.hpp" />
-    <ClInclude Include="include\services\ifacial_service_api.hpp" />
-    <ClInclude Include="include\services\icoordinator_api.hpp" />
-    <ClInclude Include="include\services\idatabase_api.hpp" />
-    <ClInclude Include="include\services\ifile_storage_api.hpp" />
-    <ClInclude Include="include\services\iservice.hpp" />
-    <ClInclude Include="include\services\service_address.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\data\date_time.cpp" />
-    <ClCompile Include="src\data_utils.cpp" />
-    <ClCompile Include="src\logger.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="clients_tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,7 +20,7 @@ namespace services_api
 			return CoordinatorClientProtoApi::connect_request(connect_msg_);
 		}
 
-		void CoordinatorClientDataApi::heart_beat(const data_model::HeartbeatMessage& request) const
+		bool CoordinatorClientDataApi::heart_beat(const data_model::HeartbeatMessage& request) const
 		{
 			if (!heartbeat_msg_.has_id())
 				heartbeat_msg_ = helpers::to_proto_heartbeat_msg(request);

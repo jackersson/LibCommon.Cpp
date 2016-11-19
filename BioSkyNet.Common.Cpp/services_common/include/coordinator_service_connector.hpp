@@ -1,4 +1,4 @@
-#ifndef CoordinatorConnector_Included
+/*#ifndef CoordinatorConnector_Included
 #define CoordinatorConnector_Included
 
 #include <services/icoordinator_api.hpp>
@@ -25,10 +25,13 @@ namespace services
 				CoordinatorConnector::de_init();
 			}
 
+			bool try_connect();
+			
+
 			void action() override;
 
 			bool can() override {
-				return !connected_;
+				return true;
 			}
 
 			void init() override;
@@ -46,12 +49,12 @@ namespace services
 			std::unique_ptr<utils::threading::RepeatableAction> repeatable_action_;
 
 			//TODO maybe to config
-			const std::chrono::seconds DELAY = std::chrono::seconds(3);
-			static data_model::ConnectMsg connect_message_;
-
+			const std::chrono::seconds DELAY = std::chrono::seconds(5);
+			static data_model::ConnectMsg       connect_message_  ;
+			static data_model::HeartbeatMessage heartbeat_message_;
 			contracts::logging::Logger logger_;
 		};
 	}
 }
 
-#endif
+#endif*/

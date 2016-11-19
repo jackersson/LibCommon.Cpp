@@ -2,6 +2,7 @@
 #include <network_utils.hpp>
 #include <services/service_address.hpp>
 #include <data/models/unit.hpp>
+#include <data/data_utils.hpp>
 
 namespace services
 {
@@ -18,7 +19,7 @@ namespace services
 			data_model::ConnectMsg connect_msg;
 			connect_msg.ip_address = sa.get();
 			connect_msg.type = service_type;
-			connect_msg.id = data_model::Key(service_id);
+			connect_msg.id = contracts::data::to_data_key(service_id);
 
 			return connect_msg;
 		}
@@ -31,7 +32,7 @@ namespace services
 
 			data_model::HeartbeatMessage message;
 			message.type = service_type;
-			message.id = data_model::Key(service_id);
+			message.id   = contracts::data::to_data_key(service_id);
 
 			return message;
 		}

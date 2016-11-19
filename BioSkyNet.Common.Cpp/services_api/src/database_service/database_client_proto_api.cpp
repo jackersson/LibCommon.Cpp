@@ -47,7 +47,7 @@ namespace services_api
 
 		try
 		{
-			auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(300));
+			auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(5000));
 			return result;
 		}
 		catch (std::exception&) {
@@ -71,7 +71,7 @@ namespace services_api
 
 		try
 		{
-			auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(300));
+			auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(5000));
 			return result;
 		}
 		catch (std::exception&) {

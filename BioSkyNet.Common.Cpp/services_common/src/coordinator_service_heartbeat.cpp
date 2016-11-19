@@ -1,4 +1,4 @@
-#include "coordinator_service_heartbeat.hpp"
+/*#include "coordinator_service_heartbeat.hpp"
 #include <data/models/unit.hpp>
 namespace services
 {
@@ -32,8 +32,9 @@ namespace services
 
 		void CoordinatorHeartbeat::de_init()
 		{
-			repeatable_action_->stop();
+			if (repeatable_action_ != nullptr)
+			  repeatable_action_->stop();
 			logger_.info("Hearbeat stopped");
 		}
 	}
-}
+}*/

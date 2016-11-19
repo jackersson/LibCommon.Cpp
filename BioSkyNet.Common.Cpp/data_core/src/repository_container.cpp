@@ -12,6 +12,7 @@ namespace data_core
 	{
 		if (data_context_ == nullptr)
 			throw std::exception("Datacontext can't be null");
+		RepositoryContainer::init();
 	}
 
 	void RepositoryContainer::init()
@@ -35,6 +36,9 @@ namespace data_core
 		container_[typeid(data_model::FaceTemplate).hash_code()] = face_charst_.get();
 	}
 
-	void RepositoryContainer::de_init() {}
+	void RepositoryContainer::de_init()
+	{
+		container_.clear();
+	}
 }
 
