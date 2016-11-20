@@ -19,6 +19,8 @@ namespace data_model
 	class FaceCharacteristics
 	{
 	public:		
+		FaceCharacteristics() : confidence_(0) {}
+
 		void set_id(const Key& val) {
 			id_ = val;
 		}
@@ -43,21 +45,39 @@ namespace data_model
 			return confidence_;
 		}
 
+		void set_fir_url(const std::string& fir_url){
+			fir_url_ = fir_url;
+		}
+
+		const std::string& fir() const {
+			return fir_url_;
+		}
+
 	private:
-		Key   id_        ;
-		Key   person_id_ ;
-		float confidence_;
-		//std::string first_name;
-		//std::string last_name ;
+		Key         id_        ;
+		Key         person_id_ ;
+		float       confidence_;
+		std::string fir_url_   ;	
 	};
 
 	class FaceTemplate
 	{
-		//FaceTemplate(const data_model::Key& key, const std::string& temp_url)
-			//: person_id(key), url(temp_url) {}
+	public:
+		FaceTemplate(const Key& key,
+			           const std::string& temp_url)
+			: person_id_(key), url_(temp_url) {}
 
-		Key         person_id;
-		std::string url      ;
+		const Key&  person_id() const	{
+			return person_id_;
+		}
+
+		const std::string&  ir() const {
+			return url_;
+		}
+
+	private:
+		Key         person_id_;
+		std::string url_      ;
 	};
 
 

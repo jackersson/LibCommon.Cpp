@@ -27,8 +27,8 @@ namespace services_api
 				throw std::exception("Not implemented");
 			}
 
-			bool FaceCharstDataContext::do_get(const data_model::GetRequest& request
-				, std::vector<data_model::FaceTemplate>& entities) const
+			bool FaceCharstDataContext::do_get( const data_model::GetRequest& request
+				                                , std::vector<data_model::FaceTemplate>& entities) const
 			{
 				try
 				{
@@ -42,19 +42,22 @@ namespace services_api
 				}
 			}
 
-			void FaceCharstDataContext::parse(std::shared_ptr<data_model::GetResponse> response
-				, std::vector<data_model::FaceTemplate>& entities) const
+			void FaceCharstDataContext::parse
+			(  std::shared_ptr<data_model::GetResponse> response
+			,  std::vector<data_model::FaceTemplate>& entities) const
 			{
-				throw std::exception("not implemented");
 				if (response == nullptr)
 					return;
 				for (const auto& item : *response)
-				{
-					
-					//if (item.type() == data_model::EntityFaceCharacteristics)
-						//entities.push_back(item.face());
-					//else
-					//	logger_.error("Get Response Error : Entity not contain face");
+				{					
+					if (item.type() == data_model::EntityFaceCharacteristics)
+					{
+						const auto& face = item.face();
+						entities.push_back(data_model::FaceTemplate( face.person_id()
+							                                         , face.fir()));
+					}
+					else
+						logger_.error("Get Response Error : Entity not contain face");
 				}
 			}		
 	}

@@ -16,7 +16,7 @@ namespace contracts
 			virtual std::shared_ptr<std::string>
 				get(const std::string& url) = 0;			
 
-			virtual	std::string	create(const char* data) = 0;
+			virtual	std::string	create(const std::string& data) = 0;
 
 			virtual	bool delete_file(const std::string& url) = 0;
 			virtual bool exists     (const std::string& url) = 0;

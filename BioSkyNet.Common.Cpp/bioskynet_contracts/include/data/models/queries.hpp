@@ -26,7 +26,7 @@ namespace data_model
 		std::string mac_address_;
 	};
 
-	class GetFaceCharRequest
+	class GetFacesRequest
 	{		
 	};
 
@@ -60,6 +60,10 @@ namespace data_model
 			: get_locations_request_(get_location_request, true)
 		{}
 
+		explicit GetRequest(const GetFacesRequest& get_faces_request)
+			: get_face_char_request_(get_faces_request, true)
+		{}
+
 		bool has_person_request() const	{
 			return get_person_request_.second;
 		}
@@ -76,9 +80,17 @@ namespace data_model
 			return get_locations_request_.first;
 		}
 
+		bool has_faces_request() const {
+			return get_face_char_request_.second;
+		}
+
+		const GetFacesRequest& faces_request() const {
+			return get_face_char_request_.first;
+		}
+
 	private:
 		std::pair<GetLocationRequest   , bool> get_locations_request_   ;
-		std::pair<GetFaceCharRequest   , bool> get_face_char_request_   ;
+		std::pair<GetFacesRequest   , bool> get_face_char_request_   ;
 		std::pair<GetPersonRequest     , bool> get_person_request_      ;
 		std::pair<GetVisitRecordRequest, bool> get_visit_record_request_;
 	};

@@ -4,11 +4,13 @@
 #include <data/irepository.hpp>
 
 namespace data_model{
-	class  VisitRecord;
-	class  GetPersonRequest;
-	class  GetLocationRequest;
-	class  Person ;
-	class  Location;
+	class GetFacesRequest;
+	class VisitRecord;
+	class GetPersonRequest;
+	class GetLocationRequest;
+	class Person ;
+	class Location;
+	class FaceTemplate;
 }
 
 using namespace contracts::data;
@@ -24,6 +26,9 @@ namespace repository_tests
 
 	void get_persons_check(IRepository<Person>* repository
 		, const GetPersonRequest& request);
+
+	void get_faces_check( IRepository<FaceTemplate>* repository
+		                  , const GetFacesRequest& request);
 
 	void add_visit_record_check(IRepository<VisitRecord>* repository
 		, const VisitRecord& request);

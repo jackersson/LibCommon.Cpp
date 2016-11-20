@@ -81,9 +81,19 @@ namespace services_api
 		}
 
 		DataTypes::GetRequest
+			to_proto_get_request(const data_model::GetFacesRequest& gr)
+		{
+			DataTypes::GetRequest         proto_request;
+			DataTypes::GetFaceCharRequest proto_entity_request;
+
+			proto_request.mutable_facial_template_request()->CopyFrom(proto_entity_request);
+			return proto_request;
+		}
+
+		DataTypes::GetRequest
 			to_proto_get_request(const data_model::GetPersonRequest& gr)
 		{
-			DataTypes::GetRequest proto_request;
+			DataTypes::GetRequest       proto_request       ;
 			DataTypes::GetPersonRequest proto_entity_request;
 
 			const auto& card_id = gr.card().id();
@@ -101,8 +111,10 @@ namespace services_api
 				return to_proto_get_request(gr.location_request());
 			if (gr.has_person_request())
 				return to_proto_get_request(gr.person_request());
+			if (gr.has_faces_request())
+				return to_proto_get_request(gr.faces_request());
 
-			throw std::exception("not implemented");
+			throw std::exception("to_proto_get_request not implemented");
 		}
 
 		data_model::GetResponse
@@ -128,12 +140,25 @@ namespace services_api
 				return data_model::Entity(to_data_location(gr.location()));
 			case DataTypes::Entity::kPhoto      : break;
 			case DataTypes::Entity::kGroup      : break;
-			case DataTypes::Entity::kFace       : break;
+			case DataTypes::Entity::kFace       : 
+				return data_model::Entity(to_data_face_characteristics(gr.face()));
 			case DataTypes::Entity::VALUE_TYPE_NOT_SET: break;
 			default: break;
 			}
 
-			throw std::exception("not implemented exception");
+			throw std::exception("to_data_entity not implemented exception");
+		}
+
+		data_model::FaceCharacteristics
+			to_data_face_characteristics(const DataTypes::FaceCharacteristic& key)
+		{
+			data_model::FaceCharacteristics face;
+
+			face.set_id        (to_data_model_key(key.id()));
+			face.set_confidence(key.confidence());
+			face.set_fir_url   (key.fir_url   ());
+			face.set_person_id (to_data_model_key(key.person_id()));
+			return face;
 		}
 
 		data_model::Location
@@ -232,7 +257,7 @@ namespace services_api
 			default: break;
 			}
 
-			throw std::exception("Not implemented");
+			throw std::exception("to_proto_entity Not implemented");
 		}
 
 		data_model::Key to_data_model_key(const DataTypes::Key& key)
@@ -279,7 +304,7 @@ namespace services_api
 		DataTypes::FaceCharacteristic
 			to_proto_face(const data_model::FaceCharacteristics& gr)
 		{
-			throw std::exception("Not implemented");
+			throw std::exception("to_proto_face Not implemented");
 		}
 
 		DataTypes::AccessState
@@ -296,7 +321,7 @@ namespace services_api
 			default: break;
 			}
 
-			throw std::exception("Not implemented");
+			throw std::exception("to_proto_access_state Not implemented");
 		}
 
 		DataTypes::DateTime
@@ -439,6 +464,12 @@ namespace services_api
 			default: 
 				throw std::exception("to_proto_device_type argument exception");
 			}
+		}
+
+		data_model::FaceTemplate
+			to_face_template(const data_model::FaceCharacteristics& item)
+		{
+			return data_model::FaceTemplate(item.person_id(), item.fir());
 		}
 
 		/*

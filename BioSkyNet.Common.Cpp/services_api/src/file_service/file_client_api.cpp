@@ -45,10 +45,17 @@ namespace services_api
 		call->reader = stub_->AsyncGet(&call->context, request, queue);
 		call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
-		return utils::service::get_result(call->promise);
+		try
+		{
+			return utils::service::get_result(call->promise, std::chrono::seconds(20));
+		}
+		catch (std::exception&)
+		{
+			return nullptr;
+		}
 	}
 
-	std::string FileClientApi::create(const char* data)
+	std::string FileClientApi::create(const std::string& data)
 	{
 		auto queue = get_completion_queue<AsyncCreateFileCall>();
 		if (queue == nullptr)	return nullptr;
@@ -61,7 +68,14 @@ namespace services_api
 		call->reader = stub_->AsyncCreate(&call->context, request, queue);
 		call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
-		return utils::service::get_result(call->promise);
+		try
+		{
+			return utils::service::get_result(call->promise, std::chrono::seconds(20));
+		}
+		catch (std::exception&)
+		{
+			return "";
+		}
 	}
 
 	bool FileClientApi::delete_file(const std::string& url)
@@ -76,8 +90,14 @@ namespace services_api
 		set_call_options(call);
 		call->reader = stub_->AsyncDelete(&call->context, request, queue);
 		call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
-
-		return utils::service::get_result(call->promise);
+		try
+		{
+			return utils::service::get_result(call->promise, std::chrono::seconds(5));
+		}
+		catch (std::exception&)
+		{
+			return "";
+		}
 	}
 
 	bool FileClientApi::exists(const std::string& url)
@@ -93,6 +113,13 @@ namespace services_api
 		call->reader = stub_->AsyncExists(&call->context, request, queue);
 		call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
-		return utils::service::get_result(call->promise);
+		try
+		{
+			return utils::service::get_result(call->promise, std::chrono::seconds(5));
+		}
+		catch (std::exception&)
+		{
+			return "";
+		}
 	}
 }

@@ -138,4 +138,20 @@ namespace repository_tests
 			, visitrecords_repository);
 		impl.stop();
 	}
+
+	void full_faces_repository_check(IRepository<FaceTemplate>* repository)
+	{
+		GetFacesRequest all_request;
+		get_faces_check(repository, all_request);
+	}
+
+	TEST(RepositoryTests, GetFacesTest)
+	{
+		data_tests::TestableDatabaseImpl impl("127.0.0.1:49065");
+		auto repository = impl.get<FaceTemplate>();
+
+		full_faces_repository_check(repository);
+
+		impl.stop();
+	}
 }

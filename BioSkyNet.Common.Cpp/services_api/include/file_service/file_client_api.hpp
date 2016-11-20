@@ -23,7 +23,7 @@ namespace services_api
 		std::shared_ptr<std::string>
 			get(const std::string& url) override;	
 
-		std::string create(const char* data) override;	
+		std::string create(const std::string& data) override;
 
 		bool delete_file(const std::string& url) override;		
 

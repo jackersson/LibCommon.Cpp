@@ -58,4 +58,14 @@ namespace repository_tests
 	}
 
 
+	void get_faces_check( IRepository<FaceTemplate>* repository
+		                   , const GetFacesRequest& request)
+	{
+		std::vector<FaceTemplate> items;
+		auto ok = repository->get(GetRequest(request), items);
+		EXPECT_TRUE(ok);
+		EXPECT_TRUE(items.size() > 0);
+	}
+
+
 }

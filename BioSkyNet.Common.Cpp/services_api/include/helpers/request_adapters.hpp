@@ -33,14 +33,14 @@ namespace data_model
 	class Entity;
 	class Mutation;
 	class CommitRequest;
-	enum AccessState;
+	enum  AccessState;
 	class MutationResult;
 	class CommitResponse;
 	class GetResponse;
 	class GetPersonRequest     ;
 	class GetLocationRequest   ;
 	class GetRequest           ;
-	class GetFaceCharRequest   ;
+	class GetFacesRequest   ;
 	class GetVisitRecordRequest;
 
 	enum ServiceType;
@@ -80,15 +80,7 @@ namespace DataTypes{
 namespace services_api
 {
 	namespace helpers
-	{
-
-		/*
-		void set_guid(const boost::uuids::uuid& guid, DataTypes::Key& key);
-
-		bool get_guid(const DataTypes::Key& key, boost::uuids::uuid& guid);
-		*/
-		//boost::uuids::uuid get_guid_from_key(const DataTypes::Key& key);
-
+	{		
 		DataTypes::Key to_proto_key(const data_model::Key& key);
 
 		DataTypes::GetRequest
@@ -99,6 +91,9 @@ namespace services_api
 
 		DataTypes::GetRequest
 			to_proto_get_request(const data_model::GetPersonRequest& gr);
+
+		DataTypes::GetRequest
+			to_proto_get_request(const data_model::GetFacesRequest& gr);
 		
 		data_model::GetResponse
 			to_data_get_response(const DataTypes::GetResponse& gr);
@@ -128,6 +123,9 @@ namespace services_api
 		
 		DataTypes::FaceCharacteristic
 			to_proto_face(const data_model::FaceCharacteristics& gr);
+
+		//DataTypes::FaceCharacteristic
+			//to_proto_face(const data_model::FaceCharacteristics& gr);
 
 		DataTypes::DateTime
 			to_proto_time(const data_model::DateTime& gr);		
@@ -178,6 +176,9 @@ namespace services_api
 		data_model::FaceTemplate 
 			to_data_face_template(const DataTypes::FaceCharacteristic& key);
 
+		data_model::FaceCharacteristics
+			to_data_face_characteristics(const DataTypes::FaceCharacteristic& key);
+
 		DataTypes::Devices
 			to_proto_devices(const data_model::Devices& gr);
 
@@ -190,6 +191,9 @@ namespace services_api
 
 
 		DataTypes::DeviceType to_proto_device_type(data_model::DeviceType);
+
+		data_model::FaceTemplate
+			to_face_template(const data_model::FaceCharacteristics&);
 	}
 }
 
