@@ -165,7 +165,8 @@ namespace services_api
 			to_data_location(const DataTypes::Location& gr)
 		{
 			data_model::Location location;
-			location.set_name          (gr.name());
+			location.set_name            (gr.name());
+			location.set_unit_mac_address(gr.unit_mac_address());
 		  location.set_id            (to_data_model_key(gr.id()));
 			location.set_access_device (to_data_access_device(gr.access_device()));
 			location.set_capture_device(to_data_capture_device(gr.capture_device()));
