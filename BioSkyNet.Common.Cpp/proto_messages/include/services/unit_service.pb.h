@@ -23,8 +23,10 @@
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/empty.pb.h>
 #include "datatypes/location.pb.h"
 #include "datatypes/devices.pb.h"
@@ -38,16 +40,272 @@ void protobuf_AddDesc_services_2funit_5fservice_2eproto();
 void protobuf_AssignDesc_services_2funit_5fservice_2eproto();
 void protobuf_ShutdownFile_services_2funit_5fservice_2eproto();
 
+class StreamMsg;
 
 // ===================================================================
 
+class StreamMsg : public ::google::protobuf::Message {
+ public:
+  StreamMsg();
+  virtual ~StreamMsg();
 
+  StreamMsg(const StreamMsg& from);
+
+  inline StreamMsg& operator=(const StreamMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const StreamMsg& default_instance();
+
+  enum TargetTypeCase {
+    kDevice = 1,
+    kLocation = 2,
+    TARGET_TYPE_NOT_SET = 0,
+  };
+
+  void Swap(StreamMsg* other);
+
+  // implements Message ----------------------------------------------
+
+  inline StreamMsg* New() const { return New(NULL); }
+
+  StreamMsg* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const StreamMsg& from);
+  void MergeFrom(const StreamMsg& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(StreamMsg* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.Device device = 1;
+  bool has_device() const;
+  void clear_device();
+  static const int kDeviceFieldNumber = 1;
+  const ::DataTypes::Device& device() const;
+  ::DataTypes::Device* mutable_device();
+  ::DataTypes::Device* release_device();
+  void set_allocated_device(::DataTypes::Device* device);
+
+  // optional .DataTypes.Location location = 2;
+  bool has_location() const;
+  void clear_location();
+  static const int kLocationFieldNumber = 2;
+  const ::DataTypes::Location& location() const;
+  ::DataTypes::Location* mutable_location();
+  ::DataTypes::Location* release_location();
+  void set_allocated_location(::DataTypes::Location* location);
+
+  // optional .DataTypes.DeviceState state = 3;
+  void clear_state();
+  static const int kStateFieldNumber = 3;
+  ::DataTypes::DeviceState state() const;
+  void set_state(::DataTypes::DeviceState value);
+
+  // optional int64 correlation_id = 4;
+  void clear_correlation_id();
+  static const int kCorrelationIdFieldNumber = 4;
+  ::google::protobuf::int64 correlation_id() const;
+  void set_correlation_id(::google::protobuf::int64 value);
+
+  TargetTypeCase target_type_case() const;
+  // @@protoc_insertion_point(class_scope:Services.StreamMsg)
+ private:
+  inline void set_has_device();
+  inline void set_has_location();
+
+  inline bool has_target_type() const;
+  void clear_target_type();
+  inline void clear_has_target_type();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int64 correlation_id_;
+  int state_;
+  union TargetTypeUnion {
+    TargetTypeUnion() {}
+    ::DataTypes::Device* device_;
+    ::DataTypes::Location* location_;
+  } target_type_;
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _oneof_case_[1];
+
+  friend void  protobuf_AddDesc_services_2funit_5fservice_2eproto();
+  friend void protobuf_AssignDesc_services_2funit_5fservice_2eproto();
+  friend void protobuf_ShutdownFile_services_2funit_5fservice_2eproto();
+
+  void InitAsDefaultInstance();
+  static StreamMsg* default_instance_;
+};
 // ===================================================================
 
 
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
+// StreamMsg
+
+// optional .DataTypes.Device device = 1;
+inline bool StreamMsg::has_device() const {
+  return target_type_case() == kDevice;
+}
+inline void StreamMsg::set_has_device() {
+  _oneof_case_[0] = kDevice;
+}
+inline void StreamMsg::clear_device() {
+  if (has_device()) {
+    delete target_type_.device_;
+    clear_has_target_type();
+  }
+}
+inline  const ::DataTypes::Device& StreamMsg::device() const {
+  // @@protoc_insertion_point(field_get:Services.StreamMsg.device)
+  return has_device()
+      ? *target_type_.device_
+      : ::DataTypes::Device::default_instance();
+}
+inline ::DataTypes::Device* StreamMsg::mutable_device() {
+  if (!has_device()) {
+    clear_target_type();
+    set_has_device();
+    target_type_.device_ = new ::DataTypes::Device;
+  }
+  // @@protoc_insertion_point(field_mutable:Services.StreamMsg.device)
+  return target_type_.device_;
+}
+inline ::DataTypes::Device* StreamMsg::release_device() {
+  // @@protoc_insertion_point(field_release:Services.StreamMsg.device)
+  if (has_device()) {
+    clear_has_target_type();
+    ::DataTypes::Device* temp = target_type_.device_;
+    target_type_.device_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void StreamMsg::set_allocated_device(::DataTypes::Device* device) {
+  clear_target_type();
+  if (device) {
+    set_has_device();
+    target_type_.device_ = device;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Services.StreamMsg.device)
+}
+
+// optional .DataTypes.Location location = 2;
+inline bool StreamMsg::has_location() const {
+  return target_type_case() == kLocation;
+}
+inline void StreamMsg::set_has_location() {
+  _oneof_case_[0] = kLocation;
+}
+inline void StreamMsg::clear_location() {
+  if (has_location()) {
+    delete target_type_.location_;
+    clear_has_target_type();
+  }
+}
+inline  const ::DataTypes::Location& StreamMsg::location() const {
+  // @@protoc_insertion_point(field_get:Services.StreamMsg.location)
+  return has_location()
+      ? *target_type_.location_
+      : ::DataTypes::Location::default_instance();
+}
+inline ::DataTypes::Location* StreamMsg::mutable_location() {
+  if (!has_location()) {
+    clear_target_type();
+    set_has_location();
+    target_type_.location_ = new ::DataTypes::Location;
+  }
+  // @@protoc_insertion_point(field_mutable:Services.StreamMsg.location)
+  return target_type_.location_;
+}
+inline ::DataTypes::Location* StreamMsg::release_location() {
+  // @@protoc_insertion_point(field_release:Services.StreamMsg.location)
+  if (has_location()) {
+    clear_has_target_type();
+    ::DataTypes::Location* temp = target_type_.location_;
+    target_type_.location_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+inline void StreamMsg::set_allocated_location(::DataTypes::Location* location) {
+  clear_target_type();
+  if (location) {
+    set_has_location();
+    target_type_.location_ = location;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Services.StreamMsg.location)
+}
+
+// optional .DataTypes.DeviceState state = 3;
+inline void StreamMsg::clear_state() {
+  state_ = 0;
+}
+inline ::DataTypes::DeviceState StreamMsg::state() const {
+  // @@protoc_insertion_point(field_get:Services.StreamMsg.state)
+  return static_cast< ::DataTypes::DeviceState >(state_);
+}
+inline void StreamMsg::set_state(::DataTypes::DeviceState value) {
+  
+  state_ = value;
+  // @@protoc_insertion_point(field_set:Services.StreamMsg.state)
+}
+
+// optional int64 correlation_id = 4;
+inline void StreamMsg::clear_correlation_id() {
+  correlation_id_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 StreamMsg::correlation_id() const {
+  // @@protoc_insertion_point(field_get:Services.StreamMsg.correlation_id)
+  return correlation_id_;
+}
+inline void StreamMsg::set_correlation_id(::google::protobuf::int64 value) {
+  
+  correlation_id_ = value;
+  // @@protoc_insertion_point(field_set:Services.StreamMsg.correlation_id)
+}
+
+inline bool StreamMsg::has_target_type() const {
+  return target_type_case() != TARGET_TYPE_NOT_SET;
+}
+inline void StreamMsg::clear_has_target_type() {
+  _oneof_case_[0] = TARGET_TYPE_NOT_SET;
+}
+inline StreamMsg::TargetTypeCase StreamMsg::target_type_case() const {
+  return StreamMsg::TargetTypeCase(_oneof_case_[0]);
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)

@@ -91,18 +91,22 @@ namespace concurrent
 		public:
 			ConcurrentVector() {}
 			typename std::vector<Value>::iterator begin()		{
+				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				return container_.begin();
 			}
 
 			typename std::vector<Value>::iterator end()		{
+				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				return container_.end();
 			}
 
 			typename std::vector<Value>::const_iterator cbegin() {
+				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				return container_.cbegin();
 			}
 
 			typename std::vector<Value>::const_iterator cend() {
+				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				return container_.cend();
 			}
 
@@ -141,6 +145,7 @@ namespace concurrent
 			///<summary> Throws exception if key not found </summary>
 			const Value& find(const Value& object)
 			{
+				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				auto it = std::find(container_.begin(), container_.end(), object);
 				if (it == container_.end())
 					throw std::exception("Value by key not found");

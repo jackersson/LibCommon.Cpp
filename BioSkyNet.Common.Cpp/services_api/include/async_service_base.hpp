@@ -109,9 +109,13 @@ namespace services_api
 			{
 				try
 				{
-					queue->Next(&tag, &ok);
-					if (ok)
-						static_cast<T*>(tag)->proceed();
+					auto status = queue->Next(&tag, &ok);				
+					if (ok && status)
+						static_cast<T*>(tag)->proceed(status);
+					else if (!ok || !status)
+					{
+						static_cast<T*>(tag)->proceed(status);
+					}
 				}
 				catch (std::exception& ex) {
 					logger_.error(ex.what());

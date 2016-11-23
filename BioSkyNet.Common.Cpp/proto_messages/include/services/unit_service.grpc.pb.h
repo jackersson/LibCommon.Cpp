@@ -34,11 +34,11 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncOpenDoor(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncOpenDoorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>> GetLocationStream(::grpc::ClientContext* context, const ::DataTypes::Location& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>>(GetLocationStreamRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>> GetLocationStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(GetLocationStreamRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>> AsyncGetLocationStream(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>>(AsyncGetLocationStreamRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>> AsyncGetLocationStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(AsyncGetLocationStreamRaw(context, cq, tag));
     }
     virtual ::grpc::Status GetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::DataTypes::Devices* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Devices>> AsyncGetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -57,11 +57,11 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CheckMsg>> AsyncCheckDevice(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CheckMsg>>(AsyncCheckDeviceRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>> GetDeviceStream(::grpc::ClientContext* context, const ::DataTypes::Device& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>>(GetDeviceStreamRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>> GetDeviceStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(GetDeviceStreamRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>> AsyncGetDeviceStream(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>>(AsyncGetDeviceStreamRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>> AsyncGetDeviceStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(AsyncGetDeviceStreamRaw(context, cq, tag));
     }
     // on person registration & identification          
     virtual ::grpc::Status Enroll(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::DataTypes::Faces* response) = 0;
@@ -70,14 +70,14 @@ class UnitService GRPC_FINAL {
     }
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncOpenDoorRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Devices>* AsyncGetDevicesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncUpdateLocationsRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdates& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CardMsg>* AsyncGetCardRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::CheckMsg>* AsyncCheckDeviceRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderInterface< ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::DataTypes::FrameBytes>* AsyncGetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::Services::StreamMsg, ::DataTypes::FrameBytes>* AsyncGetDeviceStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::DataTypes::Faces>* AsyncEnrollRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub GRPC_FINAL : public StubInterface {
@@ -87,11 +87,11 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncOpenDoor(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncOpenDoorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReader< ::DataTypes::FrameBytes>> GetLocationStream(::grpc::ClientContext* context, const ::DataTypes::Location& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::DataTypes::FrameBytes>>(GetLocationStreamRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>> GetLocationStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(GetLocationStreamRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>> AsyncGetLocationStream(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>>(AsyncGetLocationStreamRaw(context, request, cq, tag));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>> AsyncGetLocationStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(AsyncGetLocationStreamRaw(context, cq, tag));
     }
     ::grpc::Status GetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::DataTypes::Devices* response) GRPC_OVERRIDE;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>> AsyncGetDevices(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
@@ -109,11 +109,11 @@ class UnitService GRPC_FINAL {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::CheckMsg>> AsyncCheckDevice(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::CheckMsg>>(AsyncCheckDeviceRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReader< ::DataTypes::FrameBytes>> GetDeviceStream(::grpc::ClientContext* context, const ::DataTypes::Device& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::DataTypes::FrameBytes>>(GetDeviceStreamRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>> GetDeviceStream(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(GetDeviceStreamRaw(context));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>> AsyncGetDeviceStream(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>>(AsyncGetDeviceStreamRaw(context, request, cq, tag));
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>> AsyncGetDeviceStream(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>>(AsyncGetDeviceStreamRaw(context, cq, tag));
     }
     ::grpc::Status Enroll(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::DataTypes::Faces* response) GRPC_OVERRIDE;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::DataTypes::Faces>> AsyncEnroll(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) {
@@ -123,14 +123,14 @@ class UnitService GRPC_FINAL {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncOpenDoorRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
-    ::grpc::ClientReader< ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request) GRPC_OVERRIDE;
-    ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Location& request, ::grpc::CompletionQueue* cq, void* tag) GRPC_OVERRIDE;
+    ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>* GetLocationStreamRaw(::grpc::ClientContext* context) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>* AsyncGetLocationStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::Devices>* AsyncGetDevicesRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncUpdateLocationsRaw(::grpc::ClientContext* context, const ::DataTypes::LocationUpdates& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::CardMsg>* AsyncGetCardRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::CheckMsg>* AsyncCheckDeviceRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
-    ::grpc::ClientReader< ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request) GRPC_OVERRIDE;
-    ::grpc::ClientAsyncReader< ::DataTypes::FrameBytes>* AsyncGetDeviceStreamRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq, void* tag) GRPC_OVERRIDE;
+    ::grpc::ClientReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>* GetDeviceStreamRaw(::grpc::ClientContext* context) GRPC_OVERRIDE;
+    ::grpc::ClientAsyncReaderWriter< ::Services::StreamMsg, ::DataTypes::FrameBytes>* AsyncGetDeviceStreamRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) GRPC_OVERRIDE;
     ::grpc::ClientAsyncResponseReader< ::DataTypes::Faces>* AsyncEnrollRaw(::grpc::ClientContext* context, const ::DataTypes::Device& request, ::grpc::CompletionQueue* cq) GRPC_OVERRIDE;
     const ::grpc::RpcMethod rpcmethod_OpenDoor_;
     const ::grpc::RpcMethod rpcmethod_GetLocationStream_;
@@ -148,13 +148,13 @@ class UnitService GRPC_FINAL {
     Service();
     virtual ~Service();
     virtual ::grpc::Status OpenDoor(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::google::protobuf::Empty* response);
-    virtual ::grpc::Status GetLocationStream(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer);
+    virtual ::grpc::Status GetLocationStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream);
     virtual ::grpc::Status GetDevices(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::DataTypes::Devices* response);
     virtual ::grpc::Status UpdateLocations(::grpc::ServerContext* context, const ::DataTypes::LocationUpdates* request, ::google::protobuf::Empty* response);
     // on person registration       
     virtual ::grpc::Status GetCard(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::CardMsg* response);
     virtual ::grpc::Status CheckDevice(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::CheckMsg* response);
-    virtual ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer);
+    virtual ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream);
     // on person registration & identification          
     virtual ::grpc::Status Enroll(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::DataTypes::Faces* response);
   };
@@ -190,12 +190,12 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetLocationStream(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status GetLocationStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetLocationStream(::grpc::ServerContext* context, ::DataTypes::Location* request, ::grpc::ServerAsyncWriter< ::DataTypes::FrameBytes>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestGetLocationStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -290,12 +290,12 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetDeviceStream(::grpc::ServerContext* context, ::DataTypes::Device* request, ::grpc::ServerAsyncWriter< ::DataTypes::FrameBytes>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncServerStreaming(6, context, request, writer, new_call_cq, notification_cq, tag);
+    void RequestGetDeviceStream(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(6, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -348,7 +348,7 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetLocationStream(::grpc::ServerContext* context, const ::DataTypes::Location* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status GetLocationStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -433,7 +433,7 @@ class UnitService GRPC_FINAL {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, const ::DataTypes::Device* request, ::grpc::ServerWriter< ::DataTypes::FrameBytes>* writer) GRPC_FINAL GRPC_OVERRIDE {
+    ::grpc::Status GetDeviceStream(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::DataTypes::FrameBytes, ::Services::StreamMsg>* stream) GRPC_FINAL GRPC_OVERRIDE {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }

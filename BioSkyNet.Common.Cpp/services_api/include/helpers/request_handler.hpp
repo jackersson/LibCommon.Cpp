@@ -24,8 +24,10 @@ namespace grpc_services
 		virtual void create_request()         = 0;
 		virtual void process_request()        = 0;
 
-		void proceed()
+		void proceed(bool status = true)
 		{
+			if (!status)
+				std::cout << "proceed status false" << std::endl;
 			if (status_ == CREATE)
 			{
 				next();

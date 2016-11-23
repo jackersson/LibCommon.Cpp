@@ -101,6 +101,8 @@ namespace contracts
 			}
 			*/
 		private:
+
+
 			static void initialize();
 
 			static std::list<std::shared_ptr<spdlog::logger>> loggers_;
