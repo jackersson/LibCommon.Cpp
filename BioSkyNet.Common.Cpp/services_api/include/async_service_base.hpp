@@ -25,6 +25,7 @@ namespace services_api
 			: address_(address.get())
 			, server_builder_(server_builder)
 			, cancelation_requested_(false)
+		//	, thread_pool_(0)
 			, work_(io_service_)
 		{
 		}
@@ -45,21 +46,31 @@ namespace services_api
 		{
 			cancelation_requested_ = false;
 			for (auto handler : handlers_)
+				//thread_pool_.Add(handler.callback);
 				io_service_.post(handler.callback);
 
 			logger_.info("{0} listening on {1}", class_name(), address_);
 		}
 
 		void stop() override
-		{
+		{	
+			if (cancelation_requested_)
+				return;
 			try
 			{
 				cancelation_requested_ = true;
+			
 				for (auto& it : handlers_)
 					it.completion_queue->Shutdown();
+
 				io_service_.stop();
 				threadpool_.join_all();
+
+
 				handlers_.clear();
+
+				//thread_pool_.
+			
 			}
 			catch (std::exception&) {
 				//Not implemented
@@ -105,24 +116,20 @@ namespace services_api
 			void* tag;
 			bool  ok;
 
-			while (true)
+			while (!cancelation_requested_)
 			{
 				try
 				{
-					auto status = queue->Next(&tag, &ok);				
+					auto status = queue->Next(&tag, &ok);		
+					if (cancelation_requested_)
+						break;
+
 					if (ok && status)
-						static_cast<T*>(tag)->proceed(status);
-					else if (!ok || !status)
-					{
-						static_cast<T*>(tag)->proceed(status);
-					}
+						static_cast<T*>(tag)->proceed(status);					
 				}
 				catch (std::exception& ex) {
 					logger_.error(ex.what());
 				}
-
-				if (cancelation_requested_)
-					break;
 			}
 		}
 
@@ -137,6 +144,7 @@ namespace services_api
 				logger_.error("Not found handler creation method");
 		}
 
+
 		virtual std::string class_name() const = 0;			
 
 		AsyncServiceBase(const AsyncServiceBase&) = delete;
@@ -148,6 +156,7 @@ namespace services_api
 		bool cancelation_requested_;
 		ServerRequestHandlers handlers_;
 
+	//	grpc::DynamicThreadPool        thread_pool_;
 		boost::asio::io_service       io_service_;
 		boost::thread_group           threadpool_;
 		boost::asio::io_service::work work_      ;

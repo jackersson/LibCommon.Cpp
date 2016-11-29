@@ -16,5 +16,15 @@ namespace data_model
 		set_minutes(time_of_date.minutes());
 		set_seconds(time_of_date.seconds());
 	}
+
+	std::string DateTime::to_string() const
+	{
+		std::stringstream st;
+	
+		st << hours() << ":" << minutes() << ":" << seconds() << " "
+		   << day() << "/" << month() << "/" << year();
+
+		return st.str();
+	} 
 	
 }

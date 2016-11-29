@@ -40,6 +40,8 @@ namespace services_api
 			auto proto_request = helpers::to_proto_get_request(request);
 			auto result = CoordinatorClientProtoApi::get(proto_request);
 
+			if (result == nullptr)
+				return nullptr;
 			auto adapted = helpers::to_data_get_response(*result);
 			return std::make_shared<data_model::GetResponse>(adapted);
 		}
@@ -51,6 +53,8 @@ namespace services_api
 			auto proto_request = helpers::to_proto_commit_request(request);
 			auto result = CoordinatorClientProtoApi::commit(proto_request);
 
+			if (result == nullptr)
+				return nullptr;
 			auto adapted = helpers::to_data_commit_response(*result);
 			return std::make_shared<data_model::CommitResponse>(adapted);
 		}	

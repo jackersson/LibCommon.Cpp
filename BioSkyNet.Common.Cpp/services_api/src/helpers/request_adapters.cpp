@@ -74,7 +74,15 @@ namespace services_api
 			DataTypes::GetRequest proto_request;
 			DataTypes::GetLocationRequest proto_entity_request;
 
-			proto_entity_request.set_mac_address(gr.mac_address());
+			if (gr.has_mac_address())
+			  proto_entity_request.set_mac_address(gr.mac_address());
+
+			if (gr.has_person_id())
+				proto_entity_request.mutable_person()->CopyFrom(to_proto_key(gr.person_id()));
+
+			if (gr.has_location_id())
+				proto_entity_request.mutable_id()->CopyFrom(to_proto_key(gr.location_id()));
+
 			proto_request.mutable_location_request()->CopyFrom(proto_entity_request);
 			
 			return proto_request;

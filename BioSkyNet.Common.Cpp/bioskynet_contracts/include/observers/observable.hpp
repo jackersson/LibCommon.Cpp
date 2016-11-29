@@ -6,11 +6,11 @@
 #include <mutex>
 #include <vector>
 
+
 namespace contracts
 {
 	namespace observers
-	{
-		
+	{		
 		template <typename T>
 		class Observable : public IObservable<T>
 		{
@@ -27,10 +27,11 @@ namespace contracts
 
 			void unsubscribe(T* observer) override
 			{
-				std::lock_guard<std::recursive_mutex> lock(mutex_);				
-				std::remove_if(observers_.begin(), observers_.end(),
-				        	[observer](T* obs) {return obs == observer; });
-				
+				std::lock_guard<std::recursive_mutex> lock(mutex_);	
+				observers_.erase(
+					std::remove( observers_.begin()
+						         , observers_.end()
+						         , observer), observers_.end());	
 			}
 
 			bool has_observer(T* observer) override
@@ -52,7 +53,7 @@ namespace contracts
 				observers_.clear();
 			}			
 
-			void notify(std::function<void(const std::vector<T*>&)> func)
+			void notify(std::function<void(std::vector<T*>&)> func)
 			{
 				std::lock_guard<std::recursive_mutex> lock(mutex_);
 				func(observers_);

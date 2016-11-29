@@ -3,6 +3,8 @@
 
 #include <string>
 #include <uuid/uuid.hpp>
+#include <sstream>
+#include <uuid/uuid_io.hpp>
 
 namespace data_model
 {	
@@ -50,6 +52,17 @@ namespace data_model
 			return !( ( uuid_.second     && !uuid_.first.is_nil()   )
 				     || ( identifier_.second && identifier_.first != "" )
 				     || ( number_.second     && number_.first > 0       ) );
+		}
+
+		std::string to_string() const
+		{			
+			if (uuid_.second)
+				return boost::uuids::to_string(uuid_.first);
+			if (identifier_.second)
+				return identifier_.first;
+			if (number_.second)
+				return " " + number_.first;
+			return "";
 		}
 
 		bool operator==(const Key& val) const

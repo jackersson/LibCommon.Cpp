@@ -29,7 +29,7 @@ namespace services_api
 		{
 			add_call_handler<AsyncConnectCall      >();
 			add_call_handler<AsyncHeartbeatCall    >();
-			add_call_handler<AsyncUpdateDevicesCall>();
+			//add_call_handler<AsyncUpdateDevicesCall>();
 			add_call_handler<AsyncGetRequestCall   >();
 			add_call_handler<AsyncCommitRequestCall>();
 		}
@@ -55,7 +55,7 @@ namespace services_api
 			try
 			{
 				auto result = utils::service::get_result(call->promise
-					                                      , std::chrono::seconds(1));
+					                                      , std::chrono::seconds(3));
 				return result;
 			}
 			catch (std::exception& exception) {
@@ -111,7 +111,14 @@ namespace services_api
 			call->reader = stub_->AsyncGet(&call->context, message, queue);
 			call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
-			return utils::service::get_result(call->promise);
+			try
+			{
+				auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(5000));
+				return result;
+			}
+			catch (std::exception&) {
+				return nullptr;
+			}
 		}
 
 		//TODO send with guid in metadata
@@ -129,7 +136,13 @@ namespace services_api
 			call->reader = stub_->AsyncCommit(&call->context, message, queue);
 			call->reader->Finish(&call->response, &call->status, reinterpret_cast<void*>(call));
 
-			//TODO add try catch with timeout
-			return utils::service::get_result(call->promise);
+			try
+			{
+				auto result = utils::service::get_result(call->promise, std::chrono::milliseconds(5000));
+				return result;
+			}
+			catch (std::exception&) {
+				return nullptr;
+			}	
 		}
 }

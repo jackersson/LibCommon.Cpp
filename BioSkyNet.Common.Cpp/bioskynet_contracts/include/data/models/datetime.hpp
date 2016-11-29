@@ -2,6 +2,8 @@
 #define DateTimeDataModel_INCLUDED
 
 #include <cstdint>
+#include <string>
+
 namespace data_model
 {	
 	class DateTime
@@ -73,6 +75,9 @@ namespace data_model
 		uint32_t miliseconds() const {
 			return miliseconds_;
 		}
+
+		std::string to_string() const;
+	
 
 		static DateTime now(){
 			return DateTime();

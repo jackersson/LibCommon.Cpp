@@ -61,6 +61,17 @@
     <Import Project="..\properties\boost_32d.props" />
     <Import Project="..\properties\utils_x32d.props" />
     <Import Project="..\..\..\property_sheets\tbb_x32.props" />
+    <Import Project="..\properties\grpc_x32d.props" />
+    <Import Project="..\properties\gtest_x32d.props" />
+    <Import Project="..\properties\openssl_x32d.props" />
+    <Import Project="..\properties\protobuf_x32d.props" />
+    <Import Project="..\properties\zlib_x32d.props" />
+    <Import Project="..\properties\gflags_x32d.props" />
+    <Import Project="..\properties\messages_x32d.props" />
+    <Import Project="..\properties\services_api_x32d.props" />
+    <Import Project="..\properties\bioskynet_contracts_x32d.props" />
+    <Import Project="..\properties\data_core_32d.props" />
+    <Import Project="..\properties\spdlog_x32d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -90,7 +101,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BOOST_THREAD_PROVIDES_FUTURE_CONTINUATION;BOOST_THREAD_PROVIDES_FUTURE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,10 +156,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dynamic_thread_pool.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dynamic_thread_pool.hpp" />
     <ClInclude Include="test.hpp" />
+    <ClInclude Include="thread_pool.hpp" />
+    <ClInclude Include="thread_safe_queue.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,7 +22,33 @@ namespace data_model
 			return mac_address_ != "";
 		}
 
+		void set_person_id(const Key& val) {
+			person_id_ = val;
+		}
+
+		const Key& person_id() const {
+			return person_id_;
+		}
+
+		bool has_person_id() const {
+			return !person_id_.is_empty();
+		}
+
+		void set_location_id(const Key& val) {
+			locations_id_ = val;
+		}
+
+		const Key& location_id() const {
+			return locations_id_;
+		}
+
+		bool has_location_id() const {
+			return !locations_id_.is_empty();
+		}
+
 	private:
+		Key locations_id_;
+		Key person_id_   ;
 		std::string mac_address_;
 	};
 

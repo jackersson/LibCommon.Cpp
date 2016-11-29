@@ -27,7 +27,10 @@ namespace grpc_services
 		void proceed(bool status = true)
 		{
 			if (!status)
-				std::cout << "proceed status false" << std::endl;
+			{
+				delete this;
+				return;
+			}
 			if (status_ == CREATE)
 			{
 				next();

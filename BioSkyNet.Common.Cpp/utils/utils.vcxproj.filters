@@ -33,6 +33,15 @@
     <ClInclude Include="include\repeatable_action.hpp">
       <Filter>includes</Filter>
     </ClInclude>
+    <ClInclude Include="include\thread_safe_queue.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thread_pool.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dynamic_thread_pool.hpp">
+      <Filter>includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\network_utils.cpp">
@@ -42,6 +51,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dynamic_thread_pool.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

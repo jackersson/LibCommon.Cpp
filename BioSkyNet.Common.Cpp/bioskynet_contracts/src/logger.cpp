@@ -18,7 +18,7 @@ namespace contracts
 
 			loggers_.push_back(daily_logger_mt("daily_logger", "logs/daily", 2, 30));
 			loggers_.push_back(stdout_logger_mt("console", true));
-			set_pattern("*** [%H:%M:%S %z] [thread %t] %v ***");
+			set_pattern("[%H:%M:%S %z] %v");
 			initialized_ = true;
 		}
 
