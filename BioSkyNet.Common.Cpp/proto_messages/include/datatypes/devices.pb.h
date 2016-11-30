@@ -48,6 +48,7 @@ class DeviceStateMessage;
 class DeviceUpdate;
 class Devices;
 class GenericDeviceStateMsg;
+class GetDevicesRequest;
 
 enum DeviceType {
   None_Type = 0,
@@ -879,6 +880,84 @@ class AccessDeviceStateMsg : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static AccessDeviceStateMsg* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class GetDevicesRequest : public ::google::protobuf::Message {
+ public:
+  GetDevicesRequest();
+  virtual ~GetDevicesRequest();
+
+  GetDevicesRequest(const GetDevicesRequest& from);
+
+  inline GetDevicesRequest& operator=(const GetDevicesRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GetDevicesRequest& default_instance();
+
+  void Swap(GetDevicesRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline GetDevicesRequest* New() const { return New(NULL); }
+
+  GetDevicesRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GetDevicesRequest& from);
+  void MergeFrom(const GetDevicesRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(GetDevicesRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .DataTypes.DeviceType dev_type = 1;
+  void clear_dev_type();
+  static const int kDevTypeFieldNumber = 1;
+  ::DataTypes::DeviceType dev_type() const;
+  void set_dev_type(::DataTypes::DeviceType value);
+
+  // @@protoc_insertion_point(class_scope:DataTypes.GetDevicesRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  int dev_type_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_datatypes_2fdevices_2eproto();
+  friend void protobuf_AssignDesc_datatypes_2fdevices_2eproto();
+  friend void protobuf_ShutdownFile_datatypes_2fdevices_2eproto();
+
+  void InitAsDefaultInstance();
+  static GetDevicesRequest* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1719,6 +1798,24 @@ inline void AccessDeviceStateMsg::set_opened(bool value) {
 
 // -------------------------------------------------------------------
 
+// GetDevicesRequest
+
+// optional .DataTypes.DeviceType dev_type = 1;
+inline void GetDevicesRequest::clear_dev_type() {
+  dev_type_ = 0;
+}
+inline ::DataTypes::DeviceType GetDevicesRequest::dev_type() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetDevicesRequest.dev_type)
+  return static_cast< ::DataTypes::DeviceType >(dev_type_);
+}
+inline void GetDevicesRequest::set_dev_type(::DataTypes::DeviceType value) {
+  
+  dev_type_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.GetDevicesRequest.dev_type)
+}
+
+// -------------------------------------------------------------------
+
 // CardMsg
 
 // optional string card_num = 1;
@@ -1828,6 +1925,8 @@ inline void CheckMsg::set_allocated_message(::std::string* message) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

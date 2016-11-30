@@ -470,8 +470,26 @@ namespace services_api
 				return DataTypes::DeviceType::CardReader;
 			case data_model::Capture: 
 				return DataTypes::DeviceType::Capture;
+			case data_model::DeviceType::None_Type:
+				return DataTypes::DeviceType::None_Type;
 			default: 
 				throw std::exception("to_proto_device_type argument exception");
+			}
+		}
+
+		data_model::DeviceType
+			to_data_device_type(DataTypes::DeviceType dev_type)
+		{
+			switch (dev_type)
+			{
+			case DataTypes::CardReader:
+				return data_model::DeviceType::CardReader;
+			case DataTypes::Capture:
+				return data_model::DeviceType::Capture;
+			case DataTypes::DeviceType::None_Type:
+				return data_model::DeviceType::None_Type;
+			default:
+				throw std::exception("to_data_device_type argument exception");
 			}
 		}
 

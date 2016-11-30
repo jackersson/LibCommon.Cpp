@@ -28,6 +28,13 @@ struct StreamMsgOneofInstance {
   const ::DataTypes::Device* device_;
   const ::DataTypes::Location* location_;
 }* StreamMsg_default_oneof_instance_ = NULL;
+const ::google::protobuf::Descriptor* EnrollMsg_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  EnrollMsg_reflection_ = NULL;
+struct EnrollMsgOneofInstance {
+  const ::DataTypes::Device* device_;
+  ::google::protobuf::internal::ArenaStringPtr photo_url_;
+}* EnrollMsg_default_oneof_instance_ = NULL;
 
 }  // namespace
 
@@ -59,6 +66,25 @@ void protobuf_AssignDesc_services_2funit_5fservice_2eproto() {
       sizeof(StreamMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StreamMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(StreamMsg, _is_default_instance_));
+  EnrollMsg_descriptor_ = file->message_type(1);
+  static const int EnrollMsg_offsets_[3] = {
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(EnrollMsg_default_oneof_instance_, device_),
+    PROTO2_GENERATED_DEFAULT_ONEOF_FIELD_OFFSET(EnrollMsg_default_oneof_instance_, photo_url_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnrollMsg, target_type_),
+  };
+  EnrollMsg_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      EnrollMsg_descriptor_,
+      EnrollMsg::default_instance_,
+      EnrollMsg_offsets_,
+      -1,
+      -1,
+      -1,
+      EnrollMsg_default_oneof_instance_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnrollMsg, _oneof_case_[0]),
+      sizeof(EnrollMsg),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnrollMsg, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EnrollMsg, _is_default_instance_));
 }
 
 namespace {
@@ -73,6 +99,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       StreamMsg_descriptor_, &StreamMsg::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      EnrollMsg_descriptor_, &EnrollMsg::default_instance());
 }
 
 }  // namespace
@@ -81,6 +109,9 @@ void protobuf_ShutdownFile_services_2funit_5fservice_2eproto() {
   delete StreamMsg::default_instance_;
   delete StreamMsg_default_oneof_instance_;
   delete StreamMsg_reflection_;
+  delete EnrollMsg::default_instance_;
+  delete EnrollMsg_default_oneof_instance_;
+  delete EnrollMsg_reflection_;
 }
 
 void protobuf_AddDesc_services_2funit_5fservice_2eproto() {
@@ -101,27 +132,29 @@ void protobuf_AddDesc_services_2funit_5fservice_2eproto() {
     "g\022#\n\006device\030\001 \001(\0132\021.DataTypes.DeviceH\000\022\'"
     "\n\010location\030\002 \001(\0132\023.DataTypes.LocationH\000\022"
     "%\n\005state\030\003 \001(\0162\026.DataTypes.DeviceState\022\026"
-    "\n\016correlation_id\030\004 \001(\003B\r\n\013target_type2\367\003"
-    "\n\013UnitService\0229\n\010OpenDoor\022\023.DataTypes.Lo"
-    "cation\032\026.google.protobuf.Empty\"\000\022E\n\021GetL"
-    "ocationStream\022\023.Services.StreamMsg\032\025.Dat"
-    "aTypes.FrameBytes\"\000(\0010\001\022:\n\nGetDevices\022\026."
-    "google.protobuf.Empty\032\022.DataTypes.Device"
-    "s\"\000\022G\n\017UpdateLocations\022\032.DataTypes.Locat"
-    "ionUpdates\032\026.google.protobuf.Empty\"\000\0222\n\007"
-    "GetCard\022\021.DataTypes.Device\032\022.DataTypes.C"
-    "ardMsg\"\000\0227\n\013CheckDevice\022\021.DataTypes.Devi"
-    "ce\032\023.DataTypes.CheckMsg\"\000\022C\n\017GetDeviceSt"
-    "ream\022\023.Services.StreamMsg\032\025.DataTypes.Fr"
-    "ameBytes\"\000(\0010\001\022/\n\006Enroll\022\021.DataTypes.Dev"
-    "ice\032\020.DataTypes.Faces\"\000BO\n\007ex.grpcZ>gith"
+    "\n\016correlation_id\030\004 \001(\003B\r\n\013target_type\"T\n"
+    "\tEnrollMsg\022#\n\006device\030\001 \001(\0132\021.DataTypes.D"
+    "eviceH\000\022\023\n\tphoto_url\030\002 \001(\tH\000B\r\n\013target_t"
+    "ype2\371\002\n\013UnitService\0229\n\010OpenDoor\022\023.DataTy"
+    "pes.Location\032\026.google.protobuf.Empty\"\000\022="
+    "\n\tGetStream\022\023.Services.StreamMsg\032\025.DataT"
+    "ypes.FrameBytes\"\000(\0010\001\022@\n\nGetDevices\022\034.Da"
+    "taTypes.GetDevicesRequest\032\022.DataTypes.De"
+    "vices\"\000\022G\n\017UpdateLocations\022\032.DataTypes.L"
+    "ocationUpdates\032\026.google.protobuf.Empty\"\000"
+    "\0222\n\007GetCard\022\021.DataTypes.Device\032\022.DataTyp"
+    "es.CardMsg\"\000\0221\n\006Enroll\022\023.Services.Enroll"
+    "Msg\032\020.DataTypes.Faces\"\000BO\n\007ex.grpcZ>gith"
     "ub.com/Enebra/ServiceCoordinator/grpc/se"
-    "rvices/unitservice\242\002\003RTGb\006proto3", 912);
+    "rvices/unitservice\242\002\003RTGb\006proto3", 872);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "services/unit_service.proto", &protobuf_RegisterTypes);
   StreamMsg::default_instance_ = new StreamMsg();
   StreamMsg_default_oneof_instance_ = new StreamMsgOneofInstance();
+  EnrollMsg::default_instance_ = new EnrollMsg();
+  EnrollMsg_default_oneof_instance_ = new EnrollMsgOneofInstance();
   StreamMsg::default_instance_->InitAsDefaultInstance();
+  EnrollMsg::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_services_2funit_5fservice_2eproto);
 }
 
@@ -666,6 +699,452 @@ void StreamMsg::clear_has_target_type() {
 }
 StreamMsg::TargetTypeCase StreamMsg::target_type_case() const {
   return StreamMsg::TargetTypeCase(_oneof_case_[0]);
+}
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int EnrollMsg::kDeviceFieldNumber;
+const int EnrollMsg::kPhotoUrlFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+EnrollMsg::EnrollMsg()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:Services.EnrollMsg)
+}
+
+void EnrollMsg::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  EnrollMsg_default_oneof_instance_->device_ = const_cast< ::DataTypes::Device*>(&::DataTypes::Device::default_instance());
+  EnrollMsg_default_oneof_instance_->photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+EnrollMsg::EnrollMsg(const EnrollMsg& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:Services.EnrollMsg)
+}
+
+void EnrollMsg::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  clear_has_target_type();
+}
+
+EnrollMsg::~EnrollMsg() {
+  // @@protoc_insertion_point(destructor:Services.EnrollMsg)
+  SharedDtor();
+}
+
+void EnrollMsg::SharedDtor() {
+  if (has_target_type()) {
+    clear_target_type();
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void EnrollMsg::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* EnrollMsg::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return EnrollMsg_descriptor_;
+}
+
+const EnrollMsg& EnrollMsg::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_services_2funit_5fservice_2eproto();
+  return *default_instance_;
+}
+
+EnrollMsg* EnrollMsg::default_instance_ = NULL;
+
+EnrollMsg* EnrollMsg::New(::google::protobuf::Arena* arena) const {
+  EnrollMsg* n = new EnrollMsg;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void EnrollMsg::clear_target_type() {
+// @@protoc_insertion_point(one_of_clear_start:Services.EnrollMsg)
+  switch(target_type_case()) {
+    case kDevice: {
+      delete target_type_.device_;
+      break;
+    }
+    case kPhotoUrl: {
+      target_type_.photo_url_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+      break;
+    }
+    case TARGET_TYPE_NOT_SET: {
+      break;
+    }
+  }
+  _oneof_case_[0] = TARGET_TYPE_NOT_SET;
+}
+
+
+void EnrollMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:Services.EnrollMsg)
+  clear_target_type();
+}
+
+bool EnrollMsg::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:Services.EnrollMsg)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .DataTypes.Device device = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_device()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_photo_url;
+        break;
+      }
+
+      // optional string photo_url = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_photo_url:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_photo_url()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->photo_url().data(), this->photo_url().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "Services.EnrollMsg.photo_url"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:Services.EnrollMsg)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:Services.EnrollMsg)
+  return false;
+#undef DO_
+}
+
+void EnrollMsg::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:Services.EnrollMsg)
+  // optional .DataTypes.Device device = 1;
+  if (has_device()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *target_type_.device_, output);
+  }
+
+  // optional string photo_url = 2;
+  if (has_photo_url()) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->photo_url().data(), this->photo_url().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "Services.EnrollMsg.photo_url");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->photo_url(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:Services.EnrollMsg)
+}
+
+::google::protobuf::uint8* EnrollMsg::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Services.EnrollMsg)
+  // optional .DataTypes.Device device = 1;
+  if (has_device()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *target_type_.device_, target);
+  }
+
+  // optional string photo_url = 2;
+  if (has_photo_url()) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->photo_url().data(), this->photo_url().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "Services.EnrollMsg.photo_url");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->photo_url(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:Services.EnrollMsg)
+  return target;
+}
+
+int EnrollMsg::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:Services.EnrollMsg)
+  int total_size = 0;
+
+  switch (target_type_case()) {
+    // optional .DataTypes.Device device = 1;
+    case kDevice: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          *target_type_.device_);
+      break;
+    }
+    // optional string photo_url = 2;
+    case kPhotoUrl: {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->photo_url());
+      break;
+    }
+    case TARGET_TYPE_NOT_SET: {
+      break;
+    }
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void EnrollMsg::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:Services.EnrollMsg)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const EnrollMsg* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const EnrollMsg>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Services.EnrollMsg)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:Services.EnrollMsg)
+    MergeFrom(*source);
+  }
+}
+
+void EnrollMsg::MergeFrom(const EnrollMsg& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Services.EnrollMsg)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  switch (from.target_type_case()) {
+    case kDevice: {
+      mutable_device()->::DataTypes::Device::MergeFrom(from.device());
+      break;
+    }
+    case kPhotoUrl: {
+      set_photo_url(from.photo_url());
+      break;
+    }
+    case TARGET_TYPE_NOT_SET: {
+      break;
+    }
+  }
+}
+
+void EnrollMsg::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:Services.EnrollMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void EnrollMsg::CopyFrom(const EnrollMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Services.EnrollMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EnrollMsg::IsInitialized() const {
+
+  return true;
+}
+
+void EnrollMsg::Swap(EnrollMsg* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void EnrollMsg::InternalSwap(EnrollMsg* other) {
+  std::swap(target_type_, other->target_type_);
+  std::swap(_oneof_case_[0], other->_oneof_case_[0]);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata EnrollMsg::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = EnrollMsg_descriptor_;
+  metadata.reflection = EnrollMsg_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// EnrollMsg
+
+// optional .DataTypes.Device device = 1;
+bool EnrollMsg::has_device() const {
+  return target_type_case() == kDevice;
+}
+void EnrollMsg::set_has_device() {
+  _oneof_case_[0] = kDevice;
+}
+void EnrollMsg::clear_device() {
+  if (has_device()) {
+    delete target_type_.device_;
+    clear_has_target_type();
+  }
+}
+ const ::DataTypes::Device& EnrollMsg::device() const {
+  // @@protoc_insertion_point(field_get:Services.EnrollMsg.device)
+  return has_device()
+      ? *target_type_.device_
+      : ::DataTypes::Device::default_instance();
+}
+::DataTypes::Device* EnrollMsg::mutable_device() {
+  if (!has_device()) {
+    clear_target_type();
+    set_has_device();
+    target_type_.device_ = new ::DataTypes::Device;
+  }
+  // @@protoc_insertion_point(field_mutable:Services.EnrollMsg.device)
+  return target_type_.device_;
+}
+::DataTypes::Device* EnrollMsg::release_device() {
+  // @@protoc_insertion_point(field_release:Services.EnrollMsg.device)
+  if (has_device()) {
+    clear_has_target_type();
+    ::DataTypes::Device* temp = target_type_.device_;
+    target_type_.device_ = NULL;
+    return temp;
+  } else {
+    return NULL;
+  }
+}
+void EnrollMsg::set_allocated_device(::DataTypes::Device* device) {
+  clear_target_type();
+  if (device) {
+    set_has_device();
+    target_type_.device_ = device;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Services.EnrollMsg.device)
+}
+
+// optional string photo_url = 2;
+bool EnrollMsg::has_photo_url() const {
+  return target_type_case() == kPhotoUrl;
+}
+void EnrollMsg::set_has_photo_url() {
+  _oneof_case_[0] = kPhotoUrl;
+}
+void EnrollMsg::clear_photo_url() {
+  if (has_photo_url()) {
+    target_type_.photo_url_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    clear_has_target_type();
+  }
+}
+ const ::std::string& EnrollMsg::photo_url() const {
+  // @@protoc_insertion_point(field_get:Services.EnrollMsg.photo_url)
+  if (has_photo_url()) {
+    return target_type_.photo_url_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  return *&::google::protobuf::internal::GetEmptyStringAlreadyInited();
+}
+ void EnrollMsg::set_photo_url(const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:Services.EnrollMsg.photo_url)
+  if (!has_photo_url()) {
+    clear_target_type();
+    set_has_photo_url();
+    target_type_.photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  target_type_.photo_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:Services.EnrollMsg.photo_url)
+}
+ void EnrollMsg::set_photo_url(const char* value) {
+  if (!has_photo_url()) {
+    clear_target_type();
+    set_has_photo_url();
+    target_type_.photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  target_type_.photo_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:Services.EnrollMsg.photo_url)
+}
+ void EnrollMsg::set_photo_url(const char* value, size_t size) {
+  if (!has_photo_url()) {
+    clear_target_type();
+    set_has_photo_url();
+    target_type_.photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  target_type_.photo_url_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:Services.EnrollMsg.photo_url)
+}
+ ::std::string* EnrollMsg::mutable_photo_url() {
+  if (!has_photo_url()) {
+    clear_target_type();
+    set_has_photo_url();
+    target_type_.photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_mutable:Services.EnrollMsg.photo_url)
+  return target_type_.photo_url_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* EnrollMsg::release_photo_url() {
+  // @@protoc_insertion_point(field_release:Services.EnrollMsg.photo_url)
+  if (has_photo_url()) {
+    clear_has_target_type();
+    return target_type_.photo_url_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  } else {
+    return NULL;
+  }
+}
+ void EnrollMsg::set_allocated_photo_url(::std::string* photo_url) {
+  if (!has_photo_url()) {
+    target_type_.photo_url_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  clear_target_type();
+  if (photo_url != NULL) {
+    set_has_photo_url();
+    target_type_.photo_url_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+        photo_url);
+  }
+  // @@protoc_insertion_point(field_set_allocated:Services.EnrollMsg.photo_url)
+}
+
+bool EnrollMsg::has_target_type() const {
+  return target_type_case() != TARGET_TYPE_NOT_SET;
+}
+void EnrollMsg::clear_has_target_type() {
+  _oneof_case_[0] = TARGET_TYPE_NOT_SET;
+}
+EnrollMsg::TargetTypeCase EnrollMsg::target_type_case() const {
+  return EnrollMsg::TargetTypeCase(_oneof_case_[0]);
 }
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 

@@ -190,7 +190,8 @@ namespace services_api
 			                  , const data_model::Device&);
 
 
-		DataTypes::DeviceType to_proto_device_type(data_model::DeviceType);
+		DataTypes::DeviceType  to_proto_device_type(data_model::DeviceType);
+		data_model::DeviceType to_data_device_type (DataTypes::DeviceType);
 
 		data_model::FaceTemplate
 			to_face_template(const data_model::FaceCharacteristics&);

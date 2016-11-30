@@ -53,6 +53,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* AccessDeviceStateMsg_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AccessDeviceStateMsg_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GetDevicesRequest_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  GetDevicesRequest_reflection_ = NULL;
 const ::google::protobuf::Descriptor* CardMsg_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   CardMsg_reflection_ = NULL;
@@ -208,7 +211,22 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(AccessDeviceStateMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AccessDeviceStateMsg, _is_default_instance_));
-  CardMsg_descriptor_ = file->message_type(8);
+  GetDevicesRequest_descriptor_ = file->message_type(8);
+  static const int GetDevicesRequest_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetDevicesRequest, dev_type_),
+  };
+  GetDevicesRequest_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      GetDevicesRequest_descriptor_,
+      GetDevicesRequest::default_instance_,
+      GetDevicesRequest_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(GetDevicesRequest),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetDevicesRequest, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GetDevicesRequest, _is_default_instance_));
+  CardMsg_descriptor_ = file->message_type(9);
   static const int CardMsg_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, card_num_),
   };
@@ -223,7 +241,7 @@ void protobuf_AssignDesc_datatypes_2fdevices_2eproto() {
       sizeof(CardMsg),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardMsg, _is_default_instance_));
-  CheckMsg_descriptor_ = file->message_type(9);
+  CheckMsg_descriptor_ = file->message_type(10);
   static const int CheckMsg_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CheckMsg, ok_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CheckMsg, message_),
@@ -270,6 +288,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       AccessDeviceStateMsg_descriptor_, &AccessDeviceStateMsg::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      GetDevicesRequest_descriptor_, &GetDevicesRequest::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       CardMsg_descriptor_, &CardMsg::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       CheckMsg_descriptor_, &CheckMsg::default_instance());
@@ -296,6 +316,8 @@ void protobuf_ShutdownFile_datatypes_2fdevices_2eproto() {
   delete GenericDeviceStateMsg_reflection_;
   delete AccessDeviceStateMsg::default_instance_;
   delete AccessDeviceStateMsg_reflection_;
+  delete GetDevicesRequest::default_instance_;
+  delete GetDevicesRequest_reflection_;
   delete CardMsg::default_instance_;
   delete CardMsg_reflection_;
   delete CheckMsg::default_instance_;
@@ -331,15 +353,17 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
     "Types.DeviceType\022%\n\005state\030\003 \001(\0162\026.DataTy"
     "pes.DeviceState\022\017\n\007message\030\004 \001(\t\"K\n\024Acce"
     "ssDeviceStateMsg\022#\n\013location_id\030\001 \001(\0132\016."
-    "DataTypes.Key\022\016\n\006opened\030\002 \001(\010\"\033\n\007CardMsg"
-    "\022\020\n\010card_num\030\001 \001(\t\"\'\n\010CheckMsg\022\n\n\002ok\030\001 \001"
-    "(\010\022\017\n\007message\030\002 \001(\t*8\n\nDeviceType\022\r\n\tNon"
-    "e_Type\020\000\022\016\n\nCardReader\020\001\022\013\n\007Capture\020\002*`\n"
-    "\013DeviceState\022\016\n\nNone_State\020\000\022\n\n\006Active\020\001"
-    "\022\021\n\rStoppedByUser\020\002\022\n\n\006Paused\020\003\022\013\n\007Stopp"
-    "ed\020\004\022\t\n\005Error\020\005BL\n\007ex.grpcZ;github.com/E"
-    "nebra/ServiceCoordinator/grpc/datatypes/"
-    "devices\242\002\003RTGb\006proto3", 1181);
+    "DataTypes.Key\022\016\n\006opened\030\002 \001(\010\"<\n\021GetDevi"
+    "cesRequest\022\'\n\010dev_type\030\001 \001(\0162\025.DataTypes"
+    ".DeviceType\"\033\n\007CardMsg\022\020\n\010card_num\030\001 \001(\t"
+    "\"\'\n\010CheckMsg\022\n\n\002ok\030\001 \001(\010\022\017\n\007message\030\002 \001("
+    "\t*8\n\nDeviceType\022\r\n\tNone_Type\020\000\022\016\n\nCardRe"
+    "ader\020\001\022\013\n\007Capture\020\002*`\n\013DeviceState\022\016\n\nNo"
+    "ne_State\020\000\022\n\n\006Active\020\001\022\021\n\rStoppedByUser\020"
+    "\002\022\n\n\006Paused\020\003\022\013\n\007Stopped\020\004\022\t\n\005Error\020\005BL\n"
+    "\007ex.grpcZ;github.com/Enebra/ServiceCoord"
+    "inator/grpc/datatypes/devices\242\002\003RTGb\006pro"
+    "to3", 1243);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "datatypes/devices.proto", &protobuf_RegisterTypes);
   AccessDevice::default_instance_ = new AccessDevice();
@@ -352,6 +376,7 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
   DeviceStateMessage_default_oneof_instance_ = new DeviceStateMessageOneofInstance();
   GenericDeviceStateMsg::default_instance_ = new GenericDeviceStateMsg();
   AccessDeviceStateMsg::default_instance_ = new AccessDeviceStateMsg();
+  GetDevicesRequest::default_instance_ = new GetDevicesRequest();
   CardMsg::default_instance_ = new CardMsg();
   CheckMsg::default_instance_ = new CheckMsg();
   AccessDevice::default_instance_->InitAsDefaultInstance();
@@ -362,6 +387,7 @@ void protobuf_AddDesc_datatypes_2fdevices_2eproto() {
   DeviceStateMessage::default_instance_->InitAsDefaultInstance();
   GenericDeviceStateMsg::default_instance_->InitAsDefaultInstance();
   AccessDeviceStateMsg::default_instance_->InitAsDefaultInstance();
+  GetDevicesRequest::default_instance_->InitAsDefaultInstance();
   CardMsg::default_instance_->InitAsDefaultInstance();
   CheckMsg::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_datatypes_2fdevices_2eproto);
@@ -3417,6 +3443,242 @@ void AccessDeviceStateMsg::clear_opened() {
   
   opened_ = value;
   // @@protoc_insertion_point(field_set:DataTypes.AccessDeviceStateMsg.opened)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int GetDevicesRequest::kDevTypeFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+GetDevicesRequest::GetDevicesRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:DataTypes.GetDevicesRequest)
+}
+
+void GetDevicesRequest::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+GetDevicesRequest::GetDevicesRequest(const GetDevicesRequest& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:DataTypes.GetDevicesRequest)
+}
+
+void GetDevicesRequest::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  dev_type_ = 0;
+}
+
+GetDevicesRequest::~GetDevicesRequest() {
+  // @@protoc_insertion_point(destructor:DataTypes.GetDevicesRequest)
+  SharedDtor();
+}
+
+void GetDevicesRequest::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void GetDevicesRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* GetDevicesRequest::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return GetDevicesRequest_descriptor_;
+}
+
+const GetDevicesRequest& GetDevicesRequest::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_datatypes_2fdevices_2eproto();
+  return *default_instance_;
+}
+
+GetDevicesRequest* GetDevicesRequest::default_instance_ = NULL;
+
+GetDevicesRequest* GetDevicesRequest::New(::google::protobuf::Arena* arena) const {
+  GetDevicesRequest* n = new GetDevicesRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void GetDevicesRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:DataTypes.GetDevicesRequest)
+  dev_type_ = 0;
+}
+
+bool GetDevicesRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:DataTypes.GetDevicesRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .DataTypes.DeviceType dev_type = 1;
+      case 1: {
+        if (tag == 8) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_dev_type(static_cast< ::DataTypes::DeviceType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:DataTypes.GetDevicesRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:DataTypes.GetDevicesRequest)
+  return false;
+#undef DO_
+}
+
+void GetDevicesRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:DataTypes.GetDevicesRequest)
+  // optional .DataTypes.DeviceType dev_type = 1;
+  if (this->dev_type() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->dev_type(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:DataTypes.GetDevicesRequest)
+}
+
+::google::protobuf::uint8* GetDevicesRequest::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:DataTypes.GetDevicesRequest)
+  // optional .DataTypes.DeviceType dev_type = 1;
+  if (this->dev_type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->dev_type(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:DataTypes.GetDevicesRequest)
+  return target;
+}
+
+int GetDevicesRequest::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:DataTypes.GetDevicesRequest)
+  int total_size = 0;
+
+  // optional .DataTypes.DeviceType dev_type = 1;
+  if (this->dev_type() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->dev_type());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void GetDevicesRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:DataTypes.GetDevicesRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const GetDevicesRequest* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const GetDevicesRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:DataTypes.GetDevicesRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:DataTypes.GetDevicesRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetDevicesRequest::MergeFrom(const GetDevicesRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:DataTypes.GetDevicesRequest)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.dev_type() != 0) {
+    set_dev_type(from.dev_type());
+  }
+}
+
+void GetDevicesRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:DataTypes.GetDevicesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetDevicesRequest::CopyFrom(const GetDevicesRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:DataTypes.GetDevicesRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetDevicesRequest::IsInitialized() const {
+
+  return true;
+}
+
+void GetDevicesRequest::Swap(GetDevicesRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void GetDevicesRequest::InternalSwap(GetDevicesRequest* other) {
+  std::swap(dev_type_, other->dev_type_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata GetDevicesRequest::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = GetDevicesRequest_descriptor_;
+  metadata.reflection = GetDevicesRequest_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// GetDevicesRequest
+
+// optional .DataTypes.DeviceType dev_type = 1;
+void GetDevicesRequest::clear_dev_type() {
+  dev_type_ = 0;
+}
+ ::DataTypes::DeviceType GetDevicesRequest::dev_type() const {
+  // @@protoc_insertion_point(field_get:DataTypes.GetDevicesRequest.dev_type)
+  return static_cast< ::DataTypes::DeviceType >(dev_type_);
+}
+ void GetDevicesRequest::set_dev_type(::DataTypes::DeviceType value) {
+  
+  dev_type_ = value;
+  // @@protoc_insertion_point(field_set:DataTypes.GetDevicesRequest.dev_type)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
